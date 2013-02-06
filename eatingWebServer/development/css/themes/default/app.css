@@ -1,0 +1,53 @@
+.ui-btn-inner {
+  font-size: 16px;
+}
+#user-restaurant-edit .restaurant-content {
+  float: left;
+  margin: 17px 12px 0 0;
+}
+#user-restaurant-edit .number-input {
+  float: right;
+  margin: 7px 12px 0 0;
+  width: 60px;
+}
+#user-restaurant-edit .group-button-content {
+  float: right;
+  width: auto;
+}
+#user-restaurant-edit .ui-li-count {
+  position: static;
+  float: left;
+  margin: 14px 0 0 0;
+}
+#user-restaurant-edit .confirm-foods {
+  margin-top: 30px;
+}
+#user-restaurant-edit .listview li {
+  padding-right: 15px !important;
+}
+#recharge-details .ui-controlgroup-controls {
+  display: block;
+  width: auto;
+}
+#recharge-details .ui-controlgroup-controls .ui-btn {
+  width: 50%;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  /* Firefox */
+  -webkit-box-sizing: border-box;
+}
+#recharge-details .ui-controlgroup-controls .input-label.ui-btn {
+  width: 100%;
+}
+#confirm-success .ui-content h1 {
+  font-size: 20px;
+  padding: 5px 0 10px;
+  font-weight: bold;
+}
+#user-restaurant-details li,
+#user-restaurant-edit li,
+#confirm-success li {
+  padding-top: 0.7em;
+  padding-bottom: 0.7em;
+  font-size: 14px;
+}

@@ -1,0 +1,23 @@
+{
+  "name": "Eatings",
+  "version": "0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app"
+  },
+  "dependencies": {
+    "express": "latest",
+    "gzippo": "latest",
+    "ejs": "latest",
+    "ejs-locals": "latest",
+    "less-middleware": "latest",
+    "mongoose": "latest"
+  },
+  // "devDependencies": {
+  //   "mocha": "latest",
+  //   "should": "latest"
+  // },
+  "engines": {
+    "node": "0.8.14"
+  }
+}
