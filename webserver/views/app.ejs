@@ -6,6 +6,7 @@
     <% if (env == "development") { %>
       <link rel='stylesheet' href='/css/themes/default/common.css' />
       <link rel="stylesheet" href="/css/themes/default/jquery.mobile-1.2.0.css" />
+      <link rel="stylesheet" href="/css/themes/default/mobiscroll.datetime-2.4.1.min.css" />
       <link rel='stylesheet' href='/css/themes/default/app.css' />
     <% }else{ %>
       <link rel='stylesheet' href='/css/all.css' />  
@@ -45,6 +46,11 @@
             <li><a href="#user-restaurant-details">来福士超市</a></li>
             <li><a href="#user-restaurant-details">面馆</a></li>
         </ul>
+        <h2>PassWord:</h2>
+        <input type="text" >
+        <h2>Cut-Off Date : <span id="show-Time"></span></h2>
+        <div id="timePicker"></div>
+        <a class="create-group-btn" href="#user-restaurant-list" data-role="button" >Create This Group</a>
     </div>
 </div>
 
@@ -62,10 +68,6 @@
         </ul>
     </div>
 </div>
-
-<style type="text/css">
-    
-</style>
 
 <div data-role="page" id="recharge-details">
     <div data-role="header">
@@ -195,6 +197,8 @@
 <% if (env == "development") { %>
     <script src="/js/jquery.js"></script>
     <script src="/js/jquery.mobile-1.2.0.js"></script>
+    <script src="/js/date.js"></script>
+    <script src="/js/mobiscroll.datetime-2.4.1.min.js"></script>
     <script src="/js/app-logic.js"></script>
     <%- scripts %>
 <% }else{ %>

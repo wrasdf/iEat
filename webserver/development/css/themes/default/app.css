@@ -51,3 +51,16 @@
   padding-bottom: 0.7em;
   font-size: 14px;
 }
+.dwi {
+  display: block;
+}
+#scroller {
+  margin-top: 20px;
+}
+#user-create-content h2 {
+  margin: 10px 0;
+  font-weight: bold;
+}
+#user-create-content .create-group-btn {
+  margin-top: 20px;
+}
