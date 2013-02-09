@@ -5,23 +5,14 @@
       %title= content_for?(:title) ? yield(:title) : "Ws Rails"
       %meta{:content => content_for?(:description) ? yield(:description) : "Ws Rails", :name => "description"}
         = stylesheet_link_tag "application", :media => "all"
-        = stylesheet_link_tag "default/app.css", :media => "all"
-        = stylesheet_link_tag "default/common.css", :media => "all"
-        = stylesheet_link_tag "default/jquery.mobile-1.2.0.css", :media => "all"
-        = stylesheet_link_tag "default/mobiscroll.datetime-2.4.1.min.css", :media => "all"
         = javascript_include_tag "application"
-        = javascript_include_tag "mobile/app-logic.js"
-        = javascript_include_tag "mobile/date.js"
-        = javascript_include_tag "mobile/jquery.js"
-        = javascript_include_tag "mobile/jquery.mobile-1.2.0.js"
-        = javascript_include_tag "mobile/mobiscroll.datetime-2.4.1.min.js"
         = csrf_meta_tags
         = yield(:head)
   %body{:class => "#{controller_name} #{action_name}"}
-    -#%header.navbar.navbar-fixed-top
-    -#  %nav.navbar-inner
-    -#    .container
-    -#      = render 'layouts/navigation'
+    %header.navbar.navbar-fixed-top
+      %nav.navbar-inner
+        .container
+          = render 'layouts/navigation'
     #main{:role => "main"}
       .container
         .content
