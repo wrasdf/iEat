@@ -25,4 +25,3 @@ class DashboardActivity extends Activity {
     joinAnotherGroupButton.setOnClickListener { (v: View) => startActivity(new Intent(DashboardActivity.this, classOf[JoinedGroupActivity]))}
   }
 }
-

@@ -1,0 +1,142 @@
+#user-restaurant-list{"data-role" => "page"}
+  %div{"data-role" => "header"}
+    %a.ui-btn-left{"data-theme" => "b", :href => "#user-create-content"} Create
+    %h1 Group List
+    %a.ui-btn-right{"data-icon" => "arrow-r", "data-iconpos" => "right", "data-theme" => "b", :href => "#user-recharge"} ReCharge
+  / /header
+  %div{"data-role" => "content"}
+    %ul{"data-" => "", "data-inset" => "true", "data-role" => "listview"}
+      %li
+        %a{:href => "#user-restaurant-details"} 九头鹰  Owner : XiaoChong
+      %li
+        %a{:href => "#user-restaurant-details"} 来福士超市  Owner : MingXin
+      %li
+        %a{:href => "#user-restaurant-details"} 面馆  Owner : WangRui
+
+#user-create-content{"data-role" => "page"}
+  %div{"data-role" => "header"}
+    %a.ui-btn-left{"data-icon" => "arrow-l", "data-theme" => "b", :href => "#user-restaurant-list"} Back
+    %h1 Restaurant List
+  / /header
+  %div{"data-role" => "content"}
+    %ul{"data-inset" => "true", "data-role" => "listview"}
+      %li
+        %a{:href => "#user-restaurant-details"} 九头鹰
+      %li
+        %a{:href => "#user-restaurant-details"} 来福士超市
+      %li
+        %a{:href => "#user-restaurant-details"} 面馆
+    %h2 PassWord:
+    %input{:type => "text"}
+      %h2
+        Cut-Off Date :
+        %span#show-Time
+      #timePicker
+      %a.create-group-btn{"data-role" => "button", :href => "#user-restaurant-list"} Create This Group
+
+#user-recharge{"data-role" => "page"}
+  %div{"data-role" => "header"}
+    %a.ui-btn-left{"data-icon" => "arrow-l", "data-theme" => "b", :href => "#user-restaurant-list"} Back
+    %h1 Recharge List
+  / /header
+  %div{"data-role" => "content"}
+    %ul{"data-inset" => "true", "data-role" => "listview"}
+      %li
+        %a{:href => "#recharge-details"} 九头鹰 2013-1-12  34$
+      %li
+        %a{:href => "#recharge-details"} 来福士超市 2013-1-23  34$
+      %li
+        %a{:href => "#recharge-details"} 面馆 2013-1-28  34$
+
+#recharge-details{"data-role" => "page"}
+  %div{"data-role" => "header"}
+    %a.ui-btn-left{"data-icon" => "arrow-l", "data-theme" => "b", :href => "#user-recharge"} Back
+    %h1 Recharge List
+  / /header
+  %div{"data-role" => "content"}
+    %div{"data-role" => "fieldcontain"}
+      %fieldset{"data-role" => "controlgroup"}
+        %input#checkbox-1.custom{:name => "checkbox-2", :type => "checkbox"}/
+        %label.input-label{:for => "checkbox-1"} 小刀 2013-1-12 烩面 12￥
+        %input#checkbox-2.custom{:name => "checkbox-2", :type => "checkbox"}/
+        %label.input-label{:for => "checkbox-2"} 小刀 2013-1-12 烩面 14￥
+        %input#checkbox-3.custom{:name => "checkbox-2", :type => "checkbox"}/
+        %label.input-label{:for => "checkbox-3"} 小刀 2013-1-12 烩面 14￥
+        %input#checkbox-4.custom{:name => "checkbox-2", :type => "checkbox"}/
+        %label.input-label{:for => "checkbox-4"} 小刀 2013-1-12 烩面烩面烩面 14￥
+    %a{"data-icon" => "grid", "data-role" => "button", :href => "javascript:void(0);"} Select All
+    %div{"data-role" => "controlgroup", "data-type" => "horizontal"}
+      %a{"data-icon" => "alert", "data-role" => "button", :href => "javascript:void(0);"} ReCharge
+      %a{"data-icon" => "check", "data-role" => "button", :href => "javascript:void(0);"} Charged
+
+#user-restaurant-details{"data-role" => "page"}
+  %div{"data-role" => "header"}
+    %a.ui-btn-left{"data-icon" => "arrow-l", "data-theme" => "b", :href => "#user-restaurant-list"} Back
+    %h1 九头鹰
+    %a.ui-btn-right{"data-icon" => "arrow-r", "data-iconpos" => "right", "data-theme" => "b", :href => "#user-restaurant-edit"} Edit
+  %div{"data-role" => "content"}
+    %ul{"data-inset" => "true", "data-role" => "listview"}
+      %li
+        炒面 : 12￥
+        %span.ui-li-count 3
+      %li
+        炒菜 : 12￥
+        %span.ui-li-count 5
+      %li
+        烩面 : 12￥
+        %span.ui-li-count 6
+
+#user-restaurant-edit{"data-role" => "page"}
+  %div{"data-role" => "header"}
+    %a.ui-btn-left{"data-icon" => "arrow-l", "data-theme" => "b", :href => "#user-restaurant-details"} Cancel
+    %h1 九头鹰
+  / /header
+  %div{"data-role" => "content"}
+    %ul.listview{"data-inset" => "true", "data-role" => "listview"}
+      %li.cf
+        %span.restaurant-content 炒面 : 12￥
+        %span.ui-li-count 3
+        .group-button-content{"data-role" => "controlgroup", "data-type" => "horizontal"}
+          %a.add{"data-icon" => "arrow-u", "data-mini" => "true", "data-role" => "button", :href => ""}  
+          %a.reduce{"data-icon" => "arrow-d", "data-mini" => "true", "data-role" => "button", :href => ""}  
+        %input.number-input{"data-mini" => "true", :type => "number", :value => "0"}/
+      %li.cf
+        %span.restaurant-content 炒面 : 12￥
+        %span.ui-li-count 3
+        .group-button-content{"data-role" => "controlgroup", "data-type" => "horizontal"}
+          %a.add{"data-icon" => "arrow-u", "data-mini" => "true", "data-role" => "button", :href => ""}  
+          %a.reduce{"data-icon" => "arrow-d", "data-mini" => "true", "data-role" => "button", :href => ""}  
+        %input.number-input{"data-mini" => "true", :type => "number", :value => "0"}/
+      %li.cf
+        %span.restaurant-content 炒面 : 12￥
+        %span.ui-li-count 3
+        .group-button-content{"data-role" => "controlgroup", "data-type" => "horizontal"}
+          %a.add{"data-icon" => "arrow-u", "data-mini" => "true", "data-role" => "button", :href => ""}  
+          %a.reduce{"data-icon" => "arrow-d", "data-mini" => "true", "data-role" => "button", :href => ""}  
+        %input.number-input{"data-mini" => "true", :type => "number", :value => "0"}/
+      %li.cf
+        %span.restaurant-content 炒面 : 12￥
+        %span.ui-li-count 3
+        .group-button-content{"data-role" => "controlgroup", "data-type" => "horizontal"}
+          %a.add{"data-icon" => "arrow-u", "data-mini" => "true", "data-role" => "button", :href => ""}  
+          %a.reduce{"data-icon" => "arrow-d", "data-mini" => "true", "data-role" => "button", :href => ""}  
+        %input.number-input{"data-mini" => "true", :type => "number", :value => "0"}/
+    %a.confirm-foods{"data-role" => "button", :href => "#confirm-success"} Confirm
+
+#confirm-success{"data-role" => "page"}
+  %div{"data-role" => "header"}
+    %a.ui-btn-left{"data-icon" => "arrow-l", "data-theme" => "b", :href => "#user-restaurant-list"} Back
+    %h1 Success
+  %div{"data-role" => "content"}
+    %h1 Congratulations
+    %p
+      Hi XXX, your submit is successful. When the food is ready, This app will let your know.
+    %ul{"data-inset" => "true", "data-role" => "listview"}
+      %li Yours
+      %li
+        炒面 : 12￥
+        %span.ui-li-count 1
+      %li
+        炒菜 : 12￥
+        %span.ui-li-count 1
+      %li Total : 24￥
