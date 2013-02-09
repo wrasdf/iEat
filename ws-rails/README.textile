@@ -16,7 +16,7 @@ Recipes:
 ["controllers", "core", "email", "extras", "frontend", "gems", "git", "init", "models", "prelaunch", "railsapps", "readme", "routes", "saas", "setup", "testing", "views"]
 
 Preferences:
-{:git=>true, :railsapps=>"none", :dev_webserver=>"webrick", :database=>"sqlite", :templates=>"haml", :unit_test=>"rspec", :integration=>"rspec-capybara", :fixtures=>"factory_girl", :frontend=>"bootstrap", :bootstrap=>"less", :email=>"gmail", :authentication=>"devise", :devise_modules=>"invitable", :authorization=>"none", :form_builder=>"simple_form", :starter_app=>"users_app", :quiet_assets=>true, :local_env_file=>true, :better_errors=>true, :ban_spiders=>true}
+{:git=>true, :railsapps=>"none", :dev_webserver=>"thin", :prod_webserver=>"thin", :database=>"sqlite", :templates=>"haml", :unit_test=>"rspec", :integration=>"rspec-capybara", :fixtures=>"factory_girl", :frontend=>"bootstrap", :bootstrap=>"less", :email=>"gmail", :authentication=>"devise", :devise_modules=>"invitable", :authorization=>"cancan", :form_builder=>"simple_form", :starter_app=>"admin_app", :quiet_assets=>true, :local_env_file=>true, :better_errors=>true}
 
 h2. Ruby on Rails
 
@@ -38,7 +38,7 @@ h2. Development
 * Front-end Framework: Twitter Bootstrap (Less)
 * Form Builder: SimpleForm
 * Authentication: Devise
-* Authorization: None
+* Authorization: CanCan
 
 h2. Email
 

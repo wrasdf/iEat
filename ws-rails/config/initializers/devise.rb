@@ -82,7 +82,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 10
 
   # Setup a pepper to generate the encrypted password.
-  # config.pepper = "9987d681e9f16638b43b89b8371b1c71dfce4fe50a9e291c25112912364dd9a6854cd7e1332618933c61d40ac7c6d41c9d62eca9bc2714bff39cf1687715b43b"
+  # config.pepper = "8cec4314fbf2deacccba621781e82379d99a4c19f36aa779c2b33ea29624cdf64da3909f508e77d7cfbf84fba55afdfcc0e3bb61a0674b7e95adc38daeb0e6f8"
 
   # ==> Configuration for :invitable
   # The period the generated invitation token is valid, after
