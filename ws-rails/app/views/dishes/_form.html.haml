@@ -1,0 +1,12 @@
+= simple_form_for [@restaurant, @dish] do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :name
+    = f.input :price
+    = f.input :description
+    = f.input :image_url
+    = f.association :restaurant
+
+  .form-actions
+    = f.button :submit

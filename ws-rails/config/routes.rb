@@ -1,5 +1,7 @@
 WsRails::Application.routes.draw do
-  resources :restaurants
+  resources :restaurants do
+    resources :dishes
+  end
 
   authenticated :user do
     root :to => 'home#index'

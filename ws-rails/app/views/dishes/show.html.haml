@@ -1,0 +1,19 @@
+%p
+  %b Name:
+  = @dish.name
+%p
+  %b Price:
+  = @dish.price
+%p
+  %b Description:
+  = @dish.description
+%p
+  %b Image url:
+  = @dish.image_url
+%p
+  %b Restaurant:
+  = @dish.restaurant
+
+= link_to 'Edit', edit_restaurant_dish_path(@restaurant, @dish)
+\|
+= link_to 'Back', restaurant_dishes_path(@restaurant)
