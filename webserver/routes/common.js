@@ -15,6 +15,10 @@ var $ = (function(){
 		return target;
 	}
 
+	function readJson(path,callback){
+		
+	}
+
 	return {
 		guid : guid,
 		extend : extend
