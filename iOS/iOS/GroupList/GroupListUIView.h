@@ -8,8 +8,10 @@
 #import <Foundation/Foundation.h>
 
 @class GroupListTableViewLogic;
+@class CreateUIElement;
 
-@interface GroupListUIView : UIView <UITableViewDataSource,UITableViewDelegate>
+@interface GroupListUIView : UIView
 - (id)initWithDelegate:(GroupListTableViewLogic *)groupTableLogic andFrame:(CGRect)frame;
-@property (nonatomic,strong) id groupTableLogic;
+@property (nonatomic, strong) id groupTableLogic;
+@property (nonatomic, strong) id delegate;
 @end

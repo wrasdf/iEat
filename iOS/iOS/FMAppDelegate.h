@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+
 @class GroupListController;
+@protocol GroupListProtocol;
 
 @interface FMAppDelegate : UIResponder <UIApplicationDelegate>
 

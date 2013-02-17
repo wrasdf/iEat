@@ -30,8 +30,26 @@
     groupTableLogic.delegate = self;
 }
 
+- (IBAction) createPress:(id) sender {
+
+}
+
+- (IBAction)reChargePress:(id) sender {
+
+}
+
+-(void) createBarButtonOnNavigationBar{
+    UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"Recharge" style:UIBarButtonItemStylePlain target:self action:@selector(reChargePress:)];
+    self.navigationItem.rightBarButtonItem = rightButton;
+}
+
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self createBarButtonOnNavigationBar];
+
+
 }
 
 

@@ -7,6 +7,7 @@
 //
 
 #import "FMAppDelegate.h"
+#import "GroupListProtocol.h"
 #import "GroupListController.h"
 
 @implementation FMAppDelegate
@@ -16,6 +17,9 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
     UINavigationController *iEatAppNavigationController = [[UINavigationController alloc] initWithRootViewController:[[GroupListController alloc] init]];
+
+
+
 
     // Override point for customization after application launch.
     self.window.rootViewController = iEatAppNavigationController;

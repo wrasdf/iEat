@@ -9,7 +9,7 @@
 
 @protocol GroupListProtocol;
 
-@interface GroupListTableViewLogic : NSObject
+@interface GroupListTableViewLogic : NSObject<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic,strong) NSArray * items;
 @property (nonatomic,strong) id<GroupListProtocol> delegate;
 
