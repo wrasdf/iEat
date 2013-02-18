@@ -22,6 +22,10 @@
     return self;
 }
 
+-(void) getResourceFromUrl:(NSString *)path{
+
+}
+
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return [self.items count];
