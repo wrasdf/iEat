@@ -33,7 +33,7 @@
 }
 
 -(void) addCreateButton{
-    createGroupBtn = [[CreateUIElement alloc] createButtonWithCGRect:CGRectMake(10, 10, 300, 40) andWithTitle:@"Create My Group"];
+    createGroupBtn = [[CreateUIElement alloc] createButtonWithCGRect:CGRectMake(10, 10, 300, 40) andWithTitle:@"+ Create My Group"];
     [createGroupBtn addTarget:_delegate action:@selector(createPress:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:createGroupBtn];
 }
