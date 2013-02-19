@@ -2,12 +2,16 @@ class RestaurantsController < ApplicationController
   # GET /restaurants
   # GET /restaurants.json
   def index
-    @restaurants = Restaurant.all
+    puts "aaa"
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @restaurants }
-    end
+    render :file => 'resources/restaurants.json', :content_type => 'application/json'
+
+    #respond_to do |format|
+    #  format.html # index.html.erb
+    #  format.json { render file: 'resources/restaurants.json' }
+    #  render :file => filename, :content_type => 'application/rss'
+    #
+    #end
   end
 
   # GET /restaurants/1
