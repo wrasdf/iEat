@@ -3,7 +3,9 @@ WsRails::Application.routes.draw do
     resources :dishes
   end
 
-  match '/myorders' => 'order#my_orders'
+  get 'order' => 'api#my_order'
+  get 'groupOrders' => 'api#group_orders'
+  get 'activeGroups' => 'api#active_groups'
 
   authenticated :user do
     root :to => 'home#index'

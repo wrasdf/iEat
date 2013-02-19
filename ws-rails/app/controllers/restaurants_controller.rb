@@ -2,8 +2,6 @@ class RestaurantsController < ApplicationController
   # GET /restaurants
   # GET /restaurants.json
   def index
-    puts "aaa"
-
     render :file => 'resources/restaurants.json', :content_type => 'application/json'
 
     #respond_to do |format|
