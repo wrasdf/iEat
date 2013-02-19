@@ -1,6 +1,17 @@
 .ui-btn-inner {
   font-size: 16px;
 }
+#user-restaurant-list .ui-link-inherit {
+  font-size: 14px;
+}
+#user-restaurant-list .restaurant-name {
+  display: inline-block;
+  width: 100px;
+}
+#user-restaurant-edit h2 {
+  margin-left: 4px;
+  font-size: 14px;
+}
 #user-restaurant-edit .restaurant-content {
   float: left;
   margin: 17px 12px 0 0;
@@ -8,21 +19,26 @@
 #user-restaurant-edit .number-input {
   float: right;
   margin: 7px 12px 0 0;
-  width: 60px;
+  width: 25px;
 }
 #user-restaurant-edit .group-button-content {
   float: right;
   width: auto;
+  margin-right: -5px;
 }
 #user-restaurant-edit .edit-restaurant-details .ui-li-count {
   position: static;
   float: left;
   margin: 14px 0 0 0;
 }
+#user-restaurant-edit .edit-restaurant-details .ui-btn-inner {
+  min-width: 0px;
+  padding-left: 18px;
+}
 #user-restaurant-edit .dish-name,
 #user-restaurant-edit .dishes-total {
   display: inline-block;
-  width: 40px;
+  width: 80px;
 }
 #user-restaurant-edit .confirm-foods {
   margin-top: 30px;
