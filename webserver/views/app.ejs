@@ -102,7 +102,7 @@
     </div>
 </div>
 
-<div data-role="page" id="user-restaurant-details">
+<!-- <div data-role="page" id="user-restaurant-details">
 
     <div data-role="header">
         <a href="#user-create-content"  data-icon="arrow-l"  class="ui-btn-left" data-theme="b">Back</a>
@@ -116,7 +116,7 @@
             <li>烩面 : 12￥<span class="ui-li-count">6</span></li>
         </ul>
     </div>
-</div>
+</div> -->
 
 <div data-role="page" id="user-restaurant-edit">
 
@@ -126,8 +126,18 @@
     </div><!-- /header -->
 
     <div data-role="content">
-        <ul class="listview" data-role="listview" data-inset="true">
-            <li class="cf">
+
+        <ul class="listview my-order-list" data-role="listview" data-inset="true">
+            <li><span class="dish-name">炒面</span><span class="dish=price">12</span>￥<span class="ui-li-count">3</span></li>
+            <li><span class="dish-name">炒面</span><span class="dish=price">12</span>￥<span class="ui-li-count">3</span></li>
+            <li><span class="dish-name">炒面</span><span class="dish=price">12</span>￥<span class="ui-li-count">3</span></li>
+            <li><span class="dishes-total">Total:</span><span>36</span>￥</li>
+        </ul>
+
+
+
+        <ul class="listview edit-restaurant-details" data-role="listview" data-inset="true">
+            <!-- <li class="cf">
                 <span class="restaurant-content">炒面 : 12￥</span>
                 <span class="ui-li-count">3</span>
                 <div class="group-button-content" data-role="controlgroup" data-type="horizontal">
@@ -165,7 +175,7 @@
                     <a href="" class="reduce" data-mini="true" data-role="button" data-icon="arrow-d">&nbsp;</a>
                 </div>
                 <input type="number" data-mini="true" class="number-input" value="0"  />
-            </li>
+            </li> -->
         </ul>
         <a href="#confirm-success" class="confirm-foods" data-role="button">Confirm</a>
     </div>
@@ -195,7 +205,7 @@
 
 </body>
 <% if (env == "development") { %>
-    <script src="/js/jquery.js"></script>
+    <script src="/js/jquery-1.9.1.js"></script>
     <script src="/js/jquery.mobile-1.2.0.js"></script>
     <script src="/js/date.js"></script>
     <script src="/js/mobiscroll.datetime-2.4.1.min.js"></script>

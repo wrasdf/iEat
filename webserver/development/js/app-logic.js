@@ -3,11 +3,11 @@ var RESTAURANTS = null;
 var TODAYGROUPLIST = null;
 // get restaurants data
 
-$( document ).bind( "pageinit", function( e, data ){
+$( "#user-restaurant-list" ).bind( "pageinit", function( e, data ){
 
     e.preventDefault();
     iEatUtility.getAllRestaurants();
-    iEatUI.reFreshGroupList();
+    iEatGroupList.reFreshGroupList();
 
 });
 
@@ -42,43 +42,102 @@ var iEatUtility = (function(){
         });
     }
 
+    function getRestaurantDetailsByName(name){
+        var  result = [];
+        $.each(RESTAURANTS,function(index,value){
+            if(name == value.name){
+                result = RESTAURANTS[index];
+                return false;
+            }
+        });
+        return result;
+    }
+
     return {
         getTodayGroupList : getTodayGroupList,
-        getAllRestaurants : getAllRestaurants
+        getAllRestaurants : getAllRestaurants,
+        getRestaurantDetailsByName : getRestaurantDetailsByName
     }
 
 })();
 
-var iEatUI = (function(){
+
+var iEatGroupList = (function(){
 
     function reFreshGroupList(){
 
         iEatUtility.getTodayGroupList(function(data){
             var str = '';
-
+            var data = data.groupList;
             for(var i =0,len = data.length ; i< len; i++){
-                str += '<li><a href="#user-restaurant-edit" data-owner-name="'+data[i].name+'">'+data[i].name+data[i].date+'  Owner : '+data[i].owner+'</a></li>';
+                str += '<li><a href="javascript:void(0);" data-owner-name="'+data[i].name+'">'+data[i].name+data[i].date+'  Owner : '+data[i].owner+'</a></li>';
             }
             $("#user-restaurant-list .group-list-ul").html(str).listview('refresh');
             groupListClick();
-            
         });
         
     }
 
     function groupListClick(){
         $("#user-restaurant-list .group-list-ul li a").bind("click",function(e){
-            console.log($(e.target).data("owner-name"));
+            var currentRestaurantData = iEatUtility.getRestaurantDetailsByName($(e.target).data("owner-name"));
+            $.mobile.changePage("#user-restaurant-edit");
+            iEatGroupDetails.reFreshGroupDetailsByData(currentRestaurantData);
         })
     }
 
 
     return {
         reFreshGroupList : reFreshGroupList
-        // groupListClick : groupListClick
     }
 
 })();
+
+var iEatGroupDetails = (function(){
+
+    function reFreshGroupDetailsByData(o){
+        var str = "";
+        $.each(o.menu,function(index,value){
+            str += '<li class="cf">';
+            str += '<span class="restaurant-content"><span class="dish-name">'+value.dish+'</span><span class="dish-price">'+value.price+'</span>￥</span>';
+            str += '<span class="ui-li-count">3</span>';
+            str += '<div class="group-button-content" data-role="controlgroup" data-type="horizontal">';
+            str += '<a href="" class="add" data-mini="true" data-role="button" data-icon="arrow-u">&nbsp;</a>';
+            str += '<a href="" class="reduce" data-mini="true" data-role="button" data-icon="arrow-d">&nbsp;</a>';
+            str += '</div>';
+            str += '<input type="number" data-mini="true" class="number-input" value="0"  />';
+            str += '</li>';
+        });
+        $("#user-restaurant-edit h1").html(o.name);    
+        $("#user-restaurant-edit .edit-restaurant-details").html(str).listview("refresh");
+        $('#user-restaurant-edit').trigger('create');
+        bindFunction();
+    }
+
+    function bindFunction(){
+        $("#user-restaurant-edit .restaurant-details .add").bind("click",function(){
+            var currentInput = $(this).parent().parent().parent().find("input.number-input");
+            var v = currentInput.val();
+            v++;
+            currentInput.val(v);
+        });
+        $("#user-restaurant-edit .restaurant-details .reduce").bind("click",function(){
+            var currentInput = $(this).parent().parent().parent().find("input.number-input");
+            var v = currentInput.val();
+            v--;
+            if(v<=0){
+                v = 0;
+            }
+            currentInput.val(v);
+        })
+    }
+
+    return {
+        reFreshGroupDetailsByData : reFreshGroupDetailsByData 
+    }
+
+})();
+
 
 // date picker
 $(function(){

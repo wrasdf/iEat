@@ -14,10 +14,15 @@
   float: right;
   width: auto;
 }
-#user-restaurant-edit .ui-li-count {
+#user-restaurant-edit .edit-restaurant-details .ui-li-count {
   position: static;
   float: left;
   margin: 14px 0 0 0;
+}
+#user-restaurant-edit .dish-name,
+#user-restaurant-edit .dishes-total {
+  display: inline-block;
+  width: 40px;
 }
 #user-restaurant-edit .confirm-foods {
   margin-top: 30px;

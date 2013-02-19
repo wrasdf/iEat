@@ -20,7 +20,7 @@ class Build
   def self.compile
     
     compressList = {
-        "commonJS" => {"src" => ["development/js/jquery.js", "development/js/jquery.mobile-1.2.0.js","development/js/app-logic.js"], "dest" => "public/js/all.min.js"},
+        "commonJS" => {"src" => ["development/js/jquery-1.9.1.js", "development/js/jquery.mobile-1.2.0.js","development/js/date.js","development/js/mobiscroll.datetime-2.4.1.min.js","development/js/app-logic.js"], "dest" => "public/js/all.min.js"},
         "allCSS" => {"src" => ["development/css/themes/default/common.css","development/css/themes/default/jquery.mobile-1.2.0.css","development/css/themes/default/app.css"], "dest" => "public/css/all.css"}
     }
 
