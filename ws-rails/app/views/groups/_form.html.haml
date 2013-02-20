@@ -1,0 +1,12 @@
+= simple_form_for(@group) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :name
+    = f.input :description
+    = f.association :user
+    = f.input :due_date
+    = f.association :restaurant
+
+  .form-actions
+    = f.button :submit

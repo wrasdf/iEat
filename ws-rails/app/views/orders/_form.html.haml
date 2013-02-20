@@ -1,0 +1,9 @@
+= simple_form_for(@order) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.association :group
+    = f.association :user
+
+  .form-actions
+    = f.button :submit

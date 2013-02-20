@@ -1,4 +1,6 @@
 WsRails::Application.routes.draw do
+  resources :groups
+  resources :orders
   resources :restaurants do
     resources :dishes
   end
