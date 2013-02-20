@@ -120,6 +120,7 @@ var iEatGroupDetails = (function(){
             var v = currentInput.val();
             v++;
             currentInput.val(v);
+            refreshMyOrderUI();
         });
         $("#user-restaurant-edit .edit-restaurant-details .reduce").bind("click",function(){
             var currentInput = $(this).parent().parent().parent().find("input.number-input");
@@ -129,7 +130,36 @@ var iEatGroupDetails = (function(){
                 v = 0;
             }
             currentInput.val(v);
+            refreshMyOrderUI();
         })
+    }
+
+    function getMyOrderGroups(){
+        var result = [];
+        $("#user-restaurant-edit .edit-restaurant-details li").each(function(index,value){
+            if($(value).find(".number-input").val() == 0){
+                return true;
+            }
+            result.push({
+                "name" : $(value).find(".dish-name").text(),
+                "price" : $(value).find(".dish-price").text(),
+                "count" : $(value).find(".number-input").val()
+            });
+        });
+        return result;
+    }
+
+    function refreshMyOrderUI(){
+        var data = getMyOrderGroups();
+        var str = "";
+        var totalPrice = 0;
+        $.each(data,function(index,value){
+            str += '<li><span class="dish-name">'+value.name+'</span><span class="dish=price">'+value.price+'</span>￥<span class="ui-li-count">'+value.count+'</span></li>';    
+            totalPrice += value.price * value.count;
+        });
+
+        str += '<li><span class="dishes-total">Total:</span><span>'+totalPrice+'</span>￥</li>';
+        $("#user-restaurant-edit .my-order-list").html(str).listview("refresh");
     }
 
     return {
