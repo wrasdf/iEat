@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130214132741) do
+ActiveRecord::Schema.define(:version => 20130220125737) do
 
   create_table "dishes", :force => true do |t|
     t.string   "name"
@@ -24,6 +24,40 @@ ActiveRecord::Schema.define(:version => 20130214132741) do
   end
 
   add_index "dishes", ["restaurant_id"], :name => "index_dishes_on_restaurant_id"
+
+  create_table "groups", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.integer  "user_id"
+    t.datetime "due_date"
+    t.integer  "restaurant_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "groups", ["restaurant_id"], :name => "index_groups_on_restaurant_id"
+  add_index "groups", ["user_id"], :name => "index_groups_on_user_id"
+
+  create_table "order_dishes", :force => true do |t|
+    t.integer  "order_id"
+    t.integer  "dish_id"
+    t.integer  "quantity"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "order_dishes", ["dish_id"], :name => "index_order_dishes_on_dish_id"
+  add_index "order_dishes", ["order_id"], :name => "index_order_dishes_on_order_id"
+
+  create_table "orders", :force => true do |t|
+    t.integer  "group_id"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "orders", ["group_id"], :name => "index_orders_on_group_id"
+  add_index "orders", ["user_id"], :name => "index_orders_on_user_id"
 
   create_table "restaurants", :force => true do |t|
     t.string   "name"
