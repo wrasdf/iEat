@@ -71,20 +71,16 @@ var iEatGroupList = (function(){
 
             var myGroupsData = data.myGroups;
             for(var i =0,len = myGroupsData.length ; i< len; i++){
-                str += '<li><a href="javascript:void(0);" data-owner-name="'+myGroupsData[i].name+'"><span class="restaurant-name">'+myGroupsData[i].name+'</span>Owner : '+myGroupsData[i].owner+'</a></li>';
+                str += '<li><a href="javascript:void(0);" data-role-type="member" data-restaurant-name="'+myGroupsData[i].name+'"><span class="restaurant-name">'+myGroupsData[i].name+'</span>Owner : '+myGroupsData[i].owner+'</a></li>';
             }
             $("#user-restaurant-list .my-orders-ul").html(str).listview('refresh');
 
             var str = '';
             var groupListData = data.groupList;
             for(var i =0,len = groupListData.length ; i< len; i++){
-                str += '<li><a href="javascript:void(0);" data-owner-name="'+groupListData[i].name+'"><span class="restaurant-name">'+groupListData[i].name+'</span>Owner : '+groupListData[i].owner+'</a></li>';
+                str += '<li><a href="javascript:void(0);" data-role-type="order-food" data-restaurant-name="'+groupListData[i].name+'"><span class="restaurant-name">'+groupListData[i].name+'</span>Owner : '+groupListData[i].owner+'</a></li>';
             }
             $("#user-restaurant-list .group-list-ul").html(str).listview('refresh');
-
-
-
-
 
             groupListClick();
         });
@@ -92,10 +88,13 @@ var iEatGroupList = (function(){
     }
 
     function groupListClick(){
-        $("#user-restaurant-list .group-list-ul li a").bind("click",function(e){
-            var currentRestaurantData = iEatUtility.getRestaurantDetailsByName($(e.target).data("owner-name"));
+        $("#user-restaurant-list .group-list-ul li a,#user-restaurant-list .my-orders-ul li a").bind("click",function(e){
+            var data = {};
+            data.currentRestaurantData = iEatUtility.getRestaurantDetailsByName($(e.target).data("restaurant-name"));
+            data.type = $(e.target).data("role-type")
             $.mobile.changePage("#user-restaurant-edit");
-            iEatGroupDetails.reFreshGroupDetailsByData(currentRestaurantData);
+            iEatGroupDetails.pageInitByData(data);
+            // iEatGroupDetails.reFreshGroupDetailsByData(currentRestaurantData);
         })
     }
 
@@ -144,7 +143,23 @@ var iEatGroupDetails = (function(){
             }
             currentInput.val(v);
             refreshMyOrderUI();
-        })
+        });
+    }
+
+    function showContentByName(name){
+        function clearClass(){
+            $("#user-restaurant-edit .footer-navbar a").removeClass("ui-btn-active").removeClass("ui-state-persist");
+        }
+        clearClass();
+        if(name == "member"){
+
+            $("#user-restaurant-edit .footer-navbar a.my-orders").addClass("ui-btn-active").addClass("ui-state-persist")
+        }else if(name =="owner"){
+            $("#user-restaurant-edit .footer-navbar a.group-orders").addClass("ui-btn-active").addClass("ui-state-persist")
+        }else if(name =="order-food"){
+            $("#user-restaurant-edit .footer-navbar a.my-orders").parent().remove();
+            $("#user-restaurant-edit .footer-navbar a.edit-my-orders").addClass("ui-btn-active").addClass("ui-state-persist")
+        }    
     }
 
     function getMyOrderGroups(){
@@ -175,8 +190,15 @@ var iEatGroupDetails = (function(){
         $("#user-restaurant-edit .my-order-list").html(str).listview("refresh");
     }
 
+    function pageInitByData(data){
+        console.log(data);
+        showContentByName(data.type);
+        $('#user-restaurant-edit').trigger('create');        
+    }
+
     return {
-        reFreshGroupDetailsByData : reFreshGroupDetailsByData 
+        reFreshGroupDetailsByData : reFreshGroupDetailsByData,
+        pageInitByData : pageInitByData
     }
 
 })();
