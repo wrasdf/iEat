@@ -68,11 +68,24 @@ var iEatGroupList = (function(){
 
         iEatUtility.getTodayGroupList(function(data){
             var str = '';
-            var data = data.groupList;
-            for(var i =0,len = data.length ; i< len; i++){
-                str += '<li><a href="javascript:void(0);" data-owner-name="'+data[i].name+'"><span class="restaurant-name">'+data[i].name+'</span>Owner : '+data[i].owner+'</a></li>';
+
+            var myGroupsData = data.myGroups;
+            for(var i =0,len = myGroupsData.length ; i< len; i++){
+                str += '<li><a href="javascript:void(0);" data-owner-name="'+myGroupsData[i].name+'"><span class="restaurant-name">'+myGroupsData[i].name+'</span>Owner : '+myGroupsData[i].owner+'</a></li>';
+            }
+            $("#user-restaurant-list .my-orders-ul").html(str).listview('refresh');
+
+            var str = '';
+            var groupListData = data.groupList;
+            for(var i =0,len = groupListData.length ; i< len; i++){
+                str += '<li><a href="javascript:void(0);" data-owner-name="'+groupListData[i].name+'"><span class="restaurant-name">'+groupListData[i].name+'</span>Owner : '+groupListData[i].owner+'</a></li>';
             }
             $("#user-restaurant-list .group-list-ul").html(str).listview('refresh');
+
+
+
+
+
             groupListClick();
         });
         

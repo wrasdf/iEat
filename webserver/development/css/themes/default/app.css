@@ -46,6 +46,10 @@
 #user-restaurant-edit .listview li {
   padding-right: 15px !important;
 }
+#user-restaurant-edit .footer-navbar li {
+  padding-top: 0;
+  padding-bottom: 0;
+}
 #recharge-details .ui-controlgroup-controls {
   display: block;
   width: auto;
