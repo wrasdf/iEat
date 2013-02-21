@@ -53,6 +53,20 @@
   padding-top: 0;
   padding-bottom: 0;
 }
+#user-restaurant-edit .footer-navbar .ui-btn-inner {
+  padding-top: 20px;
+}
+#user-restaurant-edit .footer-navbar .ui-icon {
+  top: 4px;
+}
+#user-restaurant-edit .footer-navbar .ui-btn-text {
+  top: 6px;
+}
+#user-restaurant-edit .my-orders-content,
+#user-restaurant-edit .edit-my-orders-content,
+#user-restaurant-edit .my-Group-content {
+  display: none;
+}
 #recharge-details .ui-controlgroup-controls {
   display: block;
   width: auto;
