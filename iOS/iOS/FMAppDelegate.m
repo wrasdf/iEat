@@ -9,6 +9,7 @@
 #import "FMAppDelegate.h"
 #import "GroupListProtocol.h"
 #import "GroupListController.h"
+#import <Parse/Parse.h>
 
 @implementation FMAppDelegate
 
@@ -18,7 +19,8 @@
 
     UINavigationController *iEatAppNavigationController = [[UINavigationController alloc] initWithRootViewController:[[GroupListController alloc] init]];
 
-
+    [Parse setApplicationId:@"Resa6skJAJaARZ3BPbJ2Jccax8lzVKQSjAQrPpgJ"
+                  clientKey:@"82iRk5nW2CP3gn69FWsUS88EBkVeNLvaYKFNaOmC"];
 
 
     // Override point for customization after application launch.
