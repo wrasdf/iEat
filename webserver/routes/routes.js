@@ -17,6 +17,10 @@ module.exports = function(app){
 		res.render('mybills');
 	});
 
+	app.get('/create',function(req,res){
+		res.render('create');
+	});
+
 	app.get('/billdetails',function(req,res){
 		res.render('bill-details');
 	});

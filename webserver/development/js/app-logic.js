@@ -1,8 +1,6 @@
 $.mobile.defaultPageTransition = "slidefade";
 $.mobile.page.prototype.options.domCache = false;
 
-
-
 var RESTAURANTS = null;
 var TODAYGROUPLIST = null;
 
@@ -59,8 +57,17 @@ var iEatGroupList = (function(){
             iEatMyBills.pageInit();
         });
 
+        $(document).undelegate("#create-content","pageinit").delegate("#create-content","pageinit",function(e){
+            e.preventDefault();
+            iEatCreate.pageInit();
+        });
+
         $("#group-list .my-bills-btn").bind("click",function(){
             $.mobile.changePage("/mybills");
+        });
+
+        $("#group-list .create-group").bind("click",function(){
+            $.mobile.changePage("/create");
         });
         
     }
@@ -260,8 +267,6 @@ var iEatMyBills = (function(){
 
 })();
 
-
-
 var iEatMyBillDetail = (function(){
 
     function pageInit(){
@@ -281,23 +286,27 @@ var iEatMyBillDetail = (function(){
 })();
 
 
+var iEatCreate = (function(){
 
-// date picker
-$(function(){
-    
-    $('#timePicker').mobiscroll().time({
+    function pageInit(){
+        $('#timePicker').mobiscroll().time({
         theme: 'iOS',
         display: 'inline',
         mode: 'scroller',
         onChange:function(text,b){
-        	setValue(b.values);
+            setValue(b.values);
         }
     });
     
     function setValue(array){
-    	$("#show-Time").html(array[0] + " : " + (array[1] == 0 ? ("0"+"0") : array[1] < 9 ? "0"+ array[1] : array[1]) + (array[2] == 1 ? " PM" : " AM"));
+        $("#show-Time").html(array[0] + " : " + (array[1] == 0 ? ("0"+"0") : array[1] < 9 ? "0"+ array[1] : array[1]) + (array[2] == 1 ? " PM" : " AM"));
     }
 
     setValue($('#timePicker').mobiscroll("getValue"));
+    }
 
-});
+    return {
+        pageInit : pageInit
+    }
+
+})();

@@ -13,45 +13,20 @@
     <% } %>
 </head>
 <body>
-<style type="text/css">
-
-</style>
-
 <div data-role="page" id="group-list">
     <div data-role="header">
-        
         <h1>Group List</h1>
         <a href="javascript:void(0);" class="my-bills-btn ui-btn-right" data-icon="arrow-r" data-iconpos="right" data-theme="b">My Bills</a>
     </div><!-- /header -->
 
     <div data-role="content">
-        <a href="#user-create-content" data-role="button">I want to create my group.</a>
+        <a href="#user-create-content" class="create-group" data-role="button">I want to create my group.</a>
         <h2>My Orders</h2>
         <ul data-role="listview" data-inset="true" class="my-orders-ul"></ul>
         <h2>Available Groups</h2>
         <ul data-role="listview" data-inset="true" class="group-list-ul"></ul>
     </div>
 </div>
-
-<div data-role="page" id="user-create-content">
-    <div data-role="header">
-        <a href="#group-list" class="ui-btn-left"  data-icon="arrow-l"  data-theme="b">Back</a>
-        <h1>Restaurant List</h1>
-    </div>
-    <div data-role="content">
-        <ul data-role="listview" data-inset="true">
-            <li><a href="#user-restaurant-details">九头鹰</a></li>
-            <li><a href="#user-restaurant-details">来福士超市</a></li>
-            <li><a href="#user-restaurant-details">面馆</a></li>
-        </ul>
-        <h2>PassWord:</h2>
-        <input type="text" >
-        <h2>Cut-Off Date : <span id="show-Time"></span></h2>
-        <div id="timePicker"></div>
-        <a class="create-group-btn" href="#user-restaurant-list" data-role="button" >Create This Group</a>
-    </div>
-</div>
-
 </body>
 <% if (env == "development") { %>
     <script src="/js/jquery-1.9.1.js"></script>
