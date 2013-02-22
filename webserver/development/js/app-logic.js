@@ -6,10 +6,10 @@ $.mobile.page.prototype.options.domCache = false;
 var RESTAURANTS = null;
 var TODAYGROUPLIST = null;
 
-$( "#user-restaurant-list").bind( "pageinit", function( e, data ){
+$( "#group-list").bind( "pageinit", function( e, data ){
     e.preventDefault();
     iEatUtility.getAllRestaurants();
-    iEatGroupList.reFreshGroupList();
+    iEatGroupList.pageInit();
 });
 
 var iEatGroupList = (function(){
@@ -23,39 +23,55 @@ var iEatGroupList = (function(){
             for(var i =0,len = myGroupsData.length ; i< len; i++){
                 str += '<li><a href="javascript:void(0);" data-role-type="member" data-restaurant-name="'+myGroupsData[i].name+'"><span class="restaurant-name">'+myGroupsData[i].name+'</span>Owner : '+myGroupsData[i].owner+'</a></li>';
             }
-            $("#user-restaurant-list .my-orders-ul").html(str).listview('refresh');
+            $("#group-list .my-orders-ul").html(str).listview('refresh');
 
             var str = '';
             var groupListData = data.groupList;
             for(var i =0,len = groupListData.length ; i< len; i++){
                 str += '<li><a href="javascript:void(0);" data-role-type="order-food" data-restaurant-name="'+groupListData[i].name+'"><span class="restaurant-name">'+groupListData[i].name+'</span>Owner : '+groupListData[i].owner+'</a></li>';
             }
-            $("#user-restaurant-list .group-list-ul").html(str).listview('refresh');
 
+            $("#group-list .group-list-ul").html(str).listview('refresh');
             groupListClick();
         });
         
     }
 
     function groupListClick(){
-        $("#user-restaurant-list .group-list-ul li a,#user-restaurant-list .my-orders-ul li a").bind("click",function(e){
+
+        $("#group-list .group-list-ul li a,#group-list .my-orders-ul li a").bind("click",function(e){
             var name = $(e.target).data("restaurant-name");
             var data = {
                 currentRestaurantData : iEatUtility.getRestaurantDetailsByName(name),
                 type : $(e.target).data("role-type"),
                 restaurantName : name
             };
+
             $(document).undelegate("#user-restaurant-edit","pageinit").delegate("#user-restaurant-edit","pageinit",function(e){
                 e.preventDefault();
                 iEatGroupDetails.pageInitByData(data);
             })
             $.mobile.changePage("/editGroup");
-        })
+        });
+
+        $(document).undelegate("#my-bills","pageinit").delegate("#my-bills","pageinit",function(e){
+            e.preventDefault();
+            iEatMyBills.pageInit();
+        });
+
+        $("#group-list .my-bills-btn").bind("click",function(){
+            $.mobile.changePage("/mybills");
+        });
+        
+    }
+
+    function pageInit(){
+        reFreshGroupList()
     }
 
 
     return {
-        reFreshGroupList : reFreshGroupList
+        pageInit : pageInit
     }
 
 })();
@@ -164,20 +180,20 @@ var iEatGroupDetails = (function(){
         
     }
 
-    function getMyOrderGroups(){
-        var result = [];
-        $("#user-restaurant-edit .edit-restaurant-details li").each(function(index,value){
-            if($(value).find(".number-input").val() == 0){
-                return true;
-            }
-            result.push({
-                "name" : $(value).find(".dish-name").text(),
-                "price" : $(value).find(".dish-price").text(),
-                "count" : $(value).find(".number-input").val()
-            });
-        });
-        return result;
-    }
+    // function getMyOrderGroups(){
+    //     var result = [];
+    //     $("#user-restaurant-edit .edit-restaurant-details li").each(function(index,value){
+    //         if($(value).find(".number-input").val() == 0){
+    //             return true;
+    //         }
+    //         result.push({
+    //             "name" : $(value).find(".dish-name").text(),
+    //             "price" : $(value).find(".dish-price").text(),
+    //             "count" : $(value).find(".number-input").val()
+    //         });
+    //     });
+    //     return result;
+    // }
 
     function refreshMyOrderUI(){
         var data = getMyOrderGroups();
@@ -223,6 +239,48 @@ var iEatSuccess = (function(){
     }
 
 })();
+
+var iEatMyBills = (function(){
+
+    function pageInit(){
+        bindClickEvent();
+    }
+
+    function bindClickEvent(){
+        $(document).delegate("#my-bills .my-bills-list li","click",function(){
+            $(document).delegate("#bill-details","pageinit",function(){
+                iEatMyBillDetail.pageInit();
+            });
+            $.mobile.changePage('/billdetails');
+        });
+    }
+    return {
+        pageInit : pageInit
+    }
+
+})();
+
+
+
+var iEatMyBillDetail = (function(){
+
+    function pageInit(){
+        
+
+        $('.select-all-bills').bind("click",function(){
+            $(".checkbox-list input[type='checkbox']").prop("checked",true).checkboxradio("refresh");
+        });
+
+        $("#bill-details").trigger("create");
+    }
+
+    return {
+        pageInit : pageInit
+    }
+
+})();
+
+
 
 // date picker
 $(function(){

@@ -13,6 +13,14 @@ module.exports = function(app){
 		res.render('success');
 	});
 
+	app.get('/mybills',function(req,res){
+		res.render('mybills');
+	});
+
+	app.get('/billdetails',function(req,res){
+		res.render('bill-details');
+	});
+
 	app.get('/restaurants',function(req, res){
 		res.set('Content-Type: application/json');
 		fs.readFile(__dirname+'/../resource/restaurant.json','utf-8', function (err,data) {
