@@ -69,8 +69,8 @@ var iEatGroupDetails = (function(){
             str += '<span class="restaurant-content"><span class="dish-name">'+value.dish+'</span><span class="dish-price">'+value.price+'</span>￥</span>';
             str += '<span class="ui-li-count">3</span>';
             str += '<div class="group-button-content" data-role="controlgroup" data-type="horizontal">';
-            str += '<a href="" class="reduce" data-mini="true" data-role="button" data-icon="minus">&nbsp;</a>';
-            str += '<a href="" class="add" data-mini="true" data-role="button" data-icon="plus">&nbsp;</a>';
+            str += '<a href="" class="reduce" data-role="button" data-icon="minus">&nbsp;</a>';
+            str += '<a href="" class="add" data-role="button" data-icon="plus">&nbsp;</a>';
             str += '</div>';
             str += '<input type="number" data-mini="true" class="number-input" value="0"  />';
             str += '</li>';
@@ -199,6 +199,9 @@ var iEatGroupDetails = (function(){
         });
         $("#user-restaurant-edit h1").html(data.restaurantName);
         $('#user-restaurant-edit').trigger('create');
+        $('#user-restaurant-edit .confirm-foods').bind("click",function(){
+            $.mobile.changePage("/success");
+        })
     }
 
     return {
@@ -208,6 +211,18 @@ var iEatGroupDetails = (function(){
 
 })();
 
+
+var iEatSuccess = (function(){
+
+    function pageInit(){
+
+    }
+
+    return {
+        pageInit : pageInit
+    }
+
+})();
 
 // date picker
 $(function(){

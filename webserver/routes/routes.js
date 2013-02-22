@@ -9,6 +9,10 @@ module.exports = function(app){
 		res.render('edit-group');
 	});
 
+	app.get('/success',function(req,res){
+		res.render('success');
+	});
+
 	app.get('/restaurants',function(req, res){
 		res.set('Content-Type: application/json');
 		fs.readFile(__dirname+'/../resource/restaurant.json','utf-8', function (err,data) {

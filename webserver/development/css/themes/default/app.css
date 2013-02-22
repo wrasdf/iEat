@@ -18,7 +18,7 @@
 }
 #user-restaurant-edit .number-input {
   float: right;
-  margin: 7px 12px 0 0;
+  margin: 10px 12px 0 0;
   width: 25px;
 }
 #user-restaurant-edit .group-button-content {
@@ -66,6 +66,9 @@
 #user-restaurant-edit .edit-my-orders-content,
 #user-restaurant-edit .my-Group-content {
   display: none;
+}
+#user-restaurant-edit .edit-restaurant-details li {
+  padding: 0px 15px;
 }
 #recharge-details .ui-controlgroup-controls {
   display: block;
