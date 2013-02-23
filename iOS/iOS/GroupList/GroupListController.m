@@ -9,8 +9,6 @@
 #import "GroupListController.h"
 #import "GroupListUIView.h"
 #import "GroupListTableViewLogic.h"
-#import "LoginViewController.h"
-#import "SignupViewController.h"
 
 @implementation GroupListController {
     GroupListTableViewLogic *groupTableLogic;
@@ -50,21 +48,21 @@
     [super viewDidAppear:animated];
 
 
-    // Check if user is logged in
-    PFUser *currentUser = [PFUser currentUser];
-    if (!currentUser) {
-        // Customize the Log In View Controller
-        LoginViewController *logInViewController = [[LoginViewController alloc] init];
-        [logInViewController setDelegate:logInViewController];
-        [logInViewController setFields: PFLogInFieldsDefault| PFLogInFieldsDismissButton | PFLogInFieldsPasswordForgotten];
-
-        SignUpViewController *signUpViewController = [[SignUpViewController alloc] init];
-        [signUpViewController setDelegate: signUpViewController];
-
-        [logInViewController setSignUpController: signUpViewController];
-        // Present Log In View Controller
-        [self presentViewController:logInViewController animated:YES completion:NULL];
-    }
+//    // Check if user is logged in
+//    PFUser *currentUser = [PFUser currentUser];
+//    if (!currentUser) {
+//        // Customize the Log In View Controller
+//        LoginViewController *logInViewController = [[LoginViewController alloc] init];
+//        [logInViewController setDelegate:logInViewController];
+//        [logInViewController setFields: PFLogInFieldsDefault| PFLogInFieldsDismissButton | PFLogInFieldsPasswordForgotten];
+//
+//        SignUpViewController *signUpViewController = [[SignUpViewController alloc] init];
+//        [signUpViewController setDelegate: signUpViewController];
+//
+//        [logInViewController setSignUpController: signUpViewController];
+//        // Present Log In View Controller
+//        [self presentViewController:logInViewController animated:YES completion:NULL];
+//    }
 }
 
 - (void)viewDidLoad {
