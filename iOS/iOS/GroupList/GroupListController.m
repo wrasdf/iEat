@@ -9,6 +9,7 @@
 #import "GroupListController.h"
 #import "GroupListUIView.h"
 #import "GroupListTableViewLogic.h"
+#import "LoginTableViewController.h"
 
 @implementation GroupListController {
     GroupListTableViewLogic *groupTableLogic;
@@ -49,20 +50,12 @@
 
 
 //    // Check if user is logged in
-//    PFUser *currentUser = [PFUser currentUser];
-//    if (!currentUser) {
-//        // Customize the Log In View Controller
-//        LoginViewController *logInViewController = [[LoginViewController alloc] init];
-//        [logInViewController setDelegate:logInViewController];
-//        [logInViewController setFields: PFLogInFieldsDefault| PFLogInFieldsDismissButton | PFLogInFieldsPasswordForgotten];
-//
-//        SignUpViewController *signUpViewController = [[SignUpViewController alloc] init];
-//        [signUpViewController setDelegate: signUpViewController];
-//
-//        [logInViewController setSignUpController: signUpViewController];
-//        // Present Log In View Controller
-//        [self presentViewController:logInViewController animated:YES completion:NULL];
-//    }
+    if (!false) {
+        // Customize the Log In View Controller
+        LoginTableViewController *logInViewController = [[LoginTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+
+        [self presentViewController:logInViewController animated:YES completion:NULL];
+    }
 }
 
 - (void)viewDidLoad {
