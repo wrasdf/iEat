@@ -8,6 +8,7 @@
 
 #import "LoginTableViewController.h"
 #import "EditTableViewCell.h"
+#import "SignUpViewController.h"
 
 @interface LoginTableViewController ()
 
@@ -139,6 +140,7 @@ enum {
 }
 
 - (IBAction)SignUp:(id)sender {
-    [[[UIAlertView alloc] initWithTitle:@"SignUp" message:@"Triggered" delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil] show];
+    SignUpViewController *signUpViewController = [[SignUpViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    [self presentViewController: signUpViewController animated:YES completion:NULL];
 }
 @end

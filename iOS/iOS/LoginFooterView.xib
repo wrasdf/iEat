@@ -38,10 +38,10 @@
 					<object class="IBUIButton" id="579501709">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{29, 37}, {103, 44}}</string>
+						<string key="NSFrame">{{30, 40}, {100, 44}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="848970516"/>
+						<reference key="NSNextKeyView" ref="185705276"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -71,10 +71,10 @@
 							<int key="NSfFlags">16</int>
 						</object>
 					</object>
-					<object class="IBUIButton" id="848970516">
+					<object class="IBUIButton" id="185705276">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{189, 37}, {103, 44}}</string>
+						<string key="NSFrame">{{190, 40}, {100, 44}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView"/>
@@ -128,7 +128,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">signup</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="848970516"/>
+						<reference key="destination" ref="185705276"/>
 					</object>
 					<int key="connectionID">15</int>
 				</object>
@@ -144,7 +144,7 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">SignUp:</string>
-						<reference key="source" ref="848970516"/>
+						<reference key="source" ref="185705276"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
@@ -164,7 +164,7 @@
 						<reference key="object" ref="191373211"/>
 						<array class="NSMutableArray" key="children">
 							<reference ref="579501709"/>
-							<reference ref="848970516"/>
+							<reference ref="185705276"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -186,7 +186,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">12</int>
-						<reference key="object" ref="848970516"/>
+						<reference key="object" ref="185705276"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 				</array>
@@ -212,17 +212,20 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">LoginTableViewController</string>
 					<string key="superclassName">UITableViewController</string>
-					<object class="NSMutableDictionary" key="actions">
-						<string key="NS.key.0">SignUp:</string>
-						<string key="NS.object.0">id</string>
-					</object>
-					<object class="NSMutableDictionary" key="actionInfosByName">
-						<string key="NS.key.0">SignUp:</string>
-						<object class="IBActionInfo" key="NS.object.0">
+					<dictionary class="NSMutableDictionary" key="actions">
+						<string key="Login:">id</string>
+						<string key="SignUp:">id</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="actionInfosByName">
+						<object class="IBActionInfo" key="Login:">
+							<string key="name">Login:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="SignUp:">
 							<string key="name">SignUp:</string>
 							<string key="candidateClassName">id</string>
 						</object>
-					</object>
+					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="login">UIButton</string>
 						<string key="loginFooterView">UIView</string>
