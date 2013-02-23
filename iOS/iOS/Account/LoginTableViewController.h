@@ -8,9 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LoginTableViewController : UITableViewController
-<UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate>{
-}
+@interface LoginTableViewController : UITableViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate>
 
 @property (strong, nonatomic) IBOutlet UIView *loginFooterView;
 

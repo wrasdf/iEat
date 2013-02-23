@@ -7,6 +7,7 @@
 //
 
 #import "LoginTableViewController.h"
+#import "EditTableViewCell.h"
 
 @interface LoginTableViewController ()
 
@@ -15,54 +16,73 @@
 @implementation LoginTableViewController
 
 @synthesize loginFooterView;
-- (void)viewDidLoad
-{
+
+enum {
+    SectionLogin = 0,
+    SectionCount
+};
+enum {
+    CellUser = 0,
+    CellPassword = 1,
+    CellCount
+
+};
+
+- (void)viewDidLoad {
     [super viewDidLoad];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
- 
+
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
 //    self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    if(loginFooterView == nil){
-        [[NSBundle mainBundle]loadNibNamed:@"LoginFooterView" owner:self options:nil];
+    if (loginFooterView == nil) {
+        [[NSBundle mainBundle] loadNibNamed:@"LoginFooterView" owner:self options:nil];
         self.tableView.tableFooterView = loginFooterView;
         self.tableView.allowsSelectionDuringEditing = YES;
     }
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    return @"Login";
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return SectionCount;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return CellCount;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *EditCellIdentifier = @"EditCell";
+
+    EditTableViewCell *cell = (EditTableViewCell *) [tableView dequeueReusableCellWithIdentifier:EditCellIdentifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"EditTableViewCell" owner:self options:nil];
+        cell = [array objectAtIndex:0];
     }
-    
-    // Configure the cell...
-    
+    if (indexPath.section == SectionLogin) {
+        if (indexPath.row == CellUser) {
+            cell.label.text = @"User";
+            cell.textField.text = @"";
+            cell.textField.placeholder = @"Email or Name";
+        }
+        else if (indexPath.row == CellPassword) {
+            cell.label.text = @"Password";
+            cell.textField.text = @"";
+            cell.textField.clearButtonMode =
+                    cell.textField.secureTextEntry = YES;
+            cell.textField.placeholder = @"Password";
+        }
+    }
+
     return cell;
 }
 
@@ -107,8 +127,7 @@
 
 #pragma mark - Table view delegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // Navigation logic may go here. Create and push another view controller.
     /*
      <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
