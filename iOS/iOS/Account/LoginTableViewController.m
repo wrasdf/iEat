@@ -61,12 +61,11 @@ enum {
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *EditCellIdentifier = @"EditCell";
+    static NSString *EditCellIdentifier = @"LoginCell";
 
     EditTableViewCell *cell = (EditTableViewCell *) [tableView dequeueReusableCellWithIdentifier:EditCellIdentifier];
     if (cell == nil) {
-        NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"EditTableViewCell" owner:self options:nil];
-        cell = [array objectAtIndex:0];
+        cell = [[[NSBundle mainBundle] loadNibNamed:@"EditTableViewCell" owner:self options:nil] objectAtIndex:0];
     }
     if (indexPath.section == SectionLogin) {
         if (indexPath.row == CellUser) {
@@ -77,8 +76,7 @@ enum {
         else if (indexPath.row == CellPassword) {
             cell.label.text = @"Password";
             cell.textField.text = @"";
-            cell.textField.clearButtonMode =
-                    cell.textField.secureTextEntry = YES;
+            cell.textField.clearButtonMode = cell.textField.secureTextEntry = YES;
             cell.textField.placeholder = @"Password";
         }
     }
@@ -136,5 +134,11 @@ enum {
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
 }
+- (IBAction)Login:(id)sender {
+    [[[UIAlertView alloc] initWithTitle:@"Login" message:@"Triggered" delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil] show];
+}
 
+- (IBAction)SignUp:(id)sender {
+    [[[UIAlertView alloc] initWithTitle:@"SignUp" message:@"Triggered" delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil] show];
+}
 @end
