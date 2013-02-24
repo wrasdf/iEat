@@ -1,19 +1,19 @@
 
 var iEatUtility = (function(){
 
-
     function getTodayGroupList(callback){
-        $.get("/todayGroupList",function(o){
+        $.get("/groups/today",function(o){
             if(!o){
                 alert("todayGroupList API is ERROR!");
                 return false;
             }
-            TODAYGROUPLIST = $.parseJSON(o);
+            TODAYGROUPLIST = o;
+
             if(callback){
                 callback(TODAYGROUPLIST);
             }
             
-        }); 
+        }, "json");
     }
 
     function getAllRestaurants(callback){
@@ -22,11 +22,11 @@ var iEatUtility = (function(){
                 alert("restaurants API is ERROR!");
                 return false;
             }
-            RESTAURANTS = $.parseJSON(o);
+            RESTAURANTS = o;
             if(callback){
                 callback(RESTAURANTS);
             }
-        });
+        }, "json");
     }
 
     function getRestaurantDetailsByName(name){

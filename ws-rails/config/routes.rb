@@ -1,4 +1,6 @@
 WsRails::Application.routes.draw do
+  get 'groups/today' => 'groups#today'
+
   resources :groups
   resources :orders
   resources :restaurants do
@@ -8,6 +10,7 @@ WsRails::Application.routes.draw do
   get 'order' => 'api#my_order'
   get 'groupOrders' => 'api#group_orders'
   get 'activeGroups' => 'api#active_groups'
+
 
   authenticated :user do
     root :to => 'home#index'

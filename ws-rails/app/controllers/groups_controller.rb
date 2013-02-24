@@ -80,4 +80,9 @@ class GroupsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def today
+    render :file => 'resources/todayGroupList.json', :content_type => 'application/json', :status => 200
+  end
+
 end

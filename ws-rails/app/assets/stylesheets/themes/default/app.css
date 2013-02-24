@@ -1,10 +1,10 @@
 .ui-btn-inner {
   font-size: 16px;
 }
-#user-restaurant-list .ui-link-inherit {
+#user-group-list .ui-link-inherit {
   font-size: 14px;
 }
-#user-restaurant-list .restaurant-name {
+#user-group-list .restaurant-name {
   display: inline-block;
   width: 100px;
 }
@@ -14,11 +14,11 @@
 }
 #user-restaurant-edit .restaurant-content {
   float: left;
-  margin: 17px 12px 0 0;
+  margin: 17px 5px 0 0;
 }
 #user-restaurant-edit .number-input {
   float: right;
-  margin: 7px 12px 0 0;
+  margin: 10px 12px 0 0;
   width: 25px;
 }
 #user-restaurant-edit .group-button-content {
@@ -67,6 +67,10 @@
 #user-restaurant-edit .my-Group-content {
   display: none;
 }
+#user-restaurant-edit .edit-restaurant-details li {
+  padding: 0px 15px;
+  font-size: 12px;
+}
 #recharge-details .ui-controlgroup-controls {
   display: block;
   width: auto;
@@ -99,10 +103,14 @@
 #scroller {
   margin-top: 20px;
 }
-#user-create-content h2 {
+#create-content h2 {
   margin: 10px 0;
   font-weight: bold;
 }
-#user-create-content .create-group-btn {
+#create-content .create-group-btn {
   margin-top: 20px;
+}
+#bill-details .ui-controlgroup-controls {
+  width: auto;
+  display: block;
 }

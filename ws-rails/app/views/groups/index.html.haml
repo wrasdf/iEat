@@ -1,27 +1,27 @@
-%h1 Listing groups
+!!!
+%html
+  %head
+    %title My Page
+    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}
+    = stylesheet_link_tag "themes/default/common", :media => "all"
+    = stylesheet_link_tag "themes/default/jquery.mobile-1.2.0", :media => "all"
+    = stylesheet_link_tag "themes/default/mobiscroll.datetime-2.4.1.min", :media => "all"
+    = stylesheet_link_tag "themes/default/app", :media => "all"
+  %body
+    #group-list{"data-role" => "page"}
+      %div{"data-role" => "header"}
+        %h1 Group List
+        %a.my-bills-btn.ui-btn-right{"data-icon" => "arrow-r", "data-iconpos" => "right", "data-theme" => "b", :href => "javascript:void(0);"} My Bills
+      %div{"data-role" => "content"}
+        %a.create-group{"data-role" => "button", :href => "javascript:void(0);"} I want to create my group.
+        %h2 My Orders
+        %ul.my-orders-ul{"data-inset" => "true", "data-role" => "listview"}
+        %h2 Available Groups
+        %ul.group-list-ul{"data-inset" => "true", "data-role" => "listview"}
 
-%table
-  %tr
-    %th Name
-    %th Description
-    %th User
-    %th Due date
-    %th Restaurant
-    %th
-    %th
-    %th
-
-  - @groups.each do |group|
-    %tr
-      %td= group.name
-      %td= group.description
-      %td= group.user
-      %td= group.due_date
-      %td= group.restaurant
-      %td= link_to 'Show', group
-      %td= link_to 'Edit', edit_group_path(group)
-      %td= link_to 'Destroy', group, method: :delete, data: { confirm: 'Are you sure?' }
-
-%br
-
-= link_to 'New Group', new_group_path
+  = javascript_include_tag "jquery/jquery-1.9.1"
+  = javascript_include_tag "jquery/jquery.mobile-1.2.0"
+  = javascript_include_tag "utility/date"
+  = javascript_include_tag "jquery/mobiscroll.datetime-2.4.1.min"
+  = javascript_include_tag "utility/utility"
+  = javascript_include_tag "app-logic"
