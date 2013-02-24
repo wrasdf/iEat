@@ -10,6 +10,7 @@
 #import "GroupListUIView.h"
 #import "GroupListTableViewLogic.h"
 #import "LoginTableViewController.h"
+#import "User.h"
 
 @implementation GroupListController {
     GroupListTableViewLogic *groupTableLogic;
@@ -50,7 +51,7 @@
 
 
 //    // Check if user is logged in
-    if (!false) {
+    if ([[User CurrentUserName] length] == 0) {
         // Customize the Log In View Controller
         LoginTableViewController *logInViewController = [[LoginTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
 
