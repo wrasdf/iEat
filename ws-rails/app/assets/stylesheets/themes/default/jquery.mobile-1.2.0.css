@@ -1790,6 +1790,7 @@ div.ui-mobile-viewport { overflow-x: hidden; }
 }
 .ui-fixed-hidden {
 	position: absolute;
+    bottom: 0;
 }
 .ui-page-header-fullscreen .ui-fixed-hidden,
 .ui-page-footer-fullscreen .ui-fixed-hidden {

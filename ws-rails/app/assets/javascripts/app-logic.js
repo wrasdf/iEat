@@ -17,14 +17,14 @@ var iEatGroupList = (function () {
             var str = '';
             var myGroupsData = data.myGroups;
             for (var i = 0, len = myGroupsData.length; i < len; i++) {
-                str += '<li><a href="javascript:void(0);" data-role-type="member" data-restaurant-name="' + myGroupsData[i].name + '"><span class="restaurant-name">' + myGroupsData[i].name + '</span>Owner : ' + myGroupsData[i].owner + '</a></li>';
+                str += '<li><a href="javascript:void(0);" data-role-type="owner" data-restaurant-name="' + myGroupsData[i].name + '"><span class="restaurant-name">' + myGroupsData[i].name + '</span>Owner : ' + myGroupsData[i].owner + '</a></li>';
             }
             $("#group-list .my-orders-ul").html(str).listview('refresh');
 
             var str = '';
             var groupListData = data.groupList;
             for (var i = 0, len = groupListData.length; i < len; i++) {
-                str += '<li><a href="javascript:void(0);" data-role-type="order-food" data-restaurant-name="' + groupListData[i].name + '"><span class="restaurant-name">' + groupListData[i].name + '</span>Owner : ' + groupListData[i].owner + '</a></li>';
+                str += '<li><a href="javascript:void(0);" data-role-type="member" data-restaurant-name="' + groupListData[i].name + '"><span class="restaurant-name">' + groupListData[i].name + '</span>Owner : ' + groupListData[i].owner + '</a></li>';
             }
 
             $("#group-list .group-list-ul").html(str).listview('refresh');
@@ -46,7 +46,7 @@ var iEatGroupList = (function () {
                 e.preventDefault();
                 iEatGroupDetails.pageInitByData(data);
             })
-            $.mobile.changePage("/editGroup");
+            $.mobile.changePage("/groups/edit");
         });
 
         $(document).undelegate("#my-bills", "pageinit").delegate("#my-bills", "pageinit", function (e) {
@@ -72,7 +72,6 @@ var iEatGroupList = (function () {
     function pageInit() {
         reFreshGroupList()
     }
-
 
     return {
         pageInit: pageInit
@@ -122,81 +121,62 @@ var iEatGroupDetails = (function () {
 
     function showContentByData(data) {
 
-        var name = data.type;
-
         function clearClass() {
             $("#user-restaurant-edit .footer-navbar a").removeClass("ui-btn-active").removeClass("ui-state-persist");
         }
 
-        function resetFooterNavBarByName(name) {
-
-            var withMyOrderStr = '<div data-mini="true" data-role="navbar" class="footer-navbar"><ul><li><a href="javascript:void(0);" class="my-orders" data-role="tab" data-icon="star" data-transition="slideup">My Orders</a></li><li><a href="javascript:void(0);" class="group-orders" data-icon="grid" data-transition="slideup">Group Orders</a></li><li><a href="javascript:void(0);" class="edit-my-orders" data-icon="edit" data-transition="slideup">Edit</a></li></ul></div>'
-            var withOutMyOrderStr = '<div data-mini="true" data-role="navbar" class="footer-navbar"><ul><li><a href="javascript:void(0);" class="group-orders" data-role="tab" data-icon="grid" data-transition="slideup">Group Orders</a></li><li><a href="javascript:void(0);" class="edit-my-orders" data-icon="edit" data-transition="slideup">Edit</a></li></ul></div>'
-
-            if (name == "order-food") {
-                $("#user-restaurant-edit .footer-navbar").html(withOutMyOrderStr);
-            } else {
-                $("#user-restaurant-edit .footer-navbar").html(withMyOrderStr);
-            }
+        function resetFooterNavBarByName() {
+            var footerStr = '<div data-mini="true" data-role="navbar" class="footer-navbar"><ul><li><a href="javascript:void(0);" class="my-status" data-icon="edit" data-transition="slideup">My Orders</a></li><li><a href="javascript:void(0);" class="group-status" data-role="tab" data-icon="grid" data-transition="slideup">Group Orders</a></li></ul></div>'
+            $("#user-restaurant-edit .footer-navbar").html(footerStr);
             clearClass();
         }
 
         function hideAll() {
             $("#user-restaurant-edit .my-orders-content").hide();
-            $("#user-restaurant-edit .edit-my-orders-content").hide();
-            $("#user-restaurant-edit .my-Group-content").hide();
+            $("#user-restaurant-edit .my-group-content").hide();
         }
 
         function bindFooterNavBarClick() {
 
-            $("#user-restaurant-edit .footer-navbar a.my-orders").unbind("click").bind("click", function () {
+            $("#user-restaurant-edit .footer-navbar a.my-status").unbind("click").bind("click", function () {
                 hideAll();
                 $("#user-restaurant-edit .my-orders-content").show();
-                console.log(data.currentRestaurantData);
-                // refreshMyOrderUI(data.currentRestaurantData);
-            });
-            $("#user-restaurant-edit .footer-navbar a.group-orders").unbind("click").bind("click", function () {
-                hideAll();
-                $("#user-restaurant-edit .my-Group-content").show();
-
-
-            });
-            $("#user-restaurant-edit .footer-navbar a.edit-my-orders").unbind("click").bind("click", function () {
-                hideAll();
-                $("#user-restaurant-edit .edit-my-orders-content").show();
-                // $("#user-restaurant-edit .footer-navbar a.edit-my-orders").trigger ("vclick");
                 reFreshMenuDetailsByData(data.currentRestaurantData);
+                window.setTimeout(function () {
+                    $("#user-restaurant-edit .footer-navbar a.my-status").addClass("ui-btn-active ui-state-persist");
+                }, 500);
             });
 
+            $("#user-restaurant-edit .footer-navbar a.group-status").unbind("click").bind("click", function () {
+                hideAll();
+                $("#user-restaurant-edit .my-group-content").show();
+                window.setTimeout(function () {
+                    $("#user-restaurant-edit .footer-navbar a.group-status").addClass("ui-btn-active ui-state-persist");
+                }, 500);
+            });
         }
 
-        resetFooterNavBarByName(name);
+        resetFooterNavBarByName();
         bindFooterNavBarClick();
 
-        if (name == "member") {
-            $("#user-restaurant-edit .footer-navbar a.my-orders").trigger("click");
-        } else if (name == "owner") {
-            $("#user-restaurant-edit .footer-navbar a.group-orders").trigger("click");
-        } else if (name == "order-food") {
-            $("#user-restaurant-edit .footer-navbar a.edit-my-orders").trigger("click");
-        }
+        $("#user-restaurant-edit .footer-navbar a.my-status").trigger("click");
 
     }
 
-    // function getMyOrderGroups(){
-    //     var result = [];
-    //     $("#user-restaurant-edit .edit-restaurant-details li").each(function(index,value){
-    //         if($(value).find(".number-input").val() == 0){
-    //             return true;
-    //         }
-    //         result.push({
-    //             "name" : $(value).find(".dish-name").text(),
-    //             "price" : $(value).find(".dish-price").text(),
-    //             "count" : $(value).find(".number-input").val()
-    //         });
-    //     });
-    //     return result;
-    // }
+    function getMyOrderGroups() {
+        var result = [];
+        $("#user-restaurant-edit .edit-restaurant-details li").each(function (index, value) {
+            if ($(value).find(".number-input").val() == 0) {
+                return true;
+            }
+            result.push({
+                "name": $(value).find(".dish-name").text(),
+                "price": $(value).find(".dish-price").text(),
+                "count": $(value).find(".number-input").val()
+            });
+        });
+        return result;
+    }
 
     function refreshMyOrderUI() {
         var data = getMyOrderGroups();
@@ -211,11 +191,15 @@ var iEatGroupDetails = (function () {
         $("#user-restaurant-edit .my-order-list").html(str).listview("refresh");
     }
 
-    function pageInitByData(data) {
-        showContentByData(data);
+    function clearCache() {
         $('#user-restaurant-edit').bind('pagehide', function () {
             $(this).remove();
         });
+    }
+
+    function pageInitByData(data) {
+        showContentByData(data);
+        clearCache();
         $("#user-restaurant-edit h1").html(data.restaurantName);
         $('#user-restaurant-edit').trigger('create');
         $('#user-restaurant-edit .confirm-foods').bind("click", function () {

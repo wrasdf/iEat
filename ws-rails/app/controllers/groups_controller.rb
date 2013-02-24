@@ -33,9 +33,9 @@ class GroupsController < ApplicationController
   end
 
   # GET /groups/1/edit
-  def edit
-    @group = Group.find(params[:id])
-  end
+  #def edit
+  #  @group = Group.find(params[:id])
+  #end
 
   # POST /groups
   # POST /groups.json
@@ -83,6 +83,13 @@ class GroupsController < ApplicationController
 
   def today
     render :file => 'resources/todayGroupList.json', :content_type => 'application/json', :status => 200
+  end
+
+  def edit
+    respond_to do |format|
+      format.html # new.html.erb
+      format.json { render json: @group }
+    end
   end
 
 end

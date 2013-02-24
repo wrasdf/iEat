@@ -1,6 +1,6 @@
 WsRails::Application.routes.draw do
   get 'groups/today' => 'groups#today'
-
+  get 'groups/edit' => 'groups#edit'
   resources :groups
   resources :orders
   resources :restaurants do
