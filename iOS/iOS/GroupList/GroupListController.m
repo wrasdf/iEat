@@ -14,6 +14,7 @@
 
 @implementation GroupListController {
     GroupListTableViewLogic *groupTableLogic;
+    LoginTableViewController *logInViewController   ;
 }
 
 - (id)init {
@@ -21,6 +22,8 @@
     if (self) {
         self.title = @"Group List";
         groupTableLogic = [[GroupListTableViewLogic alloc] init];
+        logInViewController = [[LoginTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+
     }
 
     return self;
@@ -43,18 +46,21 @@
 -(void) createBarButtonOnNavigationBar{
     UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"Recharge" style:UIBarButtonItemStylePlain target:self action:@selector(reChargePress:)];
     self.navigationItem.rightBarButtonItem = rightButton;
+    UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStylePlain target:self action:@selector(Logout:)];
+    self.navigationItem.leftBarButtonItem = leftButton;
+
+}
+
+- (void)Logout:(id)Logout {
+    [User SetCurrentUserName:nil];
+    [self presentViewController:logInViewController animated:YES completion:NULL];
 }
 
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
 
-
-//    // Check if user is logged in
     if ([[User CurrentUserName] length] == 0) {
-        // Customize the Log In View Controller
-        LoginTableViewController *logInViewController = [[LoginTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
-
         [self presentViewController:logInViewController animated:YES completion:NULL];
     }
 }
