@@ -86,7 +86,6 @@ var iEatGroupDetails = (function () {
         $.each(o.menu, function (index, value) {
             str += '<li class="cf">';
             str += '<span class="restaurant-content"><span class="dish-name">' + value.dish + '</span><span class="dish-price">' + value.price + '</span>￥</span>';
-            str += '<span class="ui-li-count">3</span>';
             str += '<div class="group-button-content" data-role="controlgroup" data-type="horizontal">';
             str += '<a href="" class="reduce" data-role="button" data-icon="minus">&nbsp;</a>';
             str += '<a href="" class="add" data-role="button" data-icon="plus">&nbsp;</a>';
@@ -95,7 +94,6 @@ var iEatGroupDetails = (function () {
             str += '</li>';
         });
         $("#user-restaurant-edit .edit-restaurant-details").html(str).listview("refresh");
-        $('#user-restaurant-edit').trigger('create');
         bindFunction();
     }
 
@@ -105,7 +103,7 @@ var iEatGroupDetails = (function () {
             var v = currentInput.val();
             v++;
             currentInput.val(v);
-            refreshMyOrderUI();
+            refreshMyOrdersUI();
         });
         $("#user-restaurant-edit .edit-restaurant-details .reduce").bind("click", function () {
             var currentInput = $(this).parent().parent().parent().find("input.number-input");
@@ -115,7 +113,7 @@ var iEatGroupDetails = (function () {
                 v = 0;
             }
             currentInput.val(v);
-            refreshMyOrderUI();
+            refreshMyOrdersUI();
         });
     }
 
@@ -125,13 +123,8 @@ var iEatGroupDetails = (function () {
             $("#user-restaurant-edit .footer-navbar a").removeClass("ui-btn-active").removeClass("ui-state-persist");
         }
 
-        function resetFooterNavBarByName() {
-            var footerStr = '<div data-mini="true" data-role="navbar" class="footer-navbar"><ul><li><a href="javascript:void(0);" class="my-status" data-icon="edit" data-transition="slideup">My Orders</a></li><li><a href="javascript:void(0);" class="group-status" data-role="tab" data-icon="grid" data-transition="slideup">Group Orders</a></li></ul></div>'
-            $("#user-restaurant-edit .footer-navbar").html(footerStr);
-            clearClass();
-        }
-
         function hideAll() {
+//            clearClass();
             $("#user-restaurant-edit .my-orders-content").hide();
             $("#user-restaurant-edit .my-group-content").hide();
         }
@@ -142,28 +135,23 @@ var iEatGroupDetails = (function () {
                 hideAll();
                 $("#user-restaurant-edit .my-orders-content").show();
                 reFreshMenuDetailsByData(data.currentRestaurantData);
-                window.setTimeout(function () {
-                    $("#user-restaurant-edit .footer-navbar a.my-status").addClass("ui-btn-active ui-state-persist");
-                }, 500);
+                $('#user-restaurant-edit').trigger('create');
+//                $("#user-restaurant-edit .footer-navbar a.my-status").addClass("ui-btn-active ui-state-persist");
             });
 
             $("#user-restaurant-edit .footer-navbar a.group-status").unbind("click").bind("click", function () {
                 hideAll();
                 $("#user-restaurant-edit .my-group-content").show();
-                window.setTimeout(function () {
-                    $("#user-restaurant-edit .footer-navbar a.group-status").addClass("ui-btn-active ui-state-persist");
-                }, 500);
+//                $('#user-restaurant-edit').trigger('create');
+//                $("#user-restaurant-edit .footer-navbar a.group-status").addClass("ui-btn-active ui-state-persist");
             });
         }
-
-        resetFooterNavBarByName();
         bindFooterNavBarClick();
-
         $("#user-restaurant-edit .footer-navbar a.my-status").trigger("click");
 
     }
 
-    function getMyOrderGroups() {
+    function getMyOrderDishes() {
         var result = [];
         $("#user-restaurant-edit .edit-restaurant-details li").each(function (index, value) {
             if ($(value).find(".number-input").val() == 0) {
@@ -178,8 +166,8 @@ var iEatGroupDetails = (function () {
         return result;
     }
 
-    function refreshMyOrderUI() {
-        var data = getMyOrderGroups();
+    function refreshMyOrdersUI() {
+        var data = getMyOrderDishes();
         var str = "";
         var totalPrice = 0;
         $.each(data, function (index, value) {
@@ -208,7 +196,6 @@ var iEatGroupDetails = (function () {
     }
 
     return {
-        reFreshMenuDetailsByData: reFreshMenuDetailsByData,
         pageInitByData: pageInitByData
     }
 

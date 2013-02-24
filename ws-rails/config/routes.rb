@@ -1,6 +1,9 @@
 WsRails::Application.routes.draw do
   get 'groups/today' => 'groups#today'
   get 'groups/edit' => 'groups#edit'
+  get 'success' => 'success#index'
+  get 'create' => 'create#index'
+
   resources :groups
   resources :orders
   resources :restaurants do
@@ -16,6 +19,7 @@ WsRails::Application.routes.draw do
     root :to => 'home#index'
   end
   root :to => "home#index"
+
   devise_for :users
   resources :users
 end
