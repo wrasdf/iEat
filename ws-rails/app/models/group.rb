@@ -1,5 +1,5 @@
 class Group < ActiveRecord::Base
   belongs_to :user
   belongs_to :restaurant
-  attr_accessible :description, :due_date, :name
+  attr_accessible :id, :user, :restaurant, :description, :due_date, :name
 end

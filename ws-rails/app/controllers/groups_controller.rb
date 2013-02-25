@@ -86,6 +86,8 @@ class GroupsController < ApplicationController
   end
 
   def edit
+    @group = Group.find(params[:id])
+
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @group }

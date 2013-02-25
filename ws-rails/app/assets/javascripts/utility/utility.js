@@ -29,10 +29,10 @@ var iEatUtility = (function(){
         }, "json");
     }
 
-    function getRestaurantDetailsByName(name){
+    function getRestaurantDetailsById(id){
         var  result = [];
         $.each(RESTAURANTS,function(index,value){
-            if(name == value.name){
+            if(id == value["_id"]){
                 result = RESTAURANTS[index];
                 return false;
             }
@@ -43,7 +43,7 @@ var iEatUtility = (function(){
     return {
         getTodayGroupList : getTodayGroupList,
         getAllRestaurants : getAllRestaurants,
-        getRestaurantDetailsByName : getRestaurantDetailsByName
+        getRestaurantDetailsById : getRestaurantDetailsById
     }
 
 })();
