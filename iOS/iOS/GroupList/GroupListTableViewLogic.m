@@ -47,6 +47,7 @@
     else if (section == OtherGroupSection){
         return @"Other Groups";
     }
+    return nil;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

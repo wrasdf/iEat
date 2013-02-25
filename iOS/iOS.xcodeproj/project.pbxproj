@@ -29,6 +29,9 @@
 		494BC11D16D0D86B00DA45B9 /* iOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 494BC11C16D0D86B00DA45B9 /* iOSTests.m */; };
 		6AC7012CDFC89D1D8A164DF1 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC7061F88DEADC3990B7D15 /* User.m */; };
 		6AC702A49AE2426D90512249 /* fork.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AC7010B191BDBFC9AE5EE79 /* fork.png */; };
+		6AC7046BA1D855B86E44B0AC /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AC707BC2FBDE033E3868E24 /* MobileCoreServices.framework */; };
+		6AC70544D2DBECA9966CBC0B /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AC7010AFE66DA73B576E319 /* libz.1.2.5.dylib */; };
+		6AC70A334B4B914D3118ACD8 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AC70C88117EE93387B966B3 /* CFNetwork.framework */; };
 		9E53179B55864B80B164A3C8 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BA6710C06BB14FE089DBE799 /* libPods.a */; };
 		BB7EE24D16D86C270000DFCE /* EditTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB7EE24C16D86C270000DFCE /* EditTableViewCell.m */; };
 		BB7EE26A16D883860000DFCE /* LoginTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB7EE26816D883860000DFCE /* LoginTableViewController.m */; };
@@ -37,6 +40,7 @@
 		BB7EE29516D917960000DFCE /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB7EE29416D917960000DFCE /* SignUpViewController.m */; };
 		BBBC94FE16D6684F0009938F /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBBC94FD16D6684F0009938F /* StoreKit.framework */; };
 		BBBC950016D668630009938F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBBC94FF16D668630009938F /* SystemConfiguration.framework */; };
+		BBE4ABEB16DBA1BA00C5883D /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BBE4ABEA16DBA1BA00C5883D /* libxml2.2.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,11 +88,14 @@
 		494BC11C16D0D86B00DA45B9 /* iOSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iOSTests.m; sourceTree = "<group>"; };
 		57835B580DD34FEDB60789E8 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		6AC70026A7EF01DCAB70CA85 /* README.rst */ = {isa = PBXFileReference; lastKnownFileType = file.rst; path = README.rst; sourceTree = "<group>"; };
+		6AC7010AFE66DA73B576E319 /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
 		6AC7010B191BDBFC9AE5EE79 /* fork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fork.png; sourceTree = "<group>"; };
 		6AC705EAD3E94134E0BF5351 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		6AC7061F88DEADC3990B7D15 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		6AC7065CF9D8E5B8928EE6E9 /* pod_init.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = pod_init.sh; sourceTree = "<group>"; };
+		6AC707BC2FBDE033E3868E24 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		6AC70B87F2A02367DA00D939 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
+		6AC70C88117EE93387B966B3 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		BA6710C06BB14FE089DBE799 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB7EE24B16D86C270000DFCE /* EditTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EditTableViewCell.h; path = "Table Cell/EditTableViewCell.h"; sourceTree = "<group>"; };
 		BB7EE24C16D86C270000DFCE /* EditTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditTableViewCell.m; path = "Table Cell/EditTableViewCell.m"; sourceTree = "<group>"; };
@@ -100,6 +107,7 @@
 		BB7EE29416D917960000DFCE /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
 		BBBC94FD16D6684F0009938F /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		BBBC94FF16D668630009938F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		BBE4ABEA16DBA1BA00C5883D /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,12 +115,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BBE4ABEB16DBA1BA00C5883D /* libxml2.2.dylib in Frameworks */,
 				BBBC950016D668630009938F /* SystemConfiguration.framework in Frameworks */,
 				BBBC94FE16D6684F0009938F /* StoreKit.framework in Frameworks */,
 				494BC0F616D0D86A00DA45B9 /* CoreGraphics.framework in Frameworks */,
 				494BC0F216D0D86A00DA45B9 /* UIKit.framework in Frameworks */,
 				494BC0F416D0D86A00DA45B9 /* Foundation.framework in Frameworks */,
 				9E53179B55864B80B164A3C8 /* libPods.a in Frameworks */,
+				6AC70544D2DBECA9966CBC0B /* libz.1.2.5.dylib in Frameworks */,
+				6AC7046BA1D855B86E44B0AC /* MobileCoreServices.framework in Frameworks */,
+				6AC70A334B4B914D3118ACD8 /* CFNetwork.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -166,6 +178,7 @@
 		494BC0E216D0D86A00DA45B9 = {
 			isa = PBXGroup;
 			children = (
+				BBE4ABEA16DBA1BA00C5883D /* libxml2.2.dylib */,
 				494BC0F716D0D86A00DA45B9 /* iOS */,
 				494BC11516D0D86B00DA45B9 /* iOSTests */,
 				494BC0F016D0D86A00DA45B9 /* Frameworks */,
@@ -196,6 +209,9 @@
 				494BC0F516D0D86A00DA45B9 /* CoreGraphics.framework */,
 				494BC10F16D0D86B00DA45B9 /* SenTestingKit.framework */,
 				BA6710C06BB14FE089DBE799 /* libPods.a */,
+				6AC7010AFE66DA73B576E319 /* libz.1.2.5.dylib */,
+				6AC707BC2FBDE033E3868E24 /* MobileCoreServices.framework */,
+				6AC70C88117EE93387B966B3 /* CFNetwork.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

@@ -10,6 +10,9 @@
 #import "EditTableViewCell.h"
 #import "SignUpViewController.h"
 #import "User.h"
+#import "ASIFormDataRequest.h"
+#import "MBProgressHUD.h"
+#import "JSONKit.h"
 
 @interface LoginTableViewController ()
 
@@ -102,13 +105,53 @@ enum {
     NSString *password = ((EditTableViewCell *) [[self.tableView visibleCells] objectAtIndex:1]).textField.text;
 
     if (username && password && username.length != 0 && password.length != 0) {
-        [User SetCurrentUserName:username];
-        [self dismissViewControllerAnimated:YES completion:NULL];
+        // Get device unique ID
+        UIDevice *device = [UIDevice currentDevice];
+        NSString *uniqueIdentifier = [device uniqueIdentifier];
+
+//        Start request
+        NSURL *url = [NSURL URLWithString:@"http://localhost:3000"];
+        ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+        [request setPostValue:@"1" forKey:@"rw_app_id"];
+        [request setPostValue:username forKey:@"username"];
+        [request setPostValue:password forKey:@"password"];
+        [request setPostValue:uniqueIdentifier forKey:@"device_id"];
+        [request setDelegate:self];
+        [request startAsynchronous];
+
+        // Hide keyword
+//        [textField resignFirstResponder];
+
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.labelText = @"Logging in...";
     } else {
         [[[UIAlertView alloc] initWithTitle:@"Login" message:@"Please enter user name and password" delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil] show];
     }
 
 
+}
+
+- (void)requestFinished:(ASIHTTPRequest *)request
+{
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+    if (request.responseStatusCode == 400) {
+        NSLog(@"return 400");
+    } else if (request.responseStatusCode == 403) {
+        NSLog(@"return 403");
+    } else if (request.responseStatusCode == 200) {
+        NSString *username = ((EditTableViewCell *) [[self.tableView visibleCells] objectAtIndex:0]).textField.text;
+        [User SetCurrentUserName:username];
+        [self dismissViewControllerAnimated:YES completion:NULL];
+    } else {
+        NSLog(@"Unexpected error");
+    }
+}
+
+- (void)requestFailed:(ASIHTTPRequest *)request
+{
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+    NSError *error = [request error];
+    NSLog(error.localizedDescription);
 }
 
 - (IBAction)SignUp:(id)sender {
