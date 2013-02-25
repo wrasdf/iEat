@@ -105,29 +105,31 @@ enum {
     NSString *password = ((EditTableViewCell *) [[self.tableView visibleCells] objectAtIndex:1]).textField.text;
 
     if (username && password && username.length != 0 && password.length != 0) {
-        // Get device unique ID
-        UIDevice *device = [UIDevice currentDevice];
-        NSString *uniqueIdentifier = [device uniqueIdentifier];
-
-//        Start request
-        NSURL *url = [NSURL URLWithString:@"http://localhost:3000"];
-        ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
-        [request setPostValue:@"1" forKey:@"rw_app_id"];
-        [request setPostValue:username forKey:@"username"];
-        [request setPostValue:password forKey:@"password"];
-        [request setPostValue:uniqueIdentifier forKey:@"device_id"];
-        [request setDelegate:self];
-        [request startAsynchronous];
-
-        // Hide keyword
-//        [textField resignFirstResponder];
-
+        [self sendLoginRequestWithUserName:username password:password];
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         hud.labelText = @"Logging in...";
     } else {
         [[[UIAlertView alloc] initWithTitle:@"Login" message:@"Please enter user name and password" delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil] show];
     }
+}
 
+- (void)sendLoginRequestWithUserName:(NSString *)username password:(NSString *)password {
+// Get device unique ID
+    UIDevice *device = [UIDevice currentDevice];
+    NSString *uniqueIdentifier = [device uniqueIdentifier];
+
+    //Start request
+    NSURL *url = [NSURL URLWithString:@"http://localhost:3000"];
+    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+    [request setPostValue:@"1" forKey:@"rw_app_id"];
+    [request setPostValue:username forKey:@"username"];
+    [request setPostValue:password forKey:@"password"];
+    [request setPostValue:uniqueIdentifier forKey:@"device_id"];
+    [request setDelegate:self];
+    [request startAsynchronous];
+
+    // Hide keyword
+    //  [textField resignFirstResponder];
 
 }
 

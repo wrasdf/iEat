@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface SignUpViewController : UITableViewController
+        <UITextFieldDelegate,
+        UITableViewDataSource,
+        UITableViewDelegate>
 
 @end

@@ -8,6 +8,9 @@
 
 #import "SignUpViewController.h"
 #import "EditTableViewCell.h"
+#import "ASIFormDataRequest.h"
+#import "MBProgressHUD.h"
+#import "User.h"
 
 @interface SignUpViewController ()
  enum{
@@ -20,7 +23,12 @@
 @end
 
 @implementation SignUpViewController
-
+{
+    NSString * userName;
+    NSString * password;
+    NSString * email;
+    NSString * confirmPassword;
+}
 
 - (void)viewDidLoad
 {
@@ -58,8 +66,50 @@
 }
 
 - (void)Ok {
-    [self dismissViewControllerAnimated:YES completion:NULL];
+    if ([userName length] && [password length] && [email length] && [password isEqualToString:confirmPassword] ){
+        UIDevice *device = [UIDevice currentDevice];
+        NSString *uniqueIdentifier = [device uniqueIdentifier];
+
+        //Start request
+        NSURL *url = [NSURL URLWithString:@"http://localhost:3000"];
+        ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+        [request setPostValue:@"1" forKey:@"rw_app_id"];
+        [request setPostValue:userName forKey:@"username"];
+        [request setPostValue:password forKey:@"password"];
+        [request setPostValue:email forKey:@"email"];
+        [request setPostValue:uniqueIdentifier forKey:@"device_id"];
+        [request setDelegate:self];
+        [request startAsynchronous];
+
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.labelText = @"Sign up...";
+    }
+    else{
+        [[[UIAlertView alloc] initWithTitle:@"Error" message:@"Please check input info." delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil] show];
+    }
 }
+
+- (void)requestFinished:(ASIHTTPRequest *)request
+{
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+    if (request.responseStatusCode == 400) {
+        NSLog(@"return 400");
+    } else if (request.responseStatusCode == 403) {
+        NSLog(@"return 403");
+    } else if (request.responseStatusCode == 200) {
+        [User SetCurrentUserName:userName];
+        [self dismissViewControllerAnimated:YES completion:NULL];
+    } else {
+        NSLog(@"Unexpected error");
+    }
+}
+- (void)requestFailed:(ASIHTTPRequest *)request
+{
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+    NSError *error = [request error];
+    NSLog(error.localizedDescription);
+}
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -77,6 +127,7 @@
     return CellCount;
 }
 
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"SignupCell";
@@ -89,74 +140,81 @@
         cell.label.text = @"Name";
         cell.textField.text = @"";
         cell.textField.placeholder = @"Name";
+        [cell.textField addTarget:self action:@selector(CheckUsername:) forControlEvents:UIControlEventEditingChanged];
+
     }
     else if (indexPath.row == EmailCell) {
         cell.label.text = @"Email";
         cell.textField.text = @"";
         cell.textField.placeholder = @"Email";
+        [cell.textField addTarget:self action:@selector(CheckMail:) forControlEvents:UIControlEventEditingChanged];
     }
     else if (indexPath.row == PasswordCell){
         cell.label.text = @"Password";
         cell.textField.clearButtonMode = cell.textField.secureTextEntry = YES;
+        [cell.textField addTarget:self action:@selector(CheckPassword:) forControlEvents:UIControlEventEditingChanged];
+
     }
     else if (indexPath.row == PasswordConfirmCell){
         cell.label.text = @"Confirm";
         cell.textField.clearButtonMode = cell.textField.secureTextEntry = YES;
+        [cell.textField addTarget:self action:@selector(ConfirmPassword:) forControlEvents:UIControlEventEditingChanged];
+
     }
+    cell.textField.delegate = self;
 
     return cell;
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
+- (void)CheckUsername:(UITextField *)textField {
+   if ([[textField text] length] <= 0){
+       [[[UIAlertView alloc] initWithTitle:@"Error" message:@"Please input username" delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil] show];
+       [textField setTextColor:[UIColor redColor] ];
+       userName = @"";
+       return;
+   }
+    userName = textField.text;
+    [textField setTextColor:[UIColor darkTextColor] ];
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
 }
-*/
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
+- (void)CheckPassword:(UITextField *)textField {
+   if ([[textField text] length]<6){
+       [textField setTextColor:[UIColor redColor] ];
+       password = @"";
+       return;
+   }
+    password = textField.text;
+    [textField setTextColor:[UIColor darkTextColor] ];
 }
-*/
 
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
+- (void)ConfirmPassword:(UITextField *)textField {
+   if (password && ![textField.text isEqualToString:password]){
+       [textField setTextColor:[UIColor redColor] ];
+       confirmPassword = @"";
+       return;
+   }
+   if ([[textField text] length]<6){
+       [textField setTextColor:[UIColor redColor] ];
+       confirmPassword = @"";
+       return;
+   }
+    confirmPassword = textField.text;
+    [textField setTextColor:[UIColor darkTextColor] ];
 }
-*/
 
-#pragma mark - Table view delegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+- (void)CheckMail:(UITextField*)textField {
+    NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
+    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex]; //  return 0;
+    BOOL isValid = [emailTest evaluateWithObject:textField.text];
+    if (!isValid){
+        [textField setTextColor:[UIColor redColor] ];
+        email = @"";
+        return;
+    }
+    email = textField.text;
+    [textField setTextColor:[UIColor darkTextColor] ];
 }
+
 
 @end
