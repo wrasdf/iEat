@@ -52,4 +52,3 @@ Dish.create! :restaurant => restaurant3, :price => 12.0, :name => "小炒粉丝"
 Group.create! :id => 1, due_date:"2013-2-25 20:00", :user => userWangrui, :restaurant => restaurant1
 Group.create! :id => 2, due_date:"2013-2-25 20:00", :user => userMingxin, :restaurant => restaurant2
 Group.create! :id => 3, due_date:"2013-2-25 20:00", :user => userQingshan, :restaurant => restaurant3
-

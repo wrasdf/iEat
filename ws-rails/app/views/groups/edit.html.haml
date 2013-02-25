@@ -1,7 +1,8 @@
 #user-restaurant-edit{"data-role" => "page"}
   %div{"data-role" => "header"}
     %a.ui-btn-left{"data-icon" => "arrow-l", "data-theme" => "b", :href => "#group-list"} Cancel
-    %h1
+    %h1= @group.restaurant.name
+
   %div{"data-role" => "content", "class" => "details-content"}
     .my-orders-content
       %h2 My Orders
@@ -9,6 +10,39 @@
       .edit-my-orders-content
         %h2 Order menus
         %ul.listview.edit-restaurant-details{"data-inset" => "true", "data-role" => "listview"}
+
+          @dishes
+          -#%li.cf
+          -#  %span.restaurant-content 炒面 : 12￥
+          -#  %span.ui-li-count 3
+          -#  .group-button-content{"data-role" => "controlgroup", "data-type" => "horizontal"}
+          -#    %a.add{"data-icon" => "arrow-u", "data-mini" => "true", "data-role" => "button", :href => ""}  
+          -#    %a.reduce{"data-icon" => "arrow-d", "data-mini" => "true", "data-role" => "button", :href => ""}  
+          -#  %input.number-input{"data-mini" => "true", :type => "number", :value => "0"}
+          -#
+          -#
+          -#
+          -#
+          -#- @dishes.each do |dish|
+          -#    %tr
+          -#      %td= dish.name
+          -#      %td= dish.price
+          -#      %td= dish.description
+          -#      %td= dish.image_url
+          -#      %td= dish.restaurant
+          -#      %td= link_to 'Show', restaurant_dish_path(@restaurant, dish)
+          -#      %td= link_to 'Edit', edit_restaurant_dish_path(@restaurant, dish)
+          -#      %td= link_to 'Destroy', [@restaurant, dish], method: :delete, data: { confirm: 'Are you sure?' }
+
+
+
+
+
+
+
+
+
+
         %a.confirm-foods{"data-role" => "button", :href => "javascript:void(0);"} Confirm
     .my-group-content
       %h2 This is edit my group

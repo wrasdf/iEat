@@ -106,7 +106,6 @@ var iEatGroupDetails = (function () {
     function pageInitByData(data) {
         showContentByData(data);
         clearCache();
-        $("#user-restaurant-edit h1").html(data.restaurantName);
         $('#user-restaurant-edit').trigger('create');
         $('#user-restaurant-edit .confirm-foods').bind("click", function () {
             $.mobile.changePage("/success");

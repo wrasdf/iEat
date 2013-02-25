@@ -41,6 +41,7 @@ class GroupsController < ApplicationController
   # POST /groups.json
   def create
     @group = Group.new(params[:group])
+    #@dishes = Dish.new(@group.restaurant)
 
     respond_to do |format|
       if @group.save
