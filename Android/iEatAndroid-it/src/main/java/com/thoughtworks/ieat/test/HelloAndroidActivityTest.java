@@ -1,16 +1,16 @@
 package com.thoughtworks.ieat.test;
 
 import android.test.ActivityInstrumentationTestCase2;
-import com.thoughtworks.ieat.activity.HelloAndroidActivity;
+import com.thoughtworks.ieat.activity.LoginActivity;
 
-public class HelloAndroidActivityTest extends ActivityInstrumentationTestCase2<HelloAndroidActivity> {
+public class HelloAndroidActivityTest extends ActivityInstrumentationTestCase2<LoginActivity> {
 
     public HelloAndroidActivityTest() {
-        super(HelloAndroidActivity.class);
+        super(LoginActivity.class);
     }
 
     public void testActivity() {
-        HelloAndroidActivity activity = getActivity();
+        LoginActivity activity = getActivity();
         assertNotNull(activity);
     }
 }

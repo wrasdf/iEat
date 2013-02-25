@@ -52,13 +52,13 @@
                 <artifactId>scala-library</artifactId>
                 <version>${scala.version}</version>
             </dependency>
-            <dependency>
-                <groupId>async</groupId>
-                <artifactId>http</artifactId>
-                <version>1.4.3</version>
-                <scope>system</scope>
-                <systemPath>${basedir}/iEatAndroid/lib/android-async-http-1.4.3.jar</systemPath>
-            </dependency>
+            <!--<dependency>-->
+                <!--<groupId>async</groupId>-->
+                <!--<artifactId>http</artifactId>-->
+                <!--<version>1.4.3</version>-->
+                <!--<scope>system</scope>-->
+                <!--<systemPath>${basedir}/iEatAndroid/lib/android-async-http-1.4.3.jar</systemPath>-->
+            <!--</dependency>-->
         </dependencies>
     </dependencyManagement>
     <repositories>

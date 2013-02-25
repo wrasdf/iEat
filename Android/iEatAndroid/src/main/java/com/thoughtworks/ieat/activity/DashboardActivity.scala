@@ -6,6 +6,8 @@ import android.view.View
 import com.thoughtworks.ieat.R
 import com.thoughtworks.ieat.Common._
 import android.content.Intent
+import android.widget.Button
+import com.thoughtworks.ieat.utils.ApplicationData
 
 class DashboardActivity extends Activity {
   lazy val myGroupButton = findViewById(R.id.myGroup)
@@ -19,6 +21,7 @@ class DashboardActivity extends Activity {
 
     setContentView(R.layout.dashboard)
 
+    myGroupButton.asInstanceOf[Button].setText(ApplicationData.getCurrentUser())
     myGroupButton.setOnClickListener { (v: View) => startActivity(new Intent(DashboardActivity.this, classOf[MyGroupActivity])) }
     addGroupButton.setOnClickListener { (v: View) => startActivity(new Intent(DashboardActivity.this, classOf[MyGroupActivity])) }
     joinedGroupButton.setOnClickListener { (v: View) => startActivity(new Intent(DashboardActivity.this, classOf[JoinedGroupActivity])) }
