@@ -38,6 +38,7 @@
 		BB7EE26D16D885660000DFCE /* LoginFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB7EE26C16D885660000DFCE /* LoginFooterView.xib */; };
 		BB7EE28E16D904CA0000DFCE /* EditTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB7EE27D16D8F42F0000DFCE /* EditTableViewCell.xib */; };
 		BB7EE29516D917960000DFCE /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB7EE29416D917960000DFCE /* SignUpViewController.m */; };
+		BBA6E72A16DD024B00561F93 /* GroupSummaryViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA6E72916DD024B00561F93 /* GroupSummaryViewCell.m */; };
 		BBBC94FE16D6684F0009938F /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBBC94FD16D6684F0009938F /* StoreKit.framework */; };
 		BBBC950016D668630009938F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBBC94FF16D668630009938F /* SystemConfiguration.framework */; };
 		BBE4ABEB16DBA1BA00C5883D /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BBE4ABEA16DBA1BA00C5883D /* libxml2.2.dylib */; };
@@ -105,6 +106,8 @@
 		BB7EE27D16D8F42F0000DFCE /* EditTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EditTableViewCell.xib; path = iOS/EditTableViewCell.xib; sourceTree = SOURCE_ROOT; };
 		BB7EE29316D917960000DFCE /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
 		BB7EE29416D917960000DFCE /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
+		BBA6E72816DD024B00561F93 /* GroupSummaryViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupSummaryViewCell.h; sourceTree = "<group>"; };
+		BBA6E72916DD024B00561F93 /* GroupSummaryViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupSummaryViewCell.m; sourceTree = "<group>"; };
 		BBBC94FD16D6684F0009938F /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		BBBC94FF16D668630009938F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		BBE4ABEA16DBA1BA00C5883D /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
@@ -293,6 +296,8 @@
 				BB7EE24B16D86C270000DFCE /* EditTableViewCell.h */,
 				BB7EE24C16D86C270000DFCE /* EditTableViewCell.m */,
 				BB7EE27D16D8F42F0000DFCE /* EditTableViewCell.xib */,
+				BBA6E72816DD024B00561F93 /* GroupSummaryViewCell.h */,
+				BBA6E72916DD024B00561F93 /* GroupSummaryViewCell.m */,
 			);
 			name = "Table Cell";
 			sourceTree = "<group>";
@@ -437,6 +442,7 @@
 				BB7EE26A16D883860000DFCE /* LoginTableViewController.m in Sources */,
 				BB7EE29516D917960000DFCE /* SignUpViewController.m in Sources */,
 				6AC7012CDFC89D1D8A164DF1 /* User.m in Sources */,
+				BBA6E72A16DD024B00561F93 /* GroupSummaryViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

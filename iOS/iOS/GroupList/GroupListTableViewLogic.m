@@ -6,6 +6,7 @@
 
 #import "GroupListProtocol.h"
 #import "GroupListTableViewLogic.h"
+#import "GroupSummaryViewCell.h"
 
 
 
@@ -57,22 +58,16 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 
     // Identifier for retrieving reusable cells. static NSString
-    NSString *cellIdentifier = @"MyCellIdentifier"; // Attempt to request the reusable cell.
+    NSString *cellIdentifier = @"GroupSummaryCell"; // Attempt to request the reusable cell.
 
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    GroupSummaryViewCell *cell = (GroupSummaryViewCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if(cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle
-                                      reuseIdentifier:cellIdentifier];
+        cell = [[GroupSummaryViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    [cell.imageView setImage:[UIImage imageNamed:@"fork.png"] ];
-    cell.detailTextLabel.text = @"Due Date: 2013-02-26 11:00:00";
+    [self configureCell:cell atIndexPath:indexPath];
+    return cell;
 
-    if (indexPath.section == MyGroupSection){
-        cell.textLabel.text = [self.myItems objectAtIndex:(NSUInteger) indexPath.row];
-    } else if (indexPath.section == OtherGroupSection){
-        cell.textLabel.text = [self.otherItems objectAtIndex:(NSUInteger) indexPath.row];
-    }
 
     return cell;
 }
@@ -85,6 +80,20 @@
         message = [self.otherItems objectAtIndex:(NSUInteger) indexPath.row];
     }
     [[[UIAlertView alloc] initWithTitle:@"Item Selected" message:message delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+}
+
+- (void)configureCell:(GroupSummaryViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+    [cell.imageView setImage:[UIImage imageNamed:@"fork.png"] ];
+    cell.dueDateLabel.text = @"截止日期: 2013-02-23 11:00:00";
+    cell.ownerLabel.text = @"邹明新";
+
+    if (indexPath.section == MyGroupSection){
+        cell.restaurantNameLabel.text = [self.myItems objectAtIndex:(NSUInteger) indexPath.row];
+        cell.groupNameLabel.text = @"iEat小组";//[[self.myItems objectAtIndex:(NSUInteger) indexPath.row] stringByAppendingString:@"-thoughtworks 西宫"];
+    } else if (indexPath.section == OtherGroupSection){
+        cell.restaurantNameLabel.text = [self.otherItems objectAtIndex:(NSUInteger) indexPath.row];
+        cell.groupNameLabel.text = @"thoughtworks east wing(test for a very very long name)";//[[self.otherItems objectAtIndex:(NSUInteger) indexPath.row] stringByAppendingString:@" thoughtworks-北京东直门店"];
+    }
 }
 
 

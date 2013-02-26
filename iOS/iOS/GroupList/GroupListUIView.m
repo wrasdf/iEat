@@ -41,6 +41,7 @@
 -(void) createListTable{
     groupListTable = [[UITableView alloc] initWithFrame:CGRectMake(0, 50, 320, [UIScreen mainScreen].bounds.size.height - 49) style:UITableViewStyleGrouped];
     groupListTable.backgroundView = nil;
+    groupListTable.rowHeight = 50.0;
     groupListTable.backgroundColor = [UIColor clearColor];
     self.groupTableLogic = tableLogic;
     groupListTable.delegate = self.groupTableLogic;
