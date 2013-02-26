@@ -35,7 +35,7 @@
     [super viewDidLoad];
 
     // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+    self.clearsSelectionOnViewWillAppear = NO;
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
@@ -67,26 +67,29 @@
 
 - (void)Ok {
     if ([userName length] && [password length] && [email length] && [password isEqualToString:confirmPassword] ){
-        UIDevice *device = [UIDevice currentDevice];
-        NSString *uniqueIdentifier = [device uniqueIdentifier];
-
-        //Start request
-        NSURL *url = [NSURL URLWithString:@"http://localhost:3000"];
-        ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
-        [request setPostValue:@"1" forKey:@"rw_app_id"];
-        [request setPostValue:userName forKey:@"username"];
-        [request setPostValue:password forKey:@"password"];
-        [request setPostValue:email forKey:@"email"];
-        [request setPostValue:uniqueIdentifier forKey:@"device_id"];
-        [request setDelegate:self];
-        [request startAsynchronous];
-
+        [self sendSignUpMessage];
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         hud.labelText = @"Sign up...";
     }
     else{
         [[[UIAlertView alloc] initWithTitle:@"Error" message:@"Please check input info." delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil] show];
     }
+}
+
+- (void)sendSignUpMessage {
+    UIDevice *device = [UIDevice currentDevice];
+    NSString *uniqueIdentifier = [device uniqueIdentifier];
+
+    //Start request
+    NSURL *url = [NSURL URLWithString:@"http://localhost:3000"];
+    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+    [request setPostValue:@"1" forKey:@"rw_app_id"];
+    [request setPostValue:userName forKey:@"username"];
+    [request setPostValue:password forKey:@"password"];
+    [request setPostValue:email forKey:@"email"];
+    [request setPostValue:uniqueIdentifier forKey:@"device_id"];
+    [request setDelegate:self];
+    [request startAsynchronous];
 }
 
 - (void)requestFinished:(ASIHTTPRequest *)request
