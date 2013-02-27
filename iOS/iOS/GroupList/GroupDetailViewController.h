@@ -11,7 +11,5 @@
 @class PlainEditTableViewCell;
 
 @interface GroupDetailViewController : UITableViewController
-@property(nonatomic, strong) PlainEditTableViewCell *groupNameCell;
-
 
 @end

@@ -13,6 +13,13 @@
 {
     NSArray *sections;
     PlainEditTableViewCell* groupNameCell;
+    NSString *dueDate;
+    NSString *groupName;
+    NSString *restName;
+    NSString *owner;
+    NSDateFormatter *formatter;
+    UIViewController *datePickerController;
+    UIDatePicker *datePicker;
 
 }
 enum {
@@ -25,8 +32,6 @@ enum {
 @end
 
 @implementation GroupDetailViewController
-@synthesize groupNameCell;
-
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -35,12 +40,24 @@ enum {
         sections = @[@"团名", @"餐馆", @"截止日期"];
         groupNameCell = [[PlainEditTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"NameCell"];
         [groupNameCell.textField addTarget:self action:@selector(UpdateTitle:) forControlEvents:UIControlEventEditingChanged];
+        formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"yyyy-MM-dd HH:mm"];
+
+        datePickerController = [[UIViewController alloc] init];
+        [datePickerController setTitle:@"截止日期"];
+        [[datePickerController view] setBackgroundColor:[UIColor underPageBackgroundColor]];
+        datePicker = [[UIDatePicker alloc] initWithFrame:datePickerController.view.bounds];
+        [datePicker addTarget:self action:@selector(selectDueDate:) forControlEvents:UIControlEventValueChanged];
+        [datePickerController.view addSubview:datePicker];
+
+        dueDate = [formatter stringFromDate:[NSDate date]];
     }
     return self;
 }
 
 - (void)UpdateTitle:(UITextField *)textfield {
    self.title = textfield.text;
+   groupName = textfield.text;
 }
 
 - (void)viewDidLoad
@@ -62,8 +79,6 @@ enum {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-#pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -88,6 +103,10 @@ enum {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:IngredientsCellIdentifier];
             cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
         }
+
+        if (indexPath.section == SectionDueDate){
+            cell.textLabel.text = dueDate;
+        }
     }
     return cell;
 }
@@ -96,25 +115,31 @@ enum {
     return [sections objectAtIndex:section];
 }
 
-// Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Return NO if you do not want the specified item to be editable.
     return NO;
 }
 
-
-#pragma mark - Table view delegate
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+    UIViewController *viewController;
+    if (indexPath.section == SectionRestName){
+        viewController = [[UIViewController alloc] init];
+        [viewController setTitle:@"餐馆列表"];
+        [[viewController view] setBackgroundColor:[UIColor underPageBackgroundColor]];
+
+    } else if (indexPath.section == SectionDueDate){
+        viewController = datePickerController;
+        [datePicker setDate:[formatter dateFromString:dueDate]];
+    }
+    [self.navigationController pushViewController:viewController animated:YES];
+}
+
+- (void)selectDueDate:(UIDatePicker *)sender {
+    dueDate = [formatter stringFromDate:[sender date]];
+    NSLog(dueDate);
+    [self reloadInputViews];
+    [[self tableView] reloadData];
 }
 
 @end
