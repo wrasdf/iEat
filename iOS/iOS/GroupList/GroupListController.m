@@ -5,7 +5,6 @@
 //
 
 
-#import "GroupListProtocol.h"
 #import "GroupListController.h"
 #import "GroupListUIView.h"
 #import "GroupListTableViewLogic.h"
@@ -32,7 +31,6 @@
 - (void)loadView {
     GroupListUIView *groupListUIView = [[GroupListUIView alloc] initWithDelegate:groupTableLogic andFrame:CGRectMake(0, 0, 320, [UIScreen mainScreen].bounds.size.height - 49)];
     self.view = groupListUIView;
-    groupTableLogic.delegate = self;
 }
 
 - (IBAction) createPress:(id) sender {

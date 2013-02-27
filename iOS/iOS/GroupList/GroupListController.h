@@ -7,8 +7,7 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol GroupListProtocol;
 @class GroupListUIView;
 
-@interface GroupListController : UIViewController<GroupListProtocol>
+@interface GroupListController : UIViewController
 @end

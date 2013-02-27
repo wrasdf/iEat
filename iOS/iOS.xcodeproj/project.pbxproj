@@ -67,7 +67,6 @@
 		36867991D7B64FF793320BE2 /* GroupListUIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupListUIView.m; sourceTree = "<group>"; };
 		368679EAB5D39D3ED92165A8 /* RestaurantEditController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestaurantEditController.m; sourceTree = "<group>"; };
 		36867D439D4BF89C7322B14F /* CreateUIElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateUIElement.m; sourceTree = "<group>"; };
-		36867F11E85A08B11489F2E8 /* GroupListProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupListProtocol.h; sourceTree = "<group>"; };
 		494BC0ED16D0D86A00DA45B9 /* iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		494BC0F116D0D86A00DA45B9 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		494BC0F316D0D86A00DA45B9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -153,7 +152,6 @@
 				368674EC94E60ED717A32CC9 /* GroupListUIView.h */,
 				3686791272B18459667C4CE6 /* GroupListTableViewLogic.m */,
 				368671EA147EA7D4F2DFF155 /* GroupListTableViewLogic.h */,
-				36867F11E85A08B11489F2E8 /* GroupListProtocol.h */,
 			);
 			path = GroupList;
 			sourceTree = "<group>";

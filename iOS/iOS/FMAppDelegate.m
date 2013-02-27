@@ -7,7 +7,6 @@
 //
 
 #import "FMAppDelegate.h"
-#import "GroupListProtocol.h"
 #import "GroupListController.h"
 
 @implementation FMAppDelegate
