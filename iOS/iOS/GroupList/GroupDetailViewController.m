@@ -32,7 +32,6 @@ enum {
 {
     self = [super initWithStyle:style];
     if (self) {
-        [self.tableView setEditing:NO];
         sections = @[@"团名", @"餐馆", @"截止日期"];
         groupNameCell = [[PlainEditTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"NameCell"];
         [groupNameCell.textField addTarget:self action:@selector(UpdateTitle:) forControlEvents:UIControlEventEditingChanged];
@@ -48,14 +47,14 @@ enum {
 {
     [super viewDidLoad];
 
+    [self.tableView setEditing:NO];
     self.clearsSelectionOnViewWillAppear = YES;
-    UIBarButtonItem *addButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonItemStyleDone target:self action:@selector(add:)];
-
+    UIBarButtonItem *addButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"确定" style:UIBarButtonItemStylePlain target:self action:@selector(add:)];
     self.navigationItem.rightBarButtonItem = addButtonItem;
 }
 
 - (void)add:(id)sender {
-
+    [[self navigationController] popViewControllerAnimated:YES];
 }
 
 - (void)didReceiveMemoryWarning
