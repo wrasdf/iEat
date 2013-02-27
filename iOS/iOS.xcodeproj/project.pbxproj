@@ -28,7 +28,9 @@
 		6AC7012CDFC89D1D8A164DF1 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC7061F88DEADC3990B7D15 /* User.m */; };
 		6AC702A49AE2426D90512249 /* fork.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AC7010B191BDBFC9AE5EE79 /* fork.png */; };
 		6AC7046BA1D855B86E44B0AC /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AC707BC2FBDE033E3868E24 /* MobileCoreServices.framework */; };
+		6AC704A1801EDB16CA032A20 /* PlainEditTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC70BB96F84DDAA0EB4A97B /* PlainEditTableViewCell.m */; };
 		6AC70544D2DBECA9966CBC0B /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AC7010AFE66DA73B576E319 /* libz.1.2.5.dylib */; };
+		6AC7092CA6D8607B53F050C7 /* GroupDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC70C109EB3D3020808AFCC /* GroupDetailViewController.m */; };
 		6AC70A334B4B914D3118ACD8 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AC70C88117EE93387B966B3 /* CFNetwork.framework */; };
 		6AC70C17CB4FABAD6A621E5F /* GroupDataService.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC70B730E68A856BA29CADB /* GroupDataService.m */; };
 		9E53179B55864B80B164A3C8 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BA6710C06BB14FE089DBE799 /* libPods.a */; };
@@ -83,6 +85,7 @@
 		494BC11C16D0D86B00DA45B9 /* iOSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iOSTests.m; sourceTree = "<group>"; };
 		57835B580DD34FEDB60789E8 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		6AC70026A7EF01DCAB70CA85 /* README.rst */ = {isa = PBXFileReference; lastKnownFileType = file.rst; path = README.rst; sourceTree = "<group>"; };
+		6AC7008D4E86601A6BC01F78 /* PlainEditTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlainEditTableViewCell.h; path = "Table Cell/PlainEditTableViewCell.h"; sourceTree = "<group>"; };
 		6AC7010AFE66DA73B576E319 /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
 		6AC7010B191BDBFC9AE5EE79 /* fork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fork.png; sourceTree = "<group>"; };
 		6AC70483062B172406805153 /* GroupDataService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupDataService.h; sourceTree = "<group>"; };
@@ -90,8 +93,11 @@
 		6AC7061F88DEADC3990B7D15 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		6AC7065CF9D8E5B8928EE6E9 /* pod_init.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = pod_init.sh; sourceTree = "<group>"; };
 		6AC707BC2FBDE033E3868E24 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		6AC709248BAEA90A7F51529D /* GroupDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupDetailViewController.h; sourceTree = "<group>"; };
 		6AC70B730E68A856BA29CADB /* GroupDataService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupDataService.m; sourceTree = "<group>"; };
 		6AC70B87F2A02367DA00D939 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
+		6AC70BB96F84DDAA0EB4A97B /* PlainEditTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlainEditTableViewCell.m; path = "Table Cell/PlainEditTableViewCell.m"; sourceTree = "<group>"; };
+		6AC70C109EB3D3020808AFCC /* GroupDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupDetailViewController.m; sourceTree = "<group>"; };
 		6AC70C88117EE93387B966B3 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		BA6710C06BB14FE089DBE799 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB7EE24B16D86C270000DFCE /* EditTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EditTableViewCell.h; path = "Table Cell/EditTableViewCell.h"; sourceTree = "<group>"; };
@@ -147,6 +153,8 @@
 				368672458A0BB78F62FF0D18 /* GroupListController.h */,
 				6AC70B730E68A856BA29CADB /* GroupDataService.m */,
 				6AC70483062B172406805153 /* GroupDataService.h */,
+				6AC709248BAEA90A7F51529D /* GroupDetailViewController.h */,
+				6AC70C109EB3D3020808AFCC /* GroupDetailViewController.m */,
 			);
 			path = GroupList;
 			sourceTree = "<group>";
@@ -299,6 +307,8 @@
 				BB7EE27D16D8F42F0000DFCE /* EditTableViewCell.xib */,
 				BBA6E72816DD024B00561F93 /* GroupSummaryViewCell.h */,
 				BBA6E72916DD024B00561F93 /* GroupSummaryViewCell.m */,
+				6AC7008D4E86601A6BC01F78 /* PlainEditTableViewCell.h */,
+				6AC70BB96F84DDAA0EB4A97B /* PlainEditTableViewCell.m */,
 			);
 			name = "Table Cell";
 			sourceTree = "<group>";
@@ -443,6 +453,8 @@
 				6AC7012CDFC89D1D8A164DF1 /* User.m in Sources */,
 				BBA6E72A16DD024B00561F93 /* GroupSummaryViewCell.m in Sources */,
 				6AC70C17CB4FABAD6A621E5F /* GroupDataService.m in Sources */,
+				6AC7092CA6D8607B53F050C7 /* GroupDetailViewController.m in Sources */,
+				6AC704A1801EDB16CA032A20 /* PlainEditTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

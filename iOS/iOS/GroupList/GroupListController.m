@@ -11,6 +11,7 @@
 #import "GroupSummaryViewCell.h"
 #import "GroupDataService.h"
 #import "JSONKit.h"
+#import "GroupDetailViewController.h"
 
 @implementation GroupListController {
     LoginTableViewController *logInViewController;
@@ -48,7 +49,8 @@
 
 
 - (IBAction) add:(id) sender {
-
+    GroupDetailViewController *groupDetailViewController = [[GroupDetailViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    [[self navigationController] pushViewController:groupDetailViewController animated:YES];
 }
 
 -(void) createBarButtonOnNavigationBar{
