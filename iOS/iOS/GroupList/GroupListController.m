@@ -9,9 +9,14 @@
 #import "LoginTableViewController.h"
 #import "User.h"
 #import "GroupSummaryViewCell.h"
+#import "GroupDataService.h"
+#import "JSONKit.h"
 
 @implementation GroupListController {
     LoginTableViewController *logInViewController;
+    NSDictionary *groups;
+    NSArray *myGroups;
+    NSArray *otherGroups;
     enum{
         SectionMyGroup = 0,
         SectionAvailableGroup,
@@ -28,24 +33,29 @@
         otherItems = [NSArray arrayWithObjects:@"九头鹰",@"来福士",@"桂林米粉",nil];
         myItems = [NSArray arrayWithObjects:@"咱家饺子",@"粥面故事",@"秦唐府",nil];
         [[self tableView] setRowHeight:56];
+//        [self GetGroupList];
         [self setTitle:@"饭团列表"];
     }
 
     return self;
 }
 
-
-- (IBAction) createPress:(id) sender {
-
+- (void)GetGroupList {
+    groups = [GroupDataService groupListOfToday];
+    myGroups = [groups objectForKey:@"myGroups"];
+    otherGroups = [groups objectForKey:@"groupList"];
 }
 
-- (IBAction)reChargePress:(id) sender {
+
+- (IBAction) add:(id) sender {
 
 }
 
 -(void) createBarButtonOnNavigationBar{
-    UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"Recharge" style:UIBarButtonItemStylePlain target:self action:@selector(reChargePress:)];
-    self.navigationItem.rightBarButtonItem = rightButton;
+
+    UIBarButtonItem *addButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(add:)];
+    self.navigationItem.rightBarButtonItem = addButtonItem;
+
     UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithTitle:@"注销" style:UIBarButtonItemStylePlain target:self action:@selector(Logout:)];
     self.navigationItem.leftBarButtonItem = leftButton;
 }
@@ -55,6 +65,10 @@
     [self presentViewController:logInViewController animated:YES completion:NULL];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self GetGroupList];
+}
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
@@ -67,23 +81,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self createBarButtonOnNavigationBar];
-    [self addTableViewHeader];
 }
-
-- (void)addTableViewHeader {
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [button setFrame:CGRectMake(10, 10, 300, 50)];
-    [button setTitle:@"创建我的饭团" forState:UIControlStateNormal];
-    self.tableView.tableHeaderView = button;
-}
-
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if(section == SectionMyGroup){
-        return [myItems count];
+        return [myGroups count];
     }
     else if(section == SectionAvailableGroup){
-        return [otherItems count];
+        return [otherGroups count];
     }
     return 0;
 }
@@ -114,9 +119,6 @@
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     [self configureCell:cell atIndexPath:indexPath];
     return cell;
-
-
-    return cell;
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -125,8 +127,8 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the managed object for the given index path
         NSLog(@"Deleted");
+        [GroupDataService removeGroup:myGroups[indexPath.row][@"_id"]];
     }
 }
 
@@ -141,17 +143,20 @@
 }
 
 - (void)configureCell:(GroupSummaryViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
-    [cell.imageView setImage:[UIImage imageNamed:@"fork.png"] ];
-    cell.dueDateLabel.text = @"截止日期: 2013-02-23 11:00:00";
-    cell.ownerLabel.text = @"邹明新";
 
+    [cell.imageView setImage:[UIImage imageNamed:@"fork.png"] ];
+    id group;
     if (indexPath.section == SectionMyGroup){
-        cell.restaurantNameLabel.text = [self.myItems objectAtIndex:(NSUInteger) indexPath.row];
-        cell.groupNameLabel.text = @"iEat小组";//[[self.myItems objectAtIndex:(NSUInteger) indexPath.row] stringByAppendingString:@"-thoughtworks 西宫"];
+        group = myGroups[indexPath.row];
+
     } else if (indexPath.section == SectionAvailableGroup){
-        cell.restaurantNameLabel.text = [self.otherItems objectAtIndex:(NSUInteger) indexPath.row];
-        cell.groupNameLabel.text = @"thoughtworks east wing(test for a very very long name)";//[[self.otherItems objectAtIndex:(NSUInteger) indexPath.row] stringByAppendingString:@" thoughtworks-北京东直门店"];
+        group = otherGroups[indexPath.row];
     }
+
+    cell.restaurantNameLabel.text = @"餐馆名字()";
+    cell.groupNameLabel.text = group[@"name"];
+    cell.dueDateLabel.text = [@"截止日期: " stringByAppendingString: group[@"date"]];
+    cell.ownerLabel.text = group[@"owner"];
 }
 
 @end
