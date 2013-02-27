@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :restaurant do
-    name ""
+    name "restaurant_name"
     telephone ""
     address ""
     image_url "MyString"

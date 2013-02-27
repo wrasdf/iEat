@@ -14,6 +14,12 @@ WsRails::Application.routes.draw do
   get 'groupOrders' => 'api#group_orders'
   get 'activeGroups' => 'api#active_groups'
 
+  namespace :api do
+    namespace :v1 do
+      devise_for :users
+      get 'group/active' => 'groups#active'
+    end
+  end
 
   authenticated :user do
     root :to => 'home#index'
