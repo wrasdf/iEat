@@ -45,7 +45,7 @@ enum {
     if (loginFooterView == nil) {
         [[NSBundle mainBundle] loadNibNamed:@"LoginFooterView" owner:self options:nil];
         self.tableView.tableFooterView = loginFooterView;
-        self.tableView.allowsSelectionDuringEditing = YES;
+//        self.tableView.allowsSelectionDuringEditing = YES;
     }
 }
 
@@ -55,7 +55,7 @@ enum {
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    return @"Login";
+    return @"登录";
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -75,15 +75,15 @@ enum {
     }
     if (indexPath.section == SectionLogin) {
         if (indexPath.row == CellUser) {
-            cell.label.text = @"User";
+            cell.label.text = @"用户";
             cell.textField.text = @"";
-            cell.textField.placeholder = @"Email or Name";
+            cell.textField.placeholder = @"请输入你的用户名或Email";
         }
         else if (indexPath.row == CellPassword) {
-            cell.label.text = @"Password";
+            cell.label.text = @"密码";
             cell.textField.text = @"";
             cell.textField.clearButtonMode = cell.textField.secureTextEntry = YES;
-            cell.textField.placeholder = @"Password";
+            cell.textField.placeholder = @"请输入你的密码";
         }
     }
 
@@ -107,9 +107,9 @@ enum {
     if (username && password && username.length != 0 && password.length != 0) {
         [self sendLoginRequestWithUserName:username password:password];
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        hud.labelText = @"Logging in...";
+        hud.labelText = @"登录中...";
     } else {
-        [[[UIAlertView alloc] initWithTitle:@"Login" message:@"Please enter user name and password" delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil] show];
+        [[[UIAlertView alloc] initWithTitle:@"登录" message:@"Please enter user name and password" delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil] show];
     }
 }
 

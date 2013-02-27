@@ -7,7 +7,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class GroupListUIView;
-
-@interface GroupListController : UIViewController
+@interface GroupListController : UITableViewController<UITableViewDataSource, UITableViewDelegate>
+@property (nonatomic,strong) NSArray *otherItems;
+@property (nonatomic,strong) NSArray *myItems;
 @end

@@ -42,12 +42,12 @@
     UIView *footer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 64)];
     UIButton *ok = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     ok.frame = CGRectMake(30, 10, 100, 44);
-    [ok setTitle:@"OK" forState:UIControlStateNormal];
+    [ok setTitle:@"提交" forState:UIControlStateNormal];
     [ok addTarget:self action:@selector(Ok) forControlEvents:UIControlEventTouchUpInside];
 
     UIButton *cancel = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     cancel.frame = CGRectMake(190, 10, 100, 44);
-    [cancel setTitle:@"Cancel" forState:UIControlStateNormal];
+    [cancel setTitle:@"取消" forState:UIControlStateNormal];
     [cancel addTarget:self action:@selector(Cancel) forControlEvents:UIControlEventTouchUpInside];
 
 
@@ -58,7 +58,7 @@
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    return @"SignUp";
+    return @"注册一个";
 }
 
 - (void)Cancel {
@@ -69,7 +69,7 @@
     if ([userName length] && [password length] && [email length] && [password isEqualToString:confirmPassword] ){
         [self sendSignUpMessage];
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        hud.labelText = @"Sign up...";
+        hud.labelText = @"注册中...";
     }
     else{
         [[[UIAlertView alloc] initWithTitle:@"Error" message:@"Please check input info." delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil] show];
@@ -140,26 +140,28 @@
         cell = [[[NSBundle mainBundle] loadNibNamed:@"EditTableViewCell" owner:self options:nil] objectAtIndex:0];
     }
     if (indexPath.row == UserNameCell) {
-        cell.label.text = @"Name";
+        cell.label.text = @"用户名";
         cell.textField.text = @"";
-        cell.textField.placeholder = @"Name";
+        cell.textField.placeholder = @"用户名";
         [cell.textField addTarget:self action:@selector(CheckUsername:) forControlEvents:UIControlEventEditingChanged];
 
     }
     else if (indexPath.row == EmailCell) {
         cell.label.text = @"Email";
         cell.textField.text = @"";
-        cell.textField.placeholder = @"Email";
+        cell.textField.placeholder = @"yourname@domain.com";
         [cell.textField addTarget:self action:@selector(CheckMail:) forControlEvents:UIControlEventEditingChanged];
     }
     else if (indexPath.row == PasswordCell){
-        cell.label.text = @"Password";
+        cell.label.text = @"密码";
+        cell.textField.placeholder = @"不少于6个字符";
         cell.textField.clearButtonMode = cell.textField.secureTextEntry = YES;
         [cell.textField addTarget:self action:@selector(CheckPassword:) forControlEvents:UIControlEventEditingChanged];
 
     }
     else if (indexPath.row == PasswordConfirmCell){
-        cell.label.text = @"Confirm";
+        cell.label.text = @"密码确认";
+        cell.textField.placeholder = @"不少于6个字符";
         cell.textField.clearButtonMode = cell.textField.secureTextEntry = YES;
         [cell.textField addTarget:self action:@selector(ConfirmPassword:) forControlEvents:UIControlEventEditingChanged];
 

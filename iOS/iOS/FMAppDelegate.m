@@ -15,7 +15,7 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
-    UINavigationController *iEatAppNavigationController = [[UINavigationController alloc] initWithRootViewController:[[GroupListController alloc] init]];
+    UINavigationController *iEatAppNavigationController = [[UINavigationController alloc] initWithRootViewController:[[GroupListController alloc] initWithStyle:UITableViewStylePlain]];
 
     // Override point for customization after application launch.
     self.window.rootViewController = iEatAppNavigationController;
