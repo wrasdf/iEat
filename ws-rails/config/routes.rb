@@ -18,6 +18,7 @@ WsRails::Application.routes.draw do
     namespace :v1 do
       devise_for :users
       get 'group/active' => 'groups#active'
+      post 'group/create' => 'groups#create'
     end
   end
 
