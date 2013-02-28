@@ -24,17 +24,13 @@
         SectionCount
     };
 }
-@synthesize otherItems, myItems;
 
 
 - (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
     if (self) {
         logInViewController = [[LoginTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
-        otherItems = [NSArray arrayWithObjects:@"九头鹰",@"来福士",@"桂林米粉",nil];
-        myItems = [NSArray arrayWithObjects:@"咱家饺子",@"粥面故事",@"秦唐府",nil];
         [[self tableView] setRowHeight:56];
-//        [self GetGroupList];
         [self setTitle:@"饭团列表"];
     }
 
@@ -137,11 +133,11 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString *message;
     if (indexPath.section == SectionMyGroup){
-        message = [self.myItems objectAtIndex:(NSUInteger) indexPath.row];
+//        message = [self.myItems objectAtIndex:(NSUInteger) indexPath.row];
     } else if (indexPath.section == SectionAvailableGroup){
-        message = [self.otherItems objectAtIndex:(NSUInteger) indexPath.row];
+//        message = [self.otherItems objectAtIndex:(NSUInteger) indexPath.row];
     }
-    [[[UIAlertView alloc] initWithTitle:@"Item Selected" message:message delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+//    [[[UIAlertView alloc] initWithTitle:@"Item Selected" message:message delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
 }
 
 - (void)configureCell:(GroupSummaryViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {

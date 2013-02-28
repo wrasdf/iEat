@@ -8,6 +8,4 @@
 #import <Foundation/Foundation.h>
 
 @interface GroupListController : UITableViewController<UITableViewDataSource, UITableViewDelegate>
-@property (nonatomic,strong) NSArray *otherItems;
-@property (nonatomic,strong) NSArray *myItems;
 @end

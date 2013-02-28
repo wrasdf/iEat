@@ -15,7 +15,7 @@
 }
 + (NSDictionary *)groupListOfToday {
     //Start request
-    NSURL *url = [NSURL URLWithString:@"http://localhost:3000/groups/today"];
+    NSURL *url = [NSURL URLWithString:@"http://localhost:3000/api/v1/group/active"];
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
     [request setDelegate:self];
     [request startSynchronous];
