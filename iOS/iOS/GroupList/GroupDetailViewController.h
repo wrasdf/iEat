@@ -11,5 +11,8 @@
 @class PlainEditTableViewCell;
 
 @interface GroupDetailViewController : UITableViewController
+@property(nonatomic, copy) NSString *dueDate;
+@property(nonatomic, copy) NSString *restName;
+
 
 @end

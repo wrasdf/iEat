@@ -8,6 +8,7 @@
 
 #import "GroupDetailViewController.h"
 #import "PlainEditTableViewCell.h"
+#import "RestaurantListViewController.h"
 
 @interface GroupDetailViewController ()
 {
@@ -32,6 +33,9 @@ enum {
 @end
 
 @implementation GroupDetailViewController
+@synthesize dueDate;
+@synthesize restName;
+
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -125,10 +129,8 @@ enum {
 {
     UIViewController *viewController;
     if (indexPath.section == SectionRestName){
-        viewController = [[UIViewController alloc] init];
+        viewController = [[RestaurantListViewController alloc] initWithStyle:UITableViewCellStyleDefault];
         [viewController setTitle:@"餐馆列表"];
-        [[viewController view] setBackgroundColor:[UIColor underPageBackgroundColor]];
-
     } else if (indexPath.section == SectionDueDate){
         viewController = datePickerController;
         [datePicker setDate:[formatter dateFromString:dueDate]];

@@ -7,9 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		368672733E6727649E7F3B71 /* RestaurantEditController.m in Sources */ = {isa = PBXBuildFile; fileRef = 368679EAB5D39D3ED92165A8 /* RestaurantEditController.m */; };
 		368675D228EDCCF15265C72D /* GroupListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 368677F321327182574ED069 /* GroupListController.m */; };
-		3686779AD5E9F747CDAA72C8 /* RestaurantUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36867975EAACF02763453284 /* RestaurantUIView.m */; };
 		36867D81F1E8A121F01ACC26 /* CreateUIElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 36867D439D4BF89C7322B14F /* CreateUIElement.m */; };
 		494BC0F216D0D86A00DA45B9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 494BC0F116D0D86A00DA45B9 /* UIKit.framework */; };
 		494BC0F416D0D86A00DA45B9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 494BC0F316D0D86A00DA45B9 /* Foundation.framework */; };
@@ -26,6 +24,7 @@
 		494BC11A16D0D86B00DA45B9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 494BC11816D0D86B00DA45B9 /* InfoPlist.strings */; };
 		494BC11D16D0D86B00DA45B9 /* iOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 494BC11C16D0D86B00DA45B9 /* iOSTests.m */; };
 		6AC7012CDFC89D1D8A164DF1 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC7061F88DEADC3990B7D15 /* User.m */; };
+		6AC7019C78D4ADA2F2CBE2C2 /* RestaurantListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC7095A335441F39E9DCEE9 /* RestaurantListViewController.m */; };
 		6AC702A1668230A9762FCA1A /* tasks in Resources */ = {isa = PBXBuildFile; fileRef = 6AC703C305C0496FE63BC197 /* tasks */; };
 		6AC702A49AE2426D90512249 /* fork.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AC7010B191BDBFC9AE5EE79 /* fork.png */; };
 		6AC7046BA1D855B86E44B0AC /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AC707BC2FBDE033E3868E24 /* MobileCoreServices.framework */; };
@@ -59,11 +58,7 @@
 /* Begin PBXFileReference section */
 		368672458A0BB78F62FF0D18 /* GroupListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupListController.h; sourceTree = "<group>"; };
 		36867471FF070E422553B83D /* CreateUIElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateUIElement.h; sourceTree = "<group>"; };
-		3686765C989709BF2A844F6D /* RestaurantUIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestaurantUIView.h; sourceTree = "<group>"; };
 		368677F321327182574ED069 /* GroupListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupListController.m; sourceTree = "<group>"; };
-		36867975EAACF02763453284 /* RestaurantUIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestaurantUIView.m; sourceTree = "<group>"; };
-		3686797E55D0B2494D78F4EC /* RestaurantEditController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestaurantEditController.h; sourceTree = "<group>"; };
-		368679EAB5D39D3ED92165A8 /* RestaurantEditController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestaurantEditController.m; sourceTree = "<group>"; };
 		36867D439D4BF89C7322B14F /* CreateUIElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateUIElement.m; sourceTree = "<group>"; };
 		494BC0ED16D0D86A00DA45B9 /* iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		494BC0F116D0D86A00DA45B9 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -89,6 +84,7 @@
 		6AC7008D4E86601A6BC01F78 /* PlainEditTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlainEditTableViewCell.h; path = "Table Cell/PlainEditTableViewCell.h"; sourceTree = "<group>"; };
 		6AC7010AFE66DA73B576E319 /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
 		6AC7010B191BDBFC9AE5EE79 /* fork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fork.png; sourceTree = "<group>"; };
+		6AC701676998F6D6108C9407 /* RestaurantListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestaurantListViewController.h; sourceTree = "<group>"; };
 		6AC703C305C0496FE63BC197 /* tasks */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tasks; sourceTree = "<group>"; };
 		6AC70483062B172406805153 /* GroupDataService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupDataService.h; sourceTree = "<group>"; };
 		6AC705EAD3E94134E0BF5351 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
@@ -96,6 +92,7 @@
 		6AC7065CF9D8E5B8928EE6E9 /* pod_init.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = pod_init.sh; sourceTree = "<group>"; };
 		6AC707BC2FBDE033E3868E24 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		6AC709248BAEA90A7F51529D /* GroupDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupDetailViewController.h; sourceTree = "<group>"; };
+		6AC7095A335441F39E9DCEE9 /* RestaurantListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestaurantListViewController.m; sourceTree = "<group>"; };
 		6AC70B730E68A856BA29CADB /* GroupDataService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupDataService.m; sourceTree = "<group>"; };
 		6AC70B87F2A02367DA00D939 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
 		6AC70BB96F84DDAA0EB4A97B /* PlainEditTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlainEditTableViewCell.m; path = "Table Cell/PlainEditTableViewCell.m"; sourceTree = "<group>"; };
@@ -164,10 +161,8 @@
 		3686775ABA2F3C65C31422AC /* Restaurant */ = {
 			isa = PBXGroup;
 			children = (
-				368679EAB5D39D3ED92165A8 /* RestaurantEditController.m */,
-				3686797E55D0B2494D78F4EC /* RestaurantEditController.h */,
-				36867975EAACF02763453284 /* RestaurantUIView.m */,
-				3686765C989709BF2A844F6D /* RestaurantUIView.h */,
+				6AC701676998F6D6108C9407 /* RestaurantListViewController.h */,
+				6AC7095A335441F39E9DCEE9 /* RestaurantListViewController.m */,
 			);
 			lastKnownFileType = text;
 			path = Restaurant;
@@ -449,8 +444,6 @@
 				494BC0FE16D0D86A00DA45B9 /* main.m in Sources */,
 				494BC10216D0D86A00DA45B9 /* FMAppDelegate.m in Sources */,
 				368675D228EDCCF15265C72D /* GroupListController.m in Sources */,
-				368672733E6727649E7F3B71 /* RestaurantEditController.m in Sources */,
-				3686779AD5E9F747CDAA72C8 /* RestaurantUIView.m in Sources */,
 				36867D81F1E8A121F01ACC26 /* CreateUIElement.m in Sources */,
 				BB7EE24D16D86C270000DFCE /* EditTableViewCell.m in Sources */,
 				BB7EE26A16D883860000DFCE /* LoginTableViewController.m in Sources */,
@@ -460,6 +453,7 @@
 				6AC70C17CB4FABAD6A621E5F /* GroupDataService.m in Sources */,
 				6AC7092CA6D8607B53F050C7 /* GroupDetailViewController.m in Sources */,
 				6AC704A1801EDB16CA032A20 /* PlainEditTableViewCell.m in Sources */,
+				6AC7019C78D4ADA2F2CBE2C2 /* RestaurantListViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
