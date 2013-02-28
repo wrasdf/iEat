@@ -21,6 +21,10 @@ WsRails::Application.routes.draw do
       devise_for :users
       get 'group/active' => 'groups#active'
       post 'group/create' => 'groups#create'
+
+      resources :groups do
+        resources :orders
+      end
     end
   end
 
