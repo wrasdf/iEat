@@ -6,9 +6,10 @@
     .my-orders-content
       %h2 My Orders
       %ul.listview.my-order-list{"data-inset" => "true", "data-role" => "listview"}
+        %li 当前您没有订餐
       .edit-my-orders-content
         %h2 Order menus
-        %ul.listview.edit-restaurant-details{"data-inset" => "true", "data-role" => "listview"}
+        %ul.listview.edit-restaurant-details{"data-inset" => "true","data-filter" => "true", "data-filter-placeholder" => "Search fruits...", "data-role" => "listview"}
           - @dishes.each do |dish|
             %li.cf{"data-dish-id" => dish.id}
               %span.restaurant-content

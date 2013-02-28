@@ -21,12 +21,13 @@ var iEatGroupDetails = (function () {
 
         $("#user-restaurant-edit .confirm-foods").bind("click",function(){
             var groupId = $(this).data("id");
-            console.log(getMyOrderDishes());
-            $.post("/groups/"+groupId+"/orders/confirm",{"dishes":getMyOrderDishes()},function(o){
-                if(!o){return}
-                console.log(o);
-                $.mobile.changePage("/success");
-            },"json");
+
+            $.mobile.changePage("/success");
+
+//            $.post("/groups/"+groupId+"/orders/confirm",{"dishes":getMyOrderDishes()},function(o){
+//                if(!o){return}
+//                $.mobile.changePage("/success");
+//            },"json");
 
         })
     }

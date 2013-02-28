@@ -3,4 +3,32 @@
     %a.ui-btn-left{"data-icon" => "arrow-l", "data-theme" => "b", :href => "#group-list"} Cancel
     %h1= @group.name
   %div{"data-role" => "content", "class" => "group-detail"}
+
+    %h2 餐馆简介
+    %ul.listview{"data-role" => "listview", "data-inset" => "true"}
+      %li
+        %span.subject 饭店名称
+        %span 九头鹰
+      %li
+        %span.subject 订餐电话
+        %span 123213123123
+      %li
+        %span.subject 外卖时间
+        %span 10:30-21:00
+      %li
+        %span.subject 起送金额
+        %span 送餐费1元
+      %li
+        %span.subject 付款方式
+        %span 现金支付
+      %li
+        %span.subject 餐品种类
+        %span 凉菜 / 蒸菜 / 炖品 / 热菜 / 蔬菜 / 主食甜品...
+
+    %h2 菜品推荐 Top3
+    %ul.listview{"data-role" => "listview", "data-inset" => "true"}
+      %li 蛋炒饭
+      %li 蛋炒饭
+      %li 蛋炒饭
+
     %a.buy-foods{"data-role" => "button", "data-id" => "#{@group.id}", :href => "javascript:void(0);"} 买饭去
