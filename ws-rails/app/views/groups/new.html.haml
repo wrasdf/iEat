@@ -1,5 +1,19 @@
-%h1 New group
-
-= render 'form'
-
-= link_to 'Back', groups_path
+#create-content{"data-role" => "page"}
+  %div{"data-role" => "header"}
+    %a.ui-btn-left{"data-icon" => "arrow-l", "data-theme" => "b", :href => "#group-list"} Back
+    %h1 Restaurant List
+  %div{"data-role" => "content"}
+    %ul{"data-inset" => "true", "data-role" => "listview"}
+      %li
+        %a{:href => "#user-restaurant-details"} 九头鹰
+      %li
+        %a{:href => "#user-restaurant-details"} 来福士超市
+      %li
+        %a{:href => "#user-restaurant-details"} 面馆
+    %h2 PassWord:
+    %input{:type => "text"}
+    %h2
+      Cut-Off Date :
+      %span#show-Time
+    #timePicker
+    %a.create-group-btn{"data-role" => "button", :href => "#user-restaurant-list"} Create This Group

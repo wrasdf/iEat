@@ -11,11 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-<<<<<<< Updated upstream
 ActiveRecord::Schema.define(:version => 20130225133139) do
-=======
-ActiveRecord::Schema.define(:version => 20130220125737) do
->>>>>>> Stashed changes
 
   create_table "dishes", :force => true do |t|
     t.string   "name"

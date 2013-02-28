@@ -1,7 +1,7 @@
 WsRails::Application.routes.draw do
   get 'groups/today' => 'groups#today'
   get 'success' => 'success#index'
-  get 'create' => 'create#index'
+  #get 'create' => 'create#index'
   post 'group/:id/orders/confirm' => 'orders#confirm'
 
   resources :orders
