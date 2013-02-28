@@ -26,18 +26,12 @@ var iEatGroupList = (function () {
     function groupListClick() {
 
         $("#group-list .group-list-ul li a,#group-list .my-orders-ul li a").bind("click", function (e) {
-            var name = $(e.target).data("restaurant-name");
-            var _id = $(e.target).data("id");
-            var data = {
-                currentRestaurantData: iEatUtility.getRestaurantDetailsById(_id),
-                type: $(e.target).data("role-type"),
-                restaurantName: name
-            };
-            $(document).undelegate("#user-restaurant-edit", "pageinit").delegate("#user-restaurant-edit", "pageinit", function (e) {
+            var id = $(this).data('id');
+            $(document).undelegate("#group-show", "pageinit").delegate("#group-show", "pageinit", function (e) {
                 e.preventDefault();
-                iEatGroupDetails.pageInitByData(data);
-            })
-            $.mobile.changePage("/groups/"+_id+"/edit");
+                iEatGroupShow.pageInit();
+            });
+            $.mobile.changePage("/groups/"+id);
         });
 
         $(document).undelegate("#my-bills", "pageinit").delegate("#my-bills", "pageinit", function (e) {

@@ -1,3 +1,5 @@
+require 'json'
+
 class GroupsController < ApplicationController
   # GET /groups
   # GET /groups.json
@@ -88,11 +90,14 @@ class GroupsController < ApplicationController
 
   def edit
     @group = Group.find(params[:id])
-
+    @dishes = @group.restaurant.dishes
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @group }
     end
   end
 
+
 end
+
+

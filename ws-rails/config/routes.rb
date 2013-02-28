@@ -1,19 +1,23 @@
 WsRails::Application.routes.draw do
   get 'groups/today' => 'groups#today'
-  get 'groups/edit' => 'groups#edit'
   get 'success' => 'success#index'
   get 'create' => 'create#index'
+  post 'group/:id/orders/confirm' => 'orders#confirm'
 
-  resources :groups
   resources :orders
+
   resources :restaurants do
     resources :dishes
   end
 
-  get 'order' => 'api#my_order'
+  resources :groups do
+    resources :orders
+  end
+
   get 'groupOrders' => 'api#group_orders'
   get 'activeGroups' => 'api#active_groups'
 
+<<<<<<< Updated upstream
   namespace :api do
     namespace :v1 do
       devise_for :users
@@ -22,6 +26,8 @@ WsRails::Application.routes.draw do
     end
   end
 
+=======
+>>>>>>> Stashed changes
   authenticated :user do
     root :to => 'home#index'
   end

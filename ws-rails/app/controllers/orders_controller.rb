@@ -24,15 +24,16 @@ class OrdersController < ApplicationController
   # GET /orders/new
   # GET /orders/new.json
   def new
-    @order = Order.new
+    @group = Group.find(params[:group_id])
+    @dishes = @group.restaurant.dishes
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render json: @order }
+      format.json { render json: @group }
     end
   end
 
   # GET /orders/1/edit
-  def edit
+  def add
     @order = Order.find(params[:id])
   end
 
@@ -79,4 +80,26 @@ class OrdersController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def confirm
+
+    @group = Group.find(params[:id])
+    @dishes = @group.restaurant.dishes
+
+    puts "-----------#{@group.to_json}"
+    puts "----------+++++-#{@dishes.to_json}"
+
+    @order = Order.new(:group => @group, :user => current_user)
+    puts "-------@@@@@@@@@@@@@----#{@order.to_json}"
+    @order.save!
+
+    puts params[:dishes]
+
+    #params[:dishes].each do |dish|
+    #  order_dish = OrderDish.new(:order => @order, :dish => dish.name, :quantity => dish.count)
+    #  order_dish.save!
+    #end
+
+  end
+
 end

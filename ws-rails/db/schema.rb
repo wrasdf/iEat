@@ -11,7 +11,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
+<<<<<<< Updated upstream
 ActiveRecord::Schema.define(:version => 20130225133139) do
+=======
+ActiveRecord::Schema.define(:version => 20130220125737) do
+>>>>>>> Stashed changes
 
   create_table "dishes", :force => true do |t|
     t.string   "name"
@@ -26,6 +30,7 @@ ActiveRecord::Schema.define(:version => 20130225133139) do
   add_index "dishes", ["restaurant_id"], :name => "index_dishes_on_restaurant_id"
 
   create_table "groups", :force => true do |t|
+    t.string   "name"
     t.text     "description"
     t.integer  "user_id"
     t.datetime "due_date"

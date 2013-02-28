@@ -6,20 +6,20 @@
 #user-restaurant-edit{
 	h2{margin-left:4px; font-size:14px;}
 	.restaurant-content{float:left; margin:17px 5px 0 0 }
-	.number-input{float:right; margin:10px 12px 0 0; width:25px; }
+	.number-input{float:right; margin:3px 12px 5px 0; width:25px; }
     .group-button-content{float:right; width:auto; margin-right: -5px}
     .edit-restaurant-details .ui-li-count{ position:static; float:left; margin:14px 0 0 0; }
     .edit-restaurant-details .ui-btn-inner{min-width: 0px; padding-left: 18px;}
     .dish-name,.dishes-total{display:inline-block;width:80px;}
     .confirm-foods{margin-top:30px;}
-    .listview li{ padding-right: 15px !important; }
+    .listview li{ padding-right: 15px !important; font-size: 12px;}
     .footer-navbar{overflow: hidden;}
     .footer-navbar li{padding-top: 0; padding-bottom: 0;}
     .footer-navbar .ui-btn-inner{padding-top:20px;}
     .footer-navbar .ui-icon{top:4px;}
     .footer-navbar .ui-btn-text{top:6px;}
     .my-orders-content,.my-group-content{display: none;}
-    .edit-restaurant-details li{padding: 0px 15px; font-size: 12px;}
+    .edit-restaurant-details li{padding: 0px 15px;}
 } 
 
 #recharge-details{

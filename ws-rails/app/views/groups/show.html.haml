@@ -1,21 +1,6 @@
-%p#notice= notice
-
-%p
-  %b Name:
-  = @group.name
-%p
-  %b Description:
-  = @group.description
-%p
-  %b User:
-  = @group.user
-%p
-  %b Due date:
-  = @group.due_date
-%p
-  %b Restaurant:
-  = @group.restaurant
-
-= link_to 'Edit', edit_group_path(@group)
-\|
-= link_to 'Back', groups_path
+#group-show{"data-role" => "page" ,"data-id" => "#{@group.id}" }
+  %div{"data-role" => "header"}
+    %a.ui-btn-left{"data-icon" => "arrow-l", "data-theme" => "b", :href => "#group-list"} Cancel
+    %h1= @group.name
+  %div{"data-role" => "content", "class" => "group-detail"}
+    %a.buy-foods{"data-role" => "button", "data-id" => "#{@group.id}", :href => "javascript:void(0);"} 买饭去

@@ -1,5 +1,5 @@
 class Restaurant < ActiveRecord::Base
   attr_accessible :name, :telephone, :address, :image_url
-  has_many :dishes
+  has_many :dishes, :dependent => :destroy
 end
 
