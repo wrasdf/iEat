@@ -161,7 +161,7 @@
 			path = GroupList;
 			sourceTree = "<group>";
 		};
-		3686775ABA2F3C65C31422AC /* RestaurantEdit */ = {
+		3686775ABA2F3C65C31422AC /* Restaurant */ = {
 			isa = PBXGroup;
 			children = (
 				368679EAB5D39D3ED92165A8 /* RestaurantEditController.m */,
@@ -169,7 +169,8 @@
 				36867975EAACF02763453284 /* RestaurantUIView.m */,
 				3686765C989709BF2A844F6D /* RestaurantUIView.h */,
 			);
-			path = RestaurantEdit;
+			lastKnownFileType = text;
+			path = Restaurant;
 			sourceTree = "<group>";
 		};
 		36867D5D46C249DC03B46484 /* Utility */ = {
@@ -232,7 +233,7 @@
 				494BC10116D0D86A00DA45B9 /* FMAppDelegate.m */,
 				494BC0F816D0D86A00DA45B9 /* Supporting Files */,
 				3686741AF444BB95FED96829 /* GroupList */,
-				3686775ABA2F3C65C31422AC /* RestaurantEdit */,
+				3686775ABA2F3C65C31422AC /* Restaurant */,
 				36867D5D46C249DC03B46484 /* Utility */,
 				6AC700F2E6E4A22AB2D17F82 /* images */,
 				6AC70AD5423E38C35D1FE9CD /* Model */,

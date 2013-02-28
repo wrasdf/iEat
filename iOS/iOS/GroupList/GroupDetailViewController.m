@@ -101,7 +101,8 @@ enum {
         cell = [tableView dequeueReusableCellWithIdentifier:IngredientsCellIdentifier];
         if (cell == nil) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:IngredientsCellIdentifier];
-            cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+//            cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
 
         if (indexPath.section == SectionDueDate){
@@ -138,7 +139,6 @@ enum {
 - (void)selectDueDate:(UIDatePicker *)sender {
     dueDate = [formatter stringFromDate:[sender date]];
     NSLog(dueDate);
-    [self reloadInputViews];
     [[self tableView] reloadData];
 }
 
