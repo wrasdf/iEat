@@ -1,30 +1,30 @@
 //
-//  GroupDetailViewController.m
+//  GroupAddViewController.m
 //  iOS
 //
 //  Created by 颛 清山 on 02/27/13.
 //  Copyright (c) 2013 __MyCompanyName__. All rights reserved.
 //
 
-#import "GroupDetailViewController.h"
+#import "GroupAddViewController.h"
 #import "PlainEditTableViewCell.h"
-#import "RestaurantListViewController.h"
+#import "Restaurant.h"
+#import "Group.h"
+#import "User.h"
 
-@interface GroupDetailViewController ()
+@interface GroupAddViewController ()
 {
     NSArray *sections;
     PlainEditTableViewCell* groupNameCell;
-    NSString *dueDate;
-    NSString *groupName;
-    NSString *restName;
-    NSString *owner;
     NSDateFormatter *formatter;
     UIViewController *datePickerController;
     UIDatePicker *datePicker;
+    Group* group;
 
 }
 enum {
-    SectionGroupName = 0,
+    SectionGroupOwner = 0,
+    SectionGroupName,
     SectionRestName,
     SectionDueDate,
     SectionCount
@@ -32,16 +32,14 @@ enum {
 
 @end
 
-@implementation GroupDetailViewController
-@synthesize dueDate;
-@synthesize restName;
+@implementation GroupAddViewController
 
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     if (self) {
-        sections = @[@"团名", @"餐馆", @"截止日期"];
+        sections = @[@"团长", @"团名", @"餐馆", @"截止日期"];
         groupNameCell = [[PlainEditTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"NameCell"];
         [groupNameCell.textField addTarget:self action:@selector(UpdateTitle:) forControlEvents:UIControlEventEditingChanged];
         formatter = [[NSDateFormatter alloc] init];
@@ -54,14 +52,16 @@ enum {
         [datePicker addTarget:self action:@selector(selectDueDate:) forControlEvents:UIControlEventValueChanged];
         [datePickerController.view addSubview:datePicker];
 
-        dueDate = [formatter stringFromDate:[NSDate date]];
+        group = [[Group alloc] init];
+        group.dueDate = [formatter stringFromDate:[NSDate date]];
+        group.owner = [User CurrentUserName];
     }
     return self;
 }
 
-- (void)UpdateTitle:(UITextField *)textfield {
-   self.title = textfield.text;
-   groupName = textfield.text;
+- (void)UpdateTitle:(UITextField *)txtField {
+   self.title = txtField.text;
+   group.name = txtField.text;
 }
 
 - (void)viewDidLoad
@@ -94,6 +94,7 @@ enum {
     return 1;
 }
 
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = nil;
@@ -105,12 +106,19 @@ enum {
         cell = [tableView dequeueReusableCellWithIdentifier:IngredientsCellIdentifier];
         if (cell == nil) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:IngredientsCellIdentifier];
-//            cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
-
-        if (indexPath.section == SectionDueDate){
-            cell.textLabel.text = dueDate;
+        if (indexPath.section == SectionGroupOwner){
+            cell.textLabel.text = group.owner;
+            [cell.textLabel setTextColor:[UIColor darkGrayColor]];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        }
+        else if (indexPath.section == SectionDueDate){
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            cell.textLabel.text = group.dueDate;
+        }
+        else if (indexPath.section == SectionRestName){
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            cell.textLabel.text = group.restaurant.name;
         }
     }
     return cell;
@@ -131,17 +139,26 @@ enum {
     if (indexPath.section == SectionRestName){
         viewController = [[RestaurantListViewController alloc] initWithStyle:UITableViewCellStyleDefault];
         [viewController setTitle:@"餐馆列表"];
-    } else if (indexPath.section == SectionDueDate){
+        [(RestaurantListViewController *)viewController setRestaurant:group.restaurant];
+    }
+    else if (indexPath.section == SectionDueDate){
         viewController = datePickerController;
-        [datePicker setDate:[formatter dateFromString:dueDate]];
+        [datePicker setDate:[formatter dateFromString:group.dueDate]];
+    }
+    else{
+        return;
     }
     [self.navigationController pushViewController:viewController animated:YES];
 }
 
-- (void)selectDueDate:(UIDatePicker *)sender {
-    dueDate = [formatter stringFromDate:[sender date]];
-    NSLog(dueDate);
-    [[self tableView] reloadData];
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+
+    [self.tableView reloadData];
 }
 
+- (void)selectDueDate:(UIDatePicker *)sender {
+    group.dueDate = [formatter stringFromDate:[sender date]];
+    NSLog(group.dueDate);
+}
 @end

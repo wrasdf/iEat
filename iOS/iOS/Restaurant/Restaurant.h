@@ -13,6 +13,7 @@
 @property(nonatomic, copy) NSString *address;
 @property(nonatomic, copy) NSString *imageUrl;
 @property(nonatomic, copy) NSString *name;
+@property(nonatomic, copy) NSString *id;
 
 
 @end

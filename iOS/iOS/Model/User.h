@@ -9,6 +9,9 @@
 
 
 @interface User : NSObject
+{
+    NSString *name;
+}
 + (NSString *)CurrentUserName;
 + SetCurrentUserName:(NSString*) name;
 @end

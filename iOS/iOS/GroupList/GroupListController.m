@@ -11,7 +11,7 @@
 #import "GroupSummaryViewCell.h"
 #import "GroupDataService.h"
 #import "JSONKit.h"
-#import "GroupDetailViewController.h"
+#import "GroupAddViewController.h"
 
 @implementation GroupListController {
     LoginTableViewController *logInViewController;
@@ -33,10 +33,8 @@
         [[self tableView] setRowHeight:56];
         [self setTitle:@"饭团列表"];
     }
-
     return self;
 }
-
 - (void)GetGroupList {
     groups = [GroupDataService groupListOfToday];
     myGroups = [groups objectForKey:@"myGroups"];
@@ -45,7 +43,7 @@
 
 
 - (IBAction) add:(id) sender {
-    GroupDetailViewController *groupDetailViewController = [[GroupDetailViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    GroupAddViewController *groupDetailViewController = [[GroupAddViewController alloc] initWithStyle:UITableViewStyleGrouped];
     [[self navigationController] pushViewController:groupDetailViewController animated:YES];
 }
 

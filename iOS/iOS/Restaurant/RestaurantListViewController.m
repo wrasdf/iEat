@@ -7,13 +7,17 @@
 //
 
 #import "RestaurantListViewController.h"
-#import "GroupDetailViewController.h"
+#import "Restaurant.h"
 
 @interface RestaurantListViewController ()
+{
 
+}
 @end
 
 @implementation RestaurantListViewController
+@synthesize restaurant;
+
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -21,6 +25,8 @@
     if (self) {
         // Custom initialization
         [self.tableView setRowHeight:100];
+        restaurant = [[Restaurant alloc] init];
+
     }
     return self;
 }
@@ -63,10 +69,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *restName = [[[tableView cellForRowAtIndexPath:indexPath] textLabel] text];
-    GroupDetailViewController *groupDetailViewController = (GroupDetailViewController *) [self presentingViewController];
-    [groupDetailViewController setRestName:restName];
-    [[groupDetailViewController tableView] reloadData];
+    UITableViewCell *cell = [[self tableView] cellForRowAtIndexPath:indexPath];
+    restaurant.name = cell.textLabel.text;
+    restaurant.id = @"1";
+
     [self.navigationController popViewControllerAnimated:YES];
 }
 

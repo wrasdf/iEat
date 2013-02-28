@@ -10,15 +10,17 @@
 
 @implementation Restaurant
 {
-    NSString *naßßme;
+    NSString *name;
     NSString *telephone;
     NSString *address;
     NSString *imageUrl;
+    NSString *id;
 }
 @synthesize telephone;
 @synthesize address;
 @synthesize imageUrl;
 @synthesize name;
+@synthesize id;
 
 
 @end

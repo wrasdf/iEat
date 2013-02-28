@@ -8,6 +8,14 @@
 
 
 
+@class Restaurant;
+
 @interface RestaurantListViewController : UITableViewController
+{
+    @private
+    Restaurant *restaurant;
+}
+@property(nonatomic, strong) Restaurant *restaurant;
+
 
 @end
