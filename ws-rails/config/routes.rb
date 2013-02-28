@@ -16,7 +16,6 @@ WsRails::Application.routes.draw do
   get 'groupOrders' => 'api#group_orders'
   get 'activeGroups' => 'api#active_groups'
 
-<<<<<<< Updated upstream
   namespace :api do
     namespace :v1 do
       devise_for :users
@@ -25,8 +24,6 @@ WsRails::Application.routes.draw do
     end
   end
 
-=======
->>>>>>> Stashed changes
   authenticated :user do
     root :to => 'home#index'
   end
