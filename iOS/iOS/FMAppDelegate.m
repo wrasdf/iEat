@@ -8,6 +8,7 @@
 
 #import "FMAppDelegate.h"
 #import "GroupListController.h"
+#import "PayBillLocalNotification.h"
 
 @implementation FMAppDelegate
 
@@ -49,6 +50,11 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
+    [PayBillLocalNotification application:application showBillNotification:notification];
 }
 
 @end

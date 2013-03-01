@@ -12,6 +12,7 @@
 #import "GroupDataService.h"
 #import "JSONKit.h"
 #import "GroupAddViewController.h"
+#import "PayBillLocalNotification.h"
 
 @implementation GroupListController {
     LoginTableViewController *logInViewController;
@@ -64,6 +65,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self GetGroupList];
+    [PayBillLocalNotification scheduleBillNotification];
 }
 
 - (void)viewDidAppear:(BOOL)animated {

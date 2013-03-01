@@ -105,7 +105,7 @@ enum {
     NSString *password = ((EditTableViewCell *) [[self.tableView visibleCells] objectAtIndex:1]).textField.text;
 
     if (username && password && username.length != 0 && password.length != 0) {
-        [self sendLoginRequestWithUserName:username password:password];
+//        [self sendLoginRequestWithUserName:username password:password];
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         hud.labelText = @"登录中...";
     } else {
@@ -114,23 +114,13 @@ enum {
 }
 
 - (void)sendLoginRequestWithUserName:(NSString *)username password:(NSString *)password {
-// Get device unique ID
-    UIDevice *device = [UIDevice currentDevice];
-    NSString *uniqueIdentifier = [device uniqueIdentifier];
-
-    //Start request
     NSURL *url = [NSURL URLWithString:@"http://localhost:3000"];
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
     [request setPostValue:@"1" forKey:@"rw_app_id"];
     [request setPostValue:username forKey:@"username"];
     [request setPostValue:password forKey:@"password"];
-    [request setPostValue:uniqueIdentifier forKey:@"device_id"];
     [request setDelegate:self];
     [request startAsynchronous];
-
-    // Hide keyword
-    //  [textField resignFirstResponder];
-
 }
 
 - (void)requestFinished:(ASIHTTPRequest *)request

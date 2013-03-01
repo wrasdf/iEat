@@ -30,6 +30,7 @@
 		6AC7046BA1D855B86E44B0AC /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AC707BC2FBDE033E3868E24 /* MobileCoreServices.framework */; };
 		6AC704A1801EDB16CA032A20 /* PlainEditTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC70BB96F84DDAA0EB4A97B /* PlainEditTableViewCell.m */; };
 		6AC70544D2DBECA9966CBC0B /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AC7010AFE66DA73B576E319 /* libz.1.2.5.dylib */; };
+		6AC70674047965BE614BF689 /* PayBillLocalNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC70877D88D0825D0D7EAC8 /* PayBillLocalNotification.m */; };
 		6AC70763CDDCDE528E5A1F2D /* Restaurant.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC70CE4765AA9BD85D5E899 /* Restaurant.m */; };
 		6AC708CF7C209E157D378469 /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC702BA954C794B008339D0 /* Group.m */; };
 		6AC7092CA6D8607B53F050C7 /* GroupAddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC70C109EB3D3020808AFCC /* GroupAddViewController.m */; };
@@ -97,12 +98,14 @@
 		6AC7065CF9D8E5B8928EE6E9 /* pod_init.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = pod_init.sh; sourceTree = "<group>"; };
 		6AC7075069ABA5C9DD2E15D3 /* Restaurant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Restaurant.h; sourceTree = "<group>"; };
 		6AC707BC2FBDE033E3868E24 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		6AC70877D88D0825D0D7EAC8 /* PayBillLocalNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayBillLocalNotification.m; sourceTree = "<group>"; };
 		6AC709248BAEA90A7F51529D /* GroupAddViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupAddViewController.h; sourceTree = "<group>"; };
 		6AC7095A335441F39E9DCEE9 /* RestaurantListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestaurantListViewController.m; sourceTree = "<group>"; };
 		6AC70B0851E588E235BF8A3F /* Group.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Group.h; sourceTree = "<group>"; };
 		6AC70B730E68A856BA29CADB /* GroupDataService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupDataService.m; sourceTree = "<group>"; };
 		6AC70B87F2A02367DA00D939 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
 		6AC70BB96F84DDAA0EB4A97B /* PlainEditTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlainEditTableViewCell.m; path = "Table Cell/PlainEditTableViewCell.m"; sourceTree = "<group>"; };
+		6AC70BF89F51B7DFCA0D1B7E /* PayBillLocalNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayBillLocalNotification.h; sourceTree = "<group>"; };
 		6AC70C109EB3D3020808AFCC /* GroupAddViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupAddViewController.m; sourceTree = "<group>"; };
 		6AC70C88117EE93387B966B3 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		6AC70CE4765AA9BD85D5E899 /* Restaurant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Restaurant.m; sourceTree = "<group>"; };
@@ -247,6 +250,7 @@
 				36867D5D46C249DC03B46484 /* Utility */,
 				6AC700F2E6E4A22AB2D17F82 /* images */,
 				6AC70AD5423E38C35D1FE9CD /* Model */,
+				6AC70664965E5EAE3C0FBF11 /* Notification */,
 			);
 			path = iOS;
 			sourceTree = "<group>";
@@ -290,6 +294,15 @@
 				6AC7010B191BDBFC9AE5EE79 /* fork.png */,
 			);
 			path = images;
+			sourceTree = "<group>";
+		};
+		6AC70664965E5EAE3C0FBF11 /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				6AC70BF89F51B7DFCA0D1B7E /* PayBillLocalNotification.h */,
+				6AC70877D88D0825D0D7EAC8 /* PayBillLocalNotification.m */,
+			);
+			path = Notification;
 			sourceTree = "<group>";
 		};
 		6AC70AD5423E38C35D1FE9CD /* Model */ = {
@@ -472,6 +485,7 @@
 				6AC70763CDDCDE528E5A1F2D /* Restaurant.m in Sources */,
 				6AC70959AF382E769E7DBD17 /* Dish.m in Sources */,
 				6AC708CF7C209E157D378469 /* Group.m in Sources */,
+				6AC70674047965BE614BF689 /* PayBillLocalNotification.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
