@@ -65,7 +65,7 @@ var iEatGroupDetails = (function () {
 
     function getMyOrderDishes() {
         var result = [];
-        $("#user-restaurant-edit .edit-restaurant-details li").each(function (index, value) {
+        $("#user-restaurant-edit .edit-restaurant-details li.ui-li-static").each(function (index, value) {
             var $value = $(value);
             if ($value.find(".number-input").val() == 0) {
                 return true;

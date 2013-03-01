@@ -3,13 +3,16 @@
     %a.ui-btn-left{"data-icon" => "arrow-l", "data-theme" => "b", :href => "#group-list"} Back
     %h1 Restaurant List
   %div{"data-role" => "content"}
-    %ul{"data-inset" => "true", "data-role" => "listview"}
-      %li
-        %a{:href => "#user-restaurant-details"} 九头鹰
-      %li
-        %a{:href => "#user-restaurant-details"} 来福士超市
-      %li
-        %a{:href => "#user-restaurant-details"} 面馆
+
+    %fieldset{"data-role" => "controlgroup"}
+      %legend Restaurant List:
+      %input#radio-choice-v-2a{:checked => "checked", :name => "radio-choice-v-2", :type => "radio", :value => "on"}/
+      %label{:for => "radio-choice-v-2a"} 来福士超市
+      %input#radio-choice-v-2b{:name => "radio-choice-v-2", :type => "radio", :value => "off"}/
+      %label{:for => "radio-choice-v-2b"} 面馆
+      %input#radio-choice-v-2c{:name => "radio-choice-v-2", :type => "radio", :value => "other"}/
+      %label{:for => "radio-choice-v-2c"} 九头鹰
+
     %h2 PassWord:
     %input{:type => "text"}
     %h2

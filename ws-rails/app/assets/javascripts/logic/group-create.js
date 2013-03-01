@@ -2,6 +2,7 @@
 var iEatCreate = (function () {
 
     function pageInit() {
+
         $('#timePicker').mobiscroll().time({
             theme: 'iOS',
             display: 'inline',
@@ -16,6 +17,11 @@ var iEatCreate = (function () {
         }
 
         setValue($('#timePicker').mobiscroll("getValue"));
+
+        $(".create-group-btn").bind("click",function(){
+            $.mobile.changePage("/groups");
+        });
+
     }
 
     return {

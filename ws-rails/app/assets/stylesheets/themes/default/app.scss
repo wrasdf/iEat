@@ -5,24 +5,27 @@
       .restaurant-name{display: inline-block; width:80px;}
   }
 #user-restaurant-edit{
-      h2{margin-left:4px; font-size:14px;}
-      .restaurant-content{float:left; margin:-6px 5px 0 0 }
-      .edit-restaurant-details .ui-input-text{float:right; margin-top: -13px; margin-right: 10px; height: 25px;}
-      .edit-restaurant-details .ui-input-text .number-input{float:right; margin:-5px 0px 0px 0; width:20px; }
-      .group-button-content{float:right; width:auto; margin-right: -5px; margin-top: -14px;}
-      .edit-restaurant-details .ui-li-count{ position:static; float:left; margin:14px 0 0 0; }
-      .edit-restaurant-details .ui-btn-inner{min-width: 0px; padding-left: 18px;}
-      .dish-name,.dishes-total{display:inline-block;width:80px;}
-      .confirm-foods{margin-top:30px;}
-      .listview li{ padding-right: 15px !important; font-size: 12px;}
-      .footer-navbar{overflow: hidden;}
-      .footer-navbar li{padding-top: 0; padding-bottom: 0;}
-      .footer-navbar .ui-btn-inner{padding-top:20px;}
-      .footer-navbar .ui-icon{top:4px;}
-      .footer-navbar .ui-btn-text{top:6px;}
-      .my-orders-content,.my-group-content{display: none;}
-      .edit-restaurant-details li{padding: 20px 15px;}
-  }
+  h2{margin-left:4px; font-size:14px;}
+  .restaurant-content{float:left; margin:-6px 5px 0 0 }
+  .edit-restaurant-details .ui-input-text{float:right; margin-top: -13px; margin-right: 10px; height: 25px;}
+  .edit-restaurant-details .ui-input-text .number-input{float:right; margin:-5px 0px 0px 0; width:20px; }
+  .group-button-content{float:right; width:auto; margin-right: -5px; margin-top: -14px;}
+  .edit-restaurant-details .ui-li-count{ position:static; float:left; margin:14px 0 0 0; }
+  .edit-restaurant-details .ui-btn-inner{min-width: 0px; padding-left: 18px;}
+  .dish-name,.dishes-total{display:inline-block;width:80px;}
+  .confirm-foods{margin-top:30px;}
+  .listview li{ padding-right: 15px !important; font-size: 12px;}
+
+  .footer-navbar{overflow: hidden;}
+  .footer-navbar li{padding-top: 0; padding-bottom: 0;}
+  .footer-navbar .ui-btn-inner{padding-top:20px;}
+  .footer-navbar .ui-icon{top:4px;}
+  .footer-navbar .ui-btn-text{top:6px;}
+  .my-orders-content,.my-group-content{display: none;}
+  .edit-restaurant-details li{padding: 20px 15px;}
+  .edit-restaurant-details li.ui-li-divider{padding: 8px 15px;}
+  .ui-listview-filter-inset{margin-top: 0px;}
+}
 
 #recharge-details{
       .ui-controlgroup-controls{display: block; width:auto;}
@@ -39,6 +42,8 @@
 #create-content{
       h2{margin:10px 0; font-weight: bold;}
       .create-group-btn{margin-top:20px;}
+      .details{position:relative; display: block;}
+      .details .more{position:absolute; right: 0px; top: 0px; border: 1px #000 soild;}
   }
 
 #bill-details{
