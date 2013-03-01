@@ -54,7 +54,7 @@ enum {
 
         group = [[Group alloc] init];
         group.dueDate = [formatter stringFromDate:[NSDate date]];
-        group.owner = [User CurrentUserName];
+        group.owner = [[User CurrentUser] name];
     }
     return self;
 }

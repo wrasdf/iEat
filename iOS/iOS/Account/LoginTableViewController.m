@@ -104,13 +104,9 @@ enum {
     NSString *password = ((EditTableViewCell *) [[self.tableView visibleCells] objectAtIndex:1]).textField.text;
 
     if (username && password && username.length != 0 && password.length != 0) {
-//        [self sendLoginRequestWithUserName:username password:password];
-//        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-//        hud.labelText = @"登录中...";
-        //todo:
-        [User SetCurrentUserName:username];
-        [self dismissViewControllerAnimated:YES completion:NULL];
-
+        [self sendLoginRequestWithUserName:username password:password];
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.labelText = @"登录中...";
     } else {
         [[[UIAlertView alloc] initWithTitle:@"登录" message:@"Please enter user name and password" delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil] show];
     }
@@ -119,7 +115,6 @@ enum {
 - (void)sendLoginRequestWithUserName:(NSString *)username password:(NSString *)password {
     NSURL *url = [NSURL URLWithString:@"http://localhost:3000/api/v1/users/sign_in"];
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
-    [request setPostValue:@"1" forKey:@"rw_app_id"];
     [request setPostValue:username forKey:@"email"];
     [request setPostValue:password forKey:@"password"];
     [request setDelegate:self];
@@ -134,8 +129,9 @@ enum {
     } else if (request.responseStatusCode == 403) {
         NSLog(@"return 403");
     } else if (request.responseStatusCode == 200) {
-        NSString *username = ((EditTableViewCell *) [[self.tableView visibleCells] objectAtIndex:0]).textField.text;
-        [User SetCurrentUserName:username];
+//        NSString *username = ((EditTableViewCell *) [[self.tableView visibleCells] objectAtIndex:0]).textField.text;
+        NSDictionary * response = [request.responseData objectFromJSONData];
+        [User SetCurrentUserName:response[@"email"] token:response[@"token"]];
         [self dismissViewControllerAnimated:YES completion:NULL];
     } else {
         NSLog(@"Unexpected error");

@@ -11,7 +11,15 @@
 @interface User : NSObject
 {
     NSString *name;
+    NSString *token;
 }
-+ (NSString *)CurrentUserName;
-+ SetCurrentUserName:(NSString*) name;
+@property(nonatomic, copy) NSString *token;
+@property(nonatomic, copy) NSString *name;
+
+
++ (User *)CurrentUser;
+
+- (id)initWithName:(NSString *)name token:(NSString *)token;
+
++ (id)SetCurrentUserName:(NSString *)name token:(NSString *)token;
 @end

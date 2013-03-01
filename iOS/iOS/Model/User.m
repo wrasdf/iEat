@@ -11,18 +11,30 @@
 @implementation User {
 
 }
-+ (NSString *)CurrentUserName {
+@synthesize token;
+@synthesize name;
+
+
++ (User *)CurrentUser {
     NSUserDefaults *standardUserDefault = [NSUserDefaults standardUserDefaults];
     NSString *username = [standardUserDefault objectForKey:@"username"];
-    NSLog(@"current user: %@", username);
-    return username;
+    NSString *token = [standardUserDefault objectForKey:@"token"];
+    NSLog(@"current user: %@ token %@", username, token);
+    return (username && token) ? [[User alloc]initWithName:username token:token] : nil;
+}
+
+- (id)initWithName:(NSString *)name token:(NSString *)token {
+    self.name = name;
+    self.token = token;
+    return self;
 }
 
 
-+ (id)SetCurrentUserName:(NSString *)name {
++ (id)SetCurrentUserName:(NSString *)name token:(NSString *)token {
     NSUserDefaults *standardUserDefault = [NSUserDefaults standardUserDefaults];
     [standardUserDefault setObject:name forKey:@"username"];
-    NSLog(@"user logged in: %@",name);
+    [standardUserDefault setObject:token forKey:@"token"];
+    NSLog(@"user logged in: %@ %@",name, token);
     return nil;
 }
 

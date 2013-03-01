@@ -58,7 +58,7 @@
 }
 
 - (void)Logout:(id)Logout {
-    [User SetCurrentUserName:nil];
+    [User SetCurrentUserName:nil token:NULL];
     [self presentViewController:logInViewController animated:YES completion:NULL];
 }
 
@@ -70,7 +70,7 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
 
-    if ([[User CurrentUserName] length] == 0) {
+    if (![User CurrentUser]) {
         [self presentViewController:logInViewController animated:YES completion:NULL];
     }
 }

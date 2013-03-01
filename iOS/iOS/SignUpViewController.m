@@ -77,17 +77,12 @@
 }
 
 - (void)sendSignUpMessage {
-    UIDevice *device = [UIDevice currentDevice];
-    NSString *uniqueIdentifier = [device uniqueIdentifier];
-
     //Start request
     NSURL *url = [NSURL URLWithString:@"http://localhost:3000"];
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
-    [request setPostValue:@"1" forKey:@"rw_app_id"];
     [request setPostValue:userName forKey:@"username"];
     [request setPostValue:password forKey:@"password"];
     [request setPostValue:email forKey:@"email"];
-    [request setPostValue:uniqueIdentifier forKey:@"device_id"];
     [request setDelegate:self];
     [request startAsynchronous];
 }
@@ -100,7 +95,7 @@
     } else if (request.responseStatusCode == 403) {
         NSLog(@"return 403");
     } else if (request.responseStatusCode == 200) {
-        [User SetCurrentUserName:userName];
+        [User SetCurrentUserName:userName token:NULL];
         [self dismissViewControllerAnimated:YES completion:NULL];
     } else {
         NSLog(@"Unexpected error");
