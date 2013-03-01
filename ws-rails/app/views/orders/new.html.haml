@@ -2,35 +2,20 @@
   %div{"data-role" => "header"}
     %a.ui-btn-left{"data-icon" => "arrow-l", "data-theme" => "b", :href => "#group-list"} Cancel
     %h1= @group.restaurant.name
-  %div{"data-role" => "content", "class" => "details-content"}
-    .my-orders-content
-
-      %div{"data-collapsed-icon" => "arrow-d", "data-content-theme" => "d", "data-expanded-icon" => "arrow-u", "data-role" => "collapsible", "data-theme" => "b"}
-        %h4 My Orders
-        %ul.listview.my-order-list{"data-inset" => "false", "data-role" => "listview"}
-          %li 当前您没有订餐
-
-      .edit-my-orders-content
-        -#%div{"data-collapsed-icon" => "arrow-d", "data-content-theme" => "d", "data-expanded-icon" => "arrow-u", "data-role" => "collapsible", "data-theme" => "b"}
-        %h2 Order menus
-        %ul.listview.edit-restaurant-details{"data-inset" => "true","data-filter" => "true", "data-filter-placeholder" => "Search fruits...", "data-role" => "listview"}
-          - @dishes.each do |dish|
-            %li{"data-role" => "list-divider"} Contacts
-            %li.cf{"data-dish-id" => dish.id}
-              %span.restaurant-content
-                %span.dish-name= "#{dish.name}"
-                %span.dish-price= "#{dish.price} $ "
-              .group-button-content{"data-role" => "controlgroup", "data-type" => "horizontal"}
-                %a.reduce{"data-icon" => "minus", "data-mini" => "true", "data-role" => "button", :href => ""}  
-                %a.add{"data-icon" => "plus", "data-mini" => "true", "data-role" => "button", :href => ""}  
-              %input.number-input{"data-mini" => "true", :type => "number", :value => "0"}
-        %a.confirm-foods{"data-role" => "button", "data-id" => "#{@group.id}", :href => "javascript:void(0);"} Confirm
-
-    .my-group-content
-      %h2 This is edit my group
-  .footer-navbar{"data-mini" => "true", "data-position" => "fixed", "data-role" => "navbar"}
-    %ul
-      %li
-        %a.my-status{"data-icon" => "edit", "data-role" => "tab", :href => "javascript:void(0);"} My Orders
-      %li
-        %a.group-status{"data-icon" => "grid", "data-role" => "tab", :href => "javascript:void(0);"} Group Orders
+  %div.details-content{"data-role" => "content"}
+    %div{"data-collapsed-icon" => "arrow-d", "data-content-theme" => "d", "data-expanded-icon" => "arrow-u", "data-role" => "collapsible", "data-theme" => "b"}
+    .edit-my-orders-content
+      -#%div{"data-collapsed-icon" => "arrow-d", "data-content-theme" => "d", "data-expanded-icon" => "arrow-u", "data-role" => "collapsible", "data-theme" => "b"}
+      %h2 Order menus
+      %ul.listview.edit-restaurant-details{"data-inset" => "true","data-filter" => "true", "data-filter-placeholder" => "Search fruits...", "data-role" => "listview"}
+        - @dishes.each do |dish|
+          %li{"data-role" => "list-divider"} Contacts
+          %li.cf{"data-dish-id" => dish.id}
+            %span.restaurant-content
+              %span.dish-name= "#{dish.name}"
+              %span.dish-price= "#{dish.price} $ "
+            .group-button-content{"data-role" => "controlgroup", "data-type" => "horizontal"}
+              %a.reduce{"data-icon" => "minus", "data-mini" => "true", "data-role" => "button", :href => ""}  
+              %a.add{"data-icon" => "plus", "data-mini" => "true", "data-role" => "button", :href => ""}  
+            %input.number-input{"data-mini" => "true", :type => "number", :value => "0"}
+      %a.confirm-foods{"data-role" => "button", "data-id" => "#{@group.id}", :href => "#group-show"} Confirm

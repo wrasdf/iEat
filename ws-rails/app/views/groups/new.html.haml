@@ -1,22 +1,23 @@
 #create-content{"data-role" => "page"}
   %div{"data-role" => "header"}
     %a.ui-btn-left{"data-icon" => "arrow-l", "data-theme" => "b", :href => "#group-list"} Back
-    %h1 Restaurant List
+    %h1 Create My Group
+    %a.ui-btn-right{"data-icon" => "arrow-r", "data-theme" => "b", :href => "javascript:void(0);"} Edit My Order
   %div{"data-role" => "content"}
-
+    %h2 Group Name:
+    %input{:type => "text"}
     %fieldset{"data-role" => "controlgroup"}
       %legend Restaurant List:
-      %input#radio-choice-v-2a{:checked => "checked", :name => "radio-choice-v-2", :type => "radio", :value => "on"}/
-      %label{:for => "radio-choice-v-2a"} 来福士超市
-      %input#radio-choice-v-2b{:name => "radio-choice-v-2", :type => "radio", :value => "off"}/
-      %label{:for => "radio-choice-v-2b"} 面馆
-      %input#radio-choice-v-2c{:name => "radio-choice-v-2", :type => "radio", :value => "other"}/
-      %label{:for => "radio-choice-v-2c"} 九头鹰
-
+      %input#radio-choice-v-2a{:checked => "checked", :name => "radio-choice-v-2", :type => "radio", :value => "1"}/
+      %label{:for => "radio-choice-v-2a"} 九头鹰
+      %input#radio-choice-v-2b{:name => "radio-choice-v-2", :type => "radio", :value => "2"}/
+      %label{:for => "radio-choice-v-2b"} 来福士
+      %input#radio-choice-v-2c{:name => "radio-choice-v-2", :type => "radio", :value => "3"}/
+      %label{:for => "radio-choice-v-2c"} 桂林米粉
     %h2 PassWord:
     %input{:type => "text"}
     %h2
       Cut-Off Date :
       %span#show-Time
     #timePicker
-    %a.create-group-btn{"data-role" => "button", :href => "#user-restaurant-list"} Create This Group
+    %a.create-group-btn{"data-role" => "button", :href => "javascript:void(0);"} Create This Group

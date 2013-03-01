@@ -1,30 +1,7 @@
-#user-restaurant-edit{"data-role" => "page"}
-  %div{"data-role" => "header"}
-    %a.ui-btn-left{"data-icon" => "arrow-l", "data-theme" => "b", :href => "#group-list"} Cancel
-    %h1= @group.restaurant.name
+%h1 Editing group
 
-  %div{"data-role" => "content", "class" => "details-content"}
-    .my-orders-content
-      %h2 My Orders
-      %ul.listview.my-order-list{"data-inset" => "true", "data-role" => "listview"}
-      .edit-my-orders-content
-        %h2 Order menus
-        %ul.listview.edit-restaurant-details{"data-inset" => "true", "data-role" => "listview"}
-          - @dishes.each do |dish|
-            %li.cf
-              %span.restaurant-content
-                %span.dish-name= "#{dish.name} : "
-                %span.dish-price= "#{dish.price} $ "
-              .group-button-content{"data-role" => "controlgroup", "data-type" => "horizontal"}
-                %a.add{"data-icon" => "arrow-u", "data-mini" => "true", "data-role" => "button", :href => ""}  
-                %a.reduce{"data-icon" => "arrow-d", "data-mini" => "true", "data-role" => "button", :href => ""}  
-              %input.number-input{"data-mini" => "true", :type => "number", :value => "0"}
-        %a.confirm-foods{"data-role" => "button", "data-id" => "#{@group.id}", :href => "javascript:void(0);"} Confirm
-    .my-group-content
-      %h2 This is edit my group
-  .footer-navbar{"data-mini" => "true", "data-position" => "fixed", "data-role" => "navbar"}
-    %ul
-      %li
-        %a.my-status{"data-icon" => "edit", "data-role" => "tab", :href => "javascript:void(0);"} My Orders
-      %li
-        %a.group-status{"data-icon" => "grid", "data-role" => "tab", :href => "javascript:void(0);"} Group Orders
+= render 'form'
+
+= link_to 'Show', @group
+\|
+= link_to 'Back', groups_path

@@ -6,7 +6,7 @@ var iEatGroupDetails = (function () {
             var v = currentInput.val();
             v++;
             currentInput.val(v);
-            refreshMyOrdersUI();
+//            refreshMyOrdersUI();
         });
         $("#user-restaurant-edit .edit-restaurant-details .reduce").bind("click", function () {
             var currentInput = $(this).parents("li").find("input.number-input");
@@ -16,13 +16,13 @@ var iEatGroupDetails = (function () {
                 v = 0;
             }
             currentInput.val(v);
-            refreshMyOrdersUI();
+//            refreshMyOrdersUI();
         });
 
         $("#user-restaurant-edit .confirm-foods").bind("click",function(){
             var groupId = $(this).data("id");
 
-            $.mobile.changePage("/success");
+            $.mobile.changePage("#group-show");
 
 //            $.post("/groups/"+groupId+"/orders/confirm",{"dishes":getMyOrderDishes()},function(o){
 //                if(!o){return}

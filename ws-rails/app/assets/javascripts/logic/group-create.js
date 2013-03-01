@@ -18,6 +18,21 @@ var iEatCreate = (function () {
 
         setValue($('#timePicker').mobiscroll("getValue"));
 
+        $(document).undelegate("#user-restaurant-edit", "pageinit").delegate("#user-restaurant-edit", "pageinit", function (e) {
+            e.preventDefault();
+            iEatGroupDetails.pageInit();
+        });
+
+        $(document).undelegate("#group-list", "pageinit").delegate("#group-list", "pageinit", function (e) {
+            e.preventDefault();
+            iEatGroupList.pageInit();
+        });
+
+        $(".ui-btn-right").bind("click",function(){
+            var groupId = $('input[name=radio-choice-v-2]:checked').val();
+            $.mobile.changePage("/groups/"+groupId+"/orders/new");
+        });
+
         $(".create-group-btn").bind("click",function(){
             $.mobile.changePage("/groups");
         });
