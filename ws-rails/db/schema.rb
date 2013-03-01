@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(:version => 20130225133139) do
   add_index "dishes", ["restaurant_id"], :name => "index_dishes_on_restaurant_id"
 
   create_table "groups", :force => true do |t|
+    t.string   "name"
     t.text     "description"
     t.integer  "user_id"
     t.datetime "due_date"

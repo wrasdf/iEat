@@ -65,7 +65,6 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self GetGroupList];
-    [PayBillLocalNotification scheduleBillNotification];
 }
 
 - (void)viewDidAppear:(BOOL)animated {

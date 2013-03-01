@@ -22,6 +22,9 @@
     self.window.rootViewController = iEatAppNavigationController;
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+//    [PayBillLocalNotification scheduleBillNotification];
+    [PayBillLocalNotification payBill];
+
     return YES;
 }
 
@@ -54,7 +57,7 @@
 
 
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
-    [PayBillLocalNotification application:application showBillNotification:notification];
+//    [PayBillLocalNotification application:application showBillNotification:notification];
 }
 
 @end

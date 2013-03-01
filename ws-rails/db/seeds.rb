@@ -51,7 +51,7 @@ Dish.create! :restaurant => restaurant3, :price => 12.0, :name => "小炒粉丝"
 
 
 
-Group.create! :id => 1, :name => "辣团", due_date:"2013-2-25 20:00", :user => userWangrui, :restaurant => restaurant1
-Group.create! :id => 2, :name => "疯团", due_date:"2013-2-25 20:00", :user => userMingxin, :restaurant => restaurant2
-Group.create! :id => 3, :name => "奇异团", due_date:"2013-2-25 20:00", :user => userQingshan, :restaurant => restaurant3
+Group.create! :id => 1, :name => "辣团", due_date:"2013-3-25 20:00", :user => userWangrui, :restaurant => restaurant1
+Group.create! :id => 2, :name => "疯团", due_date:"2013-3-25 20:00", :user => userMingxin, :restaurant => restaurant2
+Group.create! :id => 3, :name => "奇异团", due_date:"2013-3-25 20:00", :user => userQingshan, :restaurant => restaurant3
 Group.create! :id => 4, :name => "辣团", due_date:"2013-2-25 20:00", :user => userWangrui, :restaurant => restaurant1

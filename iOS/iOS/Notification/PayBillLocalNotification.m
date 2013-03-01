@@ -10,16 +10,16 @@
 
 @implementation PayBillLocalNotification
 + (void)scheduleBillNotification {
-    NSDate *date = [NSDate dateWithTimeIntervalSinceNow:0];
+    NSDate *date = [NSDate dateWithTimeIntervalSinceNow:10];
     UILocalNotification *notification = [[UILocalNotification alloc] init];
     if (notification) {
         notification.fireDate = date;
         notification.timeZone = [NSTimeZone defaultTimeZone];
-        notification.repeatInterval = NSMinuteCalendarUnit;
+        notification.repeatInterval = NSYearCalendarUnit;
         notification.soundName = UILocalNotificationDefaultSoundName;
         notification.alertBody = @"XX团：宫保鸡丁 12￥";
         notification.applicationIconBadgeNumber = 12;
-        NSDictionary *infoDic = [NSDictionary dictionaryWithObject:@"aname" forKey:@"akey"];
+        NSDictionary *infoDic = [NSDictionary dictionaryWithObject:@"bill" forKey:@"bills"];
         notification.userInfo = infoDic;
         UIApplication *application = [UIApplication sharedApplication];
         [application scheduleLocalNotification:notification];
@@ -38,24 +38,21 @@
 
 + (void)payBill {
     UIApplication *app = [UIApplication sharedApplication];
-    NSArray *localArr = [app scheduledLocalNotifications];
     UILocalNotification *localNotification;
-    if (localArr) {
-        for (UILocalNotification *notification in localArr) {
-            NSDictionary *dict = notification.userInfo;
-            if (dict) {
-                NSString *inKey = [dict objectForKey:@"key"];
-                if ([inKey isEqualToString:@"akey"]) {
-                    localNotification = notification;
-                    break;
-                }
+    for (UILocalNotification *notification in [app scheduledLocalNotifications]) {
+        NSDictionary *dict = notification.userInfo;
+        if (dict) {
+            NSString *inKey = [dict objectForKey:@"bills"];
+            if ([inKey isEqualToString:@"bill"]) {
+                localNotification = notification;
+                break;
             }
         }
+    }
 
-        if (localNotification) {
-            [app cancelLocalNotification:localNotification];
-            return;
-        }
+    if (localNotification) {
+        [app cancelLocalNotification:localNotification];
+        return;
     }
 }
 
