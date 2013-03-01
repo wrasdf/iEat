@@ -13,6 +13,7 @@
 #import "JSONKit.h"
 #import "GroupAddViewController.h"
 #import "PayBillLocalNotification.h"
+#import "GroupDetailsViewController.h"
 
 @implementation GroupListController {
     LoginTableViewController *logInViewController;
@@ -38,8 +39,8 @@
 }
 - (void)GetGroupList {
     groups = [GroupDataService groupListOfToday];
-    myGroups = [groups objectForKey:@"myGroups"];
-    otherGroups = [groups objectForKey:@"groupList"];
+    myGroups = groups;//[groups objectForKey:@"myGroups"];
+    otherGroups = groups;//[groups objectForKey:@"groupList"];
 }
 
 
@@ -131,12 +132,16 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString *message;
+    GroupDetailsViewController * groupDetailsViewController;
     if (indexPath.section == SectionMyGroup){
 //        message = [self.myItems objectAtIndex:(NSUInteger) indexPath.row];
+
     } else if (indexPath.section == SectionAvailableGroup){
 //        message = [self.otherItems objectAtIndex:(NSUInteger) indexPath.row];
     }
-//    [[[UIAlertView alloc] initWithTitle:@"Item Selected" message:message delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+    groupDetailsViewController = [[GroupDetailsViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    [groupDetailsViewController setTitle:@"义和团"];
+    [[self navigationController] pushViewController:groupDetailsViewController animated:YES];
 }
 
 - (void)configureCell:(GroupSummaryViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
@@ -150,10 +155,16 @@
         group = otherGroups[indexPath.row];
     }
 
-    cell.restaurantNameLabel.text = @"餐馆名字()";
-    cell.groupNameLabel.text = group[@"name"];
-    cell.dueDateLabel.text = [@"截止日期: " stringByAppendingString: group[@"date"]];
-    cell.ownerLabel.text = group[@"owner"];
+//    cell.restaurantNameLabel.text = [@"餐馆id --" stringByAppendingString:group[@"restanrant_id"]];
+//    cell.groupNameLabel.text = group[@"name"];
+//    cell.dueDateLabel.text = [@"截止日期: " stringByAppendingString: group[@"due_date"]];
+//    cell.ownerLabel.text = group[@"user_id"];
+
+    cell.restaurantNameLabel.text = @"咱家饺子(restanrant_id)";
+    cell.groupNameLabel.text = @"义和团";
+    cell.dueDateLabel.text = @"截止日期: 2013-02-34 11:00";
+    cell.ownerLabel.text = @"user_id: 1";
+
 }
 
 @end
