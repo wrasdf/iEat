@@ -20,6 +20,30 @@
         %li
           %span.subject 起送金额
           %span 送餐费1元
+
+    %div{"data-collapsed" => "false", "data-content-theme" => "d", "data-role" => "collapsible"}
+      %h2 我的订餐
+      %ul.listview.groups-status{"data-role" => "listview"}
+        %li
+          %h2 王锐
+          %table
+            %tr
+              %td.dish-name 小炒肉
+              %td.dish-price 12$
+              %td.dish-count
+                %div.dish-count
+                  %span.ui-li-count 1
+            %tr
+              %td.dish-name 蒙面
+              %td.dish-price 12$
+              %td.dish-count
+                %div.dish-count
+                  %span.ui-li-count 1
+            %tr
+              %td.dish-name 总计
+              %td.dish-price 24$
+              %td
+
     %div{"data-collapsed" => "false", "data-content-theme" => "d", "data-role" => "collapsible"}
       %h4 统计信息
       %ul.listview.groups-status{"data-role" => "listview"}
@@ -42,28 +66,11 @@
               %td.dish-price 245$
               %td
 
+
+
     %div{"data-collapsed" => "true", "data-content-theme" => "d", "data-role" => "collapsible"}
-      %h2 团员信息
+      %h2 团员订餐信息
       %ul.listview.groups-status{"data-role" => "listview"}
-        %li
-          %h2 王锐
-          %table
-            %tr
-              %td.dish-name 小炒肉
-              %td.dish-price 12$
-              %td.dish-count
-                %div.dish-count
-                  %span.ui-li-count 1
-            %tr
-              %td.dish-name 蒙面
-              %td.dish-price 12$
-              %td.dish-count
-                %div.dish-count
-                  %span.ui-li-count 1
-            %tr
-              %td.dish-name 总计
-              %td.dish-price 24$
-              %td
         %li
           %h2 明星
           %table

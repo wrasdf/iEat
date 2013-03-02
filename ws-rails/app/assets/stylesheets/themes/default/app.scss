@@ -5,7 +5,7 @@
   .restaurant-name{display: inline-block; width:80px;}
   }
 #group-show{
-  h2.ui-li-heading{margin: 6px 0;}
+  h2.ui-li-heading{margin:0px;padding: 7px 0 4px; overflow: auto;}
   .ui-collapsible-heading .ui-btn-icon-left .ui-btn-inner{font-size: 14px;}
   table{width: 100%;
     tr{ border-bottom: 1px #ccc dashed;}
