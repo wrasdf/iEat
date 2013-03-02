@@ -12,7 +12,7 @@ module Api
 
         if user.valid_password?(params[:password])
           sign_in("user", user)
-          render :json => {:success => true, :token => user.authentication_token, :email => user.email}
+          render :json => {:success => true, :token => user.authentication_token, :email => user.email, :name => user.name}
           return
         end
         invalid_login_attempt
