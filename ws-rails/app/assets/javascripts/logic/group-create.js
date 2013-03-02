@@ -28,13 +28,9 @@ var iEatCreate = (function () {
             iEatGroupList.pageInit();
         });
 
-//        $(".ui-btn-right").bind("click",function(){
-//            var groupId = $('input[name=radio-choice-v-2]:checked').val();
-//            $.mobile.changePage("/groups/"+groupId+"/orders/new");
-//        });
-
-        $(".order-my-dishes").bind("click",function(){
-            $.mobile.changePage("/groups");
+        $(".create-group-btn").bind("click",function(){
+            GROUPID = $('input[name=radio-choice-v-2]:checked').val();
+            $.mobile.changePage("/groups/"+GROUPID+"/orders/new");
         });
 
     }

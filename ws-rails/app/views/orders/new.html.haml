@@ -1,15 +1,13 @@
 #user-order-dishes{"data-role" => "page"}
   %div{"data-role" => "header"}
-    %a.ui-btn-left{"data-icon" => "arrow-l", "data-theme" => "b", :href => "#group-list"} Back
+    %a.ui-btn-left{"data-icon" => "arrow-l", "data-theme" => "c", :href => "#group-list"} Back
     %h1= @group.restaurant.name
   %div.details-content{"data-role" => "content"}
-    %div{"data-collapsed-icon" => "arrow-d", "data-content-theme" => "d", "data-expanded-icon" => "arrow-u", "data-role" => "collapsible", "data-theme" => "b"}
+    %div{"data-collapsed-icon" => "arrow-d", "data-content-theme" => "b", "data-expanded-icon" => "arrow-u", "data-role" => "collapsible", "data-theme" => "b"}
     .edit-my-orders-content
-      -#%div{"data-collapsed-icon" => "arrow-d", "data-content-theme" => "d", "data-expanded-icon" => "arrow-u", "data-role" => "collapsible", "data-theme" => "b"}
-      %h2 Order menus
       %ul.listview.edit-restaurant-details{"data-inset" => "true","data-filter" => "true", "data-filter-placeholder" => "Search fruits...", "data-role" => "listview"}
         - @dishes.each do |dish|
-          %li{"data-role" => "list-divider"} Contacts
+          %li{"data-role" => "list-divider","data-theme" => "c"} Contacts
           %li.cf{"data-dish-id" => dish.id}
             %span.restaurant-content
               %span.dish-name= "#{dish.name}"
@@ -18,4 +16,4 @@
               %a.reduce{"data-icon" => "minus", "data-mini" => "true", "data-role" => "button", :href => ""}  
               %a.add{"data-icon" => "plus", "data-mini" => "true", "data-role" => "button", :href => ""}  
             %input.number-input{"data-mini" => "true", :type => "number", :value => "0"}
-      %a.confirm-foods{"data-role" => "button", "data-id" => "#{@group.id}", :href => "#group-show"} Confirm
+      %a.confirm-foods{"data-role" => "button", :href => "#group-show"} Confirm

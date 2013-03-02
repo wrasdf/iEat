@@ -6,7 +6,6 @@ var iEatGroupDetails = (function () {
             var v = currentInput.val();
             v++;
             currentInput.val(v);
-//            refreshMyOrdersUI();
         });
         $("#user-order-dishes .edit-restaurant-details .reduce").bind("click", function () {
             var currentInput = $(this).parents("li").find("input.number-input");
@@ -16,13 +15,10 @@ var iEatGroupDetails = (function () {
                 v = 0;
             }
             currentInput.val(v);
-//            refreshMyOrdersUI();
         });
 
         $("#user-order-dishes .confirm-foods").bind("click",function(){
-            var groupId = $(this).data("id");
-
-            $.mobile.changePage("#group-show");
+            $.mobile.changePage("/groups/"+GROUPID);
 
 //            $.post("/groups/"+groupId+"/orders/confirm",{"dishes":getMyOrderDishes()},function(o){
 //                if(!o){return}
@@ -32,36 +28,6 @@ var iEatGroupDetails = (function () {
         })
     }
 
-    function showContent() {
-
-        function clearClass() {
-            $("#user-order-dishes .footer-navbar a").removeClass("ui-btn-active").removeClass("ui-state-persist");
-        }
-
-        function hideAll() {
-//            clearClass();
-            $("#user-order-dishes .my-orders-content").hide();
-            $("#user-order-dishes .my-group-content").hide();
-        }
-
-        function bindFooterNavBarClick() {
-            $("#user-order-dishes .footer-navbar a.my-status").unbind("click").bind("click", function () {
-                hideAll();
-                $("#user-order-dishes .my-orders-content").show();
-                $('#user-order-dishes').trigger('create');
-//                $("#user-order-dishes .footer-navbar a.my-status").addClass("ui-btn-active ui-state-persist");
-            });
-
-            $("#user-order-dishes .footer-navbar a.group-status").unbind("click").bind("click", function () {
-                hideAll();
-                $("#user-order-dishes .my-group-content").show();
-//                $("#user-order-dishes .footer-navbar a.group-status").addClass("ui-btn-active ui-state-persist");
-            });
-        }
-
-        bindFooterNavBarClick();
-        $("#user-order-dishes .footer-navbar a.my-status").trigger("click");
-    }
 
     function getMyOrderDishes() {
         var result = [];
@@ -80,19 +46,6 @@ var iEatGroupDetails = (function () {
         return result;
     }
 
-    function refreshMyOrdersUI() {
-        var data = getMyOrderDishes();
-        var str = "";
-        var totalPrice = 0;
-        $.each(data, function (index, value) {
-            str += '<li><span class="dish-name">' + value.name + '</span><span class="dish=price">' + value.price + '</span>￥<span class="ui-li-count">' + value.count + '</span></li>';
-            totalPrice += value.price * value.count;
-        });
-
-        str += '<li><span class="dishes-total">Total:</span><span>' + totalPrice + '</span>￥</li>';
-        $("#user-order-dishes .my-order-list").html(str).listview("refresh");
-    }
-
     function clearCache() {
         $('#user-order-dishes').bind('pagehide', function () {
             $(this).remove();
@@ -106,7 +59,6 @@ var iEatGroupDetails = (function () {
     }
 
     function pageInit() {
-        showContent();
         clearCache();
         refreshRestaurantDishesUI();
     }

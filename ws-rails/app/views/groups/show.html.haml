@@ -1,90 +1,92 @@
 #group-show{"data-role" => "page" ,"data-id" => "#{@group.id}" }
   %div{"data-role" => "header"}
-    %a.ui-btn-left{"data-icon" => "arrow-l", "data-theme" => "b", :href => "#group-list"} Back
+    %a.ui-btn-left{"data-icon" => "arrow-l", "data-theme" => "c", :href => "#group-list"} Back
     %h1= @group.name
-    %a.ui-btn-right.buy-foods{"data-icon" => "arrow-l", "data-id" => "#{@group.id}", "data-theme" => "b", :href => "javascript:void(0);"} 买饭去
+    %a.ui-btn-right.buy-foods{"data-icon" => "arrow-r", "data-iconpos" => "right", "data-id" => "#{@group.id}", "data-theme" => "c", :href => "javascript:void(0);"} 买饭去
   %div.group-detail{"data-role" => "content"}
 
-    %h2 餐馆简介
-    %ul.listview{"data-role" => "listview", "data-inset" => "true"}
-      %li
-        %span.subject 饭店名称
-        %span 九头鹰
-      %li
-        %span.subject 订餐电话
-        %span 123213123123
-      %li
-        %span.subject 外卖时间
-        %span 10:30-21:00
-      %li
-        %span.subject 起送金额
-        %span 送餐费1元
+    %div{"data-collapsed" => "false", "data-content-theme" => "d", "data-role" => "collapsible"}
+      %h4 餐馆简介
+      %ul.listview{"data-role" => "listview"}
+        %li
+          %span.subject 饭店名称
+          %span 九头鹰
+        %li
+          %span.subject 订餐电话
+          %span 123213123123
+        %li
+          %span.subject 外卖时间
+          %span 10:30-21:00
+        %li
+          %span.subject 起送金额
+          %span 送餐费1元
+    %div{"data-collapsed" => "false", "data-content-theme" => "d", "data-role" => "collapsible"}
+      %h4 统计信息
+      %ul.listview.groups-status{"data-role" => "listview"}
+        %li
+          %table
+            %tr
+              %td.dish-name 小炒肉
+              %td.dish-price 12$
+              %td.dish-count
+                %div.dish-count
+                  %span.ui-li-count 4
+            %tr
+              %td.dish-name 蒙面
+              %td.dish-price 12$
+              %td.dish-count
+                %div.dish-count
+                  %span.ui-li-count 4
+            %tr
+              %td.dish-name 总计
+              %td.dish-price 245$
+              %td
 
-    %h2 统计信息
-    %ul.listview.groups-status{"data-role" => "listview", "data-inset" => "true"}
-      %li
-        %table
-          %tr
-            %td.dish-name 小炒肉
-            %td.dish-price 12$
-            %td.dish-count
-              %div.dish-count
-                %span.ui-li-count 4
-          %tr
-            %td.dish-name 蒙面
-            %td.dish-price 12$
-            %td.dish-count
-              %div.dish-count
-                %span.ui-li-count 4
-          %tr
-            %td.dish-name 总计
-            %td.dish-price 245$
-            %td
-
-    %h2 团员信息
-    %ul.listview.groups-status{"data-role" => "listview", "data-inset" => "true"}
-      %li
-        %h2 王锐
-        %table
-          %tr
-            %td.dish-name 小炒肉
-            %td.dish-price 12$
-            %td.dish-count
-              %div.dish-count
-                %span.ui-li-count 1
-          %tr
-            %td.dish-name 蒙面
-            %td.dish-price 12$
-            %td.dish-count
-              %div.dish-count
-                %span.ui-li-count 1
-          %tr
-            %td.dish-name 总计
-            %td.dish-price 24$
-            %td
-      %li
-        %h2 明星
-        %table
-          %tr
-            %td.dish-name 小炒肉
-            %td.dish-price 12$
-            %td.dish-count
-              %div.dish-count
-                %span.ui-li-count 1
-          %tr
-            %td.dish-name 总计
-            %td.dish-price 12$
-            %td
-      %li
-        %h2 姚新
-        %table
-          %tr
-            %td.dish-name 小炒肉
-            %td.dish-price 12$
-            %td.dish-count
-              %div.dish-count
-                %span.ui-li-count 1
-          %tr
-            %td.dish-name 总计
-            %td.dish-price 12$
-            %td
+    %div{"data-collapsed" => "true", "data-content-theme" => "d", "data-role" => "collapsible"}
+      %h2 团员信息
+      %ul.listview.groups-status{"data-role" => "listview"}
+        %li
+          %h2 王锐
+          %table
+            %tr
+              %td.dish-name 小炒肉
+              %td.dish-price 12$
+              %td.dish-count
+                %div.dish-count
+                  %span.ui-li-count 1
+            %tr
+              %td.dish-name 蒙面
+              %td.dish-price 12$
+              %td.dish-count
+                %div.dish-count
+                  %span.ui-li-count 1
+            %tr
+              %td.dish-name 总计
+              %td.dish-price 24$
+              %td
+        %li
+          %h2 明星
+          %table
+            %tr
+              %td.dish-name 小炒肉
+              %td.dish-price 12$
+              %td.dish-count
+                %div.dish-count
+                  %span.ui-li-count 1
+            %tr
+              %td.dish-name 总计
+              %td.dish-price 12$
+              %td
+        %li
+          %h2 姚新
+          %table
+            %tr
+              %td.dish-name 小炒肉
+              %td.dish-price 12$
+              %td.dish-count
+                %div.dish-count
+                  %span.ui-li-count 1
+            %tr
+              %td.dish-name 总计
+              %td.dish-price 12$
+              %td

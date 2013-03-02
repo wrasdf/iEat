@@ -5,7 +5,8 @@
   .restaurant-name{display: inline-block; width:80px;}
   }
 #group-show{
-  h2.ui-li-heading{margin: 5px 0;}
+  h2.ui-li-heading{margin: 6px 0;}
+  .ui-collapsible-heading .ui-btn-icon-left .ui-btn-inner{font-size: 14px;}
   table{width: 100%;
     tr{ border-bottom: 1px #ccc dashed;}
     tr:last-child{ border-bottom: 0px;}
@@ -28,24 +29,29 @@
 #user-order-dishes{
   h2{margin-left:4px; font-size:14px;}
   .restaurant-content{float:left; margin:-6px 5px 0 0 }
+
+  .edit-restaurant-details{margin-top: 20px;}
+  .edit-restaurant-details li{padding: 20px 15px;}
+  .edit-restaurant-details li.ui-li-divider{padding: 8px 15px 8px 8px; font-size:bold;}
   .edit-restaurant-details .ui-input-text{float:right; margin-top: -13px; margin-right: 10px; height: 25px;}
   .edit-restaurant-details .ui-input-text .number-input{float:right; margin:-5px 0px 0px 0; width:20px; }
-  .group-button-content{float:right; width:auto; margin-right: -5px; margin-top: -14px;}
   .edit-restaurant-details .ui-li-count{ position:static; float:left; margin:14px 0 0 0; }
   .edit-restaurant-details .ui-btn-inner{min-width: 0px; padding-left: 18px;}
-  .dish-name,.dishes-total{display:inline-block;width:80px;}
-  .confirm-foods{margin-top:30px;}
-  .listview li{ padding-right: 15px !important; font-size: 12px;}
 
   .footer-navbar{overflow: hidden;}
   .footer-navbar li{padding-top: 0; padding-bottom: 0;}
   .footer-navbar .ui-btn-inner{padding-top:20px;}
   .footer-navbar .ui-icon{top:4px;}
   .footer-navbar .ui-btn-text{top:6px;}
+
+  .group-button-content{float:right; width:auto; margin-right: -5px; margin-top: -14px;}
+  .dish-name,.dishes-total{display:inline-block;width:80px;}
+  .confirm-foods{margin-top:30px;}
+  .listview li{ padding-right: 15px !important; font-size: 12px;}
+
   .my-orders-content,.my-group-content{display: none;}
-  .edit-restaurant-details li{padding: 20px 15px;}
-  .edit-restaurant-details li.ui-li-divider{padding: 8px 15px;}
   .ui-listview-filter-inset{margin-top: 0px;}
+
 }
 
 #recharge-details{

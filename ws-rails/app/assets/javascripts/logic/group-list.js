@@ -1,6 +1,3 @@
-
-
-
 var iEatGroupList = (function () {
 
     function reFreshGroupList() {
@@ -26,12 +23,13 @@ var iEatGroupList = (function () {
     function groupListClick() {
 
         $("#group-list .group-list-ul li a,#group-list .my-orders-ul li a").bind("click", function (e) {
-            var id = $(this).data('id');
+            GROUPID = $(this).data('id');
             $(document).undelegate("#group-show", "pageinit").delegate("#group-show", "pageinit", function (e) {
                 e.preventDefault();
                 iEatGroupShow.pageInit();
             });
-            $.mobile.changePage("/groups/"+id);
+
+            $.mobile.changePage("/groups/"+GROUPID);
         });
 
         $(document).undelegate("#my-bills", "pageinit").delegate("#my-bills", "pageinit", function (e) {
