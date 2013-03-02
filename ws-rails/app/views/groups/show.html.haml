@@ -2,7 +2,8 @@
   %div{"data-role" => "header"}
     %a.ui-btn-left{"data-icon" => "arrow-l", "data-theme" => "b", :href => "#group-list"} Back
     %h1= @group.name
-  %div{"data-role" => "content", "class" => "group-detail"}
+    %a.ui-btn-right.buy-foods{"data-icon" => "arrow-l", "data-id" => "#{@group.id}", "data-theme" => "b", :href => "javascript:void(0);"} 买饭去
+  %div.group-detail{"data-role" => "content"}
 
     %h2 餐馆简介
     %ul.listview{"data-role" => "listview", "data-inset" => "true"}
@@ -19,7 +20,28 @@
         %span.subject 起送金额
         %span 送餐费1元
 
-    %h2 此团买饭信息
+    %h2 统计信息
+    %ul.listview.groups-status{"data-role" => "listview", "data-inset" => "true"}
+      %li
+        %table
+          %tr
+            %td.dish-name 小炒肉
+            %td.dish-price 12$
+            %td.dish-count
+              %div.dish-count
+                %span.ui-li-count 4
+          %tr
+            %td.dish-name 蒙面
+            %td.dish-price 12$
+            %td.dish-count
+              %div.dish-count
+                %span.ui-li-count 4
+          %tr
+            %td.dish-name 总计
+            %td.dish-price 245$
+            %td
+
+    %h2 团员信息
     %ul.listview.groups-status{"data-role" => "listview", "data-inset" => "true"}
       %li
         %h2 王锐
@@ -66,5 +88,3 @@
             %td.dish-name 总计
             %td.dish-price 12$
             %td
-
-    %a.buy-foods{"data-role" => "button", "data-id" => "#{@group.id}", :href => "javascript:void(0);"} 买饭去

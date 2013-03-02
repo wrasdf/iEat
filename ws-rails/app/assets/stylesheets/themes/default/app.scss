@@ -9,7 +9,7 @@
   table{width: 100%;
     tr{ border-bottom: 1px #ccc dashed;}
     tr:last-child{ border-bottom: 0px;}
-    td.dish-name{width: 120px; padding:5px 0;}
+    td.dish-name{width: 80px; padding:5px 0; font-weight: normal}
     td.dish-price{width: 40px;}
     td.dish-count{float:right;}
   }
@@ -23,6 +23,7 @@
       }
     }
   }
+  .group-detail .subject{font-weight: normal; display: inline-block; width: 80px; }
 }
 #user-order-dishes{
   h2{margin-left:4px; font-size:14px;}
