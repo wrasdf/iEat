@@ -47,3 +47,21 @@ var iEatUtility = (function(){
     }
 
 })();
+
+$.extend(iEatUtility,(function(){
+
+    function message(obj){
+
+        $("<div class='ui-msg "+obj.type+"'>"+obj.msg+"</div>")
+            .appendTo( $.mobile.pageContainer )
+            .delay( 1500 )
+            .fadeOut( 400, function(){
+                $(this).remove();
+            });
+    }
+
+    return {
+        msg : message
+    }
+
+})());

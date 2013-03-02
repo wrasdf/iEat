@@ -58,7 +58,10 @@ var iEatGroupDetails = (function () {
         bindFunction();
     }
 
-    function pageInit() {
+    function pageInit(f) {
+        if(f){
+            f();
+        }
         clearCache();
         refreshRestaurantDishesUI();
     }
