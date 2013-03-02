@@ -16,6 +16,7 @@
         SectionCount
     };
     NSArray *sections;
+    NSArray *restDesc;
 }
 @end
 
@@ -26,6 +27,7 @@
     self = [super initWithStyle:style];
     if (self) {
         sections = @[@"餐馆简介", @"饭团信息"];
+        restDesc = @[@"饭店名称", @"订餐电话", @"外卖时间", @"起送金额"];
     }
     return self;
 }
@@ -48,18 +50,27 @@
 }
 
 #pragma mark - Table view data source
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == SectionDesc){
+        return 30.0;
+    }
+    return [super tableView:tableView heightForRowAtIndexPath:indexPath];
+}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return SectionCount;
+    return SectionCount + 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    if (section == SectionDesc)
+        return [restDesc count];
     return 1;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    if(section > SectionStatus) return nil;
     return [sections objectAtIndex:section];
 }
 
@@ -70,10 +81,43 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    
-    // Configure the cell...
+
+    [self configCell:cell atIndexPath:indexPath];
     
     return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    if (section>SectionStatus)
+    {
+        return 1;
+    }
+    return 30;
+    return [super tableView:tableView heightForHeaderInSection:section];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return 1;
+    return [super tableView:tableView heightForFooterInSection:section];
+}
+
+- (void)configCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)path {
+   if (path.section == SectionDesc)
+   {
+       cell.textLabel.text = [restDesc objectAtIndex:path.row];
+       [cell.textLabel setTextColor:[UIColor grayColor]];
+       [cell.textLabel setFont:[UIFont systemFontOfSize:12.0]];
+   }
+   else if (path.section>SectionDesc){
+       UISwitch *aSwitch = [[UISwitch alloc] initWithFrame:CGRectZero];
+       [aSwitch sizeToFit];
+       [aSwitch addTarget:self action:@selector(hintSwitchChanged:) forControlEvents:UIControlEventTouchUpInside];
+       cell.accessoryView = aSwitch;
+   }
+}
+
+- (void)hintSwitchChanged:(UISwitch *)sender {
+
 }
 
 /*

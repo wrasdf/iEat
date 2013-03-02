@@ -16,10 +16,10 @@
 }
 + (NSDictionary *)groupListOfToday {
     NSString *token = [[User CurrentUser] token];
-    NSString *urlString = [@"http://localhost:3000/api/v1/group/active?token=" stringByAppendingString:token];
+    NSString *urlString = [@"http://localhost:3000/api/v1/groups/active?token=" stringByAppendingString:token];
     NSURL *url = [NSURL URLWithString:urlString];
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
-    [request addRequestHeader:@"Content-Type" value:@"application/json; encoding=utf-8"];
+//    [request addRequestHeader:@"Content-Type" value:@"application/json; encoding=utf-8"];
     [request addRequestHeader:@"Accept" value:@"application/json"];
     [request setDelegate:self];
     [request startSynchronous];
