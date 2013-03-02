@@ -18,7 +18,7 @@ var iEatCreate = (function () {
 
         setValue($('#timePicker').mobiscroll("getValue"));
 
-        $(document).undelegate("#user-restaurant-edit", "pageinit").delegate("#user-restaurant-edit", "pageinit", function (e) {
+        $(document).undelegate("#user-order-dishes", "pageinit").delegate("#user-order-dishes", "pageinit", function (e) {
             e.preventDefault();
             iEatGroupDetails.pageInit();
         });
@@ -28,12 +28,12 @@ var iEatCreate = (function () {
             iEatGroupList.pageInit();
         });
 
-        $(".ui-btn-right").bind("click",function(){
-            var groupId = $('input[name=radio-choice-v-2]:checked').val();
-            $.mobile.changePage("/groups/"+groupId+"/orders/new");
-        });
+//        $(".ui-btn-right").bind("click",function(){
+//            var groupId = $('input[name=radio-choice-v-2]:checked').val();
+//            $.mobile.changePage("/groups/"+groupId+"/orders/new");
+//        });
 
-        $(".create-group-btn").bind("click",function(){
+        $(".order-my-dishes").bind("click",function(){
             $.mobile.changePage("/groups");
         });
 

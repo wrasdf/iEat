@@ -5,6 +5,7 @@
   .restaurant-name{display: inline-block; width:80px;}
   }
 #group-show{
+  h2.ui-li-heading{margin: 5px 0;}
   table{width: 100%;
     tr{ border-bottom: 1px #ccc dashed;}
     tr:last-child{ border-bottom: 0px;}
@@ -22,11 +23,8 @@
       }
     }
   }
-  
 }
-
-
-#user-restaurant-edit{
+#user-order-dishes{
   h2{margin-left:4px; font-size:14px;}
   .restaurant-content{float:left; margin:-6px 5px 0 0 }
   .edit-restaurant-details .ui-input-text{float:right; margin-top: -13px; margin-right: 10px; height: 25px;}
@@ -50,35 +48,24 @@
 }
 
 #recharge-details{
-      .ui-controlgroup-controls{display: block; width:auto;}
-      .ui-controlgroup-controls .ui-btn{ width:50%; box-sizing:border-box;-moz-box-sizing:border-box; /* Firefox */-webkit-box-sizing:border-box;    }
-      .ui-controlgroup-controls .input-label.ui-btn{width:100%;}
-  }
+  .ui-controlgroup-controls{display: block; width:auto;}
+  .ui-controlgroup-controls .ui-btn{ width:50%; box-sizing:border-box;-moz-box-sizing:border-box; /* Firefox */-webkit-box-sizing:border-box;    }
+  .ui-controlgroup-controls .input-label.ui-btn{width:100%;}
+}
 
 #confirm-success{
-      .ui-content h1{font-size:20px; padding: 5px 0 10px; font-weight: bold;}
-  }
-#user-restaurant-details li,#user-restaurant-edit li,#confirm-success li{padding-top:0.7em;padding-bottom:0.7em; font-size: 14px;}
+  .ui-content h1{font-size:20px; padding: 5px 0 10px; font-weight: bold;}
+}
+#user-restaurant-details li,#user-order-dishes li,#confirm-success li{padding-top:0.7em;padding-bottom:0.7em; font-size: 14px;}
 .dwi {display: block;}
 #scroller{margin-top:20px;}
-#create-content{
-      h2{margin:10px 0; font-weight: bold;}
-      .create-group-btn{margin-top:20px;}
-      .details{position:relative; display: block;}
-      .details .more{position:absolute; right: 0px; top: 0px; border: 1px #000 soild;}
-  }
 
+#create-group{
+  h2{margin:10px 0; font-weight: bold;}
+  .create-group-btn{margin-top:20px;}
+  .details{position:relative; display: block;}
+  .details .more{position:absolute; right: 0px; top: 0px; border: 1px #000 soild;}
+}
 #bill-details{
-      .ui-controlgroup-controls{width:auto; display: block;}
-  }
-
-// @media screen and (-webkit-min-device-pixel-ratio:0){
-//     input[type=number]{padding:3px 1px;}
-//     .ui-controlgroup{margin:0;}
-//     #user-restaurant-edit .number-input{float:right; margin:1px 12px 0 0; width:60px; }
-//     #user-restaurant-edit .restaurant-content{margin-top:8px;}
-//     #user-restaurant-edit .ui-li-count{margin-top: 7px;}
-//     #user-restaurant-edit .ui-controlgroup-controls .ui-btn-inner{padding-left:10px;}
-//     #recharge-details .ui-btn-icon-left .ui-btn-inner{padding-left: 31px;}
-//     .ui-checkbox .ui-btn-icon-left .ui-icon, .ui-radio .ui-btn-icon-left .ui-icon{left:9px;}
-// }
+  .ui-controlgroup-controls{width:auto; display: block;}
+}

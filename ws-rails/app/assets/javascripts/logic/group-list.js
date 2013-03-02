@@ -39,7 +39,7 @@ var iEatGroupList = (function () {
             iEatMyBills.pageInit();
         });
 
-        $(document).undelegate("#create-content", "pageinit").delegate("#create-content", "pageinit", function (e) {
+        $(document).undelegate("#create-group", "pageinit").delegate("#create-group", "pageinit", function (e) {
             e.preventDefault();
             iEatCreate.pageInit();
         });

@@ -1,8 +1,7 @@
-#create-content{"data-role" => "page"}
+#create-group{"data-role" => "page"}
   %div{"data-role" => "header"}
     %a.ui-btn-left{"data-icon" => "arrow-l", "data-theme" => "b", :href => "#group-list"} Back
     %h1 Create My Group
-    %a.ui-btn-right{"data-icon" => "arrow-r", "data-theme" => "b", :href => "javascript:void(0);"} Edit My Order
   %div{"data-role" => "content"}
     %h2 Group Name:
     %input{:type => "text"}
@@ -14,10 +13,8 @@
       %label{:for => "radio-choice-v-2b"} 来福士
       %input#radio-choice-v-2c{:name => "radio-choice-v-2", :type => "radio", :value => "3"}/
       %label{:for => "radio-choice-v-2c"} 桂林米粉
-    %h2 PassWord:
-    %input{:type => "text"}
     %h2
       Cut-Off Date :
       %span#show-Time
     #timePicker
-    %a.create-group-btn{"data-role" => "button", :href => "javascript:void(0);"} Create This Group
+    %a.create-group-btn{"data-role" => "button", :href => "javascript:void(0);"} 我去点餐咯
