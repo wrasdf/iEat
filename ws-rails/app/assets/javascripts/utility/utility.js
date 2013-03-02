@@ -51,9 +51,14 @@ var iEatUtility = (function(){
 $.extend(iEatUtility,(function(){
 
     function message(obj){
-
         $("<div class='ui-msg "+obj.type+"'>"+obj.msg+"</div>")
-            .appendTo( $.mobile.pageContainer )
+            .appendTo($.mobile.pageContainer)
+            .css({
+                "top":"-"+parseInt($('.ui-msg').innerHeight())
+            })
+            .animate({
+                "top" : "0"
+            },500)
             .delay( 1500 )
             .fadeOut( 400, function(){
                 $(this).remove();
