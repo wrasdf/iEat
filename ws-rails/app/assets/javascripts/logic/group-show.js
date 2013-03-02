@@ -1,6 +1,11 @@
 var iEatGroupShow = (function(){
 
-    function pageInit(){
+    function pageInit(f){
+
+        if(f && typeof f == "function"){
+            f();
+        }
+
         $("#group-show .buy-foods").bind("click",function(){
 
             var groupId = $("#group-show").data("id");

@@ -1,8 +1,10 @@
 
 var iEatCreate = (function () {
 
-    function pageInit() {
-
+    function pageInit(f) {
+        if(f && typeof f == "function"){
+            f();
+        }
         $('#timePicker').mobiscroll().time({
             theme: 'iOS',
             display: 'inline',
@@ -24,6 +26,10 @@ var iEatCreate = (function () {
                 iEatUtility.msg({
                     type : "success",
                     msg : "Your Group is success created."
+                });
+                $(document).undelegate("#user-order-dishes", "pageinit").delegate("#user-order-dishes", "pageinit", function (event) {
+                    event.preventDefault();
+                    iEatGroupDetails.pageInit();
                 });
             });
         });

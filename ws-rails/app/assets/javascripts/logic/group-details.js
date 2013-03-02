@@ -17,6 +17,21 @@ var iEatGroupDetails = (function () {
             currentInput.val(v);
         });
 
+        $(document).undelegate("#group-show", "pageinit").delegate("#group-show", "pageinit", function (e) {
+            e.preventDefault();
+            iEatGroupShow.pageInit(function(){
+                iEatUtility.msg({
+                    type : "success",
+                    msg : "Order successful."
+                });
+                // remove js cache for msg
+                $(document).undelegate("#group-show", "pageinit").delegate("#group-show", "pageinit", function (event) {
+                    event.preventDefault();
+                    iEatGroupShow.pageInit();
+                });
+            });
+        });
+
         $("#user-order-dishes .confirm-foods").bind("click",function(){
             $.mobile.changePage("/groups/"+GROUPID);
 
@@ -59,7 +74,7 @@ var iEatGroupDetails = (function () {
     }
 
     function pageInit(f) {
-        if(f){
+        if(f && typeof f == "function"){
             f();
         }
         clearCache();

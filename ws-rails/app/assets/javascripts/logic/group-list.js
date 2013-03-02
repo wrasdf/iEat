@@ -52,7 +52,10 @@ var iEatGroupList = (function () {
 
     }
 
-    function pageInit() {
+    function pageInit(f) {
+        if(f && typeof f == "function"){
+            f();
+        }
         reFreshGroupList()
     }
 
