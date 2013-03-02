@@ -19,8 +19,8 @@ WsRails::Application.routes.draw do
   namespace :api do
     namespace :v1 do
       devise_for :users
-      get 'group/active' => 'groups#active'
-      post 'group/create' => 'groups#create'
+      get 'groups/active' => 'groups#active'
+      post 'groups/create' => 'groups#create'
 
       resources :groups do
         resources :orders
