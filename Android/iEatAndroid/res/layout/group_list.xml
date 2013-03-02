@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <Button android:id="@+id/creat_group"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="+ I want to create my group."/>
+
+    <TextView android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="My Orders"
+            android:gravity="left"/>
+    <LinearLayout android:id="@+id/my_groups"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+    </LinearLayout>
+    <TextView android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:text="Available Groups"
+              android:gravity="left"
+            />
+
+
+    <ListView android:id="@+id/today_groups"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+    </ListView>
+
+</LinearLayout>
