@@ -95,7 +95,7 @@
     } else if (request.responseStatusCode == 403) {
         NSLog(@"return 403");
     } else if (request.responseStatusCode == 200) {
-        [User SetCurrentUserName:userName token:NULL];
+        [User SetCurrentUserName:userName email: nil token:NULL];
         [self dismissViewControllerAnimated:YES completion:NULL];
     } else {
         NSLog(@"Unexpected error");

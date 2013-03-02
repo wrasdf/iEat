@@ -129,9 +129,8 @@ enum {
     } else if (request.responseStatusCode == 403) {
         NSLog(@"return 403");
     } else if (request.responseStatusCode == 200) {
-//        NSString *username = ((EditTableViewCell *) [[self.tableView visibleCells] objectAtIndex:0]).textField.text;
         NSDictionary * response = [request.responseData objectFromJSONData];
-        [User SetCurrentUserName:response[@"email"] token:response[@"token"]];
+        [User SetCurrentUserName:response[@"name"] email:response[@"email"] token:response[@"token"]];
         [self dismissViewControllerAnimated:YES completion:NULL];
     } else {
         NSLog(@"Unexpected error");

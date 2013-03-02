@@ -13,6 +13,7 @@
 }
 @synthesize token;
 @synthesize name;
+@synthesize email;
 
 
 + (User *)CurrentUser {
@@ -20,23 +21,22 @@
     NSString *username = [standardUserDefault objectForKey:@"username"];
     NSString *token = [standardUserDefault objectForKey:@"token"];
     NSLog(@"current user: %@ token %@", username, token);
-    return (username && token) ? [[User alloc]initWithName:username token:token] : nil;
+    return (username && token) ? [[User alloc] initWithName:username email:nil token:token] : nil;
 }
 
-- (id)initWithName:(NSString *)name token:(NSString *)token {
+- (id)initWithName:(NSString *)name email:(NSString *)email token:(NSString *)token {
     self.name = name;
     self.token = token;
+    self.email = email;
     return self;
 }
 
 
-+ (id)SetCurrentUserName:(NSString *)name token:(NSString *)token {
++ (void)SetCurrentUserName:(NSString *)name email:(NSString *)email token:(NSString *)token {
     NSUserDefaults *standardUserDefault = [NSUserDefaults standardUserDefaults];
     [standardUserDefault setObject:name forKey:@"username"];
+    [standardUserDefault setObject:email forKey:@"email"];
     [standardUserDefault setObject:token forKey:@"token"];
-    NSLog(@"user logged in: %@ %@",name, token);
-    return nil;
+    NSLog(@"user logged in: %@ %@ %@",name, email, token);
 }
-
-
 @end

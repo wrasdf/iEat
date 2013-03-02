@@ -15,11 +15,11 @@
 }
 @property(nonatomic, copy) NSString *token;
 @property(nonatomic, copy) NSString *name;
-
+@property(nonatomic, copy) NSString *email;
 
 + (User *)CurrentUser;
 
-- (id)initWithName:(NSString *)name token:(NSString *)token;
+- (id)initWithName:(NSString *)name email:(NSString *)email token:(NSString *)token;
 
-+ (id)SetCurrentUserName:(NSString *)name token:(NSString *)token;
++ (void)SetCurrentUserName:(NSString *)name email:(NSString *)email token:(NSString *)token;
 @end

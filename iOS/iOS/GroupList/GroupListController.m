@@ -59,7 +59,7 @@
 }
 
 - (void)Logout:(id)Logout {
-    [User SetCurrentUserName:nil token:NULL];
+    [User SetCurrentUserName:nil email: nil token:nil];
     [self presentViewController:logInViewController animated:YES completion:NULL];
 }
 
