@@ -6,6 +6,16 @@
   %div.info-details{"data-role" => "content"}
 
     %div.details-content.restaurant-details
+
+      %h2 本团介绍
+      %ul.listview{"data-role" => "listview", "data-inset"=>"true"}
+        %li
+          %span.subject 团名
+          %span= @group.name
+        %li
+          %span.subject 本团宗旨
+          %span 辣死人不偿命
+
       %h2 餐馆简介
       %ul.listview{"data-role" => "listview", "data-inset"=>"true"}
         %li
@@ -13,7 +23,7 @@
           %span 九头鹰
         %li
           %span.subject 订餐电话
-          %span 123213123123
+          %span 13400077882
         %li
           %span.subject 外卖时间
           %span 10:30-21:00
@@ -103,7 +113,7 @@
     %div{"data-role" => "navbar"}
       %ul
         %li
-          %a.restaurant-info-btn{:href => "","data-icon"=>"star","data-iconpos"=>"top"} 餐馆简介
+          %a.restaurant-info-btn{:href => "","data-icon"=>"star","data-iconpos"=>"top"} 本团信息
         %li
           %a.all-info-btn{:href => "","data-icon"=>"star","data-iconpos"=>"top"} 统计信息
         %li
