@@ -17,22 +17,25 @@ var iEatGroupDetails = (function () {
             currentInput.val(v);
         });
 
-        $(document).undelegate("#group-show", "pageinit").delegate("#group-show", "pageinit", function (e) {
+        $(document).undelegate("#group-show", "pageshow").delegate("#group-show", "pageshow", function (e) {
             e.preventDefault();
             iEatGroupShow.pageInit(function(){
                 iEatUtility.msg({
                     type : "success",
                     msg : "Order successful."
                 });
+                iEatGroupShow.activeFooterItemByIndex(2);
                 // remove js cache for msg
                 $(document).undelegate("#group-show", "pageinit").delegate("#group-show", "pageinit", function (event) {
                     event.preventDefault();
                     iEatGroupShow.pageInit();
+                    iEatGroupShow.activeFooterItemByIndex(0);
                 });
             });
         });
 
         $("#user-order-dishes .confirm-foods").bind("click",function(){
+
             $.mobile.changePage("/groups/"+GROUPID);
 
 //            $.post("/groups/"+groupId+"/orders/confirm",{"dishes":getMyOrderDishes()},function(o){

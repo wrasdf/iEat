@@ -37,32 +37,33 @@ var iEatGroupShow = (function(){
             $.mobile.changePage("/groups/"+groupId+"/orders/new");
         });
 
-        window.setTimeout(function(){activeFooterItemByIndex(0);},0);
-
     }
 
     function activeFooterItemByIndex(n){
 
-        if(n==0){
-            $("#group-show .restaurant-info-btn").trigger("click");
-        }
+        window.setTimeout(function(){
+            if(n==0){
+                $("#group-show .restaurant-info-btn").trigger("click");
+            }
 
-        if(n==1){
-            $("#group-show .all-info-btn").trigger("click");
-        }
+            if(n==1){
+                $("#group-show .all-info-btn").trigger("click");
+            }
 
-        if(n==2){
-            $("#group-show .my-orders-btn").trigger("click");
-        }
+            if(n==2){
+                $("#group-show .my-orders-btn").trigger("click");
+            }
 
-        if(n==3){
-            $("#group-show .members-orders-btn").trigger("click");
-        }
+            if(n==3){
+                $("#group-show .members-orders-btn").trigger("click");
+            }
+        },0);
 
     }
 
     return {
-        pageInit : pageInit
+        pageInit : pageInit,
+        activeFooterItemByIndex : activeFooterItemByIndex
     }
 
 })();

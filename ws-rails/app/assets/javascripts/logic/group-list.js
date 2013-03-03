@@ -28,6 +28,7 @@ var iEatGroupList = (function () {
             $(document).undelegate("#group-show", "pageshow").delegate("#group-show", "pageshow", function (e) {
                 e.preventDefault();
                 iEatGroupShow.pageInit();
+                iEatGroupShow.activeFooterItemByIndex(0);
             });
 
             $.mobile.changePage("/groups/"+GROUPID);
