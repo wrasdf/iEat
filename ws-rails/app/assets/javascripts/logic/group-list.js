@@ -24,7 +24,8 @@ var iEatGroupList = (function () {
 
         $("#group-list .group-list-ul li a,#group-list .my-orders-ul li a").bind("click", function (e) {
             GROUPID = $(this).data('id');
-            $(document).undelegate("#group-show", "pageinit").delegate("#group-show", "pageinit", function (e) {
+
+            $(document).undelegate("#group-show", "pageshow").delegate("#group-show", "pageshow", function (e) {
                 e.preventDefault();
                 iEatGroupShow.pageInit();
             });
@@ -32,18 +33,9 @@ var iEatGroupList = (function () {
             $.mobile.changePage("/groups/"+GROUPID);
         });
 
-        $(document).undelegate("#my-bills", "pageinit").delegate("#my-bills", "pageinit", function (e) {
-            e.preventDefault();
-            iEatMyBills.pageInit();
-        });
-
         $(document).undelegate("#create-group", "pageinit").delegate("#create-group", "pageinit", function (e) {
             e.preventDefault();
             iEatCreate.pageInit();
-        });
-
-        $("#group-list .my-bills-btn").bind("click", function () {
-            $.mobile.changePage("/mybills");
         });
 
         $("#group-list .create-group").bind("click", function () {

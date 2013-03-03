@@ -12,24 +12,27 @@
 #group-show{
   h2.ui-li-heading{margin:0px;padding: 7px 0 4px; overflow: auto;}
   .ui-collapsible-heading .ui-btn-icon-left .ui-btn-inner{font-size: 14px;}
-  table{width: 100%;
-    tr{ border-bottom: 1px #ccc dashed;}
-    tr:last-child{ border-bottom: 0px;}
-    td.dish-name{width: 80px; padding:5px 0; font-weight: normal}
-    td.dish-price{width: 40px;}
-    td.dish-count{float:right;}
-  }
-  .groups-status li{padding:5px 15px;
-    .dish-count{
-      position: relative;
-      .ui-li-count{
-        margin-top: 0px;
-        top: 3px;
-        right: 5px;
+  .info-details{
+    .subject{font-weight: normal; display: inline-block; width: 80px; }
+    table{width: 100%;
+      tr{ border-bottom: 1px #ccc dashed;}
+      tr:last-child{ border-bottom: 0px;}
+      td.dish-name{width: 80px; padding:5px 0; font-weight: normal}
+      td.dish-price{width: 40px;}
+      td.dish-count{float:right;}
+    }
+    .order-status li{padding:5px 15px;
+      .dish-count{
+        position: relative;
+        .ui-li-count{
+          margin-top: 0px;
+          top: 3px;
+          right: 5px;
+        }
       }
     }
+    .restaurant-details,.my-orders-details,.all-status,.members-details{display: none;}
   }
-  .group-detail .subject{font-weight: normal; display: inline-block; width: 80px; }
 }
 #user-order-dishes{
   h2{margin-left:4px; font-size:14px;}

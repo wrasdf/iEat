@@ -3,11 +3,11 @@
     %a.ui-btn-left{"data-icon" => "arrow-l", "data-theme" => "c", :href => "#group-list"} Back
     %h1= @group.name
     %a.ui-btn-right.buy-foods{"data-icon" => "arrow-r", "data-iconpos" => "right", "data-id" => "#{@group.id}", "data-theme" => "c", :href => "javascript:void(0);"} 买饭去
-  %div.group-detail{"data-role" => "content"}
+  %div.info-details{"data-role" => "content"}
 
-    %div{"data-collapsed" => "false", "data-content-theme" => "d", "data-role" => "collapsible"}
-      %h4 餐馆简介
-      %ul.listview{"data-role" => "listview"}
+    %div.details-content.restaurant-details
+      %h2 餐馆简介
+      %ul.listview{"data-role" => "listview", "data-inset"=>"true"}
         %li
           %span.subject 饭店名称
           %span 九头鹰
@@ -21,9 +21,9 @@
           %span.subject 起送金额
           %span 送餐费1元
 
-    %div{"data-collapsed" => "false", "data-content-theme" => "d", "data-role" => "collapsible"}
+    %div.details-content.my-orders-details
       %h2 我的订餐
-      %ul.listview.groups-status{"data-role" => "listview"}
+      %ul.listview.order-status{"data-role" => "listview", "data-inset"=>"true"}
         %li
           %h2 王锐
           %table
@@ -44,9 +44,9 @@
               %td.dish-price 24$
               %td
 
-    %div{"data-collapsed" => "false", "data-content-theme" => "d", "data-role" => "collapsible"}
-      %h4 统计信息
-      %ul.listview.groups-status{"data-role" => "listview"}
+    %div.details-content.all-status
+      %h2 统计信息
+      %ul.listview.order-status{"data-role" => "listview", "data-inset"=>"true"}
         %li
           %table
             %tr
@@ -66,9 +66,9 @@
               %td.dish-price 245$
               %td
 
-    %div{"data-collapsed" => "true", "data-content-theme" => "d", "data-role" => "collapsible"}
+    %div.details-content.members-details
       %h2 团员订餐信息
-      %ul.listview.groups-status{"data-role" => "listview"}
+      %ul.listview.order-status{"data-role" => "listview", "data-inset"=>"true"}
         %li
           %h2 明星
           %table
@@ -98,3 +98,15 @@
 
 
     %a.buy-foods{ :href => "javascript:void(0);" ,"data-role" => "button"} 买饭去
+
+  %div.fixed-footer{"data-position" => "fixed", "data-role" => "footer"}
+    %div{"data-role" => "navbar"}
+      %ul
+        %li
+          %a.restaurant-info-btn{:href => "","data-icon"=>"star","data-iconpos"=>"top"} 餐馆简介
+        %li
+          %a.all-info-btn{:href => "","data-icon"=>"star","data-iconpos"=>"top"} 统计信息
+        %li
+          %a.my-orders-btn{:href => "","data-icon"=>"star","data-iconpos"=>"top"} 我的订餐
+        %li
+          %a.members-orders-btn{:href => "","data-icon"=>"star","data-iconpos"=>"top"} 团员信息

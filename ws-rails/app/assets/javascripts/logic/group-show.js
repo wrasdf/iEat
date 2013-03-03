@@ -6,6 +6,26 @@ var iEatGroupShow = (function(){
             f();
         }
 
+        $("#group-show .restaurant-info-btn").bind("click",function(){
+            $("#group-show .details-content").hide();
+            $("#group-show .restaurant-details").show();
+        });
+
+        $("#group-show .all-info-btn").bind("click",function(){
+            $("#group-show .details-content").hide();
+            $("#group-show .all-status").show();
+        });
+
+        $("#group-show .my-orders-btn").bind("click",function(){
+            $("#group-show .details-content").hide();
+            $("#group-show .my-orders-details").show();
+        });
+
+        $("#group-show .members-orders-btn").bind("click",function(){
+            $("#group-show .details-content").hide();
+            $("#group-show .members-details").show();
+        });
+
         $("#group-show .buy-foods").bind("click",function(){
 
             var groupId = $("#group-show").data("id");
@@ -16,6 +36,28 @@ var iEatGroupShow = (function(){
 
             $.mobile.changePage("/groups/"+groupId+"/orders/new");
         });
+
+        window.setTimeout(function(){activeFooterItemByIndex(0);},0);
+
+    }
+
+    function activeFooterItemByIndex(n){
+
+        if(n==0){
+            $("#group-show .restaurant-info-btn").trigger("click");
+        }
+
+        if(n==1){
+            $("#group-show .all-info-btn").trigger("click");
+        }
+
+        if(n==2){
+            $("#group-show .my-orders-btn").trigger("click");
+        }
+
+        if(n==3){
+            $("#group-show .members-orders-btn").trigger("click");
+        }
 
     }
 
