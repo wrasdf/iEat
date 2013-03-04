@@ -26,7 +26,9 @@ class GroupsController < ApplicationController
   # GET /groups/new
   # GET /groups/new.json
   def new
+
     @group = Group.new
+    @restaurant = Restaurant.all
 
     respond_to do |format|
       format.html # new.html.erb

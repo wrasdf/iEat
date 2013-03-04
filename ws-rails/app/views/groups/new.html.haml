@@ -7,12 +7,13 @@
     %input{:type => "text"}
     %fieldset{"data-role" => "controlgroup"}
       %legend 饭馆们 :
-      %input#radio-choice-v-2a{:checked => "checked", :name => "radio-choice-v-2", :type => "radio", :value => "1"}/
-      %label{:for => "radio-choice-v-2a"} 九头鹰
-      %input#radio-choice-v-2b{:name => "radio-choice-v-2", :type => "radio", :value => "2"}/
-      %label{:for => "radio-choice-v-2b"} 来福士
-      %input#radio-choice-v-2c{:name => "radio-choice-v-2", :type => "radio", :value => "3"}/
-      %label{:for => "radio-choice-v-2c"} 桂林米粉
+      - @restaurant.each do |item|
+        - if item.id == 1
+          %input{:id => "radio-box-#{item.id}",:checked => "checked",  :name => "radio-choice-v-2", :type => "radio", :value => "#{item.id}"}
+        - else
+          %input{:id => "radio-box-#{item.id}", :name => "radio-choice-v-2", :type => "radio", :value => "#{item.id}"}
+
+        %label{:for => "radio-box-#{item.id}"}= item.name
 
     %a.more-restaurants{"data-role" => "button", :href => "javascript:void(0);"} 选择其他馆子
 

@@ -57,31 +57,33 @@ var iEatCreate = (function () {
             $.mobile.changePage("/restaurants/list");
         });
 
-
     }
 
-    function selectRadioById(id){
+    function selectRadioByRestaurantId(id){
 
         if(!id){
             id = 0;
         }
 
-        $("input[name=radio-choice-v-2]").each(function(index,value){
+        var selectors = $("input[name=radio-choice-v-2]");
+
+        selectors.each(function(index,value){
             var $el = $(value);
+
             if($el.val() == id){
-                $el.attr('checked',true)
-                    .checkboxradio("refresh");
+                $el.attr('checked','checked');
             }else{
-                $el.attr('checked',false)
-                    .checkboxradio("refresh");
+                $el.attr('checked','');
             }
+
         });
+        selectors.checkboxradio("refresh")
 
     }
 
     return {
         pageInit: pageInit,
-        selectRadioById : selectRadioById
+        selectRadioByRestaurantId : selectRadioByRestaurantId
     }
 
 })();
