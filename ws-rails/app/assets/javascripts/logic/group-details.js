@@ -26,7 +26,7 @@ var iEatGroupDetails = (function () {
                 });
                 iEatGroupShow.activeFooterItemByIndex(2);
                 // remove js cache for msg
-                $(document).undelegate("#group-show", "pageinit").delegate("#group-show", "pageinit", function (event) {
+                $(document).undelegate("#group-show", "pageshow").delegate("#group-show", "pageshow", function (event) {
                     event.preventDefault();
                     iEatGroupShow.pageInit();
                     iEatGroupShow.activeFooterItemByIndex(0);

@@ -34,7 +34,7 @@ var iEatGroupList = (function () {
             $.mobile.changePage("/groups/"+GROUPID);
         });
 
-        $(document).undelegate("#create-group", "pageinit").delegate("#create-group", "pageinit", function (e) {
+        $(document).undelegate("#create-group", "pageshow").delegate("#create-group", "pageshow", function (e) {
             e.preventDefault();
             iEatCreate.pageInit();
         });

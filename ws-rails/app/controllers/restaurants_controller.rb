@@ -12,6 +12,15 @@ class RestaurantsController < ApplicationController
     #end
   end
 
+  def list
+    @restaurant = Restaurant.all
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @restaurant }
+    end
+  end
+
   # GET /restaurants/1
   # GET /restaurants/1.json
   def show

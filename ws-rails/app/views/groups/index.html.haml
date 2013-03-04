@@ -11,12 +11,12 @@
   %body
     #group-list{"data-role" => "page"}
       %div{"data-role" => "header"}
-        %h1 Group List
+        %h1 饭团列表
       %div{"data-role" => "content"}
-        %a.create-group{"data-role" => "button", :href => "javascript:void(0);"}create my group.
-        %h2 My Groups
+        %a.create-group{"data-role" => "button", :href => "javascript:void(0);"}创建饭团
+        %h2 我的饭团
         %ul.my-orders-ul{"data-inset" => "true", "data-role" => "listview"}
-        %h2 Available Groups
+        %h2 可参加的饭团们
         %ul.group-list-ul{"data-inset" => "true", "data-role" => "listview"}
 
   = javascript_include_tag "jquery/jquery-1.9.1"
@@ -28,4 +28,5 @@
   = javascript_include_tag "logic/group-show"
   = javascript_include_tag "logic/group-details"
   = javascript_include_tag "logic/group-create"
+  = javascript_include_tag "logic/restaurant-list"
   = javascript_include_tag "app-logic"

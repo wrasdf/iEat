@@ -68,15 +68,13 @@
   .ui-controlgroup-controls .input-label.ui-btn{width:100%;}
 }
 
-#confirm-success{
-  .ui-content h1{font-size:20px; padding: 5px 0 10px; font-weight: bold;}
-}
 #user-restaurant-details li,#user-order-dishes li,#confirm-success li{padding-top:0.7em;padding-bottom:0.7em; font-size: 14px;}
 .dwi {display: block;}
 #scroller{margin-top:20px;}
 
 #create-group{
-  h2{margin:10px 0; font-weight: bold;}
+  h2{margin:10px 0;}
+  legend{font-size: 12px;}
   .create-group-btn{margin-top:20px;}
   .details{position:relative; display: block;}
   .details .more{position:absolute; right: 0px; top: 0px; border: 1px #000 soild;}

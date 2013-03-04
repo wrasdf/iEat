@@ -1,6 +1,7 @@
 WsRails::Application.routes.draw do
   get 'groups/today' => 'groups#today'
   post 'group/:id/orders/confirm' => 'orders#confirm'
+  get 'restaurants/list' => 'restaurants#list'
 
   resources :orders
 

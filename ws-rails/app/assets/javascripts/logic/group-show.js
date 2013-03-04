@@ -29,7 +29,7 @@ var iEatGroupShow = (function(){
         $("#group-show .buy-foods").bind("click",function(){
 
             var groupId = $("#group-show").data("id");
-            $(document).undelegate("#user-order-dishes", "pageinit").delegate("#user-order-dishes", "pageinit", function (e) {
+            $(document).undelegate("#user-order-dishes", "pageshow").delegate("#user-order-dishes", "pageshow", function (e) {
                 e.preventDefault();
                 iEatGroupDetails.pageInit();
             });

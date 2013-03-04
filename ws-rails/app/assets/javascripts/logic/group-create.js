@@ -20,21 +20,21 @@ var iEatCreate = (function () {
 
         setValue($('#timePicker').mobiscroll("getValue"));
 
-        $(document).undelegate("#user-order-dishes", "pageinit").delegate("#user-order-dishes", "pageinit", function (e) {
+        $(document).undelegate("#user-order-dishes", "pageshow").delegate("#user-order-dishes", "pageshow", function (e) {
             e.preventDefault();
             iEatGroupDetails.pageInit(function(){
                 iEatUtility.msg({
                     type : "success",
                     msg : "Your Group is success created."
                 });
-                $(document).undelegate("#user-order-dishes", "pageinit").delegate("#user-order-dishes", "pageinit", function (event) {
+                $(document).undelegate("#user-order-dishes", "pageshow").delegate("#user-order-dishes", "pageshow", function (event) {
                     event.preventDefault();
                     iEatGroupDetails.pageInit();
                 });
             });
         });
 
-        $(document).undelegate("#group-list", "pageinit").delegate("#group-list", "pageinit", function (e) {
+        $(document).undelegate("#group-list", "pageshow").delegate("#group-list", "pageshow", function (e) {
             e.preventDefault();
             iEatGroupList.pageInit();
         });
@@ -46,10 +46,40 @@ var iEatCreate = (function () {
 
         });
 
+        $(document).undelegate("#restaurants-list", "pageshow").delegate("#restaurants-list", "pageshow", function (e) {
+            e.preventDefault();
+            iEatRestaurant.pageInit();
+        });
+
+        $(".more-restaurants").bind("click",function(){
+            $.mobile.changePage("/restaurants/list");
+        });
+
+
+    }
+
+    function selectRadioById(id){
+
+        if(!id){
+            id = 0;
+        }
+
+        $("input[name=radio-choice-v-2]").each(function(index,value){
+            var $el = $(value);
+            if($el.val() == id){
+                $el.attr('checked',true)
+                    .checkboxradio("refresh");
+            }else{
+                $el.attr('checked',false)
+                    .checkboxradio("refresh");
+            }
+        });
+
     }
 
     return {
-        pageInit: pageInit
+        pageInit: pageInit,
+        selectRadioById : selectRadioById
     }
 
 })();

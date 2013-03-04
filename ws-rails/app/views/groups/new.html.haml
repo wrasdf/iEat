@@ -1,20 +1,24 @@
 #create-group{"data-role" => "page"}
   %div{"data-role" => "header"}
-    %a.ui-btn-left{"data-icon" => "arrow-l", "data-theme" => "c", :href => "#group-list"} Back
-    %h1 Create My Group
+    %a.ui-btn-left{"data-icon" => "arrow-l", "data-theme" => "c", :href => "#group-list"} 返回
+    %h1 创建饭团
   %div{"data-role" => "content"}
-    %h2 Group Name:
+    %h2 饭团名 :
     %input{:type => "text"}
     %fieldset{"data-role" => "controlgroup"}
-      %legend Restaurant List:
+      %legend 饭馆们 :
       %input#radio-choice-v-2a{:checked => "checked", :name => "radio-choice-v-2", :type => "radio", :value => "1"}/
       %label{:for => "radio-choice-v-2a"} 九头鹰
       %input#radio-choice-v-2b{:name => "radio-choice-v-2", :type => "radio", :value => "2"}/
       %label{:for => "radio-choice-v-2b"} 来福士
       %input#radio-choice-v-2c{:name => "radio-choice-v-2", :type => "radio", :value => "3"}/
       %label{:for => "radio-choice-v-2c"} 桂林米粉
-    %h2
-      Cut-Off Date :
-      %span#show-Time
-    #timePicker
+
+    %a.more-restaurants{"data-role" => "button", :href => "javascript:void(0);"} 选择其他馆子
+
+    %h2 截止日期 :
+    %ul.listview{"data-role" => "listview", "data-inset"=>"true"}
+      %li
+        %span#show-Time
+    %div#timePicker
     %a.create-group-btn{"data-role" => "button", :href => "javascript:void(0);"} 我去点餐咯
