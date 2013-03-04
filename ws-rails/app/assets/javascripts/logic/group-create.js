@@ -20,18 +20,20 @@ var iEatCreate = (function () {
 
         setValue($('#timePicker').mobiscroll("getValue"));
 
-        $(document).undelegate("#user-order-dishes", "pageshow").delegate("#user-order-dishes", "pageshow", function (e) {
+        $(document).undelegate("#group-show", "pageshow").delegate("#group-show", "pageshow", function (e) {
             e.preventDefault();
-            iEatGroupDetails.pageInit(function(){
+            iEatGroupShow.pageInit(function(){
                 iEatUtility.msg({
                     type : "success",
                     msg : "Your Group is success created."
                 });
-                $(document).undelegate("#user-order-dishes", "pageshow").delegate("#user-order-dishes", "pageshow", function (event) {
+                $(document).undelegate("#group-show", "pageshow").delegate("#group-show", "pageshow", function (event) {
                     event.preventDefault();
-                    iEatGroupDetails.pageInit();
+                    iEatGroupShow.pageInit();
+                    iEatGroupShow.activeFooterItemByIndex(0);
                 });
             });
+            iEatGroupShow.activeFooterItemByIndex(0);
         });
 
         $(document).undelegate("#group-list", "pageshow").delegate("#group-list", "pageshow", function (e) {
@@ -42,7 +44,7 @@ var iEatCreate = (function () {
 
         $(".create-group-btn").bind("click",function(){
             GROUPID = $('input[name=radio-choice-v-2]:checked').val();
-            $.mobile.changePage("/groups/"+GROUPID+"/orders/new");
+            $.mobile.changePage("/groups/"+GROUPID);
 
         });
 
