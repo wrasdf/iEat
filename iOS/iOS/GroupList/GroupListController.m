@@ -10,10 +10,9 @@
 #import "User.h"
 #import "GroupSummaryViewCell.h"
 #import "GroupDataService.h"
-#import "JSONKit.h"
 #import "GroupAddViewController.h"
-#import "PayBillLocalNotification.h"
 #import "GroupDetailsViewController.h"
+#import "RestaurantDishesViewController.h"
 
 @implementation GroupListController {
     LoginTableViewController *logInViewController;
@@ -34,6 +33,7 @@
         logInViewController = [[LoginTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
         [[self tableView] setRowHeight:56];
         [self setTitle:@"饭团列表"];
+
     }
     return self;
 }
@@ -139,9 +139,14 @@
     } else if (indexPath.section == SectionAvailableGroup){
 //        message = [self.otherItems objectAtIndex:(NSUInteger) indexPath.row];
     }
+
+    UITabBarController* groupsTabController = [[UITabBarController alloc]init];
+    RestaurantDishesViewController *restaurantDishesViewController = [[RestaurantDishesViewController alloc] initWithStyle:UITableViewStyleGrouped];
     groupDetailsViewController = [[GroupDetailsViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    groupsTabController.viewControllers = @[restaurantDishesViewController, groupDetailsViewController];
     [groupDetailsViewController setTitle:@"义和团"];
-    [[self navigationController] pushViewController:groupDetailsViewController animated:YES];
+    [restaurantDishesViewController setTitle:@"咱家饺子"];
+    [[self navigationController] pushViewController:groupsTabController animated:YES];
 }
 
 - (void)configureCell:(GroupSummaryViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {

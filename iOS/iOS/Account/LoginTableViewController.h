@@ -11,7 +11,7 @@
 @interface LoginTableViewController : UITableViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate>
 
 @property (strong, nonatomic) IBOutlet UIView *loginFooterView;
-@property (weak, nonatomic) IBOutlet UIButton *login;
-@property (weak, nonatomic) IBOutlet UIButton *signup;
+@property (strong, nonatomic) IBOutlet UIButton *login;
+@property (strong, nonatomic) IBOutlet UIButton *signup;
 
 @end

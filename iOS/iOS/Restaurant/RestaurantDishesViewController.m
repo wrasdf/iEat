@@ -1,34 +1,26 @@
 //
-//  GroupDetailsViewController.m
+//  RestaurantDishesViewController.m
 //  iOS
 //
 //  Created by 颛 清山 on 03/02/13.
 //  Copyright (c) 2013 __MyCompanyName__. All rights reserved.
 //
 
-#import "GroupDetailsViewController.h"
-#import "LLRoundSwitch.h"
+#import "RestaurantDishesViewController.h"
 
-@interface GroupDetailsViewController ()
+@interface RestaurantDishesViewController ()
 {
-    enum {
-        SectionDesc = 0,
-        SectionStatus,
-        SectionCount
-    };
-    NSArray *sections;
-    NSArray *restDesc;
+    NSArray *dishTypes;
 }
 @end
 
-@implementation GroupDetailsViewController
+@implementation RestaurantDishesViewController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     if (self) {
-        sections = @[@"餐馆简介", @"饭团信息", @"王锐", @"明心"];
-        restDesc = @[@"饭店名称", @"订餐电话", @"外卖时间", @"起送金额"];
+        dishTypes = @[@"招牌菜", @"凉菜类", @"热菜类", @"水饺", @"饮料"];
     }
     return self;
 }
@@ -47,96 +39,41 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == SectionDesc){
-        return 30.0;
-    }
-    else return 60;
-    return [super tableView:tableView heightForRowAtIndexPath:indexPath];
-}
+#pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [sections count];
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    if (section == SectionDesc)
-        return [restDesc count];
-    if (section == SectionStatus)
-        return 0;
-    return 1;
+    return [dishTypes count];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-//    if(section > SectionStatus) return nil;
-    return [sections objectAtIndex:section];
+    return [dishTypes objectAtIndex:section];
+}
+
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 2;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
+    if (cell == nil){
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
-
     [self configCell:cell atIndexPath:indexPath];
     
     return cell;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    if (section>SectionStatus)
-    {
-        return 40;
-    }
-    return 30;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    return 1;
-}
-
 - (void)configCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)path {
-   if (path.section == SectionDesc)
-   {
-       cell.textLabel.text = [restDesc objectAtIndex:path.row];
-       [cell.textLabel setTextColor:[UIColor grayColor]];
-       [cell.textLabel setFont:[UIFont systemFontOfSize:12.0]];
-   }
-   else if (path.section>SectionDesc){
-       if (path.row== 0){
-           LLRoundSwitch *roundSwitch = [[LLRoundSwitch alloc] initWithFrame:CGRectMake(0, 0, 50, 20)];
-           [roundSwitch setOffText:@"详细"];
-           [roundSwitch setOnText:@"详细"];
-           [roundSwitch addTarget:self action:@selector(hintSwitchChanged:) forControlEvents:UIControlEventValueChanged];
-           cell.accessoryView = roundSwitch;
-           cell.textLabel.text = @"王锐 12￥";
-           cell.detailTextLabel.text = @"牛肉香菜 2两";
-           cell.detailTextLabel.numberOfLines=0;
-           [cell.detailTextLabel setAutoresizesSubviews:YES];
-           [cell setIndentationLevel:0];
-       }
-   }
-}
-
-- (void)hintSwitchChanged:(LLRoundSwitch *)sender  {
-//    NSArray *indexes = [NSArray arrayWithObjects:
-//            [NSIndexPath indexPathForRow:1 inSection:3],
-//            [NSIndexPath indexPathForRow:2 inSection:3],
-//            nil];
-//    if (sender.on)
-//    {
-//        [self.tableView insertRowsAtIndexPaths:indexes withRowAnimation:UITableViewRowAnimationAutomatic];
-//    }
-//    else
-//    {
-//        [self.tableView deleteRowsAtIndexPaths:indexes withRowAnimation:UITableViewRowAnimationAutomatic];
-//    }
+    
+    cell.textLabel.text = @"得莫利炖鱼  36￥";
 }
 
 /*
