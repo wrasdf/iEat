@@ -13,6 +13,7 @@
 #import "GroupAddViewController.h"
 #import "GroupDetailsViewController.h"
 #import "RestaurantDishesViewController.h"
+#import "GroupSummaryViewController.h"
 
 @implementation GroupListController {
     LoginTableViewController *logInViewController;
@@ -143,9 +144,12 @@
     UITabBarController* groupsTabController = [[UITabBarController alloc]init];
     RestaurantDishesViewController *restaurantDishesViewController = [[RestaurantDishesViewController alloc] initWithStyle:UITableViewStyleGrouped];
     groupDetailsViewController = [[GroupDetailsViewController alloc] initWithStyle:UITableViewStyleGrouped];
-    groupsTabController.viewControllers = @[restaurantDishesViewController, groupDetailsViewController];
+
+    GroupSummaryViewController *groupSummaryViewController = [[GroupSummaryViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    groupsTabController.viewControllers = @[groupDetailsViewController, groupSummaryViewController, restaurantDishesViewController];
     [groupDetailsViewController setTitle:@"义和团"];
-    [restaurantDishesViewController setTitle:@"咱家饺子"];
+    [restaurantDishesViewController setTitle:@"订餐"];
+    [groupSummaryViewController setTitle:@"统计信息"];
     [[self navigationController] pushViewController:groupsTabController animated:YES];
 }
 

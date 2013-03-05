@@ -8,6 +8,6 @@
 
 
 
-@interface RestaurantDishesViewController : UITableViewController
+@interface RestaurantDishesViewController : UITableViewController<UISearchBarDelegate>
 
 @end

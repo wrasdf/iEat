@@ -1,26 +1,24 @@
 //
-//  RestaurantDishesViewController.m
+//  GroupSummaryViewController.m
 //  iOS
 //
-//  Created by 颛 清山 on 03/02/13.
+//  Created by 颛 清山 on 03/05/13.
 //  Copyright (c) 2013 __MyCompanyName__. All rights reserved.
 //
 
-#import "RestaurantDishesViewController.h"
+#import "GroupSummaryViewController.h"
 
-@interface RestaurantDishesViewController ()
-{
-    NSArray *dishTypes;
-}
+@interface GroupSummaryViewController ()
+
 @end
 
-@implementation RestaurantDishesViewController
+@implementation GroupSummaryViewController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     if (self) {
-        dishTypes = @[@"招牌菜", @"凉菜类", @"热菜类", @"水饺", @"饮料"];
+        // Custom initialization
     }
     return self;
 }
@@ -34,17 +32,6 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    UIView *header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 64)];
-
-    UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectZero];
-    [searchBar setAutocapitalizationType:UITextAutocapitalizationTypeNone];
-    [searchBar setAutocorrectionType:UITextAutocorrectionTypeNo];
-    [searchBar setShowsCancelButton:YES animated:YES];
-    [searchBar setPlaceholder:@"输入要查询的餐馆名字"];
-    [searchBar sizeToFit];
-    [header addSubview:searchBar];
-    [[self tableView] setTableHeaderView:header];
-
 }
 
 - (void)didReceiveMemoryWarning
@@ -57,34 +44,26 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [dishTypes count];
+#warning Potentially incomplete method implementation.
+    // Return the number of sections.
+    return 0;
 }
-
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    return [dishTypes objectAtIndex:section];
-}
-
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 2;
+#warning Incomplete method implementation.
+    // Return the number of rows in the section.
+    return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil){
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
-    }
-    [self configCell:cell atIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    
+    // Configure the cell...
     
     return cell;
-}
-
-- (void)configCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)path {
-    
-    cell.textLabel.text = @"得莫利炖鱼  36￥";
 }
 
 /*
@@ -137,10 +116,6 @@
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
-}
-
-- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
-
 }
 
 @end
