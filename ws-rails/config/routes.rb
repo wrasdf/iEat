@@ -21,11 +21,13 @@ WsRails::Application.routes.draw do
       devise_for :users
       get 'restaurants' => 'restaurants#list'
       get 'groups/active' => 'groups#active'
+      get 'groups/mine' => 'groups#mine'
       post 'groups/create' => 'groups#create'
 
       resources :groups do
         resources :orders
       end
+
     end
   end
 

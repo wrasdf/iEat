@@ -1,13 +1,17 @@
+:plain
 {
     "myGroups": [
-        {
-            "name" : "辣团",
-            "owner": "王锐",
-            "id" : "4",
-            "restaurant" : {
-                "name": "九头鹰"
+        - @myGroups.each do |group|
+            :plain
+            {
+                :plain
+                "name": "#{group.name}",
+                "owner": "#{group.owner}",
+                "id": "#{group.id}",
+                "restaurant" : {
+                    "name" : "#{group.restaurant.name}"
+                }
             }
-        }
     ],
     "groupList": [
         {
