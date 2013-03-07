@@ -24,10 +24,7 @@ WsRails::Application.routes.draw do
       get 'groups/mine' => 'groups#mine'
       post 'groups/create' => 'groups#create'
 
-      resources :groups do
-        resources :orders
-      end
-
+      post 'groups/:id/orders/create' => 'orders#create'
     end
   end
 
