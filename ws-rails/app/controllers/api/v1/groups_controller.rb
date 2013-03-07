@@ -10,7 +10,7 @@ class Api::V1::GroupsController < Api::V1::BaseController
   def active
     @active_groups = Group.where('due_date >= ?', Time.now)
 
-    render :file => 'groups/active'
+    render :file => 'rabl/active_groups'
   end
 
   def create
