@@ -8,7 +8,9 @@ class Api::V1::GroupsController < Api::V1::BaseController
   end
 
   def active
-    respond_with(Group.where('due_date >= ?', Time.now))
+    @active_groups = Group.where('due_date >= ?', Time.now)
+
+    render :file => 'groups/active'
   end
 
   def create
