@@ -9,9 +9,6 @@ WsRails::Application.routes.draw do
     resources :orders
   end
 
-  get 'groupOrders' => 'api#group_orders'
-  get 'activeGroups' => 'api#active_groups'
-
   namespace :api do
     namespace :v1 do
       devise_for :users
