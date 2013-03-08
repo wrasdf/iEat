@@ -18,22 +18,22 @@ var iEatGroupDetails = (function () {
             currentInput.val(v);
         });
 
-        $(document).undelegate("#group-show", "pageshow").delegate("#group-show", "pageshow", function (e) {
-            e.preventDefault();
-            iEatGroupShow.pageInit(function(){
-                iEatUtility.msg({
-                    type : "success",
-                    msg : "Order successful."
-                });
-                iEatGroupShow.activeFooterItemByIndex(2);
-                // remove js cache for msg
-                $(document).undelegate("#group-show", "pageshow").delegate("#group-show", "pageshow", function (event) {
-                    event.preventDefault();
-                    iEatGroupShow.pageInit();
-                    iEatGroupShow.activeFooterItemByIndex(0);
-                });
-            });
-        });
+//        $(document).undelegate("#group-show", "pageshow").delegate("#group-show", "pageshow", function (e) {
+//            e.preventDefault();
+//            iEatGroupShow.pageInit(function(){
+//                iEatUtility.msg({
+//                    type : "success",
+//                    msg : "Order successful."
+//                });
+//                iEatGroupShow.activeFooterItemByIndex(2);
+//                // remove js cache for msg
+//                $(document).undelegate("#group-show", "pageshow").delegate("#group-show", "pageshow", function (event) {
+//                    event.preventDefault();
+//                    iEatGroupShow.pageInit();
+//                    iEatGroupShow.activeFooterItemByIndex(0);
+//                });
+//            });
+//        });
 
         $("#user-order-dishes .ui-btn-left").bind("click",function(){
             window.location.href = "/groups/"+currentGroupId;
@@ -41,8 +41,19 @@ var iEatGroupDetails = (function () {
 
         $("#user-order-dishes .confirm-foods").bind("click",function(){
 
-
-
+            $.ajax({
+                type : "get",
+                url : "/api/v1/groups/active?token="+token,
+                dataType:'json',
+                success : function(data){
+                    if(callback){
+                        callback(data);
+                    }
+                },
+                error : function(){
+                    alert("API : /api/v1/groups/active is ERROR!");
+                }
+            });
 //            $.post("/groups/"+groupId+"/orders/confirm",{"dishes":getMyOrderDishes()},function(o){
 //                if(!o){return}
 //                $.mobile.changePage("/success");

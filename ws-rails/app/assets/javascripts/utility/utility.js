@@ -14,39 +14,32 @@ var iEatUtility = (function(){
                 }
             },
             error : function(){
-                alert("API : groups#active is ERROR!");
+                alert("API : /api/v1/groups/active is ERROR!");
             }
         });
     }
 
-    function getAllRestaurants(callback){
-        $.get("/restaurants",function(o){
-            if(!o){
-                alert("restaurants API is ERROR!");
-                return false;
-            }
-            RESTAURANTS = o;
-            if(callback){
-                callback(RESTAURANTS);
-            }
-        }, "json");
-    }
+    function getAllRestaurants(token,callback){
 
-    function getRestaurantDetailsById(id){
-        var  result = [];
-        $.each(RESTAURANTS,function(index,value){
-            if(id == value["_id"]){
-                result = RESTAURANTS[index];
-                return false;
+        $.ajax({
+            type : "get",
+            url : "/api/v1/restaurants?token="+token,
+            dataType:'json',
+            success : function(data){
+                if(callback){
+                    callback(data);
+                }
+            },
+            error : function(){
+                alert("API : /api/v1/restaurants is ERROR!");
             }
         });
-        return result;
+
     }
 
     return {
         getTodayGroupList : getTodayGroupList,
-        getAllRestaurants : getAllRestaurants,
-        getRestaurantDetailsById : getRestaurantDetailsById
+        getAllRestaurants : getAllRestaurants
     }
 
 })();
