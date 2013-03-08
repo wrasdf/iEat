@@ -83,8 +83,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [[self tableView] cellForRowAtIndexPath:indexPath];
-    restaurant.name = cell.textLabel.text;
-    restaurant.id = @"1";
+    NSDictionary *selected = [restaurants objectAtIndex:indexPath.row];
+    restaurant.name = selected[@"name"];
+    restaurant.id = selected[@"id"];
 
     [self.navigationController popViewControllerAnimated:YES];
 }

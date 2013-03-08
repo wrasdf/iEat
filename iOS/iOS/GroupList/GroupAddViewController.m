@@ -11,6 +11,7 @@
 #import "Restaurant.h"
 #import "Group.h"
 #import "User.h"
+#import "GroupDataService.h"
 
 @interface GroupAddViewController ()
 {
@@ -48,6 +49,7 @@ enum {
         [datePickerController setTitle:@"截止日期"];
         [[datePickerController view] setBackgroundColor:[UIColor underPageBackgroundColor]];
         datePicker = [[UIDatePicker alloc] initWithFrame:datePickerController.view.bounds];
+        [datePicker setDatePickerMode:UIDatePickerModeTime];
         [datePicker addTarget:self action:@selector(selectDueDate:) forControlEvents:UIControlEventValueChanged];
         [datePickerController.view addSubview:datePicker];
 
@@ -74,7 +76,30 @@ enum {
 }
 
 - (void)add:(id)sender {
+    if (![group name]){
+        NSString *message = @"请给个团名先！";
+        [self showAlertView:message];
+        return;
+    }
+    if (![group.restaurant name]) {
+        NSString *message = @"请选个餐馆先！";
+        [self showAlertView:message];
+        return;
+    }
+
+    NSString * time = [group.dueDate componentsSeparatedByString:@" "][1];
+    [GroupDataService createGroupWithName:group.name restaurant:group.restaurant.id duedate:time];
     [[self navigationController] popViewControllerAnimated:YES];
+}
+
+- (void)showAlertView:(NSString *)message {
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:message delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];
+    [alertView show];
+    [self performSelector:@selector(close:) withObject:alertView afterDelay:1];
+}
+
+- (void)close:(UIAlertView*)sender {
+    [sender dismissWithClickedButtonIndex:0 animated:YES];
 }
 
 - (void)didReceiveMemoryWarning
@@ -106,7 +131,7 @@ enum {
         if (cell == nil) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:IngredientsCellIdentifier];
         }
-        else if (indexPath.section == SectionDueDate){
+        if (indexPath.section == SectionDueDate){
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             cell.textLabel.text = group.dueDate;
         }

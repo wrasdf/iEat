@@ -37,6 +37,7 @@
     User *user = [User CurrentUser];
     myGroups = [groups filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF.owner.name == %@", user.name]];
     otherGroups = [groups filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF.owner.name != %@", user.name]];
+    [self.tableView reloadData];
 }
 
 
