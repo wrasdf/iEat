@@ -23,7 +23,6 @@
 
 }
 enum {
-    SectionGroupOwner = 0,
     SectionGroupName,
     SectionRestName,
     SectionDueDate,
@@ -39,7 +38,7 @@ enum {
 {
     self = [super initWithStyle:style];
     if (self) {
-        sections = @[@"团长", @"团名", @"餐馆", @"截止日期"];
+        sections = @[@"饭团名", @"饭馆", @"截止日期"];
         groupNameCell = [[PlainEditTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"NameCell"];
         [groupNameCell.textField addTarget:self action:@selector(UpdateTitle:) forControlEvents:UIControlEventEditingChanged];
         formatter = [[NSDateFormatter alloc] init];
@@ -106,11 +105,6 @@ enum {
         cell = [tableView dequeueReusableCellWithIdentifier:IngredientsCellIdentifier];
         if (cell == nil) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:IngredientsCellIdentifier];
-        }
-        if (indexPath.section == SectionGroupOwner){
-            cell.textLabel.text = group.owner;
-            [cell.textLabel setTextColor:[UIColor darkGrayColor]];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
         else if (indexPath.section == SectionDueDate){
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;

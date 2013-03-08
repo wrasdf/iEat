@@ -8,10 +8,11 @@
 
 #import "RestaurantListViewController.h"
 #import "Restaurant.h"
+#import "RestaurantDataService.h"
 
 @interface RestaurantListViewController ()
 {
-
+  NSArray *restaurants;
 }
 @end
 
@@ -37,6 +38,16 @@
 
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self GetRestaurantList];
+}
+
+- (void)GetRestaurantList {
+    restaurants = [RestaurantDataService restaurantList];
+}
+
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -49,7 +60,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 100;
+    return [restaurants count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -58,8 +69,10 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
-        cell.textLabel.text = @"肯德基宅急送";
-        cell.detailTextLabel.text = @"电话：4008823823.\n 送餐可能需1~2小时，下单请谨慎！ / 送餐费 8元";
+        NSDictionary *restaurant = [restaurants objectAtIndex:indexPath.row];
+        cell.textLabel.text = restaurant[@"name"];
+        NSString *info = [NSString stringWithFormat:@"电话：%@.\n 地址：%@", restaurant[@"telephone"], restaurant[@"address"]];
+        cell.detailTextLabel.text = info;
         [cell.detailTextLabel setAdjustsFontSizeToFitWidth:NO];
         cell.detailTextLabel.numberOfLines=0;
     }

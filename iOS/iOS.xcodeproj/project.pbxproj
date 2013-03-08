@@ -35,6 +35,7 @@
 		6AC7075FDFA98EC171B4CFF7 /* GroupDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC70C85EBD548ADA58F5B7F /* GroupDetailsViewController.m */; };
 		6AC70763CDDCDE528E5A1F2D /* Restaurant.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC70CE4765AA9BD85D5E899 /* Restaurant.m */; };
 		6AC708CF7C209E157D378469 /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC702BA954C794B008339D0 /* Group.m */; };
+		6AC708DF5CBC27A0541857CD /* RestaurantDataService.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC70ED0DA26C87AF13DDDC5 /* RestaurantDataService.m */; };
 		6AC7092CA6D8607B53F050C7 /* GroupAddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC70C109EB3D3020808AFCC /* GroupAddViewController.m */; };
 		6AC70959AF382E769E7DBD17 /* Dish.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC703E61CD4B05A591202AF /* Dish.m */; };
 		6AC70A334B4B914D3118ACD8 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AC70C88117EE93387B966B3 /* CFNetwork.framework */; };
@@ -95,6 +96,7 @@
 		6AC703C305C0496FE63BC197 /* tasks */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tasks; sourceTree = "<group>"; };
 		6AC703E61CD4B05A591202AF /* Dish.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Dish.m; sourceTree = "<group>"; };
 		6AC70483062B172406805153 /* GroupDataService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupDataService.h; sourceTree = "<group>"; };
+		6AC704F183B186F3D2DAD0A1 /* RestaurantDataService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestaurantDataService.h; sourceTree = "<group>"; };
 		6AC705EAD3E94134E0BF5351 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		6AC7061F88DEADC3990B7D15 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		6AC7065CF9D8E5B8928EE6E9 /* pod_init.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = pod_init.sh; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 		6AC70C88117EE93387B966B3 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		6AC70CE4765AA9BD85D5E899 /* Restaurant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Restaurant.m; sourceTree = "<group>"; };
 		6AC70D9F54C93FC82EAEF176 /* Dish.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dish.h; sourceTree = "<group>"; };
+		6AC70ED0DA26C87AF13DDDC5 /* RestaurantDataService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestaurantDataService.m; sourceTree = "<group>"; };
 		6AC70ED81BB8B4AE38856FBC /* RestaurantDishesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestaurantDishesViewController.h; sourceTree = "<group>"; };
 		BA6710C06BB14FE089DBE799 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB7EE24B16D86C270000DFCE /* EditTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EditTableViewCell.h; path = "Table Cell/EditTableViewCell.h"; sourceTree = "<group>"; };
@@ -191,6 +194,8 @@
 				6AC703E61CD4B05A591202AF /* Dish.m */,
 				6AC70ED81BB8B4AE38856FBC /* RestaurantDishesViewController.h */,
 				6AC70A739E638B6D6ACF41D5 /* RestaurantDishesViewController.m */,
+				6AC704F183B186F3D2DAD0A1 /* RestaurantDataService.h */,
+				6AC70ED0DA26C87AF13DDDC5 /* RestaurantDataService.m */,
 			);
 			path = Restaurant;
 			sourceTree = "<group>";
@@ -497,6 +502,7 @@
 				6AC70674047965BE614BF689 /* PayBillLocalNotification.m in Sources */,
 				6AC7075FDFA98EC171B4CFF7 /* GroupDetailsViewController.m in Sources */,
 				6AC704DA0B512993476EADA0 /* RestaurantDishesViewController.m in Sources */,
+				6AC708DF5CBC27A0541857CD /* RestaurantDataService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
