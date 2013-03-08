@@ -11,14 +11,13 @@ $(document).bind("pageinit", function () {
             },
             success : function(o){
                 if(o.success){
-                    $.cookie('token', o.token);
-                    $.cookie('userName', o.name);
-                    $.cookie('userEmail', o.email);
+                    $.cookie('token', o.token,{ expires: 1, path: '/' });
+                    $.cookie('userName', o.name,{ expires: 1, path: '/' });
+                    $.cookie('userEmail', o.email,{ expires: 1, path: '/' });
                     window.location.href="/groups";
                 }
             },
             error : function (xhr) {
-                console.log(xhr)
                 iEatUtility.msg({
                     type:"error",
                     msg : $.parseJSON(xhr.responseText).message

@@ -1,4 +1,4 @@
-var currentGroupId = $.cookie("currentGroupId");
+
 var iEatGroupShow = (function(){
     function pageInit(f){
 
@@ -27,6 +27,7 @@ var iEatGroupShow = (function(){
         });
 
         $("#group-show .buy-foods").bind("click",function(){
+            var currentGroupId = $.cookie("currentGroupId");
             window.location.href = "/groups/"+currentGroupId+"/orders/new";
         });
 
@@ -66,12 +67,12 @@ var iEatGroupShow = (function(){
 })();
 
 $("#group-show").bind("pageshow",function(){
-    if(currentGroupId){
+//    if(currentGroupId){
 //        iEatUtility.msg({
 //            type : "success",
 //            msg : "Your Group is success created."
 //        });
-    }
+//    }
     iEatGroupShow.pageInit();
 
 });

@@ -1,6 +1,5 @@
 var token = $.cookie("token");
 var iEatGroupList = (function () {
-
     function reFreshGroupList() {
         iEatUtility.getTodayGroupList(token,function (data) {
             var data = refactorActiveData(data);
@@ -50,7 +49,7 @@ var iEatGroupList = (function () {
             }else{
                 availableGroups.push(item);
             }
-        })
+        });
 
         return {
             "myCreatedGroups" : myCreatedGroups,
@@ -66,7 +65,7 @@ var iEatGroupList = (function () {
 
         $("#group-list .group-item").bind("click", function () {
             var currentGroupId = $(this).data("id");
-            $.cookie("currentGroupId",currentGroupId);
+            $.cookie("currentGroupId",currentGroupId,{ expires: 1, path: '/' });
             window.location.href = "/groups/"+currentGroupId;
         });
 
