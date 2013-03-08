@@ -6,14 +6,11 @@
 
 
 #import "GroupListController.h"
-#import "LoginTableViewController.h"
 #import "User.h"
 #import "GroupSummaryViewCell.h"
 #import "GroupDataService.h"
 #import "GroupAddViewController.h"
 #import "GroupDetailsViewController.h"
-#import "RestaurantDishesViewController.h"
-#import "GroupSummaryViewController.h"
 
 @implementation GroupListController {
     NSArray *groups;
@@ -129,21 +126,25 @@
     NSString *message;
     GroupDetailsViewController * groupDetailsViewController;
     if (indexPath.section == SectionMyGroup){
-//        message = [self.myItems objectAtIndex:(NSUInteger) indexPath.row];
 
     } else if (indexPath.section == SectionAvailableGroup){
-//        message = [self.otherItems objectAtIndex:(NSUInteger) indexPath.row];
     }
 
     UITabBarController* groupsTabController = [[UITabBarController alloc]init];
-    RestaurantDishesViewController *restaurantDishesViewController = [[RestaurantDishesViewController alloc] initWithStyle:UITableViewStyleGrouped];
-    groupDetailsViewController = [[GroupDetailsViewController alloc] initWithStyle:UITableViewStyleGrouped];
 
-    GroupSummaryViewController *groupSummaryViewController = [[GroupSummaryViewController alloc] initWithStyle:UITableViewStyleGrouped];
-    groupsTabController.viewControllers = @[groupDetailsViewController, groupSummaryViewController, restaurantDishesViewController];
-    [groupDetailsViewController setTitle:@"义和团"];
-    [restaurantDishesViewController setTitle:@"订餐"];
-    [groupSummaryViewController setTitle:@"统计信息"];
+    groupDetailsViewController = [[GroupDetailsViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    [groupDetailsViewController setTitle:@"本团信息"];
+
+    UITableViewController *groupStatController = [[UITableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    [groupStatController setTitle:@"统计信息"];
+
+    UITableViewController *groupOwnersDishesController = [[UITableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    [groupOwnersDishesController setTitle:@"我的订餐"];
+
+    UITableViewController *groupMemberDishesController = [[UITableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    [groupMemberDishesController setTitle:@"团员信息"];
+
+    groupsTabController.viewControllers = @[groupDetailsViewController,groupStatController, groupOwnersDishesController, groupMemberDishesController];
     [[self navigationController] pushViewController:groupsTabController animated:YES];
 }
 
