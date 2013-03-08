@@ -1,5 +1,5 @@
+var currentGroupId = $.cookie("currentGroupId");
 var iEatGroupShow = (function(){
-
     function pageInit(f){
 
         if(f && typeof f == "function"){
@@ -27,20 +27,18 @@ var iEatGroupShow = (function(){
         });
 
         $("#group-show .buy-foods").bind("click",function(){
-
-            var groupId = $("#group-show").data("id");
-            $(document).undelegate("#user-order-dishes", "pageshow").delegate("#user-order-dishes", "pageshow", function (e) {
-                e.preventDefault();
-                iEatGroupDetails.pageInit();
-            });
-
-            $.mobile.changePage("/groups/"+groupId+"/orders/new");
+            window.location.href = "/groups/"+currentGroupId+"/orders/new";
         });
+
+        $("#group-show .ui-btn-left").bind("click",function(){
+            window.location.href = "/groups";
+        });
+
+
 
     }
 
     function activeFooterItemByIndex(n){
-
         window.setTimeout(function(){
             if(n==0){
                 $("#group-show .restaurant-info-btn").trigger("click");
@@ -57,8 +55,7 @@ var iEatGroupShow = (function(){
             if(n==3){
                 $("#group-show .members-orders-btn").trigger("click");
             }
-        },0);
-
+        },10);
     }
 
     return {
@@ -67,3 +64,18 @@ var iEatGroupShow = (function(){
     }
 
 })();
+
+$("#group-show").bind("pageshow",function(){
+    if(currentGroupId){
+//        iEatUtility.msg({
+//            type : "success",
+//            msg : "Your Group is success created."
+//        });
+    }
+    iEatGroupShow.pageInit();
+
+});
+
+$(window).bind("load",function(){
+    iEatGroupShow.activeFooterItemByIndex(0);
+});

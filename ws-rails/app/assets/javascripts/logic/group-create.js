@@ -1,10 +1,7 @@
 
 var iEatCreate = (function () {
 
-    function pageInit(f) {
-        if(f && typeof f == "function"){
-            f();
-        }
+    function uiPickerInit(){
         $('#timePicker').mobiscroll().time({
             theme: 'iOS',
             display: 'inline',
@@ -20,42 +17,60 @@ var iEatCreate = (function () {
 
         setValue($('#timePicker').mobiscroll("getValue"));
 
-        $(document).undelegate("#group-show", "pageshow").delegate("#group-show", "pageshow", function (e) {
-            e.preventDefault();
-            iEatGroupShow.pageInit(function(){
-                iEatUtility.msg({
-                    type : "success",
-                    msg : "Your Group is success created."
-                });
-                $(document).undelegate("#group-show", "pageshow").delegate("#group-show", "pageshow", function (event) {
-                    event.preventDefault();
-                    iEatGroupShow.pageInit();
-                    iEatGroupShow.activeFooterItemByIndex(0);
-                });
-            });
-            iEatGroupShow.activeFooterItemByIndex(0);
-        });
+    }
 
-        $(document).undelegate("#group-list", "pageshow").delegate("#group-list", "pageshow", function (e) {
-            e.preventDefault();
-            iEatGroupList.pageInit();
-        });
+    function convertUIPickerTime(){
+        var selectedValue = $('#timePicker').mobiscroll("getValue");
+        var hours = selectedValue[0];
+        var mins = selectedValue[1];
+        if(selectedValue[2] == 1){
+            hours = parseInt(hours)+12;
+        }else if(hours < 10){
+            hours = "0" + hours;
+        }
+        return hours+":"+mins;
+    }
 
-
+    function bindEvent(){
         $(".create-group-btn").bind("click",function(){
-            GROUPID = $('input[name=radio-choice-v-2]:checked').val();
-            $.mobile.changePage("/groups/"+GROUPID);
-
-        });
-
-        $(document).undelegate("#restaurants-list", "pageshow").delegate("#restaurants-list", "pageshow", function (e) {
-            e.preventDefault();
-            iEatRestaurant.pageInit();
+            var token = $.cookie("token");
+            $.ajax({
+                type : 'POST',
+                url : "/api/v1/groups/create",
+                data : {
+                    "restaurant_id" : $('input[name=radio-choice-v-2]:checked').val(),
+                    "name" : $("#group-name").val() || "",
+                    "due_date" : convertUIPickerTime(),
+                    "token" : token
+                },
+                success : function(o){
+                    if(o){
+                        var createdGroupId = o.id;
+                        $.cookie("currentGroupId", createdGroupId);
+                        window.location.href="/groups/"+ createdGroupId;
+                    }
+                },
+                error : function (xhr) {
+                    iEatUtility.msg({
+                        type:"error",
+                        msg : $.parseJSON(xhr.responseText).message
+                    });
+                }
+            });
         });
 
         $(".more-restaurants").bind("click",function(){
-            $.mobile.changePage("/restaurants/list");
+            window.location.href = "/restaurants/list";
         });
+
+    }
+
+    function pageInit(f) {
+        if(f && typeof f == "function"){
+            f();
+        }
+        uiPickerInit();
+        bindEvent();
 
     }
 
@@ -87,3 +102,7 @@ var iEatCreate = (function () {
     }
 
 })();
+
+$(document).bind("pageinit",function(){
+    iEatCreate.pageInit();
+});

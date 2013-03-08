@@ -1,3 +1,4 @@
+var currentGroupId = $.cookie("currentGroupId");
 var iEatGroupDetails = (function () {
 
     function bindFunction() {
@@ -34,9 +35,13 @@ var iEatGroupDetails = (function () {
             });
         });
 
+        $("#user-order-dishes .ui-btn-left").bind("click",function(){
+            window.location.href = "/groups/"+currentGroupId;
+        });
+
         $("#user-order-dishes .confirm-foods").bind("click",function(){
 
-            $.mobile.changePage("/groups/"+GROUPID);
+
 
 //            $.post("/groups/"+groupId+"/orders/confirm",{"dishes":getMyOrderDishes()},function(o){
 //                if(!o){return}
@@ -89,3 +94,8 @@ var iEatGroupDetails = (function () {
     }
 
 })();
+
+$(document).bind("pageshow",function(){
+    iEatGroupDetails.pageInit();
+
+});

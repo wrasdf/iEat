@@ -1,19 +1,32 @@
-#user-order-dishes{"data-role" => "page"}
-  %div{"data-role" => "header"}
-    %a.ui-btn-left{"data-icon" => "arrow-l", "data-theme" => "c", :href => "#group-list"} 返回
-    %h1= @group.restaurant.name
-  %div.details-content{"data-role" => "content"}
-    %div{"data-collapsed-icon" => "arrow-d", "data-content-theme" => "b", "data-expanded-icon" => "arrow-u", "data-role" => "collapsible", "data-theme" => "b"}
-    .edit-my-orders-content
-      %ul.listview.edit-restaurant-details{"data-inset" => "true","data-filter" => "true", "data-filter-placeholder" => "Search fruits...", "data-role" => "listview"}
-        - @dishes.each do |dish|
-          -#%li{"data-role" => "list-divider","data-theme" => "c"} 菜系
-          %li.cf{"data-dish-id" => dish.id}
-            %span.restaurant-content
-              %span.dish-name= "#{dish.name}"
-              %span.dish-price= "#{dish.price} $ "
-            .group-button-content{"data-role" => "controlgroup", "data-type" => "horizontal"}
-              %a.reduce{"data-icon" => "minus", "data-mini" => "true", "data-role" => "button", :href => ""}  
-              %a.add{"data-icon" => "plus", "data-mini" => "true", "data-role" => "button", :href => ""}  
-            %input.number-input{"data-mini" => "true", :type => "number", :value => "0"}
-      %a.confirm-foods{"data-role" => "button", :href => "#group-show"} 确认
+!!!
+%html
+  %head
+    %title My Page
+    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}
+    = stylesheet_link_tag "themes/default/common", :media => "all"
+    = stylesheet_link_tag "themes/default/jquery.mobile-1.3.0", :media => "all"
+    = stylesheet_link_tag "themes/default/app", :media => "all"
+  %body
+    #user-order-dishes{"data-role" => "page"}
+      %div{"data-role" => "header"}
+        %a.ui-btn-left{"data-icon" => "arrow-l", "data-theme" => "c", :href => "#group-list"} 返回
+        %h1= @group.restaurant.name
+      %div.details-content{"data-role" => "content"}
+        %div{"data-collapsed-icon" => "arrow-d", "data-content-theme" => "b", "data-expanded-icon" => "arrow-u", "data-role" => "collapsible", "data-theme" => "b"}
+        .edit-my-orders-content
+          %ul.listview.edit-restaurant-details{"data-inset" => "true","data-filter" => "true", "data-filter-placeholder" => "Search fruits...", "data-role" => "listview"}
+            - @dishes.each do |dish|
+              -#%li{"data-role" => "list-divider","data-theme" => "c"} 菜系
+              %li.cf{"data-dish-id" => dish.id}
+                %span.restaurant-content
+                  %span.dish-name= "#{dish.name}"
+                  %span.dish-price= "#{dish.price} $ "
+                .group-button-content{"data-role" => "controlgroup", "data-type" => "horizontal"}
+                  %a.reduce{"data-icon" => "minus", "data-mini" => "true", "data-role" => "button", :href => ""}  
+                  %a.add{"data-icon" => "plus", "data-mini" => "true", "data-role" => "button", :href => ""}  
+                %input.number-input{"data-mini" => "true", :type => "number", :value => "0"}
+          %a.confirm-foods{"data-role" => "button", :href => "#group-show"} 确认
+  = javascript_include_tag "jquery/jquery-1.9.1"
+  = javascript_include_tag "jquery/jquery.mobile-1.3.0"
+  = javascript_include_tag "jquery/jquery.cookie"
+  = javascript_include_tag "logic/order-create"

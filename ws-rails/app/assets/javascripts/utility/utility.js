@@ -1,19 +1,22 @@
+// global mobile setting
+$.mobile.defaultPageTransition = "slidefade";
 
 var iEatUtility = (function(){
 
-    function getTodayGroupList(callback){
-        $.get("/groups/today",function(o){
-            if(!o){
-                alert("todayGroupList API is ERROR!");
-                return false;
+    function getTodayGroupList(token,callback){
+        $.ajax({
+            type : "get",
+            url : "/api/v1/groups/active?token="+token,
+            dataType:'json',
+            success : function(data){
+                if(callback){
+                    callback(data);
+                }
+            },
+            error : function(){
+                alert("API : groups#active is ERROR!");
             }
-            TODAYGROUPLIST = o;
-
-            if(callback){
-                callback(TODAYGROUPLIST);
-            }
-            
-        }, "json");
+        });
     }
 
     function getAllRestaurants(callback){
@@ -54,7 +57,7 @@ $.extend(iEatUtility,(function(){
         $("<div class='ui-msg "+obj.type+"'>"+obj.msg+"</div>")
             .appendTo($.mobile.pageContainer)
             .css({
-                "top":"-"+parseInt($('.ui-msg').innerHeight())
+                "top":"-"+(parseInt($('.ui-msg').innerHeight()+1))
             })
             .animate({
                 "top" : "0"

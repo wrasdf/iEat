@@ -21,17 +21,18 @@ WsRails::Application.routes.draw do
       devise_for :users
       get 'restaurants' => 'restaurants#list'
       get 'groups/active' => 'groups#active'
-      get 'groups/mine' => 'groups#mine'
       post 'groups/create' => 'groups#create'
-
       post 'groups/:id/orders/create' => 'orders#create'
+
+      resources :groups
     end
   end
 
   authenticated :user do
-    root :to => 'home#index'
+    root :to => 'login#index'
   end
-  root :to => "home#index"
+
+  root :to => "login#index"
 
   devise_for :users
   resources :users

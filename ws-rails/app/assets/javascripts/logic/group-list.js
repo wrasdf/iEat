@@ -1,46 +1,73 @@
+var token = $.cookie("token");
 var iEatGroupList = (function () {
 
     function reFreshGroupList() {
-        iEatUtility.getTodayGroupList(function (data) {
+        iEatUtility.getTodayGroupList(token,function (data) {
+            var data = refactorActiveData(data);
             var str = '';
-            var myGroupsData = data.myGroups;
-            for (var i = 0, len = myGroupsData.length; i < len; i++) {
-                str += '<li><a href="javascript:void(0);" data-id="'+myGroupsData[i].id+'" data-role-type="owner"><span class="group-name">' + myGroupsData[i].name + '</span><span class="restaurant-name">' + myGroupsData[i]["restaurant"].name + '</span>Owner : ' + myGroupsData[i].owner + '</a></li>';
+            var myCreatedGroups = data.myCreatedGroups;
+            var myCreateGroupsLength = myCreatedGroups.length;
+
+            if(myCreateGroupsLength == 0){
+                str += '<li>你没有创建如何组</li>';
+            }else{
+                for (var i = 0; i < myCreateGroupsLength; i++) {
+                    str += createGroupItem(myCreatedGroups[i]);
+                }
             }
             $("#group-list .my-orders-ul").html(str).listview('refresh');
 
             var str = '';
-            var groupListData = data.groupList;
-            for (var i = 0, len = groupListData.length; i < len; i++) {
-                str += '<li><a href="javascript:void(0);" data-id="'+groupListData[i].id+'" data-role-type="member"><span class="group-name">' + groupListData[i].name + '</span><span class="restaurant-name">' + groupListData[i]["restaurant"].name + '</span>Owner : ' + groupListData[i].owner + '</a></li>';
-            }
+            var availableGroups = data.availableGroups;
+            var availableGroupsLength = availableGroups.length;
 
+            if(availableGroupsLength == 0){
+                str += '<li>现在暂时没有其他人创建的组</li>'
+            }else{
+                for (var i = 0; i < availableGroupsLength; i++) {
+                    str += createGroupItem(availableGroups[i]);
+                }
+            }
             $("#group-list .group-list-ul").html(str).listview('refresh');
-            groupListClick();
-        })
+
+            bindEvent();
+
+        });
+
+        function createGroupItem(itemData){
+            return  '<li><a class="group-item" href="javascript:void(0);" data-id="'+itemData.id+'" data-role-type=""><span class="group-name">' + itemData.name + '</span><span class="restaurant-name">' + itemData["restaurant"].name + '</span>Owner : ' + itemData.owner.name + '</a></li>';
+        }
+
     }
 
-    function groupListClick() {
+    function refactorActiveData(data){
+        var userName = $.cookie("userName");
+        var myCreatedGroups = [];
+        var availableGroups = [];
+        $.each(data["active_groups"],function(index,item){
+            if(item["owner"]["name"] == userName){
+                myCreatedGroups.push(item);
+            }else{
+                availableGroups.push(item);
+            }
+        })
 
-        $("#group-list .group-list-ul li a,#group-list .my-orders-ul li a").bind("click", function (e) {
-            GROUPID = $(this).data('id');
+        return {
+            "myCreatedGroups" : myCreatedGroups,
+            "availableGroups" : availableGroups
+        }
+    }
 
-            $(document).undelegate("#group-show", "pageshow").delegate("#group-show", "pageshow", function (e) {
-                e.preventDefault();
-                iEatGroupShow.pageInit();
-                iEatGroupShow.activeFooterItemByIndex(0);
-            });
-
-            $.mobile.changePage("/groups/"+GROUPID);
-        });
-
-        $(document).undelegate("#create-group", "pageshow").delegate("#create-group", "pageshow", function (e) {
-            e.preventDefault();
-            iEatCreate.pageInit();
-        });
+    function bindEvent() {
 
         $("#group-list .create-group").bind("click", function () {
-            $.mobile.changePage("/groups/new");
+            window.location.href = "/groups/new";
+        });
+
+        $("#group-list .group-item").bind("click", function () {
+            var currentGroupId = $(this).data("id");
+            $.cookie("currentGroupId",currentGroupId);
+            window.location.href = "/groups/"+currentGroupId;
         });
 
     }
@@ -57,3 +84,9 @@ var iEatGroupList = (function () {
     }
 
 })();
+
+$(document).bind("pageinit",function(){
+    iEatUtility.getAllRestaurants();
+    iEatGroupList.pageInit();
+});
+

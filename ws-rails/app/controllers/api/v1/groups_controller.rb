@@ -1,15 +1,8 @@
 class Api::V1::GroupsController < Api::V1::BaseController
   before_filter
 
-  def mine
-    @myGroups = Group.where('user_id = ?', current_user.id)
-
-    render :file => 'groups/list'
-  end
-
   def active
     @active_groups = Group.where('due_date >= ?', Time.now)
-
     render :file => 'rabl/active_groups'
   end
 
@@ -26,7 +19,6 @@ class Api::V1::GroupsController < Api::V1::BaseController
   def list
     @myGroups = Group.where('user_id = ?', current_user.id)
     @activeGroups = Group.where('due_date >= ? and user_id <> ?', Time.now, current_user.id)
-
     render :file => 'groups/list'
   end
 end
