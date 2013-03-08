@@ -1,8 +1,4 @@
 WsRails::Application.routes.draw do
-  get 'groups/today' => 'groups#today'
-  post 'group/:id/orders/confirm' => 'orders#confirm'
-  get 'restaurants/list' => 'restaurants#list'
-
   resources :orders
 
   resources :restaurants do
@@ -22,7 +18,7 @@ WsRails::Application.routes.draw do
       get 'restaurants' => 'restaurants#list'
       get 'groups/active' => 'groups#active'
       post 'groups/create' => 'groups#create'
-      post 'groups/:id/orders/create' => 'orders#create'
+      post 'groups/:group_id/orders/create' => 'orders#create'
 
       resources :groups
     end
