@@ -13,6 +13,7 @@
 #import "ASIFormDataRequest.h"
 #import "MBProgressHUD.h"
 #import "JSONKit.h"
+#import "GroupListController.h"
 
 @interface LoginTableViewController ()
 
@@ -20,6 +21,7 @@
 
 @implementation LoginTableViewController
 {
+    GroupListController *groupListController;
 }
 @synthesize loginFooterView;
 
@@ -33,6 +35,23 @@ enum {
     CellCount
 
 };
+
+- (id)initWithStyle:(UITableViewStyle)style {
+    self = [super initWithStyle:style];
+    if (self) {
+        groupListController = [[GroupListController alloc] initWithStyle:UITableViewStyleGrouped];
+    }
+
+    return self;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    User *currentUser = [User CurrentUser];
+    if (currentUser){
+        [(UINavigationController *) [self parentViewController] pushViewController:groupListController animated:YES];
+    }
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -131,7 +150,8 @@ enum {
     } else if (request.responseStatusCode == 200) {
         NSDictionary * response = [request.responseData objectFromJSONData];
         [User SetCurrentUserName:response[@"name"] email:response[@"email"] token:response[@"token"]];
-        [self dismissViewControllerAnimated:YES completion:NULL];
+        [(UINavigationController *) [self parentViewController] pushViewController:groupListController animated:YES];
+
     } else {
         NSLog(@"Unexpected error");
     }

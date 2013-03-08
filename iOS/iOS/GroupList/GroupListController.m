@@ -16,8 +16,7 @@
 #import "GroupSummaryViewController.h"
 
 @implementation GroupListController {
-    LoginTableViewController *logInViewController;
-    NSDictionary *groups;
+    NSArray *groups;
     NSArray *myGroups;
     NSArray *otherGroups;
     enum{
@@ -31,17 +30,15 @@
 - (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
     if (self) {
-        logInViewController = [[LoginTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
         [[self tableView] setRowHeight:56];
         [self setTitle:@"饭团列表"];
-
     }
     return self;
 }
 - (void)GetGroupList {
-    groups = [GroupDataService groupListOfToday];
-    myGroups = groups;//[groups objectForKey:@"myGroups"];
-    otherGroups = groups;//[groups objectForKey:@"groupList"];
+    groups = [GroupDataService groupListOfToday][@"active_groups"];
+    myGroups = groups;
+    otherGroups = groups;
 }
 
 
@@ -61,7 +58,7 @@
 
 - (void)Logout:(id)Logout {
     [User SetCurrentUserName:nil email: nil token:nil];
-    [self presentViewController:logInViewController animated:YES completion:NULL];
+    [(UINavigationController *) [self parentViewController] popViewControllerAnimated:YES];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -71,10 +68,6 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-
-    if (![User CurrentUser]) {
-        [self presentViewController:logInViewController animated:YES completion:NULL];
-    }
 }
 
 - (void)viewDidLoad {
@@ -156,7 +149,7 @@
 - (void)configureCell:(GroupSummaryViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
 
     [cell.imageView setImage:[UIImage imageNamed:@"fork.png"] ];
-    id group;
+    NSDictionary * group;
     if (indexPath.section == SectionMyGroup){
         group = myGroups[indexPath.row];
 
@@ -164,16 +157,10 @@
         group = otherGroups[indexPath.row];
     }
 
-//    cell.restaurantNameLabel.text = [@"餐馆id --" stringByAppendingString:group[@"restanrant_id"]];
-//    cell.groupNameLabel.text = group[@"name"];
-//    cell.dueDateLabel.text = [@"截止日期: " stringByAppendingString: group[@"due_date"]];
-//    cell.ownerLabel.text = group[@"user_id"];
-
-    cell.restaurantNameLabel.text = @"咱家饺子(restanrant_id)";
-    cell.groupNameLabel.text = @"义和团";
-    cell.dueDateLabel.text = @"截止日期: 2013-02-34 11:00";
-    cell.ownerLabel.text = @"user_id: 1";
-
+    cell.restaurantNameLabel.text = group[@"restaurant"][@"name"];
+    cell.groupNameLabel.text = group[@"name"];
+    cell.dueDateLabel.text = [@"截止日期: " stringByAppendingString: group[@"due_date"]];
+    cell.ownerLabel.text = group[@"owner"][@"name"];
 }
 
 @end

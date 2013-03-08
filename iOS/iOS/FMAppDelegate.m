@@ -9,6 +9,7 @@
 #import "FMAppDelegate.h"
 #import "GroupListController.h"
 #import "PayBillLocalNotification.h"
+#import "LoginTableViewController.h"
 
 @implementation FMAppDelegate
 
@@ -16,8 +17,9 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
-    UINavigationController *iEatAppNavigationController = [[UINavigationController alloc] initWithRootViewController:[[GroupListController alloc] initWithStyle:UITableViewStylePlain]];
-
+    LoginTableViewController *loginTableViewController = [[LoginTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    [loginTableViewController setTitle:@"IEat"];
+    UINavigationController *iEatAppNavigationController = [[UINavigationController alloc] initWithRootViewController:loginTableViewController];
     // Override point for customization after application launch.
     self.window.rootViewController = iEatAppNavigationController;
     self.window.backgroundColor = [UIColor whiteColor];

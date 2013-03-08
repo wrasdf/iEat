@@ -14,4 +14,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *login;
 @property (strong, nonatomic) IBOutlet UIButton *signup;
 
+- (void)sendLoginRequestWithUserName:(NSString *)username password:(NSString *)password;
+
+
 @end
