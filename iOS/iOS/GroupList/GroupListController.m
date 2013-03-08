@@ -37,8 +37,9 @@
 }
 - (void)GetGroupList {
     groups = [GroupDataService groupListOfToday][@"active_groups"];
-    myGroups = groups;
-    otherGroups = groups;
+    User *user = [User CurrentUser];
+    myGroups = [groups filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF.owner.name == %@", user.name]];
+    otherGroups = [groups filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF.owner.name != %@", user.name]];
 }
 
 
