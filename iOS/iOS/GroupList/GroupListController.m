@@ -147,7 +147,6 @@
 - (void)configureCell:(GroupSummaryViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
 
     UIImage *image = [UIImage imageNamed:@"coffee.png" ];
-    [image drawAsPatternInRect:CGRectMake(0, 0, 20, 20)];
     [cell.imageView setImage:image];
     NSDictionary * group;
     if (indexPath.section == SectionMyGroup){

@@ -9,7 +9,9 @@
 #import "GroupStatsController.h"
 
 @interface GroupStatsController ()
-
+{
+    NSArray *dishes;
+}
 @end
 
 @implementation GroupStatsController
@@ -20,6 +22,8 @@
     if (self) {
         UITabBarItem *tabBarItem = [[UITabBarItem alloc] initWithTitle:@"@统计信息" image:[UIImage imageNamed:@"bar-chart.png"] tag:2];
         [self setTabBarItem:tabBarItem];
+
+        dishes = @[@"小炒肉 12￥", @"小笼包 30￥"];
     }
     return self;
 }
@@ -33,32 +37,33 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
-
-#pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+    return [dishes count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    // Configure the cell...
-    
+    if (cell == nil){
+        cell  = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
+
+    cell.textLabel.text = [dishes objectAtIndex:indexPath.row];
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [button setTitle:@"3" forState:UIControlStateNormal];
+    [button setFrame:CGRectMake(0, 10, 30, 30)];
+    [cell setAccessoryView:button];
+
     return cell;
 }
 
