@@ -130,8 +130,6 @@ var iEatGroupShow = (function () {
         }
     }
 
-
-
     function updateMyStatus(orders) {
         var str = "";
         var myOrders = refactorOrders(orders).myOrders;
@@ -187,7 +185,6 @@ var iEatGroupShow = (function () {
         $(".all-status .order-status").html(str).listview("refresh");
     }
 
-
     function activeFooterItemByIndex(n) {
         window.setTimeout(function () {
             if (n == 0) {
@@ -235,16 +232,28 @@ var iEatGroupShow = (function () {
 })();
 
 $("#group-show").bind("pageinit", function () {
-//    if(currentGroupId){
-//        iEatUtility.msg({
-//            type : "success",
-//            msg : "Your Group is success created."
-//        });
-//    }
-    iEatGroupShow.pageInit();
+    if($.cookie("orderCreateStatus") == "success"){
+        iEatUtility.msg({
+            type : "success",
+            msg : "Your order is success created."
+        });
+        $.cookie("orderCreateStatus","null");
+    }
 
+    if($.cookie("groupCreateStatus") == "success"){
+        iEatUtility.msg({
+            type : "success",
+            msg : "Your Group is success created."
+        });
+        $.cookie("groupCreateStatus","null");
+    }
+    iEatGroupShow.pageInit();
 });
 
 $(window).bind("load", function () {
-    iEatGroupShow.activeFooterItemByIndex(0);
+    var triggerIndex = location.hash.replace("#","");
+    if(!triggerIndex){
+        triggerIndex = 0;
+    }
+    iEatGroupShow.activeFooterItemByIndex(triggerIndex);
 });

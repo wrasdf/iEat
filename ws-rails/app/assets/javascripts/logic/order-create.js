@@ -44,7 +44,8 @@ var iEatGroupDetails = (function () {
                     dishes : JSON.stringify(getMyOrderDishes())
                 },
                 success : function(){
-                    window.location.href = "/groups/"+currentGroupId;
+                    $.cookie("orderCreateStatus","success",{ expires: 1, path: '/' });
+                    window.location.href = "/groups/"+currentGroupId+"#2";
                 },
                 error : function(){
                     alert("API : /api/v1/groups/active is ERROR!");

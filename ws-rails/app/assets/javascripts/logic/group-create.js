@@ -47,6 +47,7 @@ var iEatCreate = (function () {
                     if(o){
                         var createdGroupId = o.id;
                         $.cookie("currentGroupId", createdGroupId,{ expires: 1, path: '/' });
+                        $.cookie("groupCreateStatus","success",{ expires: 1, path: '/' });
                         window.location.href="/groups/"+ createdGroupId;
                     }
                 },
