@@ -10,9 +10,9 @@ var iEatGroupShow = (function(){
             f();
         }
 
-        getGroupDetails(function(data){
-            updateGroupName(data.group.name);
-            updateRestaurantDetails(data.group.restaurant);
+        getGroupDetails(function(group){
+            updateGroupName(group.name);
+            updateRestaurantDetails(group.restaurant);
         });
 
         $("#group-show .restaurant-info-btn").bind("click",function(){
