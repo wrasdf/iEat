@@ -6,8 +6,10 @@ var iEatRestaurant = (function(){
             window.location.href = "/groups/new";
         });
 
-        $(".restaurant-list-content li a").unbind("click").bind("click",function(e){
-//            $.mobile.changePage("/groups/new");
+        $(".restaurant-list-content li a").unbind("click").bind("click",function(){
+            console.log($(this).data("id"));
+            $.cookie("selectedRestaurantId",$(this).data("id"),{ expires: 1, path: '/' });
+            window.location.href = "/groups/new";
         });
 
     }

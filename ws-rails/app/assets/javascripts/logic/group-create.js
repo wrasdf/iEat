@@ -1,7 +1,6 @@
-
 var iEatCreate = (function () {
 
-    function uiPickerInit(){
+    function uiPickerInit() {
         $('#timePicker').mobiscroll().time({
             theme: 'iOS',
             display: 'inline',
@@ -19,59 +18,59 @@ var iEatCreate = (function () {
 
     }
 
-    function convertUIPickerTime(){
+    function convertUIPickerTime() {
         var selectedValue = $('#timePicker').mobiscroll("getValue");
         var hours = selectedValue[0];
         var mins = selectedValue[1];
-        if(selectedValue[2] == 1){
-            hours = parseInt(hours)+12;
-        }else if(hours < 10){
+        if (selectedValue[2] == 1) {
+            hours = parseInt(hours) + 12;
+        } else if (hours < 10) {
             hours = "0" + hours;
         }
-        return hours+":"+mins;
+        return hours + ":" + mins;
     }
 
-    function bindEvent(){
-        $(".create-group-btn").bind("click",function(){
+    function bindEvent() {
+        $(".create-group-btn").bind("click", function () {
             var token = $.cookie("token");
             $.ajax({
-                type : 'POST',
-                url : "/api/v1/groups/create",
-                data : {
-                    "restaurant_id" : $('input[name=radio-choice-v-2]:checked').val(),
-                    "name" : $("#group-name").val() || "",
-                    "due_date" : convertUIPickerTime(),
-                    "token" : token
+                type: 'POST',
+                url: "/api/v1/groups/create",
+                data: {
+                    "restaurant_id": $('input[name=radio-choice-v-2]:checked').val(),
+                    "name": $("#group-name").val() || "",
+                    "due_date": convertUIPickerTime(),
+                    "token": token
                 },
-                success : function(o){
-                    if(o){
+                success: function (o) {
+                    if (o) {
                         var createdGroupId = o.id;
-                        $.cookie("currentGroupId", createdGroupId,{ expires: 1, path: '/' });
-                        $.cookie("groupCreateStatus","success",{ expires: 1, path: '/' });
-                        window.location.href="/groups/"+ createdGroupId;
+                        $.cookie("currentGroupId", createdGroupId, { expires: 1, path: '/' });
+                        $.cookie("groupCreateStatus", "success", { expires: 1, path: '/' });
+                        window.location.href = "/groups/" + createdGroupId;
                     }
                 },
-                error : function (xhr) {
+                error: function (xhr) {
                     iEatUtility.msg({
-                        type:"error",
-                        msg : $.parseJSON(xhr.responseText).message
+                        type: "error",
+                        msg: $.parseJSON(xhr.responseText).message
                     });
                 }
             });
         });
 
-        $(".ui-btn-left").bind("click",function(){
+        $(".ui-btn-left").bind("click", function () {
             window.location.href = "/groups";
         });
 
-        $(".more-restaurants").bind("click",function(){
+        $(".more-restaurants").bind("click", function () {
             window.location.href = "/restaurants";
         });
 
     }
 
     function pageInit(f) {
-        if(f && typeof f == "function"){
+        if (f && typeof f == "function") {
             f();
         }
         uiPickerInit();
@@ -79,35 +78,43 @@ var iEatCreate = (function () {
 
     }
 
-    function selectRadioByRestaurantId(id){
+    function selectRadioByRestaurantId(id) {
 
-        if(!id){
-            id = 0;
+        if (!id) {
+            id = 1;
         }
 
         var selectors = $("input[name=radio-choice-v-2]");
 
-        selectors.each(function(index,value){
+        selectors.each(function (index, value) {
             var $el = $(value);
 
-            if($el.val() == id){
-                $el.attr('checked','checked');
-            }else{
-                $el.attr('checked','');
+            if ($el.val() == id) {
+                $el.attr('checked', 'checked');
+            } else {
+                $el.attr('checked', '');
             }
 
         });
-        selectors.checkboxradio("refresh")
 
+        selectors.checkboxradio("refresh");
     }
 
     return {
         pageInit: pageInit,
-        selectRadioByRestaurantId : selectRadioByRestaurantId
+        selectRadioByRestaurantId: selectRadioByRestaurantId
     }
 
 })();
 
-$(document).bind("pageinit",function(){
+$(document).bind("pageinit", function () {
     iEatCreate.pageInit();
+});
+
+$(window).bind("load", function () {
+    var selectedRestaurantId = $.cookie("selectedRestaurantId");
+    if (!selectedRestaurantId) {
+        selectedRestaurantId = 1;
+    }
+    iEatCreate.selectRadioByRestaurantId(selectedRestaurantId);
 });
