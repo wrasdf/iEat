@@ -2,16 +2,12 @@ var iEatRestaurant = (function(){
 
     function pageInit(){
 
-        $(document).undelegate("#create-group", "pageshow").delegate("#create-group", "pageshow", function (e) {
-            e.preventDefault();
-            iEatCreate.pageInit();
-            console.log(SELECTGROUPID)
-            iEatCreate.selectRadioByRestaurantId(SELECTGROUPID);
+        $(".ui-btn-left").bind("click",function(){
+            window.location.href = "/groups/new";
         });
 
         $(".restaurant-list-content li a").unbind("click").bind("click",function(e){
-            SELECTGROUPID = $(this).data("id");
-            $.mobile.changePage("/groups/new");
+//            $.mobile.changePage("/groups/new");
         });
 
     }
@@ -21,3 +17,5 @@ var iEatRestaurant = (function(){
     }
 
 })();
+
+iEatRestaurant.pageInit();

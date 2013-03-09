@@ -86,19 +86,10 @@ class OrdersController < ApplicationController
     @group = Group.find(params[:id])
     @dishes = @group.restaurant.dishes
 
-    puts "-----------#{@group.to_json}"
-    puts "----------+++++-#{@dishes.to_json}"
-
     @order = Order.new(:group => @group, :user => current_user)
-    puts "-------@@@@@@@@@@@@@----#{@order.to_json}"
     @order.save!
 
     puts params[:dishes]
-
-    #params[:dishes].each do |dish|
-    #  order_dish = OrderDish.new(:order => @order, :dish => dish.name, :quantity => dish.count)
-    #  order_dish.save!
-    #end
 
   end
 

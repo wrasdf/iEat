@@ -60,8 +60,12 @@ var iEatCreate = (function () {
             });
         });
 
+        $(".ui-btn-left").bind("click",function(){
+            window.location.href = "/groups";
+        });
+
         $(".more-restaurants").bind("click",function(){
-            window.location.href = "/restaurants/list";
+            window.location.href = "/restaurants";
         });
 
     }

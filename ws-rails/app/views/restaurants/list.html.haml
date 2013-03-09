@@ -1,9 +1,24 @@
-#restaurants-list{"data-role" => "page"}
-  %div{"data-role" => "header"}
-    %a.ui-btn-left{"data-icon" => "arrow-l", "data-theme" => "c", :href => "/groups/new"} 返回
-    %h1 饭馆们
-  %div.details-content{"data-role" => "content"}
-    %ul.restaurant-list-content{"data-filter" => "true", "data-filter-placeholder" => "Search restaurant...", "data-inset" => "true", "data-role" => "listview"}
-      - @restaurant.each do |item|
-        %li{"data-icon"=>"check"}
-          %a{"data-id"=>"#{item.id}", :href => "javascript:void(0);"}= item.name
+!!!
+%html
+  %head
+    %title My Page
+    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}
+    = stylesheet_link_tag "themes/default/common", :media => "all"
+    = stylesheet_link_tag "themes/default/jquery.mobile-1.3.0", :media => "all"
+    = stylesheet_link_tag "themes/default/app", :media => "all"
+  %body
+    #restaurants-list{"data-role" => "page"}
+      %div{"data-role" => "header"}
+        %a.ui-btn-left{"data-icon" => "arrow-l", "data-theme" => "c", :href => "javascript:void(0);"} 返回
+        %h1 饭馆们
+      %div.details-content{"data-role" => "content"}
+        %ul.restaurant-list-content{"data-filter" => "true", "data-filter-placeholder" => "Search restaurant...", "data-inset" => "true", "data-role" => "listview"}
+          - @restaurant.each do |item|
+            %li{"data-icon"=>"check"}
+              %a{"data-id"=>"#{item.id}", :href => "javascript:void(0);"}= item.name
+
+  = javascript_include_tag "jquery/jquery-1.9.1"
+  = javascript_include_tag "jquery/jquery.cookie"
+  = javascript_include_tag "jquery/jquery.mobile-1.3.0"
+  = javascript_include_tag "utility/utility"
+  = javascript_include_tag "logic/restaurant-list"
