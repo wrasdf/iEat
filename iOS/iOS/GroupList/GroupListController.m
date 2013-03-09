@@ -126,7 +126,6 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSString *message;
     GroupDetailsViewController * groupDetailsViewController;
     if (indexPath.section == SectionMyGroup){
 
@@ -147,7 +146,9 @@
 
 - (void)configureCell:(GroupSummaryViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
 
-    [cell.imageView setImage:[UIImage imageNamed:@"fork.png"] ];
+    UIImage *image = [UIImage imageNamed:@"coffee.png" ];
+    [image drawAsPatternInRect:CGRectMake(0, 0, 20, 20)];
+    [cell.imageView setImage:image];
     NSDictionary * group;
     if (indexPath.section == SectionMyGroup){
         group = myGroups[indexPath.row];

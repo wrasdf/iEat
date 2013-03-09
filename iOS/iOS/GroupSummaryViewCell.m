@@ -79,7 +79,7 @@
 }
 
 
-#define IMAGE_SIZE          42.0
+#define IMAGE_SIZE          32.0
 #define EDITING_INSET       10.0
 #define TEXT_LEFT_MARGIN    8.0
 #define TEXT_RIGHT_MARGIN   5.0
@@ -87,10 +87,10 @@
 
 - (CGRect)_imageViewFrame {
     if (self.editing) {
-        return CGRectMake(EDITING_INSET, 0.0, IMAGE_SIZE, IMAGE_SIZE);
+        return CGRectMake(EDITING_INSET, 10.0, IMAGE_SIZE, IMAGE_SIZE);
     }
     else {
-        return CGRectMake(0.0, 0.0, IMAGE_SIZE, IMAGE_SIZE);
+        return CGRectMake(EDITING_INSET/2, 10.0, IMAGE_SIZE, IMAGE_SIZE);
     }
 }
 
