@@ -1,5 +1,8 @@
-var currentGroupId = $.cookie("currentGroupId");
+
 var iEatGroupDetails = (function () {
+
+    var currentGroupId = $.cookie("currentGroupId");
+    var token = $.cookie("token");
 
     function bindFunction() {
         $("#user-order-dishes .edit-restaurant-details .add").bind("click", function (e) {
@@ -42,22 +45,19 @@ var iEatGroupDetails = (function () {
         $("#user-order-dishes .confirm-foods").bind("click",function(){
 
             $.ajax({
-                type : "get",
-                url : "/api/v1/groups/active?token="+token,
-                dataType:'json',
+                type : "post",
+                url : "/api/v1/groups/"+currentGroupId+"/orders/create",
+                data : {
+                    token : token,
+                    dishes : JSON.stringify(getMyOrderDishes())
+                },
                 success : function(data){
-                    if(callback){
-                        callback(data);
-                    }
+                    console.log(data);
                 },
                 error : function(){
                     alert("API : /api/v1/groups/active is ERROR!");
                 }
             });
-//            $.post("/groups/"+groupId+"/orders/confirm",{"dishes":getMyOrderDishes()},function(o){
-//                if(!o){return}
-//                $.mobile.changePage("/success");
-//            },"json");
 
         })
     }
@@ -72,10 +72,9 @@ var iEatGroupDetails = (function () {
             }
             result.push({
                 "id" : $value.data("dish-id"),
-                "name": $value.find(".dish-name").text(),
-                "price": parseInt($value.find(".dish-price").text()),
-                "count": $value.find(".number-input").val()
+                "quantity": $value.find(".number-input").val()
             });
+
         });
         return result;
     }
