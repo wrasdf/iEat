@@ -50,24 +50,18 @@
         %div.details-content.all-status
           %h2 统计信息
           %ul.listview.order-status{"data-role" => "listview", "data-inset"=>"true"}
-            %li
-              %table
-                %tr
-                  %td.dish-name 小炒肉
-                  %td.dish-price 12$
-                  %td.dish-count
-                    %div.dish-count
-                      %span.ui-li-count 4
-                %tr
-                  %td.dish-name 蒙面
-                  %td.dish-price 12$
-                  %td.dish-count
-                    %div.dish-count
-                      %span.ui-li-count 4
-                %tr
-                  %td.dish-name 总计
-                  %td.dish-price 245$
-                  %td
+            -#%li
+            -#  %table
+            -#    %tr
+            -#      %td.dish-name 小炒肉
+            -#      %td.dish-price 12$
+            -#      %td.dish-count
+            -#        %div.dish-count
+            -#          %span.ui-li-count 4
+            -#    %tr
+            -#      %td.dish-name 总计
+            -#      %td.dish-price 245$
+            -#      %td
 
         %div.details-content.members-details
           %h2 团员订餐信息
@@ -86,7 +80,6 @@
             -#      %td.dish-price 12$
             -#      %td
             -#%li
-
 
         %a.buy-foods{ :href => "javascript:void(0);" ,"data-role" => "button"} 买饭去
 

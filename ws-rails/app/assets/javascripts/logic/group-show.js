@@ -135,7 +135,7 @@ var iEatGroupShow = (function () {
         var myOrders = refactorOrders(orders).myOrders;
 
         if (myOrders.length == 0) {
-            str = "<li>当前您没有订餐。</li>";
+            str = '<li class="no-orders">当前您没有订餐。</li>';
         }else{
 
             $.each(myOrders, function (index, value) {
@@ -150,7 +150,7 @@ var iEatGroupShow = (function () {
         var otherOrders = refactorOrders(orders).otherOrders;
 
         if (otherOrders.length == 0) {
-            str = "<li>当前没有其他人没有订餐。</li>";
+            str = '<li class="no-orders">当前没有其他人没有订餐。</li>';
         }else{
             $.each(otherOrders, function (index, value) {
                 str += generateOrderItemStrByOrderData(value);
@@ -164,7 +164,7 @@ var iEatGroupShow = (function () {
         var allStatus = refactorOrders(orders).allStatus;
         var total = 0;
         if(allStatus.length == 0){
-            str += "<li>当前没有其他人没有订餐</li>";
+            str += '<li class="no-orders">当前没有其他人没有订餐</li>';
         }else{
             str += '<li><table><tbody>';
             $.each(allStatus,function(index,order){
