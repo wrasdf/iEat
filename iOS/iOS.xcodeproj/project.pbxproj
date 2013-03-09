@@ -23,23 +23,35 @@
 		494BC11216D0D86B00DA45B9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 494BC0F316D0D86A00DA45B9 /* Foundation.framework */; };
 		494BC11A16D0D86B00DA45B9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 494BC11816D0D86B00DA45B9 /* InfoPlist.strings */; };
 		494BC11D16D0D86B00DA45B9 /* iOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 494BC11C16D0D86B00DA45B9 /* iOSTests.m */; };
+		6AC70081D8850C557C1AA697 /* group.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AC7042BB6F2337B1102AA55 /* group.png */; };
 		6AC7012CDFC89D1D8A164DF1 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC7061F88DEADC3990B7D15 /* User.m */; };
 		6AC7019C78D4ADA2F2CBE2C2 /* RestaurantListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC7095A335441F39E9DCEE9 /* RestaurantListViewController.m */; };
+		6AC70275EDE26628C7B1F8E9 /* gear2.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AC70CCEAC924B0561003FCE /* gear2.png */; };
 		6AC702A1668230A9762FCA1A /* tasks in Resources */ = {isa = PBXBuildFile; fileRef = 6AC703C305C0496FE63BC197 /* tasks */; };
 		6AC702A49AE2426D90512249 /* fork.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AC7010B191BDBFC9AE5EE79 /* fork.png */; };
 		6AC7046BA1D855B86E44B0AC /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AC707BC2FBDE033E3868E24 /* MobileCoreServices.framework */; };
+		6AC7046F2CC43EBCA29E8C6D /* coffee.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AC70007AEB128FA587672FF /* coffee.png */; };
 		6AC704A1801EDB16CA032A20 /* PlainEditTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC70BB96F84DDAA0EB4A97B /* PlainEditTableViewCell.m */; };
 		6AC704DA0B512993476EADA0 /* RestaurantDishesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC70A739E638B6D6ACF41D5 /* RestaurantDishesViewController.m */; };
 		6AC70544D2DBECA9966CBC0B /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AC7010AFE66DA73B576E319 /* libz.1.2.5.dylib */; };
+		6AC705468FB992363D7EE3AF /* GroupMemberOrdersController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC70170955A96B1B5FCDA41 /* GroupMemberOrdersController.m */; };
 		6AC70674047965BE614BF689 /* PayBillLocalNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC70877D88D0825D0D7EAC8 /* PayBillLocalNotification.m */; };
+		6AC7068EE31E0B0A99F969B1 /* GroupStatsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC70426555A719C0A490FFD /* GroupStatsController.m */; };
+		6AC70712128960B1B614CF57 /* phone.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AC70C90AD9EEC6859F6B1E8 /* phone.png */; };
 		6AC7075FDFA98EC171B4CFF7 /* GroupDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC70C85EBD548ADA58F5B7F /* GroupDetailsViewController.m */; };
 		6AC70763CDDCDE528E5A1F2D /* Restaurant.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC70CE4765AA9BD85D5E899 /* Restaurant.m */; };
+		6AC70895C3C527EF2D06B0AD /* bar-chart.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AC70F67CE0ECE7A97676102 /* bar-chart.png */; };
 		6AC708CF7C209E157D378469 /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC702BA954C794B008339D0 /* Group.m */; };
 		6AC708DF5CBC27A0541857CD /* RestaurantDataService.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC70ED0DA26C87AF13DDDC5 /* RestaurantDataService.m */; };
 		6AC7092CA6D8607B53F050C7 /* GroupAddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC70C109EB3D3020808AFCC /* GroupAddViewController.m */; };
 		6AC70959AF382E769E7DBD17 /* Dish.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC703E61CD4B05A591202AF /* Dish.m */; };
 		6AC70A334B4B914D3118ACD8 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AC70C88117EE93387B966B3 /* CFNetwork.framework */; };
+		6AC70A90F7459D2D851EB8E8 /* gear.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AC70479053CA45815948A3E /* gear.png */; };
+		6AC70A958F02DF56BC601FE9 /* GroupOwnerOrderController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC70B205E5BAE3796DB5835 /* GroupOwnerOrderController.m */; };
+		6AC70AC408935E74EED8B359 /* heart.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AC70F7DC34100081CD11ABD /* heart.png */; };
 		6AC70C17CB4FABAD6A621E5F /* GroupDataService.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC70B730E68A856BA29CADB /* GroupDataService.m */; };
+		6AC70D820CEA3EBD3AFF41EC /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AC709C33D5F867A0F5A6544 /* star.png */; };
+		6AC70E92D9E6454A85CE1567 /* user.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AC7058C84C654621D40EAF9 /* user.png */; };
 		9E53179B55864B80B164A3C8 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BA6710C06BB14FE089DBE799 /* libPods.a */; };
 		BB7EE24D16D86C270000DFCE /* EditTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB7EE24C16D86C270000DFCE /* EditTableViewCell.m */; };
 		BB7EE26A16D883860000DFCE /* LoginTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB7EE26816D883860000DFCE /* LoginTableViewController.m */; };
@@ -87,26 +99,37 @@
 		494BC11B16D0D86B00DA45B9 /* iOSTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iOSTests.h; sourceTree = "<group>"; };
 		494BC11C16D0D86B00DA45B9 /* iOSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iOSTests.m; sourceTree = "<group>"; };
 		57835B580DD34FEDB60789E8 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
+		6AC70007AEB128FA587672FF /* coffee.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coffee.png; sourceTree = "<group>"; };
 		6AC70026A7EF01DCAB70CA85 /* README.rst */ = {isa = PBXFileReference; lastKnownFileType = file.rst; path = README.rst; sourceTree = "<group>"; };
 		6AC7008D4E86601A6BC01F78 /* PlainEditTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlainEditTableViewCell.h; path = "Table Cell/PlainEditTableViewCell.h"; sourceTree = "<group>"; };
 		6AC7010AFE66DA73B576E319 /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
 		6AC7010B191BDBFC9AE5EE79 /* fork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fork.png; sourceTree = "<group>"; };
 		6AC701676998F6D6108C9407 /* RestaurantListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestaurantListViewController.h; sourceTree = "<group>"; };
+		6AC70170955A96B1B5FCDA41 /* GroupMemberOrdersController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupMemberOrdersController.m; sourceTree = "<group>"; };
+		6AC702A6374E716F6832F263 /* GroupOwnerOrderController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupOwnerOrderController.h; sourceTree = "<group>"; };
 		6AC702BA954C794B008339D0 /* Group.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Group.m; sourceTree = "<group>"; };
 		6AC703C305C0496FE63BC197 /* tasks */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tasks; sourceTree = "<group>"; };
 		6AC703E61CD4B05A591202AF /* Dish.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Dish.m; sourceTree = "<group>"; };
+		6AC704033A9E69B40FA342BE /* GroupStatsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupStatsController.h; sourceTree = "<group>"; };
+		6AC70426555A719C0A490FFD /* GroupStatsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupStatsController.m; sourceTree = "<group>"; };
+		6AC7042BB6F2337B1102AA55 /* group.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = group.png; sourceTree = "<group>"; };
+		6AC70479053CA45815948A3E /* gear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gear.png; sourceTree = "<group>"; };
 		6AC70483062B172406805153 /* GroupDataService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupDataService.h; sourceTree = "<group>"; };
 		6AC704F183B186F3D2DAD0A1 /* RestaurantDataService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestaurantDataService.h; sourceTree = "<group>"; };
+		6AC7058C84C654621D40EAF9 /* user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user.png; sourceTree = "<group>"; };
 		6AC705EAD3E94134E0BF5351 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		6AC7061F88DEADC3990B7D15 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		6AC7065CF9D8E5B8928EE6E9 /* pod_init.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = pod_init.sh; sourceTree = "<group>"; };
 		6AC7075069ABA5C9DD2E15D3 /* Restaurant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Restaurant.h; sourceTree = "<group>"; };
 		6AC707BC2FBDE033E3868E24 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		6AC707D626E6A3030CEDFB20 /* GroupMemberOrdersController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupMemberOrdersController.h; sourceTree = "<group>"; };
 		6AC70877D88D0825D0D7EAC8 /* PayBillLocalNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayBillLocalNotification.m; sourceTree = "<group>"; };
 		6AC709248BAEA90A7F51529D /* GroupAddViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupAddViewController.h; sourceTree = "<group>"; };
 		6AC7095A335441F39E9DCEE9 /* RestaurantListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestaurantListViewController.m; sourceTree = "<group>"; };
+		6AC709C33D5F867A0F5A6544 /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
 		6AC70A739E638B6D6ACF41D5 /* RestaurantDishesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestaurantDishesViewController.m; sourceTree = "<group>"; };
 		6AC70B0851E588E235BF8A3F /* Group.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Group.h; sourceTree = "<group>"; };
+		6AC70B205E5BAE3796DB5835 /* GroupOwnerOrderController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupOwnerOrderController.m; sourceTree = "<group>"; };
 		6AC70B730E68A856BA29CADB /* GroupDataService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupDataService.m; sourceTree = "<group>"; };
 		6AC70B87F2A02367DA00D939 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
 		6AC70BB96F84DDAA0EB4A97B /* PlainEditTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlainEditTableViewCell.m; path = "Table Cell/PlainEditTableViewCell.m"; sourceTree = "<group>"; };
@@ -115,10 +138,14 @@
 		6AC70C109EB3D3020808AFCC /* GroupAddViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupAddViewController.m; sourceTree = "<group>"; };
 		6AC70C85EBD548ADA58F5B7F /* GroupDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupDetailsViewController.m; sourceTree = "<group>"; };
 		6AC70C88117EE93387B966B3 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		6AC70C90AD9EEC6859F6B1E8 /* phone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = phone.png; sourceTree = "<group>"; };
+		6AC70CCEAC924B0561003FCE /* gear2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gear2.png; sourceTree = "<group>"; };
 		6AC70CE4765AA9BD85D5E899 /* Restaurant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Restaurant.m; sourceTree = "<group>"; };
 		6AC70D9F54C93FC82EAEF176 /* Dish.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dish.h; sourceTree = "<group>"; };
 		6AC70ED0DA26C87AF13DDDC5 /* RestaurantDataService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestaurantDataService.m; sourceTree = "<group>"; };
 		6AC70ED81BB8B4AE38856FBC /* RestaurantDishesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestaurantDishesViewController.h; sourceTree = "<group>"; };
+		6AC70F67CE0ECE7A97676102 /* bar-chart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bar-chart.png"; sourceTree = "<group>"; };
+		6AC70F7DC34100081CD11ABD /* heart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = heart.png; sourceTree = "<group>"; };
 		BA6710C06BB14FE089DBE799 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB7EE24B16D86C270000DFCE /* EditTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EditTableViewCell.h; path = "Table Cell/EditTableViewCell.h"; sourceTree = "<group>"; };
 		BB7EE24C16D86C270000DFCE /* EditTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditTableViewCell.m; path = "Table Cell/EditTableViewCell.m"; sourceTree = "<group>"; };
@@ -179,6 +206,12 @@
 				6AC702BA954C794B008339D0 /* Group.m */,
 				6AC70BF1612D1549D15DF2FD /* GroupDetailsViewController.h */,
 				6AC70C85EBD548ADA58F5B7F /* GroupDetailsViewController.m */,
+				6AC704033A9E69B40FA342BE /* GroupStatsController.h */,
+				6AC70426555A719C0A490FFD /* GroupStatsController.m */,
+				6AC702A6374E716F6832F263 /* GroupOwnerOrderController.h */,
+				6AC70B205E5BAE3796DB5835 /* GroupOwnerOrderController.m */,
+				6AC707D626E6A3030CEDFB20 /* GroupMemberOrdersController.h */,
+				6AC70170955A96B1B5FCDA41 /* GroupMemberOrdersController.m */,
 			);
 			path = GroupList;
 			sourceTree = "<group>";
@@ -306,6 +339,15 @@
 			isa = PBXGroup;
 			children = (
 				6AC7010B191BDBFC9AE5EE79 /* fork.png */,
+				6AC70C90AD9EEC6859F6B1E8 /* phone.png */,
+				6AC7058C84C654621D40EAF9 /* user.png */,
+				6AC7042BB6F2337B1102AA55 /* group.png */,
+				6AC70F67CE0ECE7A97676102 /* bar-chart.png */,
+				6AC70479053CA45815948A3E /* gear.png */,
+				6AC70CCEAC924B0561003FCE /* gear2.png */,
+				6AC709C33D5F867A0F5A6544 /* star.png */,
+				6AC70F7DC34100081CD11ABD /* heart.png */,
+				6AC70007AEB128FA587672FF /* coffee.png */,
 			);
 			path = images;
 			sourceTree = "<group>";
@@ -435,6 +477,15 @@
 				BB7EE28E16D904CA0000DFCE /* EditTableViewCell.xib in Resources */,
 				6AC702A49AE2426D90512249 /* fork.png in Resources */,
 				6AC702A1668230A9762FCA1A /* tasks in Resources */,
+				6AC70712128960B1B614CF57 /* phone.png in Resources */,
+				6AC70E92D9E6454A85CE1567 /* user.png in Resources */,
+				6AC70081D8850C557C1AA697 /* group.png in Resources */,
+				6AC70895C3C527EF2D06B0AD /* bar-chart.png in Resources */,
+				6AC70A90F7459D2D851EB8E8 /* gear.png in Resources */,
+				6AC70275EDE26628C7B1F8E9 /* gear2.png in Resources */,
+				6AC70D820CEA3EBD3AFF41EC /* star.png in Resources */,
+				6AC70AC408935E74EED8B359 /* heart.png in Resources */,
+				6AC7046F2CC43EBCA29E8C6D /* coffee.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -503,6 +554,9 @@
 				6AC7075FDFA98EC171B4CFF7 /* GroupDetailsViewController.m in Sources */,
 				6AC704DA0B512993476EADA0 /* RestaurantDishesViewController.m in Sources */,
 				6AC708DF5CBC27A0541857CD /* RestaurantDataService.m in Sources */,
+				6AC7068EE31E0B0A99F969B1 /* GroupStatsController.m in Sources */,
+				6AC70A958F02DF56BC601FE9 /* GroupOwnerOrderController.m in Sources */,
+				6AC705468FB992363D7EE3AF /* GroupMemberOrdersController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

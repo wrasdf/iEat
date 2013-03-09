@@ -11,6 +11,9 @@
 #import "GroupDataService.h"
 #import "GroupAddViewController.h"
 #import "GroupDetailsViewController.h"
+#import "GroupStatsController.h"
+#import "GroupOwnerOrderController.h"
+#import "GroupMemberOrdersController.h"
 
 @implementation GroupListController {
     NSArray *groups;
@@ -100,8 +103,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 
-    // Identifier for retrieving reusable cells. static NSString
-    NSString *cellIdentifier = @"GroupSummaryCell"; // Attempt to request the reusable cell.
+    NSString *cellIdentifier = @"GroupSummaryCell";
 
     GroupSummaryViewCell *cell = (GroupSummaryViewCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if(cell == nil) {
@@ -134,18 +136,12 @@
     UITabBarController* groupsTabController = [[UITabBarController alloc]init];
 
     groupDetailsViewController = [[GroupDetailsViewController alloc] initWithStyle:UITableViewStyleGrouped];
-    [groupDetailsViewController setTitle:@"本团信息"];
-
-    UITableViewController *groupStatController = [[UITableViewController alloc] initWithStyle:UITableViewStyleGrouped];
-    [groupStatController setTitle:@"统计信息"];
-
-    UITableViewController *groupOwnersDishesController = [[UITableViewController alloc] initWithStyle:UITableViewStyleGrouped];
-    [groupOwnersDishesController setTitle:@"我的订餐"];
-
-    UITableViewController *groupMemberDishesController = [[UITableViewController alloc] initWithStyle:UITableViewStyleGrouped];
-    [groupMemberDishesController setTitle:@"团员信息"];
+    id groupStatController = [[GroupStatsController alloc] initWithStyle:UITableViewStyleGrouped];
+    id groupOwnersDishesController = [[GroupOwnerOrderController alloc] initWithStyle:UITableViewStyleGrouped];
+    id groupMemberDishesController = [[GroupMemberOrdersController alloc] initWithStyle:UITableViewStyleGrouped];
 
     groupsTabController.viewControllers = @[groupDetailsViewController,groupStatController, groupOwnersDishesController, groupMemberDishesController];
+    [groupsTabController setSelectedIndex:0];
     [[self navigationController] pushViewController:groupsTabController animated:YES];
 }
 

@@ -30,6 +30,7 @@
         sections = @[@"饭团信息", @"餐馆简介"];
         restDesc = @[@"饭店名称", @"订餐电话", @"外卖时间", @"起送金额"];
         groupDesc = @[@"团名", @"团长"];
+        [self setTitle:@"本团信息"];
     }
     return self;
 }
@@ -48,6 +49,8 @@
 
     [[self tableView] setTableFooterView:view];
 
+    UITabBarItem *tabBarItem = [[UITabBarItem alloc] initWithTitle:@"本团信息" image:[UIImage imageNamed:@"heart.png"] tag:1];
+    [self setTabBarItem:tabBarItem];
 }
 
 - (void)didReceiveMemoryWarning
