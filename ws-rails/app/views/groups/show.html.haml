@@ -24,12 +24,6 @@
           %h2 餐馆简介
           %ul.listview.restaurant-details{"data-role" => "listview", "data-inset"=>"true"}
             -#%li
-            -#  %span.subject 饭店名称
-            -#  %span 九头鹰
-            -#%li
-            -#  %span.subject 订餐电话
-            -#  %span 13400077882
-            -#%li
             -#  %span.subject 外卖时间
             -#  %span 10:30-21:00
             -#%li
@@ -39,25 +33,19 @@
         %div.details-content.my-orders-details
           %h2 我的订餐
           %ul.listview.order-status{"data-role" => "listview", "data-inset"=>"true"}
-            %li
-              %h2 王锐
-              %table
-                %tr
-                  %td.dish-name 小炒肉
-                  %td.dish-price 12$
-                  %td.dish-count
-                    %div.dish-count
-                      %span.ui-li-count 1
-                %tr
-                  %td.dish-name 蒙面
-                  %td.dish-price 12$
-                  %td.dish-count
-                    %div.dish-count
-                      %span.ui-li-count 1
-                %tr
-                  %td.dish-name 总计
-                  %td.dish-price 24$
-                  %td
+            -#%li
+            -#  %h2 王锐
+            -#  %table
+            -#    %tr
+            -#      %td.dish-name 蒙面
+            -#      %td.dish-price 12$
+            -#      %td.dish-count
+            -#        %div.dish-count
+            -#          %span.ui-li-count 1
+            -#    %tr
+            -#      %td.dish-name 总计
+            -#      %td.dish-price 24$
+            -#      %td
 
         %div.details-content.all-status
           %h2 统计信息
@@ -84,32 +72,20 @@
         %div.details-content.members-details
           %h2 团员订餐信息
           %ul.listview.order-status{"data-role" => "listview", "data-inset"=>"true"}
-            %li
-              %h2 明星
-              %table
-                %tr
-                  %td.dish-name 小炒肉
-                  %td.dish-price 12$
-                  %td.dish-count
-                    %div.dish-count
-                      %span.ui-li-count 1
-                %tr
-                  %td.dish-name 总计
-                  %td.dish-price 12$
-                  %td
-            %li
-              %h2 姚新
-              %table
-                %tr
-                  %td.dish-name 小炒肉
-                  %td.dish-price 12$
-                  %td.dish-count
-                    %div.dish-count
-                      %span.ui-li-count 1
-                %tr
-                  %td.dish-name 总计
-                  %td.dish-price 12$
-                  %td
+            -#%li
+            -#  %h2 明星
+            -#  %table
+            -#    %tr
+            -#      %td.dish-name 小炒肉
+            -#      %td.dish-price 12$
+            -#      %td.dish-count
+            -#        %div.dish-count
+            -#          %span.ui-li-count 1
+            -#    %tr
+            -#      %td.dish-name 总计
+            -#      %td.dish-price 12$
+            -#      %td
+            -#%li
 
 
         %a.buy-foods{ :href => "javascript:void(0);" ,"data-role" => "button"} 买饭去

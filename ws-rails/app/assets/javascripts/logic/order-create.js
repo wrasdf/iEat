@@ -21,28 +21,21 @@ var iEatGroupDetails = (function () {
             currentInput.val(v);
         });
 
-//        $(document).undelegate("#group-show", "pageshow").delegate("#group-show", "pageshow", function (e) {
-//            e.preventDefault();
-//            iEatGroupShow.pageInit(function(){
-//                iEatUtility.msg({
-//                    type : "success",
-//                    msg : "Order successful."
-//                });
-//                iEatGroupShow.activeFooterItemByIndex(2);
-//                // remove js cache for msg
-//                $(document).undelegate("#group-show", "pageshow").delegate("#group-show", "pageshow", function (event) {
-//                    event.preventDefault();
-//                    iEatGroupShow.pageInit();
-//                    iEatGroupShow.activeFooterItemByIndex(0);
-//                });
-//            });
-//        });
-
         $("#user-order-dishes .ui-btn-left").bind("click",function(){
             window.location.href = "/groups/"+currentGroupId;
         });
 
         $("#user-order-dishes .confirm-foods").bind("click",function(){
+
+            var orderDishes = getMyOrderDishes();
+            if(orderDishes.length == 0){
+                iEatUtility.msg({
+                    type : "error",
+                    msg : "您没有点任何餐。"
+                });
+                return;
+            }
+
             $.ajax({
                 type : "post",
                 url : "/api/v1/groups/"+currentGroupId+"/orders/create",
@@ -50,8 +43,8 @@ var iEatGroupDetails = (function () {
                     token : token,
                     dishes : JSON.stringify(getMyOrderDishes())
                 },
-                success : function(data){
-                    console.log(data);
+                success : function(){
+                    window.location.href = "/groups/"+currentGroupId;
                 },
                 error : function(){
                     alert("API : /api/v1/groups/active is ERROR!");
