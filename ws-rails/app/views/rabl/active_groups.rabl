@@ -1,4 +1,4 @@
-collection :@active_groups
+collection :@active_groups, :root => false
 attributes :id, :name, :created_at, :due_date
 child(:user => :owner) {
     attributes :id, :name, :email

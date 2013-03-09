@@ -2,7 +2,7 @@ class Api::V1::GroupsController < Api::V1::BaseController
   before_filter
 
   def active
-    @active_groups = Group.where('due_date >= ?', Time.now)
+    @active_groups = Group.where('due_date >= ?', Time.now).order("id DESC")
     render :file => 'rabl/active_groups'
   end
 
@@ -17,11 +17,7 @@ class Api::V1::GroupsController < Api::V1::BaseController
   end
 
   def detail
-
     @group = Group.find(params[:id])
-
-    puts @group
-
     render :file => 'rabl/detail'
   end
 end

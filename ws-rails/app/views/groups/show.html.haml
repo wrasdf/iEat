@@ -11,30 +11,30 @@
     #group-show{"data-role" => "page" ,"data-id" => "#{@group.id}" }
       %div{"data-role" => "header"}
         %a.ui-btn-left{"data-icon" => "arrow-l", "data-theme" => "c", :href => "#group-list"} 返回
-        %h1= @group.name
+        %h1.group-name
         %a.ui-btn-right.buy-foods{"data-icon" => "arrow-r", "data-iconpos" => "right", "data-id" => "#{@group.id}", "data-theme" => "c", :href => "javascript:void(0);"} 买饭去
       %div.info-details{"data-role" => "content"}
-        %div.details-content.restaurant-details
+        %div.details-content.group-details
           %h2 本团介绍
           %ul.listview{"data-role" => "listview", "data-inset"=>"true"}
             %li
               %span.subject 团名
-              %span= @group.name
+              %span.group-name
 
           %h2 餐馆简介
-          %ul.listview{"data-role" => "listview", "data-inset"=>"true"}
-            %li
-              %span.subject 饭店名称
-              %span 九头鹰
-            %li
-              %span.subject 订餐电话
-              %span 13400077882
-            %li
-              %span.subject 外卖时间
-              %span 10:30-21:00
-            %li
-              %span.subject 起送金额
-              %span 送餐费1元
+          %ul.listview.restaurant-details{"data-role" => "listview", "data-inset"=>"true"}
+            -#%li
+            -#  %span.subject 饭店名称
+            -#  %span 九头鹰
+            -#%li
+            -#  %span.subject 订餐电话
+            -#  %span 13400077882
+            -#%li
+            -#  %span.subject 外卖时间
+            -#  %span 10:30-21:00
+            -#%li
+            -#  %span.subject 起送金额
+            -#  %span 送餐费1元
 
         %div.details-content.my-orders-details
           %h2 我的订餐

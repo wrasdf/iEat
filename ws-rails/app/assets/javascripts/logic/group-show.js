@@ -1,14 +1,23 @@
 
 var iEatGroupShow = (function(){
+
+    var currentGroupId = $.cookie("currentGroupId");
+    var token = $.cookie("token");
+
     function pageInit(f){
 
         if(f && typeof f == "function"){
             f();
         }
 
+        getGroupDetails(function(data){
+            updateGroupName(data.group.name);
+            updateRestaurantDetails(data.group.restaurant);
+        });
+
         $("#group-show .restaurant-info-btn").bind("click",function(){
             $("#group-show .details-content").hide();
-            $("#group-show .restaurant-details").show();
+            $("#group-show .group-details").show();
         });
 
         $("#group-show .all-info-btn").bind("click",function(){
@@ -35,7 +44,20 @@ var iEatGroupShow = (function(){
             window.location.href = "/groups";
         });
 
+    }
 
+    function updateRestaurantDetails(restaurantData){
+        var str = '<li><span class="subject">饭店名称</span><span>'+restaurantData.name+'</span></li>';
+        str += '<li><span class="subject">订餐电话</span><span>'+restaurantData.telephone+'</span></li>';
+        str += '<li><span class="subject">餐馆地址</span><span>'+restaurantData.address+'</span></li>';
+        $("#group-show .restaurant-details").html(str).listview('refresh').show();
+    }
+
+    function updateGroupName(groupName){
+        $(".group-name").html(groupName);
+    }
+
+    function updateGroupStatus(groupOrders){
 
     }
 
@@ -59,6 +81,25 @@ var iEatGroupShow = (function(){
         },10);
     }
 
+    function getGroupDetails(callback){
+
+        $.ajax({
+            type : "get",
+            url : "/api/v1/groups/"+currentGroupId+"?token="+token,
+            dataType : "json",
+            success : function(data){
+                if(data){
+                    if(callback){
+                        callback(data);
+                    }
+                }
+            },
+            error : function(){
+                alert("API : /api/v1/groups/:id is ERROR!");
+            }
+        });
+    }
+
     return {
         pageInit : pageInit,
         activeFooterItemByIndex : activeFooterItemByIndex
@@ -66,7 +107,7 @@ var iEatGroupShow = (function(){
 
 })();
 
-$("#group-show").bind("pageshow",function(){
+$("#group-show").bind("pageinit",function(){
 //    if(currentGroupId){
 //        iEatUtility.msg({
 //            type : "success",

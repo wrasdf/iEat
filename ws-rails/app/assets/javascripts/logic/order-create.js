@@ -43,7 +43,6 @@ var iEatGroupDetails = (function () {
         });
 
         $("#user-order-dishes .confirm-foods").bind("click",function(){
-
             $.ajax({
                 type : "post",
                 url : "/api/v1/groups/"+currentGroupId+"/orders/create",

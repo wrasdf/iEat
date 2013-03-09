@@ -43,7 +43,7 @@ var iEatGroupList = (function () {
         var userName = $.cookie("userName");
         var myCreatedGroups = [];
         var availableGroups = [];
-        $.each(data["active_groups"],function(index,item){
+        $.each(data,function(index,item){
             if(item["owner"]["name"] == userName){
                 myCreatedGroups.push(item);
             }else{
@@ -85,7 +85,6 @@ var iEatGroupList = (function () {
 })();
 
 $(document).bind("pageinit",function(){
-    iEatUtility.getAllRestaurants();
     iEatGroupList.pageInit();
 });
 
