@@ -15,6 +15,7 @@ var iEatGroupShow = (function () {
             updateRestaurantDetails(group.restaurant);
             updateMyStatus(group.orders);
             updateOthersStatus(group.orders);
+            updateAllStatus(group.orders);
         });
 
         $("#group-show .restaurant-info-btn").bind("click", function () {
@@ -61,8 +62,8 @@ var iEatGroupShow = (function () {
 
     function generateOrderItemStrByOrderData(data) {
         var total = 0;
-        var str = '<li><h2>王锐</h2><table><tbody>';
-        $.each(data, function (index, value) {
+        var str = '<li><h2>'+data.user.name+'</h2><table><tbody>';
+        $.each(data.order_dishes, function (index, value) {
             str += '<tr><td class="dish-name">' + value.dish.name + '</td>';
             str += '<td class="dish-price">' + value.dish.price + '</td>';
             str += '<td class="dish-count">';
@@ -80,18 +81,52 @@ var iEatGroupShow = (function () {
     function refactorOrders(orders){
         var myOrdersList = [];
         var othersList = [];
+        var allStatus = [];
+
         $.each(orders, function (index, value) {
             if (value.order_dishes.length > 0) {
                 if(value.user.name == userName){
-                    myOrdersList.push(value.order_dishes);
+                    myOrdersList.push(value);
                 }else{
-                    othersList.push(value.order_dishes);
+                    othersList.push(value);
                 }
             }
         });
+
+        function addToAllStatus(data){
+
+            if(allStatus.length == 0){
+                allStatus.push(data);
+            }else{
+                var canBeInsert = true;
+                $.each(allStatus,function(index,order){
+                    if(order.name == data.name){
+                        order.quantity += data.quantity;
+                        canBeInsert = false;
+                        return true;
+                    }
+                });
+                if(canBeInsert){
+                    allStatus.push(data);
+                }
+            }
+        }
+
+        $.each(orders,function(index,order){
+            $.each(order.order_dishes,function(i,item){
+                var eachOrder = {
+                    name : item.dish.name,
+                    price : item.dish.price,
+                    quantity : item.quantity
+                };
+                addToAllStatus(eachOrder);
+            });
+        });
+
         return {
             myOrders : myOrdersList,
-            otherOrders : othersList
+            otherOrders : othersList,
+            allStatus : allStatus
         }
     }
 
@@ -128,42 +163,28 @@ var iEatGroupShow = (function () {
 
     function updateAllStatus(orders){
         var str = "";
-        if(orders.length == 0){
-            str += "当前没有其他人没有订餐";
+        var allStatus = refactorOrders(orders).allStatus;
+        var total = 0;
+        if(allStatus.length == 0){
+            str += "<li>当前没有其他人没有订餐</li>";
         }else{
-
+            str += '<li><table><tbody>';
+            $.each(allStatus,function(index,order){
+                str += '<tr>';
+                str += '<td class="dish-name">'+order.name+'</td>';
+                str += '<td class="dish-price">'+order.price+'$</td>';
+                str += '<td class="dish-count"><div class="dish-count"><span class="ui-li-count">'+order.quantity+'</span></div></td>';
+                str += '</tr>';
+                total +=  parseFloat(order.price) * parseInt(order.quantity);
+            });
+            str += '<tr>';
+            str += '<td class="dish-name">总计</td>';
+            str += '<td class="dish-price">'+total+'</td>';
+            str += '<td></td>';
+            str += '</tr>';
+            str += '</tbody></table></li>';
         }
-
-
-//
-//        <table>
-//            <tbody><tr>
-//                <td class="dish-name">小炒肉</td>
-//                <td class="dish-price">12$</td>
-//                <td class="dish-count">
-//                    <div class="dish-count">
-//                        <span class="ui-li-count ui-btn-up-c ui-btn-corner-all">4</span>
-//                    </div>
-//                </td>
-//            </tr>
-//                <tr>
-//                    <td class="dish-name">蒙面</td>
-//                    <td class="dish-price">12$</td>
-//                    <td class="dish-count">
-//                        <div class="dish-count">
-//                            <span class="ui-li-count ui-btn-up-c ui-btn-corner-all">4</span>
-//                        </div>
-//                    </td>
-//                </tr>
-//                <tr>
-//                    <td class="dish-name">总计</td>
-//                    <td class="dish-price">245$</td>
-//                    <td></td>
-//                </tr>
-//            </tbody></table>
-
-
-        $(".members-details .order-status").html(str).listview("refresh");
+        $(".all-status .order-status").html(str).listview("refresh");
     }
 
 

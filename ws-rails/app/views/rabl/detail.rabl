@@ -14,7 +14,7 @@ attributes :id, :restaurant, :description, :due_date, :name, :created_at
         attributes :id, :dish_id, :quantity
 
         child(:dish) {
-            attributes :id, :name, :price
+            attributes :name, :price
         }
      }
  }
