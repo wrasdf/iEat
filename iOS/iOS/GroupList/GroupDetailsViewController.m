@@ -7,6 +7,7 @@
 //
 
 #import "GroupDetailsViewController.h"
+#import "RestaurantDishesViewController.h"
 
 @interface GroupDetailsViewController ()
 {
@@ -38,11 +39,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    UIView *view = [[UIView alloc] initWithFrame:CGRectZero]; 
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 64)];
 
     UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [button setTitle:@"买饭去" forState:UIControlStateNormal];
     [button setFrame:CGRectMake(10, 0, 300, 40)];
+    [button addTarget:self action:@selector(gotoOrderFood:) forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:button];
     [view setBackgroundColor:[UIColor whiteColor]];
     [view sizeToFit];
@@ -51,6 +53,11 @@
 
     UITabBarItem *tabBarItem = [[UITabBarItem alloc] initWithTitle:@"本团信息" image:[UIImage imageNamed:@"heart.png"] tag:1];
     [self setTabBarItem:tabBarItem];
+}
+
+- (void)gotoOrderFood:(id)sender {
+    NSLog(@"买饭去");
+    [[RestaurantDishesViewController alloc]initWithRestaurant:1];
 }
 
 - (void)didReceiveMemoryWarning

@@ -47,6 +47,10 @@
 
 }
 
+- (id)initWithRestaurant:(int)i {
+
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
