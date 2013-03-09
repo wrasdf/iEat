@@ -16,9 +16,12 @@ class Api::V1::GroupsController < Api::V1::BaseController
     end
   end
 
-  def list
-    @myGroups = Group.where('user_id = ?', current_user.id)
-    @activeGroups = Group.where('due_date >= ? and user_id <> ?', Time.now, current_user.id)
-    render :file => 'groups/list'
+  def detail
+
+    @group = Group.find(params[:id])
+
+    puts @group
+
+    render :file => 'rabl/detail'
   end
 end

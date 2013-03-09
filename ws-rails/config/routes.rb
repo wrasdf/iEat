@@ -14,6 +14,7 @@ WsRails::Application.routes.draw do
       devise_for :users
       get 'restaurants' => 'restaurants#list'
       get 'groups/active' => 'groups#active'
+      get 'groups/:id' => 'groups#detail'
       post 'groups/create' => 'groups#create'
       post 'groups/:group_id/orders/create' => 'orders#create'
       resources :groups
