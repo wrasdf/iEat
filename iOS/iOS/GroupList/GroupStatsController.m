@@ -31,7 +31,24 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 64)];
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [button setImage:[UIImage imageNamed:@"phone.png"] forState:UIControlStateNormal];
+    [button setTitle:@" 打电话" forState:UIControlStateNormal];
+    [button setFrame:CGRectMake(10, 0, 300, 40)];
+    [button addTarget:self action:@selector(callRestaurant:) forControlEvents:UIControlEventTouchUpInside];
+    [view addSubview:button];
 
+    [[self tableView] setTableFooterView:view];
+}
+
+- (void)callRestaurant:(id)callRestaurant {
+    NSString *theCall = [NSString stringWithFormat:@"tel://%@",@"13426049524"];
+    NSLog(@"making call with %@",theCall);
+#if !(TARGET_IPHONE_SIMULATOR)
+    UIApplication *myApp = [UIApplication sharedApplication];
+    [myApp openURL:[NSURL URLWithString:theCall]];
+#endif
 }
 
 - (void)didReceiveMemoryWarning
