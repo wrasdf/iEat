@@ -1,32 +1,67 @@
 var iEatCreate = (function () {
 
     function uiPickerInit() {
+
         $('#timePicker').mobiscroll().time({
             theme: 'iOS',
             display: 'inline',
             mode: 'scroller',
-            onChange: function (text, b) {
-                setValue(b.values);
+            timeFormat: 'HH:ii',
+            onChange: function () {
+                setValue(convertUIPickerTime());
             }
-        });
+        }).scroller('setValue', convertTimeToArray());
 
-        function setValue(array) {
-            $("#show-Time").html(array[0] + " : " + (array[1] == 0 ? ("0" + "0") : array[1] < 9 ? "0" + array[1] : array[1]) + (array[2] == 1 ? " PM" : " AM"));
+        function setValue(str){
+            $("#show-Time").html(str);
         }
 
-        setValue($('#timePicker').mobiscroll("getValue"));
+        setValue(convertUIPickerTime());
 
     }
 
+    function convertTimeToArray(){
+        var result = [];
+        var t = new Date();
+        var h = t.getHours() + 1;
+        var mins = t.getMinutes();
+
+        if(h==24){
+            h=0;
+        }
+
+        if(h>12){
+            result = [h-12,mins,1];
+        }else{
+            result = [h,mins,0];
+        }
+        return result;
+    }
+
+
     function convertUIPickerTime() {
         var selectedValue = $('#timePicker').mobiscroll("getValue");
-        var hours = selectedValue[0];
-        var mins = selectedValue[1];
-        if (selectedValue[2] == 1) {
-            hours = parseInt(hours) + 12;
-        } else if (hours < 10) {
-            hours = "0" + hours;
+        var hours = 0;
+        var mins = 0;
+
+        if(selectedValue[2] == 1){
+            hours = parseInt(selectedValue[0]) + 12;
+        }else{
+            if(selectedValue[0]<10){
+                hours = "0" + selectedValue[0] ;
+            }else{
+                hours = selectedValue[0];
+            }
         }
+
+        if(selectedValue[1] ==0 ){
+            mins = "0"+"0";
+        }else if(selectedValue[1] < 10){
+            mins = "0"+selectedValue[1];
+        }else{
+            mins = selectedValue[1];
+        }
+
         return hours + ":" + mins;
     }
 
