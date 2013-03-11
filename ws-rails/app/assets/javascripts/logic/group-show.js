@@ -21,25 +21,25 @@ var iEatGroupShow = (function () {
         $("#group-show .restaurant-info-btn").bind("click", function () {
             $("#group-show .details-content").hide();
             $("#group-show .group-details").show();
-            window.location.hash = "#1";
+            window.location.hash = "#0";
         });
 
         $("#group-show .all-info-btn").bind("click", function () {
             $("#group-show .details-content").hide();
             $("#group-show .all-status").show();
-            window.location.hash = "#2";
+            window.location.hash = "#1";
         });
 
         $("#group-show .my-orders-btn").bind("click", function () {
             $("#group-show .details-content").hide();
             $("#group-show .my-orders-details").show();
-            window.location.hash = "#3";
+            window.location.hash = "#2";
         });
 
         $("#group-show .members-orders-btn").bind("click", function () {
             $("#group-show .details-content").hide();
             $("#group-show .members-details").show();
-            window.location.hash = "#4";
+            window.location.hash = "#3";
         });
 
         $("#group-show .buy-foods").bind("click", function () {
@@ -66,7 +66,7 @@ var iEatGroupShow = (function () {
 
     function generateOrderItemStrByOrderData(data) {
         var total = 0;
-        var str = '<li><h2>'+data.user.name+'</h2><table><tbody>';
+        var str = '<li><h2>' + data.user.name + '</h2><table><tbody>';
         $.each(data.order_dishes, function (index, value) {
             str += '<tr><td class="dish-name">' + value.name + '</td>';
             str += '<td class="dish-price">' + value.price + '</td>';
@@ -82,55 +82,55 @@ var iEatGroupShow = (function () {
         return str;
     }
 
-    function refactorOrders(orders){
+    function refactorOrders(orders) {
         var myOrdersList = [];
         var othersList = [];
         var allStatus = [];
 
         $.each(orders, function (index, value) {
             if (value.order_dishes.length > 0) {
-                if(value.user.name == userName){
+                if (value.user.name == userName) {
                     myOrdersList.push(value);
-                }else{
+                } else {
                     othersList.push(value);
                 }
             }
         });
 
-        function addToAllStatus(data){
+        function addToAllStatus(data) {
 
-            if(allStatus.length == 0){
+            if (allStatus.length == 0) {
                 allStatus.push(data);
-            }else{
+            } else {
                 var canBeInsert = true;
-                $.each(allStatus,function(index,order){
-                    if(order.name == data.name){
+                $.each(allStatus, function (index, order) {
+                    if (order.name == data.name) {
                         order.quantity += data.quantity;
                         canBeInsert = false;
                         return true;
                     }
                 });
-                if(canBeInsert){
+                if (canBeInsert) {
                     allStatus.push(data);
                 }
             }
         }
 
-        $.each(orders,function(index,order){
-            $.each(order.order_dishes,function(i,item){
+        $.each(orders, function (index, order) {
+            $.each(order.order_dishes, function (i, item) {
                 var eachOrder = {
-                    name : item.name,
-                    price : item.price,
-                    quantity : item.quantity
+                    name: item.name,
+                    price: item.price,
+                    quantity: item.quantity
                 };
                 addToAllStatus(eachOrder);
             });
         });
 
         return {
-            myOrders : myOrdersList,
-            otherOrders : othersList,
-            allStatus : allStatus
+            myOrders: myOrdersList,
+            otherOrders: othersList,
+            allStatus: allStatus
         }
     }
 
@@ -140,7 +140,7 @@ var iEatGroupShow = (function () {
 
         if (myOrders.length == 0) {
             str = '<li class="no-orders">当前您没有订餐。</li>';
-        }else{
+        } else {
 
             $.each(myOrders, function (index, value) {
                 str += generateOrderItemStrByOrderData(value);
@@ -149,13 +149,13 @@ var iEatGroupShow = (function () {
         $(".my-orders-details .order-status").html(str).listview("refresh");
     }
 
-    function updateOthersStatus(orders){
+    function updateOthersStatus(orders) {
         var str = "";
         var otherOrders = refactorOrders(orders).otherOrders;
 
         if (otherOrders.length == 0) {
             str = '<li class="no-orders">当前没有其他人没有订餐。</li>';
-        }else{
+        } else {
             $.each(otherOrders, function (index, value) {
                 str += generateOrderItemStrByOrderData(value);
             });
@@ -163,25 +163,25 @@ var iEatGroupShow = (function () {
         $(".members-details .order-status").html(str).listview("refresh");
     }
 
-    function updateAllStatus(orders){
+    function updateAllStatus(orders) {
         var str = "";
         var allStatus = refactorOrders(orders).allStatus;
         var total = 0;
-        if(allStatus.length == 0){
+        if (allStatus.length == 0) {
             str += '<li class="no-orders">当前没有其他人没有订餐</li>';
-        }else{
+        } else {
             str += '<li><table><tbody>';
-            $.each(allStatus,function(index,order){
+            $.each(allStatus, function (index, order) {
                 str += '<tr>';
-                str += '<td class="dish-name">'+order.name+'</td>';
-                str += '<td class="dish-price">'+order.price+'$</td>';
-                str += '<td class="dish-count"><div class="dish-count"><span class="ui-li-count">'+order.quantity+'</span></div></td>';
+                str += '<td class="dish-name">' + order.name + '</td>';
+                str += '<td class="dish-price">' + order.price + '$</td>';
+                str += '<td class="dish-count"><div class="dish-count"><span class="ui-li-count">' + order.quantity + '</span></div></td>';
                 str += '</tr>';
-                total +=  parseFloat(order.price) * parseInt(order.quantity);
+                total += parseFloat(order.price) * parseInt(order.quantity);
             });
             str += '<tr>';
             str += '<td class="dish-name">总计</td>';
-            str += '<td class="dish-price">'+total+'</td>';
+            str += '<td class="dish-price">' + total + '</td>';
             str += '<td></td>';
             str += '</tr>';
             str += '</tbody></table></li>';
@@ -190,23 +190,21 @@ var iEatGroupShow = (function () {
     }
 
     function activeFooterItemByIndex(n) {
-        window.setTimeout(function () {
-            if (n == 0) {
-                $("#group-show .restaurant-info-btn").trigger("click");
-            }
+        if (n == 0) {
+            $("#group-show .restaurant-info-btn").trigger("click");
+        }
 
-            if (n == 1) {
-                $("#group-show .all-info-btn").trigger("click");
-            }
+        if (n == 1) {
+            $("#group-show .all-info-btn").trigger("click");
+        }
 
-            if (n == 2) {
-                $("#group-show .my-orders-btn").trigger("click");
-            }
+        if (n == 2) {
+            $("#group-show .my-orders-btn").trigger("click");
+        }
 
-            if (n == 3) {
-                $("#group-show .members-orders-btn").trigger("click");
-            }
-        }, 10);
+        if (n == 3) {
+            $("#group-show .members-orders-btn").trigger("click");
+        }
     }
 
     function getGroupDetails(callback) {
@@ -236,28 +234,33 @@ var iEatGroupShow = (function () {
 })();
 
 $("#group-show").bind("pageinit", function () {
-    if($.cookie("orderCreateStatus") == "success"){
+    if ($.cookie("orderCreateStatus") == "success") {
         iEatUtility.msg({
-            type : "success",
-            msg : "Your order is success created."
+            type: "success",
+            msg: "Your order is success created."
         });
-        $.cookie("orderCreateStatus","null");
+        $.cookie("orderCreateStatus", "null");
     }
 
-    if($.cookie("groupCreateStatus") == "success"){
+    if ($.cookie("groupCreateStatus") == "success") {
         iEatUtility.msg({
-            type : "success",
-            msg : "Your Group is success created."
+            type: "success",
+            msg: "Your Group is success created."
         });
-        $.cookie("groupCreateStatus","null");
+        $.cookie("groupCreateStatus", "null");
     }
     iEatGroupShow.pageInit();
 });
 
-$(window).bind("load", function () {
-    var triggerIndex = location.hash.replace("#","");
-    if(!triggerIndex){
+$(window).hashchange(function () {
+    var triggerIndex = location.hash.replace("#", "");
+    if (!triggerIndex) {
         triggerIndex = 0;
     }
     iEatGroupShow.activeFooterItemByIndex(triggerIndex);
 });
+
+$(window).bind("load", function () {
+    $(window).hashchange();
+});
+
