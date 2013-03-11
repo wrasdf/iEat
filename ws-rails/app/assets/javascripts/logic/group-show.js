@@ -68,14 +68,14 @@ var iEatGroupShow = (function () {
         var total = 0;
         var str = '<li><h2>'+data.user.name+'</h2><table><tbody>';
         $.each(data.order_dishes, function (index, value) {
-            str += '<tr><td class="dish-name">' + value.dish.name + '</td>';
-            str += '<td class="dish-price">' + value.dish.price + '</td>';
+            str += '<tr><td class="dish-name">' + value.name + '</td>';
+            str += '<td class="dish-price">' + value.price + '</td>';
             str += '<td class="dish-count">';
             str += '<div class="dish-count">';
             str += '<span class="ui-li-count">' + value.quantity + '</span>';
             str += '</div>';
             str += '</td></tr>';
-            total += parseFloat(value.dish.price) * parseInt(value.quantity);
+            total += parseFloat(value.price) * parseInt(value.quantity);
         });
         str += '<tr><td class="dish-name">总计</td><td class="dish-price">' + total + '$</td><td></td></tr></tbody></table>';
         str += '</li>';
@@ -119,8 +119,8 @@ var iEatGroupShow = (function () {
         $.each(orders,function(index,order){
             $.each(order.order_dishes,function(i,item){
                 var eachOrder = {
-                    name : item.dish.name,
-                    price : item.dish.price,
+                    name : item.name,
+                    price : item.price,
                     quantity : item.quantity
                 };
                 addToAllStatus(eachOrder);
