@@ -6,3 +6,5 @@ child(:user => :owner) {
 child(:restaurant) {
     attributes :id, :name, :telephone, :address
 }
+
+node(:joined) { |group| group.orders.any? {|order| order.user.email == @current_user.email} }
