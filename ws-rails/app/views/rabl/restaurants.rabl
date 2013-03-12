@@ -1,7 +1,3 @@
-collection :@restaurants => :restaurant_list
+collection :@restaurants, :root => false
 
 attributes :id, :name, :telephone, :address
-
-child(:dishes) {
-    attributes :id, :name, :price
-}

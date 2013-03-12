@@ -12,8 +12,7 @@ attributes :id, :restaurant, :description, :due_date, :name, :created_at
      }
      child(:order_dishes) {
         attributes :id, :dish_id, :quantity
-
-        child(:dish) {
+        glue (:dish) {
             attributes :name, :price
         }
      }
