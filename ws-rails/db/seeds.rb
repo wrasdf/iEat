@@ -61,7 +61,7 @@ Dish.create! :restaurant => restaurant5, :price => 16.0, :name => "1荤1素盒�
 Dish.create! :restaurant => restaurant5, :price => 6.0, :name => "肉夹馍"
 Dish.create! :restaurant => restaurant5, :price => 4.0, :name => "土豆丝饼"
 
-Group.create! :id => 1, :name => "辣团", due_date:"2013-3-25 20:00", :user => userWangrui, :restaurant => restaurant1
-Group.create! :id => 2, :name => "疯团", due_date:"2013-3-25 20:00", :user => userMingxin, :restaurant => restaurant2
-Group.create! :id => 3, :name => "奇异团", due_date:"2013-3-25 20:00", :user => userQingshan, :restaurant => restaurant3
-Group.create! :id => 4, :name => "辣团", due_date:"2013-2-25 20:00", :user => userWangrui, :restaurant => restaurant1
+#Group.create! :id => 1, :name => "辣团", due_date:"2013-3-25 20:00", :user => userWangrui, :restaurant => restaurant1
+#Group.create! :id => 2, :name => "疯团", due_date:"2013-3-25 20:00", :user => userMingxin, :restaurant => restaurant2
+#Group.create! :id => 3, :name => "奇异团", due_date:"2013-3-25 20:00", :user => userQingshan, :restaurant => restaurant3
+#Group.create! :id => 4, :name => "辣团", due_date:"2013-2-25 20:00", :user => userWangrui, :restaurant => restaurant1

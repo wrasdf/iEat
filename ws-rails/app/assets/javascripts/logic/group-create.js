@@ -32,6 +32,8 @@ var iEatCreate = (function () {
 
         if(h>12){
             result = [h-12,mins,1];
+        }else if(h==12){
+            result = [1,mins,1];
         }else{
             result = [h,mins,0];
         }
