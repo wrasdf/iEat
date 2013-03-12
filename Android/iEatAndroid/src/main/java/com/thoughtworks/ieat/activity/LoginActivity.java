@@ -4,9 +4,9 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
@@ -15,14 +15,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.thoughtworks.ieat.IEatApplication;
 import com.thoughtworks.ieat.R;
+import com.thoughtworks.ieat.domain.AppHttpResponse;
+import com.thoughtworks.ieat.domain.UserToken;
 import com.thoughtworks.ieat.utils.HttpUtils;
-import org.apache.http.HttpResponse;
-import org.apache.http.HttpStatus;
 
 public class LoginActivity extends Activity {
     private EditText usernameView;
     private EditText passwordView;
-    private Button logInButton;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -30,8 +29,8 @@ public class LoginActivity extends Activity {
         setContentView(R.layout.login);
 
         usernameView = (EditText) findViewById(R.id.username);
+        usernameView.setTypeface(Typeface.DEFAULT);
         passwordView = (EditText) findViewById(R.id.password);
-        logInButton = (Button) findViewById(R.id.logInButton);
 
         passwordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
@@ -53,7 +52,7 @@ public class LoginActivity extends Activity {
     }
 
 
-    public class LoginAsyncTask extends AsyncTask<String, Void, Integer> {
+    public class LoginAsyncTask extends AsyncTask<String, Void, AppHttpResponse<UserToken>> {
 
         private final Context context;
         private ProgressDialog loadingProgress;
@@ -70,31 +69,20 @@ public class LoginActivity extends Activity {
             loadingProgress.show();
         }
 
-        public Integer doInBackground(String... params) {
-            try {
-                HttpResponse response = HttpUtils.login(params[0], params[1]);
-                HttpUtils.login(params[0], params[1]);
-                username = params[0];
-                return response.getStatusLine().getStatusCode();
-            } catch (RuntimeException exception) {
-                Log.e(this.getClass().getName(), exception.getMessage(), exception);
-            }
-            return null;
-
+        public AppHttpResponse<UserToken> doInBackground(String... params) {
+            AppHttpResponse appHttpResponse = HttpUtils.signIn(params[0], params[1]);
+            username = params[0];
+            return appHttpResponse;
         }
 
-        public void onPostExecute(Integer responseStatus) {
+        public void onPostExecute(AppHttpResponse<UserToken> response) {
             loadingProgress.dismiss();
-            if (responseStatus == null) {
-                Toast.makeText(context, "login failed", Toast.LENGTH_SHORT).show();
-                return;
-            }
-            if (HttpStatus.SC_OK == responseStatus) {
+            if (response.isSuccessful()) {
                 ((IEatApplication) getApplication()).login(username);
                 Intent intent = new Intent(context, GroupListActivity.class);
                 startActivity(intent);
             } else {
-                Toast.makeText(context, responseStatus.toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, response.getErrorMessage(), Toast.LENGTH_SHORT).show();
             }
         }
     }

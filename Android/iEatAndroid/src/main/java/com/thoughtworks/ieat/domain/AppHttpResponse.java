@@ -7,6 +7,12 @@ public class AppHttpResponse<T> {
     private String errorMessage;
     private T data;
 
+    public static AppHttpResponse errorResponse() {
+        AppHttpResponse errorResponse = new AppHttpResponse();
+        errorResponse.setErrorMessage("Unrecognized Error!");
+        return errorResponse;
+    }
+
     public boolean isSuccessful() {
         return isSuccessful;
     }
@@ -17,6 +23,7 @@ public class AppHttpResponse<T> {
     }
 
     public void setData(T data) {
+        isSuccessful = true;
         this.data = data;
     }
 

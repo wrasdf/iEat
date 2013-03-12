@@ -3,12 +3,15 @@ package com.thoughtworks.ieat;
 import android.app.Application;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import com.thoughtworks.ieat.domain.User;
 import com.thoughtworks.ieat.utils.ApplicationData;
 import com.thoughtworks.ieat.utils.PropertyUtils;
 
 public class IEatApplication extends Application {
 
-    boolean isAuthenticated = false;
+    public static final String DATE_PATTERN = "yyyy-MM-dd'T'HH:mm:ss'Z'";
+
+    private static String currentUserName;
 
     @Override
     public void onCreate() {
@@ -18,11 +21,20 @@ public class IEatApplication extends Application {
     }
 
     public void login(String username) {
-        isAuthenticated = true;
         ApplicationData.setUsername(username);
+        currentUserName = username;
     }
 
     public void logout() {
-        isAuthenticated = false;
+        currentUserName = null;
+
     }
+
+    public static String currentUser() {
+        if (currentUserName == null) {
+            currentUserName = ApplicationData.getCurrentUser();
+        }
+        return currentUserName;
+    }
+
 }

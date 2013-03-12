@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:gravity="center"
-            android:id="@+id/logInButton"
+            android:id="@+id/login_Button"
             android:text="Log In"
             android:onClick="login"/>
 </LinearLayout>

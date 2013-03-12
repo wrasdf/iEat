@@ -15,7 +15,7 @@
     </modules>
 
     <properties>
-        <platform.version>2.3.3</platform.version>
+        <platform.version>4.0.1.2</platform.version>
         <scala.version>2.10.0</scala.version>
     </properties>
 
@@ -94,7 +94,7 @@
                         <resourceDirectory>${project.basedir}/res</resourceDirectory>
                         <nativeLibrariesDirectory>${project.basedir}/src/main/native</nativeLibrariesDirectory>
                         <sdk>
-                            <platform>10</platform>
+                            <platform>15</platform>
                         </sdk>
                         <undeployBeforeDeploy>true</undeployBeforeDeploy>
                     </configuration>

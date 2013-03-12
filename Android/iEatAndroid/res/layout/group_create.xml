@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <TextView android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:text="@string/create_group_name_label"/>
+    <EditText android:id="@+id/created_group_name"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:inputType="text"
+              android:maxLength="30"/>
+
+    <TextView android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:text="@string/choosing_restaurant_list_label"/>
+
+    <RadioGroup android:id="@+id/choosing_restaurant_list"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+    </RadioGroup>
+    <Button android:id="@+id/select_other_restaurant_button"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/select_other_restaurant_button_label"/>
+    <TextView android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:text="@string/due_time_label"/>
+
+    <TimePicker android:id="@+id/time_picker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+    </TimePicker>
+
+    <Button android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:onClick="create"
+            android:text="@string/create_confirm_button_label"/>
+
+
+</LinearLayout>

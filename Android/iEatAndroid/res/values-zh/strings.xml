@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Hello iEatAndroid!</string>
+    <string name="app_name">iEatAndroid</string>
+    <string name="title_group_list">饭团列表</string>
+    <string name="group_info_layout_title">本团介绍</string>
+    <string name="restaurant_info_layout_title">餐馆简介</string>
+    <string name="group_info_tab_label">本团信息</string>
+    <string name="group_analysis_tab_label">统计信息</string>
+    <string name="group_analysis_title">统计信息</string>
+    <string name="buy_command">买饭去</string>
+    <string name="create_group_button_label">Create My Group</string>
+    <string name="my_group_list_label">My Groups</string>
+    <string name="active_group_list_label">Available Groups</string>
+    <string name="create_group_name_label">饭团名</string>
+    <string name="choosing_restaurant_list_label">饭馆们</string>
+    <string name="select_other_restaurant_button_label">选择其它馆子</string>
+    <string name="due_time_label">截至时间</string>
+    <string name="create_confirm_button_label">创建</string>
+
+
+    <string name="input_error_group_name_is_null">团名不能为空！</string>
+    <string name="loading_restaurants_fail">加载饭馆失败！</string>
+</resources>

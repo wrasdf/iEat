@@ -2,7 +2,12 @@
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:id="@+id/menu_logout_button"/>
-    <item android:id="@+id/menu_recharge_button"/>
-
+    <item android:id="@+id/menu_logout_button"
+            android:title="log out"
+            android:showAsAction="always"
+            android:actionLayout="@layout/action_bar_group_list"/>
+    <!--<item android:id="@+id/menu_recharge_button"-->
+            <!--android:title="recharge"-->
+            <!--android:icon="@drawable/icon"-->
+            <!--android:showAsAction="always"/>-->
 </menu>

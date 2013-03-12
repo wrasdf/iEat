@@ -2,26 +2,26 @@ package com.thoughtworks.ieat.activity;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.view.Menu;
+import android.view.View;
+import android.view.Window;
+import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import com.thoughtworks.ieat.IEatApplication;
 import com.thoughtworks.ieat.R;
 import com.thoughtworks.ieat.activity.view.GroupItemView;
 import com.thoughtworks.ieat.activity.view.GroupsAdapter;
+import com.thoughtworks.ieat.domain.AppHttpResponse;
 import com.thoughtworks.ieat.domain.Group;
-import com.thoughtworks.ieat.domain.GroupList;
+import com.thoughtworks.ieat.utils.ApplicationData;
 import com.thoughtworks.ieat.utils.HttpUtils;
-import com.thoughtworks.ieat.utils.IOUtils;
-import de.akquinet.android.androlog.Log;
-import org.apache.http.HttpResponse;
-import org.apache.http.HttpStatus;
 
-import java.io.IOException;
+import java.util.LinkedList;
 import java.util.List;
 
 public class GroupListActivity extends Activity {
@@ -31,68 +31,64 @@ public class GroupListActivity extends Activity {
 
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
+        this.requestWindowFeature(Window.FEATURE_ACTION_BAR);
         setContentView(R.layout.group_list);
         myGroupLayout = (LinearLayout) findViewById(R.id.my_groups);
         todayGroupLayout = (ListView) findViewById(R.id.today_groups);
-
+        getActionBar().setTitle(R.string.title_group_list);
     }
 
     public void onResume() {
         super.onResume();
 
-        new GroupListAsyncTask().execute();
+        new GroupListAsyncTask(this).execute();
     }
 
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.group_list, menu);
-
-        return true;
+    public void createGroup(View view) {
+        Intent intent = new Intent(this, GroupCreateActivity.class);
+        startActivity(intent);
     }
 
-    public class GroupListAsyncTask extends AsyncTask<Void, Void, HttpResponse> {
+    public class GroupListAsyncTask extends AsyncTask<Void, Void, AppHttpResponse<List<Group>>> {
 
-        private ProgressDialog progressBar;
+        private ProgressDialog progressDialog;
+        private final Context context;
+
+        public GroupListAsyncTask(Context context) {
+            this.context = context;
+        }
 
         @Override
         public void onPreExecute() {
-            progressBar = new ProgressDialog(GroupListActivity.this);
-            progressBar.setMessage("loading group...");
-            progressBar.setCanceledOnTouchOutside(false);
+            progressDialog = new ProgressDialog(context);
+            progressDialog.setMessage("loading group...");
+            progressDialog.setCanceledOnTouchOutside(false);
+            progressDialog.show();
         }
 
         @Override
-        protected HttpResponse doInBackground(Void... params) {
-            try {
-                return HttpUtils.getTodayGroup();
-            } catch (RuntimeException e) {
-                Log.e(this.getClass().getName(), e.getMessage(), e);
-            }
-            return null;
+        protected AppHttpResponse<List<Group>> doInBackground(Void... params) {
+            return HttpUtils.getActiveGroups();
         }
 
         @Override
-        protected void onPostExecute(HttpResponse response) {
-            if (HttpStatus.SC_OK == response.getStatusLine().getStatusCode()) {
-                try {
-                    String json = IOUtils.toString(response.getEntity().getContent());
-                    Gson gson = new GsonBuilder().setDateFormat(Group.DATE_PATTERN).create();
-                    GroupList groupList = gson.fromJson(json, GroupList.class);
-                    displayMyGroup(groupList.getMyGroups());
-                    displayTodayGroup(groupList.getGroupList());
-                } catch (IOException e) {
-                    Toast.makeText(GroupListActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                }
-
-
+        protected void onPostExecute(AppHttpResponse<List<Group>> groupListResponse) {
+            progressDialog.dismiss();
+            if (groupListResponse.isSuccessful()) {
+                List<Group> groupList = groupListResponse.getData();
+                displayMyGroup(groupList);
+                displayTodayGroup(groupList);
+            } else {
+                Toast.makeText(context, groupListResponse.getErrorMessage(), Toast.LENGTH_SHORT).show();
             }
-            progressBar.dismiss();
         }
-
-
     }
 
     private void displayMyGroup(List<Group> myGroups) {
         for (Group myGroup : myGroups) {
+            if (!myGroup.getOwner().getName().equals(IEatApplication.currentUser())) {
+                continue;
+            }
             GroupItemView groupItemView = new GroupItemView(getApplicationContext());
             groupItemView.addGroup(myGroup);
             myGroupLayout.addView(groupItemView);
@@ -100,6 +96,22 @@ public class GroupListActivity extends Activity {
     }
 
     private void displayTodayGroup(List<Group> groupList) {
-        todayGroupLayout.setAdapter(new GroupsAdapter(getApplicationContext(), groupList));
+        List<Group> otherGroups = new LinkedList<Group>();
+        for (Group group : groupList) {
+            if (group.getOwner().getName().equals(IEatApplication.currentUser())) {
+                continue;
+            }
+            otherGroups.add(group);
+        }
+        final GroupsAdapter adapter = new GroupsAdapter(getApplicationContext(), otherGroups);
+        todayGroupLayout.setAdapter(adapter);
+        todayGroupLayout.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(GroupListActivity.this, GroupTabActivity.class);
+                intent.putExtra("GROUP_ID", adapter.getItem(i).getId());
+                GroupListActivity.this.startActivity(intent);
+            }
+        });
     }
 }

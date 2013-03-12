@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+    <TextView android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:text="@string/group_info_layout_title"/>
+    <TableLayout android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+        <TableRow android:orientation="horizontal">
+            <TextView android:layout_weight="0.3"
+                      android:layout_width="0dp"
+                      android:layout_height="wrap_content"
+                      android:text="团名"
+                    />
+
+            <TextView android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.7"
+                    android:text="name"/>
+
+        </TableRow>
+
+        <TableRow android:orientation="horizontal">
+            <TextView android:layout_weight="0.3"
+                      android:layout_width="0dp"
+                      android:layout_height="wrap_content"
+                      android:text="团名"
+                    />
+
+            <TextView android:layout_height="wrap_content"
+                      android:layout_width="0dp"
+                      android:layout_weight="0.7"
+                      android:text="name"/>
+
+        </TableRow>
+    </TableLayout>
+
+    <TextView android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:text="@string/restaurant_info_layout_title"/>
+    <TableLayout android:layout_width="fill_parent"
+                 android:layout_height="wrap_content">
+        <TableRow android:orientation="horizontal">
+            <TextView android:layout_weight="0.3"
+                      android:layout_width="0dp"
+                      android:layout_height="wrap_content"
+                      android:text="团名"
+                    />
+
+            <TextView android:layout_height="wrap_content"
+                      android:layout_width="0dp"
+                      android:layout_weight="0.7"
+                      android:text="name"/>
+
+        </TableRow>
+
+    </TableLayout>
+
+</LinearLayout>

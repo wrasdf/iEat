@@ -8,11 +8,12 @@
     <Button android:id="@+id/creat_group"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="+ I want to create my group."/>
+            android:onClick="createGroup"
+            android:text="@string/create_group_button_label"/>
 
     <TextView android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="My Orders"
+            android:text="@string/my_group_list_label"
             android:gravity="left"/>
     <LinearLayout android:id="@+id/my_groups"
             android:layout_width="fill_parent"
@@ -21,9 +22,8 @@
     </LinearLayout>
     <TextView android:layout_width="fill_parent"
               android:layout_height="wrap_content"
-              android:text="Available Groups"
-              android:gravity="left"
-            />
+              android:text="@string/active_group_list_label"
+              android:gravity="left"/>
 
 
     <ListView android:id="@+id/today_groups"

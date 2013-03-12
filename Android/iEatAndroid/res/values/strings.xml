@@ -2,4 +2,22 @@
 <resources>
     <string name="hello">Hello iEatAndroid!</string>
     <string name="app_name">iEatAndroid</string>
+    <string name="title_group_list">Group List</string>
+    <string name="group_info_layout_title">Group Info</string>
+    <string name="restaurant_info_layout_title">Introduction to Restaurant</string>
+    <string name="group_info_tab_label">Group Info</string>
+    <string name="group_analysis_tab_label">Analysis Info</string>
+    <string name="group_analysis_title">Analysis Info</string>
+    <string name="buy_command">Buy</string>
+    <string name="create_group_button_label">Create My Group</string>
+    <string name="my_group_list_label">My Groups</string>
+    <string name="active_group_list_label">Available Groups</string>
+    <string name="create_group_name_label">Group Name</string>
+    <string name="choosing_restaurant_list_label">All Restaurants</string>
+    <string name="select_other_restaurant_button_label">Select Other Restaurant</string>
+    <string name="due_time_label">Due Time</string>
+    <string name="create_confirm_button_label">Create</string>
+
+    <string name="input_error_group_name_is_null">Group name should not be null!</string>
+    <string name="loading_restaurants_fail">Fail to load restaurants</string>
 </resources>
