@@ -10,8 +10,9 @@
   %body
     #create-group{"data-role" => "page"}
       %div{"data-role" => "header"}
-        %a.ui-btn-left{"data-icon" => "arrow-l", "data-theme" => "c", :href => "#group-list"} 返回
+        %a.ui-btn-left{"data-icon" => "arrow-l", "data-theme" => "c", :href => "javascript:void(0);"} 返回
         %h1 创建饭团
+        %a.ui-btn-right.create-group-btn{"data-theme" => "c", :href => "javascript:void(0);"} 创建
       %div{"data-role" => "content"}
         %h2 饭团名 :
         %input#group-name{:type => "text"}

@@ -261,6 +261,8 @@ $(window).hashchange(function () {
 });
 
 $(window).bind("load", function () {
-    $(window).hashchange();
+    window.setTimeout(function(){
+        $(window).hashchange();
+    },10)
 });
 

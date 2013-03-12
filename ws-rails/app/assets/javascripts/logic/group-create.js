@@ -1,7 +1,5 @@
 var iEatCreate = (function () {
 
-    var maxLabel = 3;
-
     function uiPickerInit() {
 
         $('#timePicker').mobiscroll().time({
@@ -82,8 +80,12 @@ var iEatCreate = (function () {
                 success: function (o) {
                     if (o) {
                         var createdGroupId = o.id;
+                        var groupName = $("#group-name").val();
                         $.cookie("currentGroupId", createdGroupId, { expires: 1, path: '/' });
                         $.cookie("groupCreateStatus", "success", { expires: 1, path: '/' });
+                        if(groupName){
+                            $.cookie("createGroupName",groupName, { expires: 1, path: '/' });
+                        }
                         window.location.href = "/groups/" + createdGroupId;
                     }
                 },
@@ -101,6 +103,10 @@ var iEatCreate = (function () {
         });
 
         $(".more-restaurants").bind("click", function () {
+            var groupName = $("#group-name").val();
+            if(groupName){
+                $.cookie("createGroupName",groupName, { expires: 1, path: '/' });
+            }
             window.location.href = "/restaurants";
         });
 
@@ -127,6 +133,7 @@ var iEatCreate = (function () {
         });
     }
 
+    var maxLabel = 3;
     function updateRestaurantsUI(data,selectId){
         var str = '<fieldset data-role="controlgroup">';
         str += '<legend>馆子们:</legend>';
@@ -171,15 +178,21 @@ var iEatCreate = (function () {
         $('.radio-content-list').html(str).trigger("create");
     }
 
+    function updateGroupName(str){
+        if(str){
+            $("#group-name").val(str);
+        }
+    }
+
 
     function pageInit(f) {
         if (f && typeof f == "function") {
             f();
         }
+        updateGroupName($.cookie("createGroupName"));
         getRestaurants();
         uiPickerInit();
         bindEvent();
-
     }
 
     function selectRadioByRestaurantId(id) {
