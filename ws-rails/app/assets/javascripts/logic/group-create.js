@@ -1,5 +1,7 @@
 var iEatCreate = (function () {
 
+    var maxLabel = 3;
+
     function uiPickerInit() {
 
         $('#timePicker').mobiscroll().time({
@@ -104,10 +106,77 @@ var iEatCreate = (function () {
 
     }
 
+    function getRestaurants(){
+        var token = $.cookie("token");
+        $.ajax({
+            type: 'GET',
+            url: "/api/v1/restaurants?token="+token,
+            dataType: 'json',
+            success: function (o) {
+                if (o) {
+                    var selectedRestaurantId = $.cookie("selectedRestaurantId");
+                    updateRestaurantsUI(o,selectedRestaurantId);
+                }
+            },
+            error: function (xhr) {
+                iEatUtility.msg({
+                    type: "error",
+                    msg: $.parseJSON(xhr.responseText).message
+                });
+            }
+        });
+    }
+
+    function updateRestaurantsUI(data,selectId){
+        var str = '<fieldset data-role="controlgroup">';
+        str += '<legend>馆子们:</legend>';
+        var currentRadioIndex = 0;
+
+        if(selectId){
+            $.each(data,function(index,value){
+                if(value.id == selectId){
+                    str += '<input type="radio" name="radio-choice-v-2" checked="checked" data-id="'+value.id+'" id="radio-choice-'+value.id+'" value="'+value.id+'">';
+                    str += '<label for="radio-choice-'+value.id+'">'+value.name+'</label>';
+                    return false;
+                }
+            });
+        }
+
+
+        $.each(data,function(index,value){
+
+            if(selectId && value.id == selectId){
+                return true;
+            }
+
+            currentRadioIndex ++;
+
+            if(currentRadioIndex > maxLabel){
+                return false;
+            }
+
+            if(selectId){
+                str += '<input type="radio" name="radio-choice-v-2" data-id="'+value.id+'" id="radio-choice-'+value.id+'" value="'+value.id+'">';
+            }else{
+                if(currentRadioIndex == 1){
+                    str += '<input type="radio" name="radio-choice-v-2" checked="checked" data-id="'+value.id+'" id="radio-choice-'+value.id+'" value="'+value.id+'">';
+                }else{
+                    str += '<input type="radio" name="radio-choice-v-2" data-id="'+value.id+'" id="radio-choice-'+value.id+'" value="'+value.id+'">';
+                }
+            }
+            str += '<label for="radio-choice-'+value.id+'">'+value.name+'</label>';
+        });
+
+        str += '</fieldset>';
+        $('.radio-content-list').html(str).trigger("create");
+    }
+
+
     function pageInit(f) {
         if (f && typeof f == "function") {
             f();
         }
+        getRestaurants();
         uiPickerInit();
         bindEvent();
 
@@ -144,12 +213,4 @@ var iEatCreate = (function () {
 
 $(document).bind("pageinit", function () {
     iEatCreate.pageInit();
-});
-
-$(window).bind("load", function () {
-    var selectedRestaurantId = $.cookie("selectedRestaurantId");
-    if (!selectedRestaurantId) {
-        selectedRestaurantId = 1;
-    }
-    iEatCreate.selectRadioByRestaurantId(selectedRestaurantId);
 });

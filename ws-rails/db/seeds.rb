@@ -33,6 +33,8 @@ userXiaochong.confirm!
 restaurant1 = Restaurant.create! :id => 1, :name => "九头鹰", :telephone => "12312319283"
 restaurant2 = Restaurant.create! :id => 2, :name => "来福士", :telephone => "12312319283"
 restaurant3 = Restaurant.create! :id => 3, :name => "桂林米粉", :telephone => "12312319283"
+restaurant4 = Restaurant.create! :id => 4, :name => "来福士热烫皮", :telephone => "12312319283"
+restaurant5 = Restaurant.create! :id => 5, :name => "超市盒饭", :telephone => "12312319283"
 
 Dish.create! :restaurant => restaurant1, :price => 12.0, :name => "小炒肉"
 Dish.create! :restaurant => restaurant1, :price => 12.0, :name => "土豆烧牛肉"
@@ -49,6 +51,15 @@ Dish.create! :restaurant => restaurant3, :price => 12.0, :name => "牛肉粉"
 Dish.create! :restaurant => restaurant3, :price => 12.0, :name => "西瓜粉"
 Dish.create! :restaurant => restaurant3, :price => 12.0, :name => "小炒粉丝"
 
+Dish.create! :restaurant => restaurant4, :price => 10.0, :name => "热烫皮"
+Dish.create! :restaurant => restaurant4, :price => 7.0, :name => "肉夹馍"
+Dish.create! :restaurant => restaurant4, :price => 7.0, :name => "凉皮"
+Dish.create! :restaurant => restaurant4, :price => 7.0, :name => "凉面"
+
+Dish.create! :restaurant => restaurant5, :price => 12.0, :name => "热炒饭"
+Dish.create! :restaurant => restaurant5, :price => 16.0, :name => "1荤1素盒饭"
+Dish.create! :restaurant => restaurant5, :price => 6.0, :name => "肉夹馍"
+Dish.create! :restaurant => restaurant5, :price => 4.0, :name => "土豆丝饼"
 
 Group.create! :id => 1, :name => "辣团", due_date:"2013-3-25 20:00", :user => userWangrui, :restaurant => restaurant1
 Group.create! :id => 2, :name => "疯团", due_date:"2013-3-25 20:00", :user => userMingxin, :restaurant => restaurant2

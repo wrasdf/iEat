@@ -15,14 +15,8 @@
       %div{"data-role" => "content"}
         %h2 饭团名 :
         %input#group-name{:type => "text"}
-        %fieldset{"data-role" => "controlgroup"}
-          %legend 饭馆们 :
-          - @restaurant.each do |item|
-            %input{:id => "radio-box-#{item.id}", :name => "radio-choice-v-2", :type => "radio", :value => "#{item.id}"}
-            %label{:for => "radio-box-#{item.id}"}= item.name
-
+        %div.radio-content-list
         %a.more-restaurants{"data-role" => "button", :href => "javascript:void(0);"} 选择其他馆子
-
         %h2 截止日期 :
         %ul.listview{"data-role" => "listview", "data-inset"=>"true"}
           %li

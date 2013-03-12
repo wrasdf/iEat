@@ -1,5 +1,3 @@
-require 'json'
-
 class GroupsController < ApplicationController
   # GET /groups
   # GET /groups.json
@@ -86,9 +84,6 @@ class GroupsController < ApplicationController
     end
   end
 
-  def today
-    render :file => 'resources/todayGroupList.json', :content_type => 'application/json', :status => 200
-  end
 
   def edit
     @group = Group.find(params[:id])
