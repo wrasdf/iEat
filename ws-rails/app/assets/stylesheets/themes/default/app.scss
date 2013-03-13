@@ -5,6 +5,7 @@
 .ui-msg.error{ background: #f8394b; color: #fff;}
 
 #group-list{
+  h2{margin: 15px 0 0 0;}
   .group-item{font-size:14px;  display:inline-block;}
   .joined{padding-left: 35px;background: url(images/joined.png) no-repeat 4px center;}
   .created{padding-left: 35px;background: url(images/created.png) no-repeat 4px center;}

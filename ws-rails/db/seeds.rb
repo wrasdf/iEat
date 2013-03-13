@@ -31,35 +31,52 @@ userXiaochong = User.create! :name => "小虫", :email => "xczhang@thoughtworks.
 userXiaochong.confirm!
 
 restaurant1 = Restaurant.create! :id => 1, :name => "九头鹰", :telephone => "12312319283"
-restaurant2 = Restaurant.create! :id => 2, :name => "来福士", :telephone => "12312319283"
+restaurant2 = Restaurant.create! :id => 2, :name => "来福士超市", :telephone => "12312319283"
 restaurant3 = Restaurant.create! :id => 3, :name => "桂林米粉", :telephone => "12312319283"
 restaurant4 = Restaurant.create! :id => 4, :name => "来福士热烫皮", :telephone => "12312319283"
-restaurant5 = Restaurant.create! :id => 5, :name => "超市盒饭", :telephone => "12312319283"
+restaurant5 = Restaurant.create! :id => 5, :name => "Subway", :telephone => "12312319283"
 
-Dish.create! :restaurant => restaurant1, :price => 12.0, :name => "小炒肉"
-Dish.create! :restaurant => restaurant1, :price => 12.0, :name => "土豆烧牛肉"
-Dish.create! :restaurant => restaurant1, :price => 12.0, :name => "三杯鸡"
-Dish.create! :restaurant => restaurant1, :price => 12.0, :name => "西红柿牛腩"
+cuisine1 = Cuisine.create! :id => 1, :name => "炒菜"
+cuisine2 = Cuisine.create! :id => 2, :name => "主食"
+cuisine3 = Cuisine.create! :id => 3, :name => "米粉"
 
-Dish.create! :restaurant => restaurant2, :price => 12.0, :name => "盒饭"
-Dish.create! :restaurant => restaurant2, :price => 12.0, :name => "炒饼丝"
-Dish.create! :restaurant => restaurant2, :price => 12.0, :name => "炒蒙面"
-Dish.create! :restaurant => restaurant2, :price => 12.0, :name => "尖椒米饭"
+RestaurantCuisine.create! :restaurant => restaurant1, :cuisine => cuisine1
+RestaurantCuisine.create! :restaurant => restaurant1, :cuisine => cuisine2
+RestaurantCuisine.create! :restaurant => restaurant2, :cuisine => cuisine2
+RestaurantCuisine.create! :restaurant => restaurant3, :cuisine => cuisine3
+RestaurantCuisine.create! :restaurant => restaurant4, :cuisine => cuisine2
+RestaurantCuisine.create! :restaurant => restaurant5, :cuisine => cuisine2
 
-Dish.create! :restaurant => restaurant3, :price => 12.0, :name => "普通米粉"
-Dish.create! :restaurant => restaurant3, :price => 12.0, :name => "牛肉粉"
-Dish.create! :restaurant => restaurant3, :price => 12.0, :name => "西瓜粉"
-Dish.create! :restaurant => restaurant3, :price => 12.0, :name => "小炒粉丝"
+Dish.create! :id=>1, :cuisine=>cuisine1, :restaurant => restaurant1, :price => 15.0, :name => "小炒肉"
+Dish.create! :id=>2, :cuisine=>cuisine1, :restaurant => restaurant1, :price => 18.0, :name => "土豆烧牛肉"
+Dish.create! :id=>3, :cuisine=>cuisine1, :restaurant => restaurant1, :price => 14.0, :name => "三杯鸡"
+Dish.create! :id=>4, :cuisine=>cuisine1, :restaurant => restaurant1, :price => 15.0, :name => "西红柿牛腩"
+Dish.create! :id=>5, :cuisine=>cuisine2, :restaurant => restaurant1, :price => 5.0, :name => "热干面"
+Dish.create! :id=>6, :cuisine=>cuisine2, :restaurant => restaurant1, :price => 12.0, :name => "鸡蛋炒面"
+Dish.create! :id=>7, :cuisine=>cuisine2, :restaurant => restaurant1, :price => 12.0, :name => "鸡丝面"
+Dish.create! :id=>8, :cuisine=>cuisine2, :restaurant => restaurant1, :price => 12.0, :name => "红烧牛肉面"
+Dish.create! :id=>9, :cuisine=>cuisine2, :restaurant => restaurant1, :price => 12.0, :name => "鸡蛋炒大米"
+Dish.create! :id=>10, :cuisine=>cuisine2, :restaurant => restaurant1, :price => 1.0, :name => "米饭"
 
-Dish.create! :restaurant => restaurant4, :price => 10.0, :name => "热烫皮"
-Dish.create! :restaurant => restaurant4, :price => 7.0, :name => "肉夹馍"
-Dish.create! :restaurant => restaurant4, :price => 7.0, :name => "凉皮"
-Dish.create! :restaurant => restaurant4, :price => 7.0, :name => "凉面"
+Dish.create! :id=>11, :cuisine=>cuisine2, :restaurant => restaurant2, :price => 12.0, :name => "盒饭"
+Dish.create! :id=>12, :cuisine=>cuisine2, :restaurant => restaurant2, :price => 12.0, :name => "炒饼丝"
+Dish.create! :id=>13, :cuisine=>cuisine2, :restaurant => restaurant2, :price => 12.0, :name => "炒蒙面"
+Dish.create! :id=>14, :cuisine=>cuisine2, :restaurant => restaurant2, :price => 12.0, :name => "尖椒米饭"
+Dish.create! :id=>23, :cuisine=>cuisine2, :restaurant => restaurant2, :price => 12.0, :name => "热炒饭"
+Dish.create! :id=>24, :cuisine=>cuisine2, :restaurant => restaurant2, :price => 16.0, :name => "1荤1素盒饭"
+Dish.create! :id=>25, :cuisine=>cuisine2, :restaurant => restaurant2, :price => 6.0, :name => "肉夹馍"
+Dish.create! :id=>26, :cuisine=>cuisine2, :restaurant => restaurant2, :price => 4.0, :name => "土豆丝饼"
 
-Dish.create! :restaurant => restaurant5, :price => 12.0, :name => "热炒饭"
-Dish.create! :restaurant => restaurant5, :price => 16.0, :name => "1荤1素盒饭"
-Dish.create! :restaurant => restaurant5, :price => 6.0, :name => "肉夹馍"
-Dish.create! :restaurant => restaurant5, :price => 4.0, :name => "土豆丝饼"
+Dish.create! :id=>15, :cuisine=>cuisine3, :restaurant => restaurant3, :price => 12.0, :name => "普通米粉"
+Dish.create! :id=>16, :cuisine=>cuisine3, :restaurant => restaurant3, :price => 12.0, :name => "牛肉粉"
+Dish.create! :id=>17, :cuisine=>cuisine3, :restaurant => restaurant3, :price => 12.0, :name => "西瓜粉"
+Dish.create! :id=>18, :cuisine=>cuisine3, :restaurant => restaurant3, :price => 12.0, :name => "小炒粉丝"
+
+Dish.create! :id=>19, :cuisine=>cuisine2, :restaurant => restaurant4, :price => 10.0, :name => "热烫皮"
+Dish.create! :id=>20, :cuisine=>cuisine2, :restaurant => restaurant4, :price => 7.0, :name => "肉夹馍"
+Dish.create! :id=>21, :cuisine=>cuisine2, :restaurant => restaurant4, :price => 7.0, :name => "凉皮"
+Dish.create! :id=>22, :cuisine=>cuisine2, :restaurant => restaurant4, :price => 7.0, :name => "凉面"
+Dish.create! :id=>27, :cuisine=>cuisine2, :restaurant => restaurant5, :price => 15.0, :name => "特惠套餐"
 
 #Group.create! :id => 1, :name => "辣团", due_date:"2013-3-25 20:00", :user => userWangrui, :restaurant => restaurant1
 #Group.create! :id => 2, :name => "疯团", due_date:"2013-3-25 20:00", :user => userMingxin, :restaurant => restaurant2

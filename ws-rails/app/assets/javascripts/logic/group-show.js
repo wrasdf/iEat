@@ -21,25 +21,25 @@ var iEatGroupShow = (function () {
         $("#group-show .restaurant-info-btn").bind("click", function () {
             $("#group-show .details-content").hide();
             $("#group-show .group-details").show();
-            window.location.hash = "#0";
+//            window.location.hash = "#0";
         });
 
         $("#group-show .all-info-btn").bind("click", function () {
             $("#group-show .details-content").hide();
             $("#group-show .all-status").show();
-            window.location.hash = "#1";
+//            window.location.hash = "#1";
         });
 
         $("#group-show .my-orders-btn").bind("click", function () {
             $("#group-show .details-content").hide();
             $("#group-show .my-orders-details").show();
-            window.location.hash = "#2";
+//            window.location.hash = "#2";
         });
 
         $("#group-show .members-orders-btn").bind("click", function () {
             $("#group-show .details-content").hide();
             $("#group-show .members-details").show();
-            window.location.hash = "#3";
+//            window.location.hash = "#3";
         });
 
         $("#group-show .buy-foods").bind("click", function () {
@@ -261,8 +261,6 @@ $(window).hashchange(function () {
 });
 
 $(window).bind("load", function () {
-    window.setTimeout(function(){
-        $(window).hashchange();
-    },10)
+   $(window).hashchange();
 });
 

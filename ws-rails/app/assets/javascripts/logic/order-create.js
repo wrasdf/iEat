@@ -4,6 +4,50 @@ var iEatGroupDetails = (function () {
     var currentGroupId = $.cookie("currentGroupId");
     var token = $.cookie("token");
 
+    function getAllDishes(){
+        $.ajax({
+            type : "get",
+            url : "/api/v1/groups/"+currentGroupId+"/dishes?token="+token,
+            dataType : "json",
+            success : function(o){
+
+//                var data =refactorDishesData(o);
+
+                var str = '<ul data-role="listview" data-inset="true" data-filter="true" data-filter-placeholder="Search dish..." class="listview edit-restaurant-details">'
+                $.each(o,function(){
+
+                })
+                str += '</ul>'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            },
+            error : function(){
+                alert("API : /api/v1/groups/:id/dishes is ERROR!");
+            }
+        });
+    }
+    getAllDishes();
+
+
+
     function bindFunction() {
         $("#user-order-dishes .edit-restaurant-details .add").bind("click", function (e) {
             var currentInput = $(this).parents("li").find("input.number-input");

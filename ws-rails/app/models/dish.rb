@@ -1,4 +1,5 @@
 class Dish < ActiveRecord::Base
   belongs_to :restaurant
-  attr_accessible :description, :image_url, :name, :price, :restaurant
+  belongs_to :cuisine
+  attr_accessible :id, :description, :image_url, :name, :price, :restaurant, :cuisine
 end

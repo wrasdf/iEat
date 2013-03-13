@@ -70,6 +70,7 @@ var iEatGroupList = (function () {
 
         $("#group-list .create-group").bind("click", function () {
             window.location.href = "/groups/new";
+//            $.mobile.changePage("/groups/new");
         });
 
         $("#group-list .group-item").bind("click", function () {
@@ -92,8 +93,12 @@ var iEatGroupList = (function () {
     }
 
 })();
+//
+//$(document).delegate("pageinit",function(){
+//    iEatGroupList.pageInit();
+//});
 
-$(document).bind("pageinit",function(){
+$(document).delegate("#group-list", "pageinit", function() {
     iEatGroupList.pageInit();
 });
 

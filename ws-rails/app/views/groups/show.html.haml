@@ -12,7 +12,7 @@
       %div{"data-role" => "header"}
         %a.ui-btn-left{"data-icon" => "arrow-l", "data-theme" => "c", :href => "#group-list"} 返回
         %h1.group-name
-        %a.ui-btn-right.buy-foods{"data-icon" => "arrow-r", "data-iconpos" => "right", "data-id" => "#{@group.id}", "data-theme" => "c", :href => "javascript:void(0);"} 买饭去
+        %a.ui-btn-right.buy-foods{"data-icon" => "arrow-r", "data-iconpos" => "right", "data-id" => "#{@group.id}", "data-theme" => "c", :href => "javascript:void(0);"} 去点餐
       %div.info-details{"data-role" => "content"}
         %div.details-content.group-details
           %h2 本团介绍
@@ -81,7 +81,7 @@
             -#      %td
             -#%li
 
-        %a.buy-foods{ :href => "javascript:void(0);" ,"data-role" => "button"} 买饭去
+        -#%a.buy-foods{ :href => "javascript:void(0);" ,"data-role" => "button"} 买饭去
 
       %div.fixed-footer{"data-position" => "fixed", "data-role" => "footer"}
         %div{"data-role" => "navbar"}
