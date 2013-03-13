@@ -5,8 +5,10 @@
 .ui-msg.error{ background: #f8394b; color: #fff;}
 
 #group-list{
-  .ui-link-inherit{font-size:14px;}
-  .group-name{display: inline-block; width:60px;}
+  .group-item{font-size:14px;  display:inline-block;}
+  .joined{padding-left: 35px;background: url(images/joined.png) no-repeat 4px center;}
+  .created{padding-left: 35px;background: url(images/created.png) no-repeat 4px center;}
+  .group-name{display: inline-block; width:40px;}
   .restaurant-name{display: inline-block; width:80px;}
   }
 #group-show{
