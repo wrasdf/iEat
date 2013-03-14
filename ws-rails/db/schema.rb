@@ -14,7 +14,8 @@
 ActiveRecord::Schema.define(:version => 20130313072226) do
 
   create_table "cuisines", :force => true do |t|
-    t.string "name"
+    t.integer "restaurant_id"
+    t.string  "name"
   end
 
   create_table "dishes", :force => true do |t|
@@ -64,14 +65,6 @@ ActiveRecord::Schema.define(:version => 20130313072226) do
   add_index "orders", ["group_id"], :name => "index_orders_on_group_id"
   add_index "orders", ["user_id"], :name => "index_orders_on_user_id"
 
-  create_table "restaurant_cuisines", :force => true do |t|
-    t.integer "restaurant_id"
-    t.integer "cuisine_id"
-  end
-
-  add_index "restaurant_cuisines", ["cuisine_id"], :name => "index_restaurant_cuisines_on_cuisine_id"
-  add_index "restaurant_cuisines", ["restaurant_id"], :name => "index_restaurant_cuisines_on_restaurant_id"
-
   create_table "restaurants", :force => true do |t|
     t.string   "name"
     t.string   "telephone"
@@ -80,6 +73,8 @@ ActiveRecord::Schema.define(:version => 20130313072226) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  add_index "restaurants", ["id"], :name => "index_restaurants_on_id"
 
   create_table "roles", :force => true do |t|
     t.string   "name"

@@ -24,8 +24,11 @@ class OrdersController < ApplicationController
   # GET /orders/new
   # GET /orders/new.json
   def new
+
     @group = Group.find(params[:group_id])
-    #@dishes = @group.restaurant.restaurant_cuisines
+    #@restaurant = @group.restaurant
+    #@cuisines = @restaurant.cuisines
+    #puts @cuisines
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @group }

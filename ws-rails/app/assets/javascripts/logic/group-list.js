@@ -93,12 +93,9 @@ var iEatGroupList = (function () {
     }
 
 })();
-//
-//$(document).delegate("pageinit",function(){
-//    iEatGroupList.pageInit();
-//});
 
-$(document).delegate("#group-list", "pageinit", function() {
+$(document).bind("pageinit",function(){
     iEatGroupList.pageInit();
 });
+
 

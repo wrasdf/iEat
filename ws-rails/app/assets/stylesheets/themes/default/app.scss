@@ -6,7 +6,7 @@
 
 #group-list{
   h2{margin: 15px 0 0 0;}
-  .group-item{font-size:14px;  display:inline-block;}
+  .group-item{font-size:14px;  display:block;}
   .joined{padding-left: 35px;background: url(images/joined.png) no-repeat 4px center;}
   .created{padding-left: 35px;background: url(images/created.png) no-repeat 4px center;}
   .group-name{display: inline-block; width:40px;}
@@ -48,7 +48,7 @@
   .edit-restaurant-details .ui-input-text{float:right; margin-top: -13px; margin-right: 10px; height: 25px;}
   .edit-restaurant-details .ui-input-text .number-input{float:right; margin:-5px 0px 0px 0; width:20px; }
   .edit-restaurant-details .ui-li-count{ position:static; float:left; margin:14px 0 0 0; }
-  .edit-restaurant-details .ui-btn-inner{min-width: 0px; padding-left: 18px;}
+  .edit-restaurant-details .ui-btn-inner{min-width: 0px; padding-left: 18px; display: inline-block}
 
   .footer-navbar{overflow: hidden;}
   .footer-navbar li{padding-top: 0; padding-bottom: 0;}

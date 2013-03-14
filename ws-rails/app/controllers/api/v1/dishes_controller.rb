@@ -3,7 +3,9 @@ class Api::V1::DishesController < Api::V1::BaseController
 
   def detail
     @group = Group.find(params[:id])
-    @cuisines = @group.restaurant.restaurant_cuisines.map { |rc| rc.cuisine}
+    @restaurant = @group.restaurant
+    @cuisines = @restaurant.cuisines
+
     render :file => 'rabl/cuisines.rabl'
   end
 

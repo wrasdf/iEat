@@ -10,43 +10,31 @@ var iEatGroupDetails = (function () {
             url : "/api/v1/groups/"+currentGroupId+"/dishes?token="+token,
             dataType : "json",
             success : function(o){
-
-//                var data =refactorDishesData(o);
-
-                var str = '<ul data-role="listview" data-inset="true" data-filter="true" data-filter-placeholder="Search dish..." class="listview edit-restaurant-details">'
-                $.each(o,function(){
-
+                var str = '<ul data-role="listview" data-inset="true" data-filter="true" data-filter-placeholder="Search dish..." class="edit-restaurant-details">';
+                $.each(o,function(i,cuisine){
+                    str += '<li data-role="list-divider" data-theme="c">'+ cuisine.name+'</li>';
+                    $.each(cuisine.dishes,function(index,dish){
+                        str += '<li class="cf" data-dish-id="'+dish.id+'">';
+                        str += '<span class="restaurant-content">';
+                        str += '<span class="dish-name">'+dish.name+'</span>';
+                        str += '<span class="dish-price">'+dish.price+' $</span>';
+                        str += '</span>';
+                        str += '<div class="group-button-content" data-role="controlgroup" data-type="horizontal">';
+                        str += '<a class="reduce" data-icon="minus" data-role="button" href="javascript:void(0);"> </a>';
+                        str += '<a class="add" data-icon="plus" data-role="button" href="javascript:void(0);"> </a>';
+                        str += '</div>';
+                        str += '<input class="number-input" data-mini="true" type="number" value = "0" /></li>';
+                    });
                 })
-                str += '</ul>'
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                str += '</ul>';
+                $(".edit-my-orders-content").html(str).trigger("create");
+                bindFunction();
             },
             error : function(){
                 alert("API : /api/v1/groups/:id/dishes is ERROR!");
             }
         });
     }
-    getAllDishes();
-
-
 
     function bindFunction() {
         $("#user-order-dishes .edit-restaurant-details .add").bind("click", function (e) {
@@ -122,18 +110,12 @@ var iEatGroupDetails = (function () {
         });
     }
 
-    function refreshRestaurantDishesUI(){
-        $("#user-order-dishes .edit-restaurant-details").listview("refresh");
-        $('#user-order-dishes').trigger('create');
-        bindFunction();
-    }
-
     function pageInit(f) {
         if(f && typeof f == "function"){
             f();
         }
         clearCache();
-        refreshRestaurantDishesUI();
+        getAllDishes();
     }
 
     return {
