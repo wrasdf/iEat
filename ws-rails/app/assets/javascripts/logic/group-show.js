@@ -57,6 +57,9 @@ var iEatGroupShow = (function () {
         var str = '<li><span class="subject">饭店名称</span><span>' + restaurantData.name + '</span></li>';
         str += '<li><span class="subject">订餐电话</span><span>' + restaurantData.telephone + '</span></li>';
         str += '<li><span class="subject">餐馆地址</span><span>' + restaurantData.address + '</span></li>';
+        if(restaurantData.note){
+            str += '<li><span class="subject">备注</span><span>' + restaurantData.note + '</span></li>';
+        }
         $("#group-show .restaurant-details").html(str).listview('refresh').show();
     }
 
@@ -182,7 +185,7 @@ var iEatGroupShow = (function () {
             str += '<tr>';
             str += '<td class="dish-name">总计</td>';
             str += '<td class="dish-price">' + total + '</td>';
-            str += '<td></td>';
+            str += '<td class="dish-count"></td>';
             str += '</tr>';
             str += '</tbody></table></li>';
         }

@@ -20,16 +20,16 @@
     table{width: 100%;
       tr{ border-bottom: 1px #ccc dashed;}
       tr:last-child{ border-bottom: 0px;}
-      td.dish-name{width: 80px; padding:5px 0; font-weight: normal}
-      td.dish-price{width: 40px;}
-      td.dish-count{float:right;}
+      td.dish-name{ padding:5px 0; font-weight: normal; }
+      td.dish-price{text-align: right; width: 50px;}
+      td.dish-count{width: 50px;}
     }
     .order-status li{padding:5px 15px;
       .dish-count{
         position: relative;
         .ui-li-count{
           margin-top: 0px;
-          top: 3px;
+          top: -10px;
           right: 5px;
         }
       }
@@ -40,12 +40,12 @@
 }
 #user-order-dishes{
   h2{margin-left:4px; font-size:14px;}
-  .restaurant-content{float:left; margin:-6px 5px 0 0 }
+  .restaurant-content{ display: block;}
 
   .edit-restaurant-details{margin-top: 20px;}
   .edit-restaurant-details li{padding: 20px 15px;}
   .edit-restaurant-details li.ui-li-divider{padding: 8px 15px 8px 8px; font-size:bold;}
-  .edit-restaurant-details .ui-input-text{float:right; margin-top: -13px; margin-right: 10px; height: 25px;}
+  .edit-restaurant-details .ui-input-text{float:right; margin-top: -20px; margin-right: 0px; height: 25px;}
   .edit-restaurant-details .ui-input-text .number-input{float:right; margin:-5px 0px 0px 0; width:20px; }
   .edit-restaurant-details .ui-li-count{ position:static; float:left; margin:14px 0 0 0; }
   .edit-restaurant-details .ui-btn-inner{min-width: 0px; padding-left: 18px; display: inline-block}
@@ -56,8 +56,8 @@
   .footer-navbar .ui-icon{top:4px;}
   .footer-navbar .ui-btn-text{top:6px;}
 
-  .group-button-content{float:right; width:auto; margin-right: -5px; margin-top: -14px;}
-  .dish-name,.dishes-total{display:inline-block;width:80px;}
+  .group-button-content{float:left; width:auto; margin-right: -5px; margin-top: -14px;}
+  .dish-name,.dishes-total{display:inline-block;width:200px;}
   .confirm-foods{margin-top:30px;}
   .listview li{ padding-right: 15px !important; font-size: 12px;}
 
