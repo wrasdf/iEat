@@ -62,7 +62,7 @@ Dish.create! :id=>1, :cuisine=>cuisine2, :restaurant => restaurant1, :price => 1
 Dish.create! :id=>2, :cuisine=>cuisine1, :restaurant => restaurant1, :price => 25.0, :name => "清炒四季豆（Marina)"
 Dish.create! :id=>3, :cuisine=>cuisine1, :restaurant => restaurant1, :price => 33.0, :name => "豌豆辣牛肉（Marina)"
 Dish.create! :id=>4, :cuisine=>cuisine1, :restaurant => restaurant1, :price => 15.0, :name => "西红柿牛腩"
-Dish.create! :id=>5, :cuisine=>cuisine2, :restaurant => restaurant1, :price => 2.0, :name => "热干面"
+Dish.create! :id=>5, :cuisine=>cuisine2, :restaurant => restaurant1, :price => 6.0, :name => "热干面"
 Dish.create! :id=>6, :cuisine=>cuisine2, :restaurant => restaurant1, :price => 13.0, :name => "牛肉粉"
 Dish.create! :id=>28, :cuisine=>cuisine7, :restaurant => restaurant1, :price => 15.0, :name => "铁板茄子 + 小炒木耳"
 Dish.create! :id=>29, :cuisine=>cuisine7, :restaurant => restaurant1, :price => 15.0, :name => "农家小炒肉 + 手撕包菜"
