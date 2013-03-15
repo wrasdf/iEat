@@ -30,22 +30,22 @@ userQingshan.confirm!
 userXiaochong = User.create! :name => "小虫", :email => "xczhang@thoughtworks.com", :password => "12345678".dup, :password_confirmation => "12345678".dup
 userXiaochong.confirm!
 
-restaurant1 = Restaurant.create! :id => 1, :name => "九头鹰", :telephone => "84073084", :address => "东直门内大街10号楼7号", :note=> "湖北菜" ok
+restaurant1 = Restaurant.create! :id => 1, :name => "九头鹰", :telephone => "84073084", :address => "东直门内大街10号楼7号", :note=> "湖北菜"
 restaurant2 = Restaurant.create! :id => 2, :name => "来福士超市", :telephone => "No mobile phone", :address=>"来福士"
-restaurant3 = Restaurant.create! :id => 3, :name => "李记桂林米粉", :telephone => "84033884/13161311387", :address => "东直门簋街5-3号哈哈镜对面" ok
-restaurant4 = Restaurant.create! :id => 4, :name => "来福士热烫皮", :telephone => "No mobile phone", :address=>"来福士" ok
-restaurant5 = Restaurant.create! :id => 5, :name => "Subway", :telephone => "No mobile phone", :address=>"来福士"   ok
-restaurant6 = Restaurant.create! :id => 6, :name => "咱家饺子", :telephone => "84045153", :address=>"东直门南小街55号" , :note => "订餐时间：11:30之前，12:30之后，50元起" ok
-restaurant7 = Restaurant.create! :id => 7, :name => "李先生牛肉面", :telephone => "64610448", :address=>"东直门机场快轨入口附近"  ok
-restaurant8 = Restaurant.create! :id => 8, :name => "味道.台", :telephone => "15910735750", :address=>"来福士", :note => "50元以上，两公里以内送餐"    ok
-restaurant9 = Restaurant.create! :id => 9, :name => "必胜宅急送", :telephone => "4008 123 123", :address=>"www.必胜宅急送.com"    ok
-restaurant10 = Restaurant.create! :id => 10, :name => "粤之味", :telephone => "13717533289", :address=>"来福士购物中心B1"     ok
-restaurant11 = Restaurant.create! :id => 11, :name => "正午紫菜包饭", :telephone => "81808775/13552778775", :address=>"东直门外新中街七号", :note => "营业时间8:30-21:00"    ok
-restaurant12 = Restaurant.create! :id => 12, :name => "萨莉亚", :telephone => "84549645", :address=>"东直门外大街48号东方银座写字楼C层", :note => "分量较小~ 起送金额：60元以上；送餐时间：11:00之前"   ok
-restaurant13 = Restaurant.create! :id => 13, :name => "和合谷", :telephone => "6461 6113", :address=>"东直门交通枢纽店", :note=>"外卖费5块" ok
-restaurant14 = Restaurant.create! :id => 14, :name => "吉野家东直门店", :telephone => "84477891", :address=>"东直门外48号银座MALL B1 07商铺(银座MALL地下一层",:note=>"点多少都收7元送餐费"    ok
-restaurant15 = Restaurant.create! :id => 15, :name => "粥面故事", :telephone => "4000365777", :address=>"www.chinanzbm.com", :note => "100元以上免费送餐"   ok
-restaurant16 = Restaurant.create! :id => 16, :name => "沙嗲诱惑", :telephone => "13811624091 / 13521886500", :address=>"东直门来福士广场B1", :note => "50元免费外送"  ok
+restaurant3 = Restaurant.create! :id => 3, :name => "李记桂林米粉", :telephone => "84033884/13161311387", :address => "东直门簋街5-3号哈哈镜对面"
+restaurant4 = Restaurant.create! :id => 4, :name => "来福士热烫皮", :telephone => "No mobile phone", :address=>"来福士"
+restaurant5 = Restaurant.create! :id => 5, :name => "Subway", :telephone => "No mobile phone", :address=>"来福士"
+restaurant6 = Restaurant.create! :id => 6, :name => "咱家饺子", :telephone => "84045153", :address=>"东直门南小街55号" , :note => "订餐时间：11:30之前，12:30之后，50元起"
+restaurant7 = Restaurant.create! :id => 7, :name => "李先生牛肉面", :telephone => "64610448", :address=>"东直门机场快轨入口附近"
+restaurant8 = Restaurant.create! :id => 8, :name => "味道.台", :telephone => "15910735750", :address=>"来福士", :note => "50元以上，两公里以内送餐"
+restaurant9 = Restaurant.create! :id => 9, :name => "必胜宅急送", :telephone => "4008 123 123", :address=>"www.必胜宅急送.com"
+restaurant10 = Restaurant.create! :id => 10, :name => "粤之味", :telephone => "13717533289", :address=>"来福士购物中心B1"
+restaurant11 = Restaurant.create! :id => 11, :name => "正午紫菜包饭", :telephone => "81808775/13552778775", :address=>"东直门外新中街七号", :note => "营业时间8:30-21:00"
+restaurant12 = Restaurant.create! :id => 12, :name => "萨莉亚", :telephone => "84549645", :address=>"东直门外大街48号东方银座写字楼C层", :note => "分量较小~ 起送金额：60元以上；送餐时间：11:00之前"
+restaurant13 = Restaurant.create! :id => 13, :name => "和合谷", :telephone => "6461 6113", :address=>"东直门交通枢纽店", :note=>"外卖费5块"
+restaurant14 = Restaurant.create! :id => 14, :name => "吉野家东直门店", :telephone => "84477891", :address=>"东直门外48号银座MALL B1 07商铺(银座MALL地下一层",:note=>"点多少都收7元送餐费"
+restaurant15 = Restaurant.create! :id => 15, :name => "粥面故事", :telephone => "4000365777", :address=>"www.chinanzbm.com", :note => "100元以上免费送餐"
+restaurant16 = Restaurant.create! :id => 16, :name => "沙嗲诱惑", :telephone => "13811624091 / 13521886500", :address=>"东直门来福士广场B1", :note => "50元免费外送"
 
 
 cuisine1 = Cuisine.create! :id => 1, :name => "炒菜", :restaurant => restaurant1
