@@ -43,12 +43,12 @@
   .restaurant-content{ display: block;}
 
   .edit-restaurant-details{margin-top: 20px;}
-  .edit-restaurant-details li{padding: 20px 15px;}
+  .edit-restaurant-details li{padding: 20px 15px 0px;}
   .edit-restaurant-details li.ui-li-divider{padding: 8px 15px 8px 8px; font-size:bold;}
   .edit-restaurant-details .ui-input-text{float:right; margin-top: -20px; margin-right: 0px; height: 25px;}
   .edit-restaurant-details .ui-input-text .number-input{float:right; margin:-5px 0px 0px 0; width:20px; }
   .edit-restaurant-details .ui-li-count{ position:static; float:left; margin:14px 0 0 0; }
-  .edit-restaurant-details .ui-btn-inner{min-width: 0px; padding-left: 18px; display: inline-block}
+  .edit-restaurant-details .ui-btn-inner{min-width: 0px; padding-left: 18px; display: inline-block; height: 8px;}
 
   .footer-navbar{overflow: hidden;}
   .footer-navbar li{padding-top: 0; padding-bottom: 0;}
@@ -56,7 +56,7 @@
   .footer-navbar .ui-icon{top:4px;}
   .footer-navbar .ui-btn-text{top:6px;}
 
-  .group-button-content{float:left; width:auto; margin-right: -5px; margin-top: -14px;}
+  .group-button-content{clear:both;float:right; width:auto; }
   .dish-name,.dishes-total{display:inline-block;width:200px;}
   .confirm-foods{margin-top:30px;}
   .listview li{ padding-right: 15px !important; font-size: 12px;}

@@ -19,11 +19,11 @@ var iEatGroupDetails = (function () {
                         str += '<span class="dish-name">'+dish.name+'</span>';
                         str += '<span class="dish-price">'+dish.price+' $</span>';
                         str += '</span>';
+                        str += '<input class="number-input" data-mini="true" type="number" value = "0" />';
                         str += '<div class="group-button-content" data-role="controlgroup" data-type="horizontal">';
                         str += '<a class="reduce" data-icon="minus" data-role="button" href="javascript:void(0);"> </a>';
                         str += '<a class="add" data-icon="plus" data-role="button" href="javascript:void(0);"> </a>';
-                        str += '</div>';
-                        str += '<input class="number-input" data-mini="true" type="number" value = "0" /></li>';
+                        str += '</div></li>';
                     });
                 })
                 str += '</ul>';

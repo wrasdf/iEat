@@ -23,22 +23,26 @@ p,
 blockquote,
 th,
 td {
-      margin: 0;
-      padding: 0;
+    margin: 0;
+    padding: 0;
 }
+
 table {
-      border-collapse: collapse;
-      border-spacing: 0;
+    border-collapse: collapse;
+    border-spacing: 0;
 }
+
 fieldset {
-      border: 0;
+    border: 0;
 }
+
 img,
 button {
-      background: none;
-      border: 0 none;
-      vertical-align: middle;
+    background: none;
+    border: 0 none;
+    vertical-align: middle;
 }
+
 address,
 caption,
 cite,
@@ -48,35 +52,41 @@ em,
 strong,
 th,
 var {
-      font-style: normal;
-      font-weight: normal;
+    font-style: normal;
+    font-weight: normal;
 }
+
 ol,
 ul,
 li {
-      list-style: none;
+    list-style: none;
 }
+
 caption,
 th {
-      text-align: left;
+    text-align: left;
 }
+
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-      font-size: 100%;
-      font-weight: normal;
+    font-size: 100%;
+    font-weight: normal;
 }
+
 q:before,
 q:after {
-      content: '';
+    content: '';
 }
+
 abbr,
 acronym {
-      border: 0;
+    border: 0;
 }
+
 /*HTML5 tags*/
 article,
 aside,
@@ -88,28 +98,46 @@ header,
 hgroup,
 nav,
 section {
-      display: block;
+    display: block;
 }
+
 /*common*/
 html,
 body {
-      height: 100%;
-      font-size: 12px;
-      color: #333;
-      line-height: 1;
+    height: 100%;
+    font-size: 12px;
+    color: #333;
+    line-height: 1;
 }
+
 body:after {
-      content: "";
-      height: 100%;
-      float: left;
-      width: 0;
-      margin-top: -32767px;
-  /* thank you Erik J  negate effect of float*/
+    content: "";
+    height: 100%;
+    float: left;
+    width: 0;
+    margin-top: -32767px;
+    /* thank you Erik J  negate effect of float*/
 
 }
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     /* display: none; < Crashes Chrome on hover */
     -webkit-appearance: none;
     margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+/** * For modern browsers * 1. The space content is one way to avoid an Opera bug when the *    contenteditable attribute is included anywhere else in the document. *    Otherwise it causes space to appear at the top and bottom of elements *    that are clearfixed. * 2. The use of `table` rather than `block` is only necessary if using *    `:before` to contain the top-margins of child elements. */
+.cf:before, .cf:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.cf:after {
+    clear: both;
+}
+
+/** * For IE 6/7 only * Include this rule to trigger hasLayout and contain floats. */
+.cf {
+    *zoom: 1;
 }
