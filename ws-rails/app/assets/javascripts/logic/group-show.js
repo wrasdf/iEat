@@ -16,6 +16,7 @@ var iEatGroupShow = (function () {
             updateMyStatus(group.orders);
             updateOthersStatus(group.orders);
             updateAllStatus(group.orders);
+            $(window).hashchange();
         });
 
         $("#group-show .restaurant-info-btn").bind("click", function () {
@@ -220,7 +221,6 @@ var iEatGroupShow = (function () {
                 if (data) {
                     if (callback) {
                         callback(data);
-                        $(window).hashchange();
                     }
                 }
             },
@@ -237,7 +237,15 @@ var iEatGroupShow = (function () {
 
 })();
 
-$("#group-show").bind("pageinit", function () {
+$(window).hashchange(function () {
+    var triggerIndex = location.hash.replace("#", "") ;
+    if (!triggerIndex) {
+        triggerIndex = 0;
+    }
+    iEatGroupShow.activeFooterItemByIndex(triggerIndex);
+});
+
+$("#group-show").bind("pageshow", function () {
     if ($.cookie("orderCreateStatus") == "success") {
         iEatUtility.msg({
             type: "success",
@@ -256,12 +264,5 @@ $("#group-show").bind("pageinit", function () {
     iEatGroupShow.pageInit();
 });
 
-$(window).hashchange(function () {
-    var triggerIndex = location.hash.replace("#", "");
-    if (!triggerIndex) {
-        triggerIndex = 0;
-    }
-    iEatGroupShow.activeFooterItemByIndex(triggerIndex);
-});
 
 
