@@ -2,6 +2,8 @@ WsRails::Application.routes.draw do
   resources :orders
 
   get 'restaurants' => 'restaurants#list'
+  get 'mybills' => 'my_bills#index'
+
   resources :restaurants do
     resources :dishes
   end

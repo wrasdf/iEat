@@ -8,11 +8,8 @@ var iEatMyBills = (function () {
     }
 
     function bindClickEvent() {
-        $(document).delegate("#my-bills .my-bills-list li", "click", function () {
-            $(document).delegate("#bill-details", "pageinit", function () {
-                iEatMyBillDetail.pageInit();
-            });
-            $.mobile.changePage('/billdetails');
+        $("#my-bills .ui-btn-left").bind("click",function(){
+            window.location.href = "/groups";
         });
     }
 
@@ -21,3 +18,4 @@ var iEatMyBills = (function () {
     }
 
 })();
+iEatMyBills.pageInit();

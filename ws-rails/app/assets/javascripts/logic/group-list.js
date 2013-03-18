@@ -70,8 +70,13 @@ var iEatGroupList = (function () {
 
         $("#group-list .create-group").bind("click", function () {
             window.location.href = "/groups/new";
-//            $.mobile.changePage("/groups/new");
         });
+
+        $("#group-list .ui-btn-right.my-bills").bind("click", function () {
+            window.location.href = "/mybills";
+        });
+
+
 
         $("#group-list .group-item").bind("click", function () {
             var currentGroupId = $(this).data("id");

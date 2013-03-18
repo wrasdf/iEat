@@ -1,0 +1,29 @@
+!!!
+%html
+  %head
+    %title My Page
+    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}
+    = stylesheet_link_tag "themes/default/common", :media => "all"
+    = stylesheet_link_tag "themes/default/jquery.mobile-1.3.0", :media => "all"
+    = stylesheet_link_tag "themes/default/mobiscroll.datetime-2.4.1.min", :media => "all"
+    = stylesheet_link_tag "themes/default/app", :media => "all"
+  %body
+    #my-bills{"data-role" => "page"}
+      %div{"data-role" => "header"}
+        %a.ui-btn-left{"data-icon" => "arrow-l", "data-theme" => "c", :href => "javascript:void(0);"} 返回
+        %h1 My Bills
+      %div.info-details{"data-role" => "content"}
+
+      %div.fixed-footer{"data-position" => "fixed", "data-role" => "footer"}
+        %div{"data-role" => "navbar"}
+          %ul
+            %li
+              %a.restaurant-info-btn{:href => "","data-icon"=>"star","data-iconpos"=>"top"} 待收款
+            %li
+              %a.all-info-btn{:href => "","data-icon"=>"star","data-iconpos"=>"top"} 待还款
+
+  = javascript_include_tag "jquery/jquery-1.9.1"
+  = javascript_include_tag "jquery/jquery.mobile-1.3.0"
+  = javascript_include_tag "jquery/jquery.cookie"
+  = javascript_include_tag "utility/utility"
+  = javascript_include_tag "logic/mybills"
