@@ -7,4 +7,4 @@ child(:restaurant) {
     attributes :id, :name, :telephone, :address
 }
 
-node(:joined) { |group| group.orders.exists? {|order| order.user.email == @current_user.email} }
+node(:joined) { |group| group.orders.any? {|order| order.user.email == @current_user.email} }

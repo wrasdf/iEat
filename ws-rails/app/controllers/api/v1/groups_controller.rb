@@ -18,6 +18,8 @@ class Api::V1::GroupsController < Api::V1::BaseController
 
   def detail
     @group = Group.find(params[:id])
+
+    puts @group.orders[0].user.email
     render :file => 'rabl/detail'
   end
 end

@@ -220,6 +220,7 @@ var iEatGroupShow = (function () {
                 if (data) {
                     if (callback) {
                         callback(data);
+                        $(window).hashchange();
                     }
                 }
             },
@@ -263,7 +264,4 @@ $(window).hashchange(function () {
     iEatGroupShow.activeFooterItemByIndex(triggerIndex);
 });
 
-$(window).bind("load", function () {
-   $(window).hashchange();
-});
 
