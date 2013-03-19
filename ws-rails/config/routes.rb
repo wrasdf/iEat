@@ -3,6 +3,7 @@ WsRails::Application.routes.draw do
 
   get 'restaurants' => 'restaurants#list'
   get 'mybills' => 'my_bills#index'
+  get 'users/new' => 'users#new'
 
   resources :restaurants do
     resources :dishes
@@ -25,12 +26,12 @@ WsRails::Application.routes.draw do
     end
   end
 
+
   authenticated :user do
-    root :to => 'login#index'
+    root :to => redirect("/users/sign_in")
   end
 
-  root :to => "login#index"
+  root :to => redirect("/users/sign_in")
 
   devise_for :users
-  resources :users
 end

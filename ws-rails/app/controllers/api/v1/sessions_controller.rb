@@ -3,13 +3,11 @@ module Api
     class SessionsController < ActionController::Base
       respond_to :json
       include Devise::Controllers::Helpers
-
       before_filter :ensure_params_exist
 
       def create
-        user = User.find_for_database_authentication(:email => params[:email])
+        user = User.find_for_database_authentication(:name => params[:name])
         return invalid_login_attempt unless user
-
         if user.valid_password?(params[:password])
           sign_in("user", user)
           render :json => {:success => true, :token => user.authentication_token, :email => user.email, :name => user.name}
@@ -24,7 +22,7 @@ module Api
 
       protected
       def ensure_params_exist
-        return unless params[:email].blank? and params[:password].blank?
+        return unless params[:name].blank? and params[:password].blank?
         render :json => {:success => false, :message => "missing user_login parameter"}, :status => 422
       end
 

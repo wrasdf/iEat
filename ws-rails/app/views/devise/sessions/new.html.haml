@@ -1,7 +1,33 @@
-%h2 Sign in
-= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => 'form-vertical' }) do |f|
-  = f.input :email, :autofocus => true
-  = f.input :password
-  = f.input :remember_me, :as => :boolean if devise_mapping.rememberable?
-  = f.button :submit, "Sign in", :class => 'btn-primary'
-= render "devise/shared/links"
+-#%h2 Sign in
+-#= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => 'form-vertical' }) do |f|
+-#  = f.input :email, :autofocus => true
+-#  = f.input :password
+-#  = f.input :remember_me, :as => :boolean if devise_mapping.rememberable?
+-#  = f.button :submit, "Sign in", :class => 'btn-primary'
+-#= render "devise/shared/links"
+!!!
+%html
+  %head
+    %title My Page
+    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}
+    = stylesheet_link_tag "themes/default/common", :media => "all"
+    = stylesheet_link_tag "themes/default/jquery.mobile-1.3.0", :media => "all"
+    = stylesheet_link_tag "themes/default/mobiscroll.datetime-2.4.1.min", :media => "all"
+    = stylesheet_link_tag "themes/default/app", :media => "all"
+  %body
+    #login-page{"data-role" => "page"}
+      %div{"data-role" => "header"}
+        %h1 登陆
+      %div{"data-role" => "content"}
+        %form.login-form
+          %h2 用户名/邮箱
+          %input#input-username{"type"=>"text"}
+          %h2 密码
+          %input#input-password{"type"=>"password"}
+          %input#sign-up{"type" => "button", "data-role"=>"button", "data-inline"=>"true", "value" => "注册"}
+          %input#login-btn{"type" => "submit", "data-role"=>"button", "data-inline"=>"true", "value" => "登陆"}
+  = javascript_include_tag "jquery/jquery-1.9.1"
+  = javascript_include_tag "jquery/jquery.mobile-1.3.0"
+  = javascript_include_tag "jquery/jquery.cookie"
+  = javascript_include_tag "utility/utility"
+  = javascript_include_tag "logic/login"

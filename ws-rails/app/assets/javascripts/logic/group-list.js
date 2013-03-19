@@ -68,6 +68,25 @@ var iEatGroupList = (function () {
 
     function bindEvent() {
 
+        $("#group-list .log-out").bind("click",function(){
+            $.ajax({
+                type : 'GET',
+                url : "/users/sign_out",
+                success : function(o){
+                    $.cookie('token', null,{ expires: 10, path: '/' });
+                    $.cookie('userName', null,{ expires: 10, path: '/' });
+                    $.cookie('userEmail', null,{ expires: 10, path: '/' });
+                    window.location.href = "";
+                },
+                error : function (xhr) {
+                    iEatUtility.msg({
+                        type:"error",
+                        msg : $.parseJSON(xhr.responseText).message
+                    });
+                }
+            });
+        });
+
         $("#group-list .create-group").bind("click", function () {
             window.location.href = "/groups/new";
         });
@@ -76,19 +95,19 @@ var iEatGroupList = (function () {
             window.location.href = "/mybills";
         });
 
-
-
         $("#group-list .group-item").bind("click", function () {
             var currentGroupId = $(this).data("id");
             $.cookie("currentGroupId",currentGroupId,{ expires: 1, path: '/' });
             window.location.href = "/groups/"+currentGroupId;
         });
 
+
     }
 
-    function pageInit(f) {
-        if(f && typeof f == "function"){
-            f();
+    function pageInit() {
+        if(token == "null" || !token){
+            window.location.href = "/users/sign_in";
+            return;
         }
         reFreshGroupList()
     }

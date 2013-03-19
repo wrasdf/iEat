@@ -10,5 +10,18 @@ class User < ActiveRecord::Base
   attr_accessible :role_ids, :as => :admin
   attr_accessible :name, :email, :password, :password_confirmation, :remember_me
 
+  attr_accessor :login
+  attr_accessible :login
+
+  validates_presence_of :name
+  validates_uniqueness_of :name, :email, :case_sensitive => false
+
   before_save :ensure_authentication_token
+
+  def self.find_for_database_authentication(warden_conditions)
+    conditions = warden_conditions.dup
+    where(conditions).where(["lower(name) = :value", { :value => conditions[:name].downcase }]).first
+  end
+
+
 end

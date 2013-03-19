@@ -21,11 +21,9 @@ puts 'user: ' << user.name
 user.confirm!
 user.add_role :admin
 
-userWangrui = User.create! :name => "王锐", :email => "rwang@thoughtworks.com", :password => "12345678".dup, :password_confirmation => "12345678".dup
+userWangrui = User.create! :name => "kerry", :email => "rwang@thoughtworks.com", :password => "12345678".dup, :password_confirmation => "12345678".dup
 userWangrui.confirm!
-userMingxin = User.create! :name => "明星", :email => "mxzou@thoughtworks.com", :password => "12345678".dup, :password_confirmation => "12345678".dup
-userMingxin.confirm!
-userQingshan = User.create! :name => "青山", :email => "qszhuan@thoughtworks.com", :password => "12345678".dup, :password_confirmation => "12345678".dup
+userQingshan = User.create! :name => "qingshan", :email => "qszhuan@thoughtworks.com", :password => "12345678".dup, :password_confirmation => "12345678".dup
 userQingshan.confirm!
-userXiaochong = User.create! :name => "小虫", :email => "xczhang@thoughtworks.com", :password => "12345678".dup, :password_confirmation => "12345678".dup
+userXiaochong = User.create! :name => "xiaochong", :email => "xczhang@thoughtworks.com", :password => "12345678".dup, :password_confirmation => "12345678".dup
 userXiaochong.confirm!

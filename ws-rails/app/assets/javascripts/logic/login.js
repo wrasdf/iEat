@@ -1,12 +1,29 @@
 $(document).bind("pageinit", function () {
-    $("#login-btn").bind("click",function(){
-        var email = $("#input-email").val();
+
+    $("#sign-up").bind("click",function(){
+        window.location.href = "/users/sign_up";
+    });
+
+
+    $(".login-form").submit(function(e){
+        e.preventDefault();
+        var name = $("#input-username").val();
         var password = $("#input-password").val();
+
+        $.mobile.pageLoadErrorMessage = false;
+
+        $.mobile.loading( 'show', {
+            text: 'Loading',
+            textVisible: true,
+            theme: 'a',
+            html: ""
+        });
+
         $.ajax({
             type : 'POST',
             url : "/api/v1/users/sign_in",
             data : {
-                "email" : email,
+                "name" : name,
                 "password" : password
             },
             success : function(o){
@@ -25,6 +42,7 @@ $(document).bind("pageinit", function () {
             }
         });
     });
+
 });
 
 

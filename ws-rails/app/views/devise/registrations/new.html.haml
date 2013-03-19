@@ -1,10 +1,50 @@
-%h2 Sign up
-= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:class => 'form-vertical' }) do |f|
-  = f.error_notification
-  = display_base_errors resource
-  = f.input :name, :autofocus => true
-  = f.input :email, :required => true
-  = f.input :password, :required => true
-  = f.input :password_confirmation, :required => true
-  = f.button :submit, 'Sign up', :class => 'btn-primary'
-= render "devise/shared/links"
+-#%h2 Sign up
+-#= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:class => 'form-vertical' }) do |f|
+-#  = f.error_notification
+-#  = display_base_errors resource
+-#  = f.input :name, :autofocus => true
+-#  = f.input :email, :required => true
+-#  = f.input :password, :required => true
+-#  = f.input :password_confirmation, :required => true
+-#  = f.button :submit, 'Sign up', :class => 'btn-primary'
+-#= render "devise/shared/links"
+-#
+!!!
+%html
+  %head
+    %title My Page
+    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}
+    = stylesheet_link_tag "themes/default/common", :media => "all"
+    = stylesheet_link_tag "themes/default/jquery.mobile-1.3.0", :media => "all"
+    = stylesheet_link_tag "themes/default/mobiscroll.datetime-2.4.1.min", :media => "all"
+    = stylesheet_link_tag "themes/default/app", :media => "all"
+  %body
+    #sign-up{"data-role" => "page"}
+      %div{"data-role" => "header"}
+        %h1 注册
+      %div{"data-role" => "content"}
+        = simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:class => 'form-vertical' }) do |f|
+          -#= f.error_notification
+          -#= display_base_errors resource
+          %h2 邮箱
+          -#=f.input :email,:required => true, :id =>'input-email'
+          %input{"type"=>"email",:required => true, :id =>'input-email'}
+          %h2 电话
+          -#=f.input :required => true, :id =>'input-telephone'
+          %input{"type"=>"number",:required => true, :id =>'input-telephone'}
+          %h2 密码
+          -#= f.input :password, :required => true, :id =>'input-password'
+          %input{"type"=>"password",:required => true, :id =>'input-password'}
+          %h2 重复密码
+          -#=f.input :password_confirmation, :required => true, :id =>'input-password-confirmation'
+          %input{"type"=>"password",:required => true, :id =>'input-password-confirmation'}
+          -#= f.button :submit, '注册', :class => 'btn-primary'
+          %input{"type"=>"submit", :id =>'sign-up', :value => "注册"}
+
+        = render "devise/shared/links"
+
+  = javascript_include_tag "jquery/jquery-1.9.1"
+  = javascript_include_tag "jquery/jquery.mobile-1.3.0"
+  = javascript_include_tag "jquery/jquery.cookie"
+  = javascript_include_tag "utility/utility"
+  = javascript_include_tag "logic/user-new"
