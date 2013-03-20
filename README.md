@@ -2,10 +2,11 @@ iEat Project
 
 APIs:
 
-1. Get all restaurant API 
-ajax type -> get
-url : api/v1/restaurants
-return json :
+## Get all restaurant API 
++ ajax type -> get
++ url : api/v1/restaurants
++ return json :
+
 <pre>
 [{
         "id": 1,
@@ -21,11 +22,11 @@ return json :
 ]
 </pre>
 
------------------------------------------------------
-2. Get all the actived groups of today API
-ajax type -> get
-url : api/v1/groups/active
-return json:
+
+## Get all the actived groups of today API
++ ajax type -> get
++ url : api/v1/groups/active
++ return json:
 <pre>
 [{
     "id": 15,
@@ -48,11 +49,12 @@ return json:
 </pre>
 "joined" --> means current user joined this group or not
 
-----------------------------------------------------------------------------
-3. Get all dishes in current restaurant, which releated to current group
-ajax type -> get
-url : api/v1/groups/:id/dishes
-return json:
+
+## Get all dishes in current restaurant, which releated to current group
++ ajax type -> get
++ url : api/v1/groups/:id/dishes
++ return json:
+
 <pre>
 [{
     "name": "炒菜",
@@ -90,11 +92,10 @@ return json:
 </pre>
 
 
-----------------------------------------------------------------------------
-4. Get current group details API
-ajax type -> get
-url : api/v1/groups/:id
-return json:
+## Get current group details API
++ ajax type -> get
++ url : api/v1/groups/:id
++ return json:
 <pre>
 {
     "id": 15,
@@ -163,10 +164,10 @@ return json:
 }
 </pre>
 
-----------------------------------------------------------------------------
-5. Create group API
-ajax type -> Post
-url : api/v1/groups/create
+
+## Create group API
++ ajax type -> Post
++ url : api/v1/groups/create
 
 parametes: 
 <pre>
@@ -177,10 +178,10 @@ parametes:
 }
 </pre>
 
-----------------------------------------------------------------------------
-6. Create user orders
-ajax type -> Post
-url : api/v1/groups/:group_id/orders/create
+
+## Create user orders
++ ajax type -> Post
++ url : api/v1/groups/:group_id/orders/create
 
 parametes: 
 <pre>
@@ -189,11 +190,11 @@ parametes:
 }
 </pre>
 
-----------------------------------------------------------------------------
-7. User sign in
 
-ajax type -> Post
-url : api/v1/users/sign_in
+## User sign in
+
++ ajax type -> Post
++ url : api/v1/users/sign_in
 
 parametes: 
 <pre>
