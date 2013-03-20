@@ -1,6 +1,5 @@
-iEat Project
+#iEat Apis:
 
-APIs:
 
 ## Get all restaurant API 
 + ajax type -> get
@@ -50,7 +49,7 @@ APIs:
 "joined" --> means current user joined this group or not
 
 
-## Get all dishes in current restaurant, which releated to current group
+## Get all dishes in current restaurant, which related to current group
 + ajax type -> get
 + url : api/v1/groups/:id/dishes
 + return json:
