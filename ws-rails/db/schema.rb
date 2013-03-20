@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130315091617) do
+ActiveRecord::Schema.define(:version => 20130320025016) do
 
   create_table "cuisines", :force => true do |t|
     t.integer "restaurant_id"
@@ -113,6 +113,7 @@ ActiveRecord::Schema.define(:version => 20130315091617) do
     t.integer  "invited_by_id"
     t.string   "invited_by_type"
     t.string   "authentication_token"
+    t.integer  "telephone"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
