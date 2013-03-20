@@ -1,11 +1,10 @@
-iEat
 iEat Project
 
 APIs:
 
-1. Get all restaurant 
-
-url : /restaurants
+1. Get all restaurant API 
+ajax type -> get
+url : api/v1/restaurants
 return json :
 <pre>
 [{
@@ -23,9 +22,9 @@ return json :
 </pre>
 
 -----------------------------------------------------
-2. Get all the actived groups of today
-
-url : groups/active
+2. Get all the actived groups of today API
+ajax type -> get
+url : api/v1/groups/active
 return json:
 <pre>
 [{
@@ -51,8 +50,8 @@ return json:
 
 ----------------------------------------------------------------------------
 3. Get all dishes in current restaurant, which releated to current group
-
-url : groups/:id/dishes
+ajax type -> get
+url : api/v1/groups/:id/dishes
 return json:
 <pre>
 [{
@@ -70,7 +69,7 @@ return json:
             "name": "西红柿牛腩",
             "price": 15.0
         }
-    ]  
+    ]        
 },{
     "name": "主食",  // ---> for different cuisine 
     "dishes": [{
@@ -91,6 +90,118 @@ return json:
 </pre>
 
 
+----------------------------------------------------------------------------
+4. Get current group details API
+ajax type -> get
+url : api/v1/groups/:id
+return json:
+<pre>
+{
+    "id": 15,
+    "restaurant": {
+        "address": "东直门内大街10号楼7号",
+        "created_at": "2013-03-20T03:05:02Z",
+        "id": 1,
+        "image_url": null,
+        "name": "九头鹰",
+        "note": "湖北菜",
+        "telephone": "84073084",
+        "updated_at": "2013-03-20T03:05:02Z"
+    },
+    "description": null,
+    "due_date": "2013-03-20T16:54:00Z",
+    "name": "23",
+    "created_at": "2013-03-20T07:54:28Z",
+    "owner": {
+        "id": 2,
+        "name": "kerry",
+        "email": "rwang@thoughtworks.com"
+    },
+    "orders": [{
+            "user": {
+                "id": 2,
+                "name": "kerry",
+                "email": "rwang@thoughtworks.com"
+            },
+            "order_dishes": [{
+                    "id": 1,
+                    "dish_id": 1,
+                    "quantity": 1,
+                    "name": "清炒四季豆（Marina)",
+                    "price": 25.0
+                }, {
+                    "id": 2,
+                    "dish_id": 2,
+                    "quantity": 1,
+                    "name": "豌豆辣牛肉（Marina)",
+                    "price": 33.0
+                }
+            ]
+        },
+        {
+            "user": {
+                "id": 1,
+                "name": "Beany",
+                "email": "mxzou@thoughtworks.com"
+            },
+            "order_dishes": [{
+                    "id": 3,
+                    "dish_id": 1,
+                    "quantity": 3,
+                    "name": "清炒四季豆",
+                    "price": 25.0
+                }, {
+                    "id": 4,
+                    "dish_id": 2,
+                    "quantity": 2,
+                    "name": "豌豆辣牛肉",
+                    "price": 33.0
+                }
+            ]
+        }
+    ]
+}
+</pre>
+
+----------------------------------------------------------------------------
+5. Create group API
+ajax type -> Post
+url : api/v1/groups/create
+
+parametes: 
+<pre>
+{
+	"due_date" : "17:22",
+	"name"	 : "test",
+	"restaurant_id"  :  "1"
+}
+</pre>
+
+----------------------------------------------------------------------------
+6. Create user orders
+ajax type -> Post
+url : api/v1/groups/:group_id/orders/create
+
+parametes: 
+<pre>
+{
+    "dishes" : "[{"id":1,"quantity":"1"},{"id":2,"quantity":"1"}]"
+}
+</pre>
+
+----------------------------------------------------------------------------
+7. User sign in
+
+ajax type -> Post
+url : api/v1/users/sign_in
+
+parametes: 
+<pre>
+{
+    "data" : "kerry" --> username or email
+    "password" : "your password"
+}
+</pre>
 
 
 
