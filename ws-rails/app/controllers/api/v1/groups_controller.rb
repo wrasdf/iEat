@@ -8,11 +8,11 @@ class Api::V1::GroupsController < Api::V1::BaseController
 
   def create
     restaurant = Restaurant.find(params[:restaurant_id])
-    group = Group.create(:user => current_user, :restaurant => restaurant, :name => params[:name], :due_date => params[:due_date])
-    if group.valid?
-      respond_with(group, :location => api_v1_group_path(group))
+    @group = Group.create(:user => current_user, :restaurant => restaurant, :name => params[:name], :due_date => params[:due_date])
+    if @group.valid?
+      render :file => 'rabl/group'
     else
-      respond_with(group)
+      respond_with(@group)
     end
   end
 

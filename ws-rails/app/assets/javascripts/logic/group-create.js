@@ -79,6 +79,7 @@ var iEatCreate = (function () {
                     "due_date": convertUIPickerTime(),
                     "token": token
                 },
+                dataType : "json",
                 success: function (o) {
                     if (o) {
                         var createdGroupId = o.id;

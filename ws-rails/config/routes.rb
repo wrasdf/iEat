@@ -34,5 +34,4 @@ WsRails::Application.routes.draw do
   root :to => redirect("/users/sign_in")
 
   devise_for :users
-  match "/login" => "devise/sessions#new"
 end
