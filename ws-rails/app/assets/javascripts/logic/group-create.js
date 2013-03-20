@@ -103,7 +103,6 @@ var iEatCreate = (function () {
 
         $(".ui-btn-left").bind("click", function () {
             window.location.href = "/groups";
-//            $.mobile.changePage("/groups");
         });
 
         $(".more-restaurants").bind("click", function () {
@@ -112,7 +111,6 @@ var iEatCreate = (function () {
                 $.cookie("createGroupName",groupName, { expires: 1, path: '/' });
             }
             window.location.href = "/restaurants";
-//            $.mobile.changePage("/restaurants");
         });
 
     }
@@ -229,10 +227,6 @@ var iEatCreate = (function () {
 
 })();
 
-//$(document).bind("pageinit", function () {
-//    iEatCreate.pageInit();
-//});
-
-$(document).delegate("#create-group", "pageinit", function() {
+$(document).bind("pageshow", function () {
     iEatCreate.pageInit();
 });
