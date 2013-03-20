@@ -26,6 +26,7 @@
 + ajax type -> get
 + url : api/v1/groups/active
 + return json:
+
 <pre>
 [{
     "id": 15,
@@ -95,6 +96,7 @@
 + ajax type -> get
 + url : api/v1/groups/:id
 + return json:
+
 <pre>
 {
     "id": 15,
@@ -167,8 +169,8 @@
 ## Create group API
 + ajax type -> Post
 + url : api/v1/groups/create
-
 parametes: 
+
 <pre>
 {
 	"due_date" : "17:22",
