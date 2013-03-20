@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
 
   def self.find_for_database_authentication(warden_conditions)
     conditions = warden_conditions.dup
-    where(conditions).where(["lower(name) = :value", { :value => conditions[:name].downcase }]).first
+    where({ :name => conditions[:data] }).first || where({ :email => conditions[:data] }).first
   end
 
 

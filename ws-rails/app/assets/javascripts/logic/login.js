@@ -7,7 +7,7 @@ $(document).bind("pageinit", function () {
 
     $(".login-form").submit(function(e){
         e.preventDefault();
-        var name = $("#input-username").val();
+        var data = $("#input-data").val();
         var password = $("#input-password").val();
 
         $.mobile.pageLoadErrorMessage = false;
@@ -23,7 +23,7 @@ $(document).bind("pageinit", function () {
             type : 'POST',
             url : "/api/v1/users/sign_in",
             data : {
-                "name" : name,
+                "data" : data,
                 "password" : password
             },
             success : function(o){

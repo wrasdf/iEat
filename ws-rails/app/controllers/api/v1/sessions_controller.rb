@@ -6,7 +6,7 @@ module Api
       before_filter :ensure_params_exist
 
       def create
-        user = User.find_for_database_authentication(:name => params[:name])
+        user = User.find_for_database_authentication(:data => params[:data])
         return invalid_login_attempt unless user
         if user.valid_password?(params[:password])
           sign_in("user", user)
