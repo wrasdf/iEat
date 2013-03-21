@@ -205,6 +205,24 @@ parametes:
 }
 </pre>
 
+## User sign up
+
++ ajax type -> Post
++ url : api/v1/users/sign_up
+
+parametes: 
+<pre>
+{
+    "email" : "xxx@xxx.com",
+    "name" : "your name",
+    "password" : "XXXXX",
+    "password_confirmation" : "xxxxxxx",
+    "telephone" : "xxxxxxx"
+}
+</pre>
+
+
+
 
 
 
