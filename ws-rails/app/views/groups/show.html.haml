@@ -16,19 +16,10 @@
       %div.info-details{"data-role" => "content"}
         %div.details-content.group-details
           %h2 本团介绍
-          %ul.listview{"data-role" => "listview", "data-inset"=>"true"}
-            %li
-              %span.subject 团名
-              %span.group-name
+          %ul.listview.current-group-details{"data-role" => "listview", "data-inset"=>"true"}
 
           %h2 餐馆简介
           %ul.listview.restaurant-details{"data-role" => "listview", "data-inset"=>"true"}
-            -#%li
-            -#  %span.subject 外卖时间
-            -#  %span 10:30-21:00
-            -#%li
-            -#  %span.subject 起送金额
-            -#  %span 送餐费1元
 
         %div.details-content.my-orders-details
           %h2 我的订餐

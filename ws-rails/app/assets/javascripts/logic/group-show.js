@@ -11,7 +11,7 @@ var iEatGroupShow = (function () {
         }
 
         getGroupDetails(function (group) {
-            updateGroupName(group.name);
+            updateGroupName(group);
             updateRestaurantDetails(group.restaurant);
             updateMyStatus(group.orders);
             updateOthersStatus(group.orders);
@@ -64,8 +64,11 @@ var iEatGroupShow = (function () {
         $("#group-show .restaurant-details").html(str).listview('refresh').show();
     }
 
-    function updateGroupName(groupName) {
-        $(".group-name").html(groupName);
+    function updateGroupName(group) {
+        var str = '<li><span class="subject">团名</span><span>' + group.name + '</span></li>';
+        str += '<li><span class="subject">Owner</span><span>' + group.owner.name + '</span></li>';
+        str += '<li><span class="subject">电话:</span><span>' + (group.owner.telephone || "暂时没有")  + '</span></li>';
+        $("#group-show .current-group-details").html(str).listview('refresh').show();
     }
 
     function generateOrderItemStrByOrderData(data) {

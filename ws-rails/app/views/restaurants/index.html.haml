@@ -1,25 +1,24 @@
-%h1 Listing restaurants
+!!!
+%html
+  %head
+    %title My Page
+    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}
+    = stylesheet_link_tag "themes/default/common", :media => "all"
+    = stylesheet_link_tag "themes/default/jquery.mobile-1.3.0", :media => "all"
+    = stylesheet_link_tag "themes/default/app", :media => "all"
+  %body
+    #restaurants-list{"data-role" => "page"}
+      %div{"data-role" => "header"}
+        %a.ui-btn-left{"data-icon" => "arrow-l", "data-theme" => "c", :href => "javascript:void(0);"} 返回
+        %h1 饭馆们
+      %div.details-content{"data-role" => "content"}
+        %ul.restaurant-list-content{"data-filter" => "true", "data-filter-placeholder" => "Search restaurant...", "data-inset" => "true", "data-role" => "listview"}
+          - @restaurant.each do |item|
+            %li{"data-icon"=>"check"}
+              %a{"data-id"=>"#{item.id}", :href => "javascript:void(0);"}= item.name
 
-%table
-  %tr
-    %th Name
-    %th Telephone
-    %th Address
-    %th Image url
-    %th
-    %th
-    %th
-
-  - @restaurants.each do |restaurant|
-    %tr
-      %td= restaurant.name
-      %td= restaurant.telephone
-      %td= restaurant.address
-      %td= restaurant.image_url
-      %td= link_to 'Show', restaurant
-      %td= link_to 'Edit', edit_restaurant_path(restaurant)
-      %td= link_to 'Destroy', restaurant, method: :delete, data: { confirm: 'Are you sure?' }
-
-%br
-
-= link_to 'New Restaurant', new_restaurant_path
+  = javascript_include_tag "jquery/jquery-1.9.1"
+  = javascript_include_tag "jquery/jquery.cookie"
+  = javascript_include_tag "jquery/jquery.mobile-1.3.0"
+  = javascript_include_tag "utility/utility"
+  = javascript_include_tag "logic/restaurant-list"
