@@ -1,9 +1,11 @@
 $(document).bind("pageinit", function () {
 
+    var username = $.cookie("userName") || "";
+    $("#input-data").val(username);
+
     $("#sign-up").bind("click",function(){
         window.location.href = "/users/sign_up";
     });
-
 
     $(".login-form").submit(function(e){
         e.preventDefault();

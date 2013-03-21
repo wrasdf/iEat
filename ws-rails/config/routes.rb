@@ -15,6 +15,7 @@ WsRails::Application.routes.draw do
 
   namespace :api do
     namespace :v1 do
+      post "users", :to => "registrations#create"
       devise_for :users
       get 'restaurants' => 'restaurants#list'
       get 'groups/:id/dishes' => 'dishes#detail'
@@ -26,7 +27,6 @@ WsRails::Application.routes.draw do
     end
   end
 
-
   authenticated :user do
     root :to => redirect("/users/sign_in")
   end
@@ -34,4 +34,5 @@ WsRails::Application.routes.draw do
   root :to => redirect("/users/sign_in")
 
   devise_for :users
+
 end

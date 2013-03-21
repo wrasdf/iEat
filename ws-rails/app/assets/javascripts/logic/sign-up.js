@@ -8,9 +8,9 @@ var iEatSignUp = (function () {
     }
 
     function bindClickEvent() {
+
         $(".register-form").bind("submit",function(e){
             e.preventDefault();
-
             var name = $("#input-username").val();
             var email = $("#input-email").val();
             var tel = $("#input-telephone").val();
@@ -23,28 +23,34 @@ var iEatSignUp = (function () {
                 data : {
                     "name" : name,
                     "email" : email,
-                    "telephone" : tel,
+                    "telephone" : tel || "",
                     "password" : password,
                     "password_confirmation" : confirmPassword
                 },
+                dataType: "json",
                 success : function(o){
-                    console.log(o);
-//                    if(o.success){
-//                        $.cookie('token', o.token,{ expires: 10, path: '/' });
-//                        $.cookie('userName', o.name,{ expires: 10, path: '/' });
-//                        $.cookie('userEmail', o.email,{ expires: 10, path: '/' });
-//                        window.location.href="/groups";
-//                    }
-//                    alert(o);
-//                    window.location.href="/users/sign_in";
+                    if(o){
+                        $.cookie('userName', o.name,{ expires: 10, path: '/' });
+                        $.cookie('userEmail', o.email,{ expires: 10, path: '/' });
+                        window.location.href="/users/sign_in";
+                    }
                 },
                 error : function (xhr) {
+                    var errors = $.parseJSON(xhr.responseText)["errors"];
+                    console.log(errors);
+                    var errorsArray = [];
+                    var messages;
+                    for(var i in errors){
+                        errorsArray.push(i + " " + errors[i][0]);
+                    }
+                    messages = errorsArray.join(" and ");
                     iEatUtility.msg({
                         type:"error",
-                        msg : $.parseJSON(xhr.responseText).message
+                        msg : messages
                     });
                 }
             });
+            return false;
 
         });
     }
@@ -54,4 +60,8 @@ var iEatSignUp = (function () {
     }
 
 })();
-iEatSignUp.pageInit();
+
+$(document).bind("pageshow",function(){
+    iEatSignUp.pageInit();
+});
+

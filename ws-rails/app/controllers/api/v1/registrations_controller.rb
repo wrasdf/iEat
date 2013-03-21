@@ -1,12 +1,18 @@
-class Api::V1::RegistrationsController < Api::V1::BaseController
+class Api::V1::RegistrationsController < ActionController::Base
+  respond_to :json
+
   def create
-    user = User.new(params[:user])
-    if user.save
-      render :json => user.as_json(:token => user.authentication_token, :email => user.email), :status => 201
-      return
+    @user = User.create(:name => params[:name],
+                        :email => params[:email],
+                        :password => params[:password],
+                        :telephone => params[:telephone],
+                        :password_confirmation => params[:password_confirmation])
+    if @user.valid?
+      @user.confirm!
+      render :file => 'rabl/user'
     else
-      warden.custom_failure!
-      render :json => user.errors, :status => 422
+      respond_with(@user)
     end
+
   end
 end
