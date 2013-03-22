@@ -44,6 +44,7 @@
 
   .edit-restaurant-details{margin-top: 20px;}
   .edit-restaurant-details li{padding: 20px 15px 0px;}
+  .edit-restaurant-details li#no-results{padding: 12px 15px 12px;}
   .edit-restaurant-details li.ui-li-divider{padding: 8px 15px 8px 8px; font-size:bold;}
   .edit-restaurant-details .ui-li-count{ position:static; float:left; margin:14px 0 0 0; }
   .edit-restaurant-details .ui-btn-inner{min-width: 0px; padding-left: 18px; display: inline-block; height: 8px;}
@@ -81,6 +82,10 @@
 #user-restaurant-details li,#user-order-dishes li,#confirm-success li{padding-top:0.7em;padding-bottom:0.7em; font-size: 14px;}
 .dwi {display: block;}
 #scroller{margin-top:20px;}
+
+#restaurants-list{
+  .ui-listview-filter-inset{margin: 0 -5px -8px;}
+}
 
 #create-group{
   h2{margin:10px 0;}

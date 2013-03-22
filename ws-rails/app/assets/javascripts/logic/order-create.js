@@ -83,8 +83,20 @@ var iEatGroupDetails = (function () {
                     alert("API : /api/v1/groups/active is ERROR!");
                 }
             });
+        });
 
-        })
+        var $listview = $("#user-order-dishes").find('[data-role="listview"]');
+        $listview.append('<li id="no-results" style="display:none;">[No results found]</li>');
+        $listview.listview('refresh');
+        $("#user-order-dishes").delegate('input[data-type="search"]', 'keyup', function () {
+            if ($listview.children(':visible').not('#no-results').length === 0) {
+                $('#no-results').show();
+            } else {
+                $('#no-results').hide();
+            }
+        });
+
+
     }
 
 
