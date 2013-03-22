@@ -11,7 +11,7 @@ var iEatGroupShow = (function () {
         }
 
         getGroupDetails(function (group) {
-            updateGroupName(group);
+            updateGroupInfoDetails(group);
             updateRestaurantDetails(group.restaurant);
             updateMyStatus(group.orders);
             updateOthersStatus(group.orders);
@@ -22,25 +22,25 @@ var iEatGroupShow = (function () {
         $("#group-show .restaurant-info-btn").bind("click", function () {
             $("#group-show .details-content").hide();
             $("#group-show .group-details").show();
-//            window.location.hash = "#0";
+            window.location.hash = "#0";
         });
 
         $("#group-show .all-info-btn").bind("click", function () {
             $("#group-show .details-content").hide();
             $("#group-show .all-status").show();
-//            window.location.hash = "#1";
+            window.location.hash = "#1";
         });
 
         $("#group-show .my-orders-btn").bind("click", function () {
             $("#group-show .details-content").hide();
             $("#group-show .my-orders-details").show();
-//            window.location.hash = "#2";
+            window.location.hash = "#2";
         });
 
         $("#group-show .members-orders-btn").bind("click", function () {
             $("#group-show .details-content").hide();
             $("#group-show .members-details").show();
-//            window.location.hash = "#3";
+            window.location.hash = "#3";
         });
 
         $("#group-show .buy-foods").bind("click", function () {
@@ -59,12 +59,12 @@ var iEatGroupShow = (function () {
         str += '<li><span class="subject">订餐电话</span><span>' + restaurantData.telephone + '</span></li>';
         str += '<li><span class="subject">餐馆地址</span><span>' + restaurantData.address + '</span></li>';
         if(restaurantData.note){
-            str += '<li><span class="subject">备注</span><span>' + restaurantData.note + '</span></li>';
+            str += '<li><span class="subject">备注</span><span>' + (restaurantData.note || "") + '</span></li>';
         }
         $("#group-show .restaurant-details").html(str).listview('refresh').show();
     }
 
-    function updateGroupName(group) {
+    function updateGroupInfoDetails(group) {
         var str = '<li><span class="subject">团名</span><span>' + group.name + '</span></li>';
         str += '<li><span class="subject">Owner</span><span>' + group.owner.name + '</span></li>';
         str += '<li><span class="subject">电话:</span><span>' + (group.owner.telephone || "暂时没有")  + '</span></li>';

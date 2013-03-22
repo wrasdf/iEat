@@ -70,12 +70,22 @@ var iEatCreate = (function () {
     function bindEvent() {
         $(".create-group-btn").bind("click", function () {
             var token = $.cookie("token");
+
+            var groupName = $("#group-name").val();
+            if(!groupName){
+                iEatUtility.msg({
+                    type: "error",
+                    msg: "Need group name."
+                });
+                return;
+            }
+
             $.ajax({
                 type: 'POST',
                 url: "/api/v1/groups/create",
                 data: {
                     "restaurant_id": $('input[name=radio-choice-v-2]:checked').val(),
-                    "name": $("#group-name").val() || "",
+                    "name": groupName,
                     "due_date": convertUIPickerTime(),
                     "token": token
                 },
