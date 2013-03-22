@@ -15,14 +15,14 @@ var iEatGroupDetails = (function () {
                     str += '<li data-role="list-divider" data-theme="c">'+ cuisine.name+'</li>';
                     $.each(cuisine.dishes,function(index,dish){
                         str += '<li class="cf" data-dish-id="'+dish.id+'">';
-                        str += '<span class="restaurant-content">';
+                        str += '<span class="dishes-content cf">';
                         str += '<span class="dish-name">'+dish.name+'</span>';
-                        str += '<span class="dish-price">'+dish.price+' $</span>';
+                        str += '<span class="dish-price">'+dish.price+' ￥</span>';
                         str += '</span>';
-                        str += '<input class="number-input" data-mini="true" type="number" value = "0" />';
-                        str += '<div class="group-button-content" data-role="controlgroup" data-type="horizontal">';
-                        str += '<a class="reduce" data-icon="minus" data-role="button" href="javascript:void(0);"> </a>';
-                        str += '<a class="add" data-icon="plus" data-role="button" href="javascript:void(0);"> </a>';
+                        str += '<div class="order-actions cf">';
+                        str += '<a class="add" data-inline="true" data-icon="plus" data-role="button" href="javascript:void(0);"> </a>';
+                        str += '<input class="number-input" data-inline="true" data-mini="true" type="number" value = "0" />';
+                        str += '<a class="reduce" data-inline="true" data-icon="minus" data-role="button" href="javascript:void(0);"> </a>';
                         str += '</div></li>';
                     });
                 })

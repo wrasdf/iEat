@@ -76,7 +76,7 @@ var iEatGroupShow = (function () {
         var str = '<li><h2>' + data.user.name + '</h2><table><tbody>';
         $.each(data.order_dishes, function (index, value) {
             str += '<tr><td class="dish-name">' + value.name + '</td>';
-            str += '<td class="dish-price">' + value.price + '</td>';
+            str += '<td class="dish-price">' + value.price + ' ￥</td>';
             str += '<td class="dish-count">';
             str += '<div class="dish-count">';
             str += '<span class="ui-li-count">' + value.quantity + '</span>';
@@ -84,7 +84,7 @@ var iEatGroupShow = (function () {
             str += '</td></tr>';
             total += parseFloat(value.price) * parseInt(value.quantity);
         });
-        str += '<tr><td class="dish-name">总计</td><td class="dish-price">' + total + '$</td><td></td></tr></tbody></table>';
+        str += '<tr><td class="dish-name">总计</td><td class="dish-price">' + total + ' ￥</td><td></td></tr></tbody></table>';
         str += '</li>';
         return str;
     }
@@ -181,14 +181,14 @@ var iEatGroupShow = (function () {
             $.each(allStatus, function (index, order) {
                 str += '<tr>';
                 str += '<td class="dish-name">' + order.name + '</td>';
-                str += '<td class="dish-price">' + order.price + '$</td>';
+                str += '<td class="dish-price">' + order.price + ' ￥</td>';
                 str += '<td class="dish-count"><div class="dish-count"><span class="ui-li-count">' + order.quantity + '</span></div></td>';
                 str += '</tr>';
                 total += parseFloat(order.price) * parseInt(order.quantity);
             });
             str += '<tr>';
             str += '<td class="dish-name">总计</td>';
-            str += '<td class="dish-price">' + total + '</td>';
+            str += '<td class="dish-price">' + total + ' ￥</td>';
             str += '<td class="dish-count"></td>';
             str += '</tr>';
             str += '</tbody></table></li>';

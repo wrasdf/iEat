@@ -17,5 +17,3 @@ attributes :id, :restaurant, :description, :due_date, :name, :created_at
         }
      }
  }
-
-

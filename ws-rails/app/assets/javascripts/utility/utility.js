@@ -46,6 +46,15 @@ var iEatUtility = (function(){
 
 $.extend(iEatUtility,(function(){
 
+    function clearCookie(){
+
+        $.removeCookie('_ws-rails_session', { path: '/' });
+        $.removeCookie('token', { path: '/' });
+        $.removeCookie('selectedRestaurantId', { path: '/' });
+        $.removeCookie('createGroupName', { path: '/' });
+        $.removeCookie('currentGroupId', { path: '/' });
+    }
+
     function message(obj){
         $("<div class='ui-msg "+obj.type+"'>"+obj.msg+"</div>")
             .appendTo($.mobile.pageContainer)
@@ -62,6 +71,7 @@ $.extend(iEatUtility,(function(){
     }
 
     return {
+        clearCookie : clearCookie,
         msg : message
     }
 

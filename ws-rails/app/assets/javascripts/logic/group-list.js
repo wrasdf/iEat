@@ -28,7 +28,6 @@ var iEatGroupList = (function () {
                 }
             }
             $("#group-list .group-list-ul").html(str).listview('refresh');
-
             bindEvent();
 
         });
@@ -72,11 +71,9 @@ var iEatGroupList = (function () {
             $.ajax({
                 type : 'GET',
                 url : "/users/sign_out",
-                success : function(o){
-                    $.cookie('token', null,{ expires: 10, path: '/' });
-                    $.cookie('userName', null,{ expires: 10, path: '/' });
-                    $.cookie('userEmail', null,{ expires: 10, path: '/' });
-                    window.location.href = "";
+                success : function(){
+                    iEatUtility.clearCookie();
+                    window.location.href = "/users/sign_in";
                 },
                 error : function (xhr) {
                     iEatUtility.msg({
