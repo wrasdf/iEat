@@ -32,6 +32,8 @@
     if (self) {
         [[self tableView] setRowHeight:56];
         [self setTitle:@"饭团列表"];
+        myGroups = [[NSMutableArray alloc] init];
+        otherGroups = [[NSMutableArray alloc] init];
     }
     return self;
 }
@@ -42,16 +44,13 @@
       if (group[@"joined"] == @"1")   {
           [myGroups addObject:group];
       }
-      else if (((NSDictionary *) (group[@"owner"]))[@"name"] == user.name){
+      else if ([((NSDictionary *) (group[@"owner"]))[@"name"] isEqual:user.name] ){
           [myGroups addObject:group];
       }
       else{
           [otherGroups addObject:group];
       }
-        
     }
-    myGroups = [groups filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF.owner.name == %@", user.name]];
-    otherGroups = [groups filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF.owner.name != %@", user.name]];
     [self.tableView reloadData];
 }
 

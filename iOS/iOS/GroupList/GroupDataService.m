@@ -14,7 +14,7 @@
 @implementation GroupDataService {
 
 }
-+ (NSDictionary *)groupListOfToday {
++ (NSArray *)groupListOfToday {
     NSString *token = [[User CurrentUser] token];
     NSString *urlString = [@"http://localhost:3000/api/v1/groups/active?token=" stringByAppendingString:token];
     NSURL *url = [NSURL URLWithString:urlString];
@@ -22,11 +22,8 @@
     [request addRequestHeader:@"Accept" value:@"application/json"];
     [request setDelegate:self];
     [request startSynchronous];
-    NSString *responseString = [request responseString];
-    NSData *data = [request responseData];
-    NSDictionary * result = [data objectFromJSONData];
 
-    return result;
+    return [[request responseData] objectFromJSONData];
 
 }
 
