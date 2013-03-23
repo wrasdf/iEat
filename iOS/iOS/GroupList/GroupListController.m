@@ -17,8 +17,8 @@
 
 @implementation GroupListController {
     NSArray *groups;
-    NSArray *myGroups;
-    NSArray *otherGroups;
+    NSMutableArray *myGroups;
+    NSMutableArray *otherGroups;
     enum{
         SectionMyGroup = 0,
         SectionAvailableGroup,
@@ -36,8 +36,20 @@
     return self;
 }
 - (void)GetGroupList {
-    groups = [GroupDataService groupListOfToday][@"active_groups"];
+    groups = [GroupDataService groupListOfToday];
     User *user = [User CurrentUser];
+    for (NSDictionary * group in groups){
+      if (group[@"joined"] == @"1")   {
+          [myGroups addObject:group];
+      }
+      else if (((NSDictionary *) (group[@"owner"]))[@"name"] == user.name){
+          [myGroups addObject:group];
+      }
+      else{
+          [otherGroups addObject:group];
+      }
+        
+    }
     myGroups = [groups filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF.owner.name == %@", user.name]];
     otherGroups = [groups filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF.owner.name != %@", user.name]];
     [self.tableView reloadData];

@@ -129,7 +129,7 @@ enum {
 - (void)sendLoginRequestWithUserName:(NSString *)username password:(NSString *)password {
     NSURL *url = [NSURL URLWithString:@"http://localhost:3000/api/v1/users/sign_in"];
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
-    [request setPostValue:username forKey:@"email"];
+    [request setPostValue:username forKey:@"data"];
     [request setPostValue:password forKey:@"password"];
     [request setDelegate:self];
     [request startAsynchronous];
