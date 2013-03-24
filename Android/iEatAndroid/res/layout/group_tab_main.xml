@@ -2,16 +2,16 @@
 
 <TabHost xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
-              android:id="@+id/group_tab"
+              android:id="@android:id/tabhost"
               android:layout_width="fill_parent"
               android:layout_height="fill_parent">
     <LinearLayout android:orientation="vertical"
                   android:layout_width="fill_parent"
                   android:layout_height="fill_parent">
-        <TabWidget android:id="@+id/tabs"
+        <TabWidget android:id="@android:id/tabs"
                    android:layout_width="fill_parent"
                    android:layout_height="fill_parent"/>
-        <FrameLayout android:id="@+id/tabcontent"
+        <FrameLayout android:id="@android:id/tabcontent"
                      android:layout_width="fill_parent"
                      android:layout_height="fill_parent"/>
 

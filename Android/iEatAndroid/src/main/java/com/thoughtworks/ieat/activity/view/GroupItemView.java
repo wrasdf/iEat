@@ -1,19 +1,15 @@
 package com.thoughtworks.ieat.activity.view;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.thoughtworks.ieat.R;
 import com.thoughtworks.ieat.domain.Group;
 
 public class GroupItemView extends LinearLayout {
-
-    public GroupItemView(Context context) {
-        super(context);
-        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        inflater.inflate(R.layout.group_item, this);
-    }
 
     public GroupItemView(Context context, Group group) {
         super(context);

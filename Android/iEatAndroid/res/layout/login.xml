@@ -12,7 +12,7 @@
     <EditText android:layout_height="wrap_content"
               android:layout_width="fill_parent"
               android:id="@+id/username"
-              android:hint="username"
+              android:hint="Username/Email"
               android:inputType="textEmailAddress"
               android:lines="1"/>
     <EditText android:layout_height="wrap_content"

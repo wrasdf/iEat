@@ -21,6 +21,8 @@
         <activity android:name=".activity.GroupListActivity"/>
         <activity android:name=".activity.GroupTabActivity"/>
         <activity android:name=".activity.GroupCreateActivity"/>
+        <activity android:name=".activity.GroupInfoActivity"/>
+        <activity android:name=".activity.GroupAnalysisActivity"/>
     </application>
 
 </manifest>

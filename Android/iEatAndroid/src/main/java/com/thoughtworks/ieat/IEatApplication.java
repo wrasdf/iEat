@@ -12,6 +12,8 @@ public class IEatApplication extends Application {
     public static final String DATE_PATTERN = "yyyy-MM-dd'T'HH:mm:ss'Z'";
 
     private static String currentUserName;
+    public static String token;
+    public static final String EXTRA_GROUP_ID = "EXTRA_GROUP_ID";
 
     @Override
     public void onCreate() {
@@ -20,7 +22,7 @@ public class IEatApplication extends Application {
         ApplicationData.init(prefs);
     }
 
-    public void login(String username) {
+    public static void login(String username) {
         ApplicationData.setUsername(username);
         currentUserName = username;
     }

@@ -25,6 +25,8 @@ public class Group implements Serializable {
     @SerializedName("restaurant_id")
     private Integer restaurantId;
 
+    private String description;
+
     public Integer getId() {
         return id;
     }
@@ -84,5 +86,13 @@ public class Group implements Serializable {
         }
         restaurant.setId(restaurantId);
 
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

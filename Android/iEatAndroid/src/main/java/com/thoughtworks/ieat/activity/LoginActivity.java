@@ -9,7 +9,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,7 +16,7 @@ import com.thoughtworks.ieat.IEatApplication;
 import com.thoughtworks.ieat.R;
 import com.thoughtworks.ieat.domain.AppHttpResponse;
 import com.thoughtworks.ieat.domain.UserToken;
-import com.thoughtworks.ieat.utils.HttpUtils;
+import com.thoughtworks.ieat.service.Server;
 
 public class LoginActivity extends Activity {
     private EditText usernameView;
@@ -70,7 +69,7 @@ public class LoginActivity extends Activity {
         }
 
         public AppHttpResponse<UserToken> doInBackground(String... params) {
-            AppHttpResponse appHttpResponse = HttpUtils.signIn(params[0], params[1]);
+            AppHttpResponse appHttpResponse = Server.signIn(params[0], params[1]);
             username = params[0];
             return appHttpResponse;
         }
@@ -78,7 +77,6 @@ public class LoginActivity extends Activity {
         public void onPostExecute(AppHttpResponse<UserToken> response) {
             loadingProgress.dismiss();
             if (response.isSuccessful()) {
-                ((IEatApplication) getApplication()).login(username);
                 Intent intent = new Intent(context, GroupListActivity.class);
                 startActivity(intent);
             } else {

@@ -4,25 +4,27 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import com.thoughtworks.ieat.IEatApplication;
 import com.thoughtworks.ieat.R;
 import com.thoughtworks.ieat.domain.AppHttpResponse;
 import com.thoughtworks.ieat.domain.Group;
-import com.thoughtworks.ieat.utils.HttpUtils;
+import com.thoughtworks.ieat.service.Server;
 
 public class GroupInfoActivity extends Activity {
 
-    private int groupId;
+    private Integer groupId;
 
     @Override
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         setContentView(R.layout.group_info);
 
-        groupId = bundle.getInt("GROUP_ID");
+        groupId = (Integer) getIntent().getExtras().get(IEatApplication.EXTRA_GROUP_ID);
     }
 
     @Override
     public void onResume() {
+        super.onResume();
         new GroupAsyncTask().execute(groupId);
     }
 
@@ -39,7 +41,7 @@ public class GroupInfoActivity extends Activity {
 
         @Override
         protected AppHttpResponse<Group> doInBackground(Integer... groupIds) {
-            return HttpUtils.getGroup(groupIds[0]);
+            return Server.getGroup(groupIds[0]);
         }
 
         @Override

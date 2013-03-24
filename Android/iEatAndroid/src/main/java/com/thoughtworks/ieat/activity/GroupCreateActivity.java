@@ -2,6 +2,7 @@ package com.thoughtworks.ieat.activity;
 
 import android.app.*;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -12,8 +13,7 @@ import com.thoughtworks.ieat.R;
 import com.thoughtworks.ieat.domain.AppHttpResponse;
 import com.thoughtworks.ieat.domain.Group;
 import com.thoughtworks.ieat.domain.Restaurant;
-import com.thoughtworks.ieat.domain.wrapper.RestaurantsWrapper;
-import com.thoughtworks.ieat.utils.HttpUtils;
+import com.thoughtworks.ieat.service.Server;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -23,7 +23,6 @@ public class GroupCreateActivity extends Activity {
 
     private TimePicker timePicker;
     private EditText groupNameView;
-    private int selectedRestaurantId;
     private RadioGroup choosingRestaurantList;
     private List<Restaurant> allRestaurants;
     private Button selectRestaurantButton;
@@ -47,7 +46,7 @@ public class GroupCreateActivity extends Activity {
         restaurantListAsyncTask.execute();
     }
 
-    public void create(View view) {
+    public void createGroup(View view) {
         String groupName = groupNameView.getText().toString();
         if (groupName == null) {
             Toast.makeText(this, getResources().getString(R.string.input_error_group_name_is_null), Toast.LENGTH_SHORT);
@@ -55,7 +54,7 @@ public class GroupCreateActivity extends Activity {
         }
 
         RadioButton checkedRestaurant = (RadioButton) findViewById(choosingRestaurantList.getCheckedRadioButtonId());
-        selectedRestaurantId = Integer.valueOf(checkedRestaurant.getContentDescription().toString());
+        int selectedRestaurantId = checkedRestaurant.getId();
 
         Integer hour = timePicker.getCurrentHour();
         Integer minute = timePicker.getCurrentMinute();
@@ -65,14 +64,16 @@ public class GroupCreateActivity extends Activity {
         selectedTime.set(Calendar.SECOND, 0);
 
         CreateGroupAsyncTask createGroupAsyncTask = new CreateGroupAsyncTask();
-        createGroupAsyncTask.execute(groupName, new SimpleDateFormat(IEatApplication.DATE_PATTERN).format(selectedTime.getTime()), String.valueOf(selectedRestaurantId));
+        createGroupAsyncTask.execute(groupName, String.valueOf(selectedRestaurantId), new SimpleDateFormat(IEatApplication.DATE_PATTERN).format(selectedTime.getTime()));
     }
+
+
 
     public void showRestaurantsDialog(View view) {
         FragmentTransaction ft = getFragmentManager().beginTransaction();
-        Fragment exsitedFragment = getFragmentManager().findFragmentByTag("dialog");
-        if (exsitedFragment != null) {
-            ft.remove(exsitedFragment);
+        Fragment existedFragment = getFragmentManager().findFragmentByTag("dialog");
+        if (existedFragment != null) {
+            ft.remove(existedFragment);
         }
         ft.addToBackStack(null);
 
@@ -95,6 +96,7 @@ public class GroupCreateActivity extends Activity {
                                          public View getView(int i, View view, ViewGroup viewGroup) {
                                              TextView textView = new TextView(GroupCreateActivity.this);
                                              textView.setText(allRestaurants.get(i).getName());
+                                             textView.setContentDescription(String.valueOf(allRestaurants.get(i).getId()));
                                              return textView;
                                          }
                                      }, 0,
@@ -102,43 +104,40 @@ public class GroupCreateActivity extends Activity {
 
                     public void onClick(DialogInterface dialogInterface, int i) {
                         dialogInterface.dismiss();
-                        addRestaurant(i, true);
+                        addRestaurant(allRestaurants.get(i));
+                        checkRestaurant(allRestaurants.get(i).getId());
                     }
                 }
         );
         builder.create().show();
     }
 
-    private void addRestaurant(int restaurantIndex, boolean doCheck) {
+    private void addRestaurant(Restaurant selectedRestaurant) {
 
-        boolean hasContain = false;
-        Integer restaurantId = allRestaurants.get(restaurantIndex).getId();
+        Integer restaurantId = selectedRestaurant.getId();
         for (int radioIndex = 0; radioIndex < choosingRestaurantList.getChildCount(); radioIndex++) {
-            if (restaurantId.equals(Integer.valueOf(choosingRestaurantList.getChildAt(radioIndex).getContentDescription().toString()))) {
-                hasContain = true;
-                if (doCheck) {
-                    choosingRestaurantList.clearCheck();
-                    choosingRestaurantList.check(radioIndex);
-                }
+            if (restaurantId.equals(choosingRestaurantList.getChildAt(radioIndex).getId())) {
+                choosingRestaurantList.clearCheck();
+                choosingRestaurantList.check(radioIndex + 1);
                 return;
             }
         }
 
-        if (!hasContain) {
-            if (choosingRestaurantList.getChildCount() > 2) {
-                choosingRestaurantList.removeViewAt(choosingRestaurantList.getChildCount() - 1);
-            }
-
-            RadioButton child = new RadioButton(this);
-            child.setText(allRestaurants.get(restaurantIndex).getName());
-            child.setContentDescription(String.valueOf(restaurantIndex));
-
-            choosingRestaurantList.addView(child);
-            if (doCheck) {
-                choosingRestaurantList.clearCheck();
-                choosingRestaurantList.check(choosingRestaurantList.getChildCount());
-            }
+        if (choosingRestaurantList.getChildCount() > 2) {
+            choosingRestaurantList.removeViewAt(choosingRestaurantList.getChildCount() - 1);
         }
+
+        RadioButton child = new RadioButton(this);
+        child.setText(selectedRestaurant.getName());
+        child.setId(selectedRestaurant.getId());
+
+        choosingRestaurantList.addView(child);
+    }
+
+    private void checkRestaurant(int restaurantLocation) {
+        choosingRestaurantList = (RadioGroup) findViewById(R.id.choosing_restaurant_list);
+        choosingRestaurantList.clearCheck();
+        choosingRestaurantList.check(restaurantLocation);
     }
 
 
@@ -164,15 +163,17 @@ public class GroupCreateActivity extends Activity {
         @Override
         protected AppHttpResponse<Group> doInBackground(String... params) {
             String groupName = params[0];
-            String restaurantId = params[1];
+            String groupId = params[1];
             String dueTimeStr = params[2];
-            return HttpUtils.createGroup(groupName, restaurantId, dueTimeStr);
+            return Server.createGroup(groupName, groupId, dueTimeStr);
         }
 
         protected void onPostExecute(AppHttpResponse<Group> result) {
             progressDialog.dismiss();
             if (result.isSuccessful()) {
-
+                Intent intent = new Intent(GroupCreateActivity.this, GroupTabActivity.class);
+                intent.putExtra(IEatApplication.EXTRA_GROUP_ID, result.getData().getId());
+                GroupCreateActivity.this.startActivity(intent);
             } else {
                 Toast.makeText(GroupCreateActivity.this, result.getErrorMessage(), Toast.LENGTH_SHORT).show();
             }
@@ -181,18 +182,8 @@ public class GroupCreateActivity extends Activity {
         }
 
     }
-//
-//    private class RestaurantCheckListDialog extends DialogFragment {
-//
-//        @Override
-//        public Dialog onCreateDialog(Bundle savedInstanceState) {
-//            AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getActivity());
-//            dialogBuilder.setTitle(R.string.choosing_restaurant_list_label);
-//            return dialogBuilder.create();
-//        }
-//    }
 
-    private class RestaurantListAsyncTask extends AsyncTask<Void, Void, AppHttpResponse<RestaurantsWrapper>> {
+    private class RestaurantListAsyncTask extends AsyncTask<Void, Void, AppHttpResponse<List<Restaurant>>> {
 
         private ProgressDialog progressDialog;
 
@@ -205,22 +196,23 @@ public class GroupCreateActivity extends Activity {
         }
 
         @Override
-        protected AppHttpResponse<RestaurantsWrapper> doInBackground(Void... voids) {
-            return HttpUtils.getRestaurants();
+        protected AppHttpResponse<List<Restaurant>> doInBackground(Void... voids) {
+            return Server.getRestaurants();
         }
 
         @Override
-        protected void onPostExecute(AppHttpResponse<RestaurantsWrapper> response) {
+        protected void onPostExecute(AppHttpResponse<List<Restaurant>> response) {
             progressDialog.dismiss();
             if (response.isSuccessful()) {
-                allRestaurants = response.getData().getAllRestaurants();
+                allRestaurants = response.getData();
                 selectRestaurantButton.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View view) {
                         showRestaurantsDialog(view);
                     }
                 });
-                addRestaurant(0, true);
-                addRestaurant(1, false);
+                addRestaurant(allRestaurants.get(0));
+                addRestaurant(allRestaurants.get(1));
+                checkRestaurant(allRestaurants.get(0).getId());
             } else {
                 AlertDialog.Builder builder = new AlertDialog.Builder(GroupCreateActivity.this);
                 builder.setMessage(getResources().getString(R.string.loading_restaurants_fail));

@@ -18,22 +18,21 @@ import com.thoughtworks.ieat.activity.view.GroupItemView;
 import com.thoughtworks.ieat.activity.view.GroupsAdapter;
 import com.thoughtworks.ieat.domain.AppHttpResponse;
 import com.thoughtworks.ieat.domain.Group;
-import com.thoughtworks.ieat.utils.ApplicationData;
-import com.thoughtworks.ieat.utils.HttpUtils;
+import com.thoughtworks.ieat.service.Server;
 
 import java.util.LinkedList;
 import java.util.List;
 
 public class GroupListActivity extends Activity {
 
-    private LinearLayout myGroupLayout;
+    private ListView myGroupLayout;
     private ListView todayGroupLayout;
 
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         this.requestWindowFeature(Window.FEATURE_ACTION_BAR);
         setContentView(R.layout.group_list);
-        myGroupLayout = (LinearLayout) findViewById(R.id.my_groups);
+        myGroupLayout = (ListView) findViewById(R.id.my_groups);
         todayGroupLayout = (ListView) findViewById(R.id.today_groups);
         getActionBar().setTitle(R.string.title_group_list);
     }
@@ -68,7 +67,7 @@ public class GroupListActivity extends Activity {
 
         @Override
         protected AppHttpResponse<List<Group>> doInBackground(Void... params) {
-            return HttpUtils.getActiveGroups();
+            return Server.getActiveGroups();
         }
 
         @Override
@@ -85,14 +84,24 @@ public class GroupListActivity extends Activity {
     }
 
     private void displayMyGroup(List<Group> myGroups) {
+        List<Group> myGroupList = new LinkedList<Group>();
         for (Group myGroup : myGroups) {
             if (!myGroup.getOwner().getName().equals(IEatApplication.currentUser())) {
                 continue;
             }
-            GroupItemView groupItemView = new GroupItemView(getApplicationContext());
-            groupItemView.addGroup(myGroup);
-            myGroupLayout.addView(groupItemView);
+            myGroupList.add(myGroup);
         }
+        final GroupsAdapter adapter = new GroupsAdapter(getApplicationContext(), myGroupList);
+        myGroupLayout.setAdapter(adapter);
+        myGroupLayout.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(GroupListActivity.this, GroupTabActivity.class);
+                intent.putExtra(IEatApplication.EXTRA_GROUP_ID, adapter.getItem(i).getId());
+                GroupListActivity.this.startActivity(intent);
+            }
+        });
+
     }
 
     private void displayTodayGroup(List<Group> groupList) {
@@ -109,7 +118,7 @@ public class GroupListActivity extends Activity {
 
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(GroupListActivity.this, GroupTabActivity.class);
-                intent.putExtra("GROUP_ID", adapter.getItem(i).getId());
+                intent.putExtra(IEatApplication.EXTRA_GROUP_ID, adapter.getItem(i).getId());
                 GroupListActivity.this.startActivity(intent);
             }
         });
