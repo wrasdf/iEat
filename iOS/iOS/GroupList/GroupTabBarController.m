@@ -12,18 +12,31 @@
 #import "GroupStatsController.h"
 #import "GroupDetailsViewController.h"
 
-@implementation GroupTabBarController
+@implementation GroupTabBarController  {
+    NSDictionary *groupInfo;
+}
+
 
 - (id)initWithGroup:(NSDictionary *)group {
     self = [super init];
     if (self != nil){
-        id groupDetailsViewController = [[GroupDetailsViewController alloc] initWithStyle:UITableViewStyleGrouped];
-        id groupStatController = [[GroupStatsController alloc] initWithStyle:UITableViewStyleGrouped];
-        id groupOwnersDishesController = [[GroupOwnerOrderController alloc] initWithStyle:UITableViewStyleGrouped];
-        id groupMemberDishesController = [[GroupMemberOrdersController alloc] initWithStyle:UITableViewStyleGrouped];
+        groupInfo = group;
+        GroupDetailsViewController* groupDetailsViewController = [[GroupDetailsViewController alloc] initWithStyle:UITableViewStyleGrouped];
+        GroupStatsController* groupStatController = [[GroupStatsController alloc] initWithStyle:UITableViewStyleGrouped];
+        GroupOwnerOrderController* groupOwnersDishesController = [[GroupOwnerOrderController alloc] initWithStyle:UITableViewStyleGrouped];
+        GroupMemberOrdersController* groupMemberDishesController = [[GroupMemberOrdersController alloc] initWithStyle:UITableViewStyleGrouped];
+        groupDetailsViewController.delegate = self;
+//        groupStatController.delegate = self;
+        groupOwnersDishesController.delegate = self;
+        groupMemberDishesController.delegate = self;
         self.viewControllers = @[groupDetailsViewController,groupStatController, groupOwnersDishesController, groupMemberDishesController];
         [self setSelectedIndex:0];
     }
     return self;
 }
+
+- (NSDictionary *)GetGroupInfo {
+    return groupInfo;
+}
+
 @end

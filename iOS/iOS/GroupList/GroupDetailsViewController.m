@@ -8,6 +8,8 @@
 
 #import "GroupDetailsViewController.h"
 #import "RestaurantDishesViewController.h"
+#import "GroupTabBarController.h"
+#import "GroupDataDelegate.h"
 
 @interface GroupDetailsViewController ()
 {
@@ -18,18 +20,23 @@
     };
     NSArray *sections;
     NSArray *restDesc;
+    NSArray *restDescVals;
     NSArray *groupDesc;
+    NSArray *groupDescVals;
+    NSDictionary *group;
 }
 @end
 
 @implementation GroupDetailsViewController
+@synthesize delegate;
+
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     if (self) {
         sections = @[@"饭团信息", @"餐馆简介"];
-        restDesc = @[@"饭店名称", @"订餐电话", @"外卖时间", @"起送金额"];
+        restDesc = @[@"饭店名称", @"订餐电话", @"饭店地址"];
         groupDesc = @[@"团名", @"团长"];
         [self setTitle:@"本团信息"];
     }
@@ -39,20 +46,26 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 64)];
+    [[self tableView] setTableFooterView:[self CreateFooterVIew]];
 
+    UITabBarItem *tabBarItem = [[UITabBarItem alloc] initWithTitle:@"本团信息" image:[UIImage imageNamed:@"heart.png"] tag:1];
+    [self setTabBarItem:tabBarItem];
+
+    group = [[self delegate] GetGroupInfo];
+    groupDescVals = [[NSArray alloc] initWithObjects:group[@"name"],  group[@"owner"][@"name"], nil];
+    restDescVals = [[NSArray alloc] initWithObjects:group[@"restaurant"][@"name"],group[@"restaurant"][@"telephone"],group[@"restaurant"][@"address"], nil];
+
+}
+
+- (UIView *)CreateFooterVIew {
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 64)];
     UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [button setTitle:@"买饭去" forState:UIControlStateNormal];
     [button setFrame:CGRectMake(10, 0, 300, 40)];
     [button addTarget:self action:@selector(gotoOrderFood:) forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:button];
-    [view setBackgroundColor:[UIColor whiteColor]];
     [view sizeToFit];
-
-    [[self tableView] setTableFooterView:view];
-
-    UITabBarItem *tabBarItem = [[UITabBarItem alloc] initWithTitle:@"本团信息" image:[UIImage imageNamed:@"heart.png"] tag:1];
-    [self setTabBarItem:tabBarItem];
+    return view;
 }
 
 - (void)gotoOrderFood:(id)sender {
@@ -92,7 +105,7 @@
     static NSString *CellIdentifier = @"DetailsCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:CellIdentifier];
     }
 
     [self configCell:cell atIndexPath:indexPath];
@@ -105,17 +118,23 @@
 }
 
 - (void)configCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)path {
-   if (path.section == SectionRestDesc)
+    [[cell textLabel] setTextAlignment:NSTextAlignmentLeft];
+    [cell.textLabel setTextColor:[UIColor grayColor]];
+    [cell.detailTextLabel setTextColor:[UIColor grayColor]];
+
+    [cell.textLabel setFont:[UIFont systemFontOfSize:12.0]];
+    [cell.detailTextLabel setFont:[UIFont systemFontOfSize:12.0]];
+
+
+    if (path.section == SectionRestDesc)
    {
        cell.textLabel.text = [restDesc objectAtIndex:path.row];
-       [cell.textLabel setTextColor:[UIColor grayColor]];
-       [cell.textLabel setFont:[UIFont systemFontOfSize:12.0]];
+       cell.detailTextLabel.text = [restDescVals objectAtIndex:path.row];
    }
    else if (path.section == SectionGroupDesc){
        cell.textLabel.text = [groupDesc objectAtIndex:path.row];
-       [cell.textLabel setTextColor:[UIColor grayColor]];
-       [cell.textLabel setFont:[UIFont systemFontOfSize:12.0]];
-   }
+       cell.detailTextLabel.text = [groupDescVals objectAtIndex:path.row];
+    }
 }
 
 @end

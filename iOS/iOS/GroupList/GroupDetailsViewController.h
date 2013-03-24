@@ -8,6 +8,10 @@
 
 
 
-@interface GroupDetailsViewController : UITableViewController
+@protocol GroupDataDelegate;
+
+@interface GroupDetailsViewController : UITableViewController {
+}
+@property(nonatomic, strong) NSObject <GroupDataDelegate> *delegate;
 
 @end

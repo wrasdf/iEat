@@ -15,6 +15,8 @@
 @end
 
 @implementation GroupStatsController
+//@synthesize delegate;
+
 
 - (id)initWithStyle:(UITableViewStyle)style
 {

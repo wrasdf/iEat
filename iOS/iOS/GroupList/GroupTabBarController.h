@@ -8,7 +8,8 @@
 
 
 
-@interface GroupTabBarController : UITabBarController
+#import "GroupDataDelegate.h"
 
+@interface GroupTabBarController : UITabBarController<GroupDataDelegate>
 - (id)initWithGroup:(NSDictionary *)group;
 @end

@@ -9,5 +9,4 @@
 
 
 @interface GroupStatsController : UITableViewController
-
 @end

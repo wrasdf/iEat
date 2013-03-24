@@ -103,6 +103,7 @@
 		6AC70007AEB128FA587672FF /* coffee.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coffee.png; sourceTree = "<group>"; };
 		6AC70026A7EF01DCAB70CA85 /* README.rst */ = {isa = PBXFileReference; lastKnownFileType = file.rst; path = README.rst; sourceTree = "<group>"; };
 		6AC7008D4E86601A6BC01F78 /* PlainEditTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlainEditTableViewCell.h; path = "Table Cell/PlainEditTableViewCell.h"; sourceTree = "<group>"; };
+		6AC700BBE51FB5AB8BDE415A /* GroupDataDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupDataDelegate.h; sourceTree = "<group>"; };
 		6AC7010AFE66DA73B576E319 /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
 		6AC7010B191BDBFC9AE5EE79 /* fork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fork.png; sourceTree = "<group>"; };
 		6AC701676998F6D6108C9407 /* RestaurantListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestaurantListViewController.h; sourceTree = "<group>"; };
@@ -217,6 +218,7 @@
 				6AC70170955A96B1B5FCDA41 /* GroupMemberOrdersController.m */,
 				6AC70B59DC747C5080A6E7F9 /* GroupTabBarController.h */,
 				6AC702214B081EFA3EFBE2CB /* GroupTabBarController.m */,
+				6AC700BBE51FB5AB8BDE415A /* GroupDataDelegate.h */,
 			);
 			path = GroupList;
 			sourceTree = "<group>";

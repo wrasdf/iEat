@@ -8,6 +8,9 @@
 
 
 
+@protocol GroupDataDelegate;
+
 @interface GroupOwnerOrderController : UITableViewController
+@property(nonatomic, strong) NSObject <GroupDataDelegate> *delegate;
 
 @end

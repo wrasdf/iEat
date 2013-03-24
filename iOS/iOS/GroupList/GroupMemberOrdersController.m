@@ -7,9 +7,14 @@
 //
 
 #import "GroupMemberOrdersController.h"
+#import "GroupDataDelegate.h"
+#import "User.h"
 
 @interface GroupMemberOrdersController ()
+{
+    NSArray *othersDishes;
 
+}
 @end
 
 @implementation GroupMemberOrdersController
@@ -28,11 +33,11 @@
 {
     [super viewDidLoad];
 
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    NSDictionary *groupInfo = [[self delegate] GetGroupInfo];
+    NSArray * dishes = groupInfo[@"orders"];
+    User *user = [User CurrentUser];
+    NSArray *myOrders = [dishes filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF.user.name != %@", user.name]];
+    othersDishes = myOrders[0][@"order_dishes"];
 
 }
 
