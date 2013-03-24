@@ -70,7 +70,9 @@
 
 - (void)gotoOrderFood:(id)sender {
     NSLog(@"买饭去");
-    [[RestaurantDishesViewController alloc]initWithRestaurant:1];
+    RestaurantDishesViewController *restaurantDishesViewController = [[RestaurantDishesViewController alloc] initWithRestaurant:[group[@"restaurant"][@"id"] intValue]];
+    [[self navigationController] pushViewController:restaurantDishesViewController animated:YES];
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -121,10 +123,6 @@
     [[cell textLabel] setTextAlignment:NSTextAlignmentLeft];
     [cell.textLabel setTextColor:[UIColor grayColor]];
     [cell.detailTextLabel setTextColor:[UIColor grayColor]];
-
-//    [cell.textLabel setFont:[UIFont systemFontOfSize:12.0]];
-//    [cell.detailTextLabel setFont:[UIFont systemFontOfSize:12.0]];
-
 
     if (path.section == SectionRestDesc)
    {
