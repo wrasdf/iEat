@@ -10,6 +10,6 @@
 @class GroupDetailsViewController;
 
 @interface GroupListController : UITableViewController<UITableViewDataSource, UITableViewDelegate>
-- (void)ShowGroupDetails;
+- (void)ShowGroupDetails:(id)groupId;
 
 @end

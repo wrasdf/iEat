@@ -56,4 +56,15 @@ const NSString * serverUrl = @"http://localhost:3000";
     NSData *data = [request responseData];
     return [data objectFromJSONData];
 }
+
++ (NSDictionary *)GetGroupById:(id)groupId {
+    NSString *token = [[User CurrentUser] token];
+    NSString *urlString = [NSString stringWithFormat:@"%@%@%d?token=%@", serverUrl, @"/api/v1/groups/", groupId, token];
+    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:urlString]];
+    [request addRequestHeader:@"Accept" value:@"application/json"];
+    [request setDelegate:self];
+    [request startSynchronous];
+
+    return [[request responseData] objectFromJSONData];
+}
 @end

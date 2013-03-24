@@ -91,11 +91,11 @@ enum {
     }
 
     NSString * time = [group.dueDate componentsSeparatedByString:@" "][1];
-    [GroupDataService createGroupWithName:group.name restaurant:group.restaurant.id duedate:time];
+    NSDictionary *groupAdded = [GroupDataService createGroupWithName:group.name restaurant:group.restaurant.id duedate:time];
 
     UINavigationController *navController = self.navigationController;
     [navController popViewControllerAnimated:NO];
-    [listController ShowGroupDetails];
+    [listController ShowGroupDetails:groupAdded[@"id"]];
 }
 
 - (void)showAlertView:(NSString *)message {

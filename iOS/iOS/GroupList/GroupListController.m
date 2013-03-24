@@ -14,6 +14,7 @@
 #import "GroupStatsController.h"
 #import "GroupOwnerOrderController.h"
 #import "GroupMemberOrdersController.h"
+#import "GroupTabBarController.h"
 
 @implementation GroupListController {
     NSArray *groups;
@@ -149,27 +150,23 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    id group;
     if (indexPath.section == SectionMyGroup){
-
+        group = [myGroups objectAtIndex:indexPath.row];
     } else if (indexPath.section == SectionAvailableGroup){
+        group = [otherGroups objectAtIndex:indexPath.row];
     }
+    id groupId = group[@"id"];
+    
 
-    [self ShowGroupDetails];
+    [self ShowGroupDetails:groupId];
 
 }
 
-- (void)ShowGroupDetails {
-    UITabBarController* groupsTabController = [[UITabBarController alloc]init];
-
-    id groupDetailsViewController = [[GroupDetailsViewController alloc] initWithStyle:UITableViewStyleGrouped];
-    id groupStatController = [[GroupStatsController alloc] initWithStyle:UITableViewStyleGrouped];
-    id groupOwnersDishesController = [[GroupOwnerOrderController alloc] initWithStyle:UITableViewStyleGrouped];
-    id groupMemberDishesController = [[GroupMemberOrdersController alloc] initWithStyle:UITableViewStyleGrouped];
-
-    groupsTabController.viewControllers = @[groupDetailsViewController,groupStatController, groupOwnersDishesController, groupMemberDishesController];
-    [groupsTabController setSelectedIndex:0];
-    UINavigationController *navController = [self navigationController];
-    [navController pushViewController:groupsTabController animated:YES];
+- (void)ShowGroupDetails:(id)groupId {
+    NSDictionary *groupSelected = [GroupDataService GetGroupById:groupId] ;
+    GroupTabBarController* groupsTabController = [[GroupTabBarController alloc]initWithGroup:groupSelected];
+    [[self navigationController] pushViewController:groupsTabController animated:YES];
 }
 
 - (void)configureCell:(GroupSummaryViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
