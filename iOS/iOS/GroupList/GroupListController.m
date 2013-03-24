@@ -58,8 +58,11 @@
 
 
 - (IBAction) add:(id) sender {
-    GroupAddViewController *groupDetailViewController = [[GroupAddViewController alloc] initWithStyle:UITableViewStyleGrouped];
-    [[self navigationController] pushViewController:groupDetailViewController animated:YES];
+    GroupAddViewController *addGroup;
+
+    addGroup = [[GroupAddViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    [addGroup SetGroupListController:self];
+    [[self navigationController] pushViewController:addGroup animated:YES];
 }
 
 -(void) createBarButtonOnNavigationBar{
@@ -146,22 +149,27 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    GroupDetailsViewController * groupDetailsViewController;
     if (indexPath.section == SectionMyGroup){
 
     } else if (indexPath.section == SectionAvailableGroup){
     }
 
+    [self ShowGroupDetails];
+
+}
+
+- (void)ShowGroupDetails {
     UITabBarController* groupsTabController = [[UITabBarController alloc]init];
 
-    groupDetailsViewController = [[GroupDetailsViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    id groupDetailsViewController = [[GroupDetailsViewController alloc] initWithStyle:UITableViewStyleGrouped];
     id groupStatController = [[GroupStatsController alloc] initWithStyle:UITableViewStyleGrouped];
     id groupOwnersDishesController = [[GroupOwnerOrderController alloc] initWithStyle:UITableViewStyleGrouped];
     id groupMemberDishesController = [[GroupMemberOrdersController alloc] initWithStyle:UITableViewStyleGrouped];
 
     groupsTabController.viewControllers = @[groupDetailsViewController,groupStatController, groupOwnersDishesController, groupMemberDishesController];
     [groupsTabController setSelectedIndex:0];
-    [[self navigationController] pushViewController:groupsTabController animated:YES];
+    UINavigationController *navController = [self navigationController];
+    [navController pushViewController:groupsTabController animated:YES];
 }
 
 - (void)configureCell:(GroupSummaryViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {

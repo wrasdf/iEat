@@ -7,9 +7,10 @@
 //
 
 
-#import "RestaurantListViewController.h"
-
-@class PlainEditTableViewCell;
+@class GroupListController;
 
 @interface GroupAddViewController : UITableViewController
+- (void)SetGroupListController:(GroupListController *)controller;
+
+
 @end

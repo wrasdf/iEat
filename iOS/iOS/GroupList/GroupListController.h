@@ -7,5 +7,9 @@
 
 #import <Foundation/Foundation.h>
 
+@class GroupDetailsViewController;
+
 @interface GroupListController : UITableViewController<UITableViewDataSource, UITableViewDelegate>
+- (void)ShowGroupDetails;
+
 @end
