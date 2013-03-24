@@ -7,15 +7,19 @@
 //
 
 #import "GroupStatsController.h"
+#import "GroupDataDelegate.h"
+#import "User.h"
 
 @interface GroupStatsController ()
 {
-    NSArray *dishes;
+    NSMutableDictionary *dishesDict;
+    NSArray *allKeys;
+    NSArray *allValues;
 }
+
 @end
 
 @implementation GroupStatsController
-//@synthesize delegate;
 
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -24,8 +28,7 @@
     if (self) {
         UITabBarItem *tabBarItem = [[UITabBarItem alloc] initWithTitle:@"统计信息" image:[UIImage imageNamed:@"bar-chart.png"] tag:2];
         [self setTabBarItem:tabBarItem];
-
-        dishes = @[@"小炒肉 12￥", @"小笼包 30￥"];
+        dishesDict  = [[NSMutableDictionary alloc] init];
     }
     return self;
 }
@@ -33,6 +36,31 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    NSDictionary *groupInfo = [[self delegate] GetGroupInfo];
+    NSArray * orders = groupInfo[@"orders"];
+    for (NSDictionary * order in orders){
+        NSArray * dishes = order[@"order_dishes"];
+        for (NSDictionary *dish in dishes){
+            NSLog([NSString stringWithFormat:@"%@ %@ %@", dish[@"name"], dish[@"price"], dish[@"quantity"]]);
+            NSMutableDictionary * dict = [dishesDict objectForKey:dish[@"name"]];
+            if (dict){
+                unsigned long quantity = [dict[@"quantity"] integerValue] + [dish[@"quantity"] integerValue];
+                [dict setValue:[NSNumber numberWithInt:quantity] forKey:@"quantity"];
+            }
+            else{
+                NSMutableDictionary *tmp = [[NSMutableDictionary alloc] initWithObjectsAndKeys:dish[@"quantity"], @"quantity", dish[@"price"], @"price", nil];
+                [dishesDict setObject:tmp forKey:dish[@"name"]];
+            }
+        }
+    }
+    allKeys = [dishesDict allKeys];
+    allValues = [dishesDict allValues];
+
+    [[self tableView] setTableFooterView:[self CreateFooterView]];
+}
+
+- (UIView *)CreateFooterView {
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 64)];
     UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [button setImage:[UIImage imageNamed:@"phone.png"] forState:UIControlStateNormal];
@@ -40,8 +68,7 @@
     [button setFrame:CGRectMake(10, 0, 300, 40)];
     [button addTarget:self action:@selector(callRestaurant:) forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:button];
-
-    [[self tableView] setTableFooterView:view];
+    return view;
 }
 
 - (void)callRestaurant:(id)callRestaurant {
@@ -63,9 +90,13 @@
     return 1;
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    return @"统计信息";
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [dishes count];
+    return [dishesDict count] + 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -74,13 +105,29 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if (cell == nil){
-        cell  = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell  = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
     }
-
-    cell.textLabel.text = [dishes objectAtIndex:indexPath.row];
+    if ([dishesDict count] == 0){
+        cell.textLabel.text = @"当前没有订餐";
+        return cell;
+    }
+    if (indexPath.row == [dishesDict count]) {
+        cell.textLabel.text = @"总计";
+        int total  = 0;
+        for (id dish in allValues) {
+           total += [dish[@"price"] integerValue] * [dish[@"quantity"] integerValue];
+        }
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"%d ￥", total];
+        return cell;
+    }
+    cell.textLabel.text = [allKeys objectAtIndex:(NSUInteger)indexPath.row];
+    NSString *price = [NSString stringWithFormat:@"%@ ￥", [allValues objectAtIndex:indexPath.row][@"price"]];
+    cell.detailTextLabel.text = price;
     UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [button setTitle:@"3" forState:UIControlStateNormal];
-    [button setFrame:CGRectMake(0, 10, 30, 30)];
+    NSString *quantity = [NSString stringWithFormat:@"%@", [allValues objectAtIndex:indexPath.row][@"quantity"]];
+
+    [button setTitle:quantity forState:UIControlStateNormal];
+    [button setFrame:CGRectMake(0, 10, 25, 25)];
     [cell setAccessoryView:button];
 
     return cell;

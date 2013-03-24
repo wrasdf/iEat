@@ -24,6 +24,7 @@
     if (self) {
         UITabBarItem *tabBarItem = [[UITabBarItem alloc] initWithTitle:@"我的订餐" image:[UIImage imageNamed:@"user.png"] tag:3];
         [self setTabBarItem:tabBarItem];
+        myDishes = [[NSArray alloc] init];
     }
     return self;
 }
@@ -35,7 +36,9 @@
     NSArray * dishes = groupInfo[@"orders"];
     User *user = [User CurrentUser];
     NSArray *myOrders = [dishes filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF.user.name == %@", user.name]];
-    myDishes = myOrders[0][@"order_dishes"];
+    if([myOrders count] != 0){
+        myDishes = myOrders[0][@"order_dishes"];
+    }
 
 
 }
@@ -50,9 +53,13 @@
     return 1;
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    return @"我的订餐";
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [myDishes count];
+    return [myDishes count] + 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -61,6 +68,20 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil){
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
+    }
+
+    if ([myDishes count] == 0){
+        cell.textLabel.text = @"当前您没有订餐";
+        return cell;
+    }
+    if ([myDishes count] == indexPath.row){
+        cell.textLabel.text = @"总计";
+        int total  = 0;
+        for (id dish in myDishes) {
+            total += [dish[@"price"] integerValue] * [dish[@"quantity"] integerValue];
+        }
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"%d ￥", total];
+        return cell;
     }
     NSDictionary * dish = [myDishes objectAtIndex:indexPath.row];
     cell.textLabel.text = dish[@"name"];

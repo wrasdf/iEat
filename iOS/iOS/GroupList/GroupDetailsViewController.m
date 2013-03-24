@@ -79,7 +79,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 35;
+    return 40;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -122,8 +122,8 @@
     [cell.textLabel setTextColor:[UIColor grayColor]];
     [cell.detailTextLabel setTextColor:[UIColor grayColor]];
 
-    [cell.textLabel setFont:[UIFont systemFontOfSize:12.0]];
-    [cell.detailTextLabel setFont:[UIFont systemFontOfSize:12.0]];
+//    [cell.textLabel setFont:[UIFont systemFontOfSize:12.0]];
+//    [cell.detailTextLabel setFont:[UIFont systemFontOfSize:12.0]];
 
 
     if (path.section == SectionRestDesc)

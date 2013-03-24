@@ -26,7 +26,7 @@
         GroupOwnerOrderController* groupOwnersDishesController = [[GroupOwnerOrderController alloc] initWithStyle:UITableViewStyleGrouped];
         GroupMemberOrdersController* groupMemberDishesController = [[GroupMemberOrdersController alloc] initWithStyle:UITableViewStyleGrouped];
         groupDetailsViewController.delegate = self;
-//        groupStatController.delegate = self;
+        groupStatController.delegate = self;
         groupOwnersDishesController.delegate = self;
         groupMemberDishesController.delegate = self;
         self.viewControllers = @[groupDetailsViewController,groupStatController, groupOwnersDishesController, groupMemberDishesController];
