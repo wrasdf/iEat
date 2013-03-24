@@ -11,7 +11,10 @@
 #import "Restaurant.h"
 #import "Group.h"
 #import "User.h"
+#import "GroupListController.h"
 #import "GroupDataService.h"
+#import "GroupListController.h"
+#import "RestaurantListViewController.h"
 
 @interface GroupAddViewController ()
 {
@@ -21,6 +24,7 @@
     UIViewController *datePickerController;
     UIDatePicker *datePicker;
     Group* group;
+    GroupListController *listController;
 
 }
 enum {
@@ -32,9 +36,8 @@ enum {
 
 @end
 
-@implementation GroupAddViewController
-
-
+@implementation GroupAddViewController {
+}
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -88,8 +91,11 @@ enum {
     }
 
     NSString * time = [group.dueDate componentsSeparatedByString:@" "][1];
-    [GroupDataService createGroupWithName:group.name restaurant:group.restaurant.id duedate:time];
-    [[self navigationController] popViewControllerAnimated:YES];
+    NSDictionary *groupAdded = [GroupDataService createGroupWithName:group.name restaurant:group.restaurant.id duedate:time];
+
+    UINavigationController *navController = self.navigationController;
+    [navController popViewControllerAnimated:NO];
+    [listController ShowGroupDetails:groupAdded[@"id"]];
 }
 
 - (void)showAlertView:(NSString *)message {
@@ -180,4 +186,9 @@ enum {
     group.dueDate = [formatter stringFromDate:[sender date]];
     NSLog(group.dueDate);
 }
+
+- (void)SetGroupListController:(GroupListController *)controller {
+    listController = controller;
+}
+
 @end

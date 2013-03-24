@@ -6,8 +6,9 @@
 //  Copyright (c) 2013 __MyCompanyName__. All rights reserved.
 //
 
-
+@protocol GroupDataDelegate;
 
 @interface GroupStatsController : UITableViewController
+@property(nonatomic, strong) NSObject <GroupDataDelegate> *delegate;
 
 @end

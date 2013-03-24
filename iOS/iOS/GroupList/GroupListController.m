@@ -14,11 +14,12 @@
 #import "GroupStatsController.h"
 #import "GroupOwnerOrderController.h"
 #import "GroupMemberOrdersController.h"
+#import "GroupTabBarController.h"
 
 @implementation GroupListController {
     NSArray *groups;
-    NSArray *myGroups;
-    NSArray *otherGroups;
+    NSMutableArray *myGroups;
+    NSMutableArray *otherGroups;
     enum{
         SectionMyGroup = 0,
         SectionAvailableGroup,
@@ -32,21 +33,37 @@
     if (self) {
         [[self tableView] setRowHeight:56];
         [self setTitle:@"饭团列表"];
+        myGroups = [[NSMutableArray alloc] init];
+        otherGroups = [[NSMutableArray alloc] init];
     }
     return self;
 }
 - (void)GetGroupList {
-    groups = [GroupDataService groupListOfToday][@"active_groups"];
+    groups = [GroupDataService groupListOfToday];
+    [myGroups removeAllObjects];
+    [otherGroups removeAllObjects];
     User *user = [User CurrentUser];
-    myGroups = [groups filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF.owner.name == %@", user.name]];
-    otherGroups = [groups filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF.owner.name != %@", user.name]];
+    for (NSDictionary * group in groups){
+      if (group[@"joined"] == @"1")   {
+          [myGroups addObject:group];
+      }
+      else if ([((NSDictionary *) (group[@"owner"]))[@"name"] isEqual:user.name] ){
+          [myGroups addObject:group];
+      }
+      else{
+          [otherGroups addObject:group];
+      }
+    }
     [self.tableView reloadData];
 }
 
 
 - (IBAction) add:(id) sender {
-    GroupAddViewController *groupDetailViewController = [[GroupAddViewController alloc] initWithStyle:UITableViewStyleGrouped];
-    [[self navigationController] pushViewController:groupDetailViewController animated:YES];
+    GroupAddViewController *addGroup;
+
+    addGroup = [[GroupAddViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    [addGroup SetGroupListController:self];
+    [[self navigationController] pushViewController:addGroup animated:YES];
 }
 
 -(void) createBarButtonOnNavigationBar{
@@ -87,6 +104,15 @@
     return 0;
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
+    if (section == SectionMyGroup && [myGroups count] == 0) {
+        return @"没有与您相关的团                                    ";
+    } else if (section == SectionAvailableGroup && [otherGroups count] == 0){
+        return @"现在暂时没有其他可加入的团                   ";
+    }
+    return [super tableView:tableView titleForFooterInSection:section];
+}
+
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     if (section == SectionMyGroup){
         return @"我的饭团";
@@ -102,9 +128,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-
     NSString *cellIdentifier = @"GroupSummaryCell";
-
     GroupSummaryViewCell *cell = (GroupSummaryViewCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if(cell == nil) {
         cell = [[GroupSummaryViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
@@ -126,21 +150,22 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    GroupDetailsViewController * groupDetailsViewController;
+    id group;
     if (indexPath.section == SectionMyGroup){
-
+        group = [myGroups objectAtIndex:indexPath.row];
     } else if (indexPath.section == SectionAvailableGroup){
+        group = [otherGroups objectAtIndex:indexPath.row];
     }
+    id groupId = group[@"id"];
+    
 
-    UITabBarController* groupsTabController = [[UITabBarController alloc]init];
+    [self ShowGroupDetails:groupId];
 
-    groupDetailsViewController = [[GroupDetailsViewController alloc] initWithStyle:UITableViewStyleGrouped];
-    id groupStatController = [[GroupStatsController alloc] initWithStyle:UITableViewStyleGrouped];
-    id groupOwnersDishesController = [[GroupOwnerOrderController alloc] initWithStyle:UITableViewStyleGrouped];
-    id groupMemberDishesController = [[GroupMemberOrdersController alloc] initWithStyle:UITableViewStyleGrouped];
+}
 
-    groupsTabController.viewControllers = @[groupDetailsViewController,groupStatController, groupOwnersDishesController, groupMemberDishesController];
-    [groupsTabController setSelectedIndex:0];
+- (void)ShowGroupDetails:(id)groupId {
+    NSDictionary *groupSelected = [GroupDataService GetGroupById:groupId] ;
+    GroupTabBarController* groupsTabController = [[GroupTabBarController alloc]initWithGroup:groupSelected];
     [[self navigationController] pushViewController:groupsTabController animated:YES];
 }
 

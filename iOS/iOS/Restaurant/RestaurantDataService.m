@@ -20,10 +20,8 @@
     [request addRequestHeader:@"Accept" value:@"application/json"];
     [request setDelegate:self];
     [request startSynchronous];
-    NSData *data = [request responseData];
-    NSDictionary * result = [data objectFromJSONData][@"restaurant_list"];
 
-    return result;
+    return [[request responseData] objectFromJSONData];
 }
 
 @end

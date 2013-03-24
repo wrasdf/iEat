@@ -25,7 +25,7 @@
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
-        [self.tableView setRowHeight:100];
+        [self.tableView setRowHeight:70];
         restaurant = [[Restaurant alloc] init];
 
     }
@@ -71,7 +71,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
         NSDictionary *restaurant = [restaurants objectAtIndex:indexPath.row];
         cell.textLabel.text = restaurant[@"name"];
-        NSString *info = [NSString stringWithFormat:@"电话：%@.\n 地址：%@", restaurant[@"telephone"], restaurant[@"address"]];
+        NSString *info = [NSString stringWithFormat:@"电话：%@.\n地址：%@", restaurant[@"telephone"], restaurant[@"address"]];
         cell.detailTextLabel.text = info;
         [cell.detailTextLabel setAdjustsFontSizeToFitWidth:NO];
         cell.detailTextLabel.numberOfLines=0;

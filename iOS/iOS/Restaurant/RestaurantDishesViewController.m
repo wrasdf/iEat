@@ -16,9 +16,8 @@
 
 @implementation RestaurantDishesViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
+- (id)initWithRestaurant:(int)restaurantId {
+    self = [super initWithStyle:UITableViewStyleGrouped];
     if (self) {
         dishTypes = @[@"招牌菜", @"凉菜类", @"热菜类", @"水饺", @"饮料"];
     }
@@ -29,18 +28,13 @@
 {
     [super viewDidLoad];
 
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     UIView *header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 64)];
 
     UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectZero];
     [searchBar setAutocapitalizationType:UITextAutocapitalizationTypeNone];
     [searchBar setAutocorrectionType:UITextAutocorrectionTypeNo];
     [searchBar setShowsCancelButton:YES animated:YES];
-    [searchBar setPlaceholder:@"输入要查询的餐馆名字"];
+    [searchBar setPlaceholder:@"输入要查询的菜名"];
     [searchBar sizeToFit];
     [header addSubview:searchBar];
     [[self tableView] setTableHeaderView:header];
@@ -50,10 +44,7 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
-
-#pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
