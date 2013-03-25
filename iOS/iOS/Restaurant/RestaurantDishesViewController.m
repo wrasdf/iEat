@@ -8,6 +8,7 @@
 
 #import "RestaurantDishesViewController.h"
 #import "GroupDataService.h"
+#import "OrderCellAccessory.h"
 
 @interface RestaurantDishesViewController ()
 {
@@ -78,58 +79,20 @@
 }
 
 - (void)configCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)path {
-
     NSArray * typeDishes = [dishes objectAtIndex:path.section][@"dishes"];
     cell.textLabel.text = [typeDishes objectAtIndex:path.row][@"name"];
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ ￥", [typeDishes objectAtIndex:path.row][@"price"]];
-}
-
-- (void)AddAccessoryButton:(UITableViewCell *)cell {
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [button setTitle:@"1" forState:UIControlStateNormal];
-    [button setFrame:CGRectMake(0, 10, 25, 25)];
-
-    [cell setAccessoryView:button];
+    [cell setAccessoryView:[[OrderCellAccessory alloc] initWithIndexPath:path]];
 }
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
 
 }
 
-- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return [super tableView:tableView editingStyleForRowAtIndexPath:indexPath];
-}
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-    UIButton *button = [cell accessoryView];
-    if (button == nil){
-        [self AddAccessoryButton:cell ];
-        [self AddSubtractButton:cell ];
-    } else{
-        NSInteger value = [button.titleLabel.text integerValue];
-        value +=1;
-        [button setTitle:[NSString stringWithFormat:@"%d", value] forState:UIControlStateNormal];
-    }
-    [cell setHighlighted:NO];
-}
-
-- (void)AddSubtractButton:(UITableViewCell *)cell {
-    UIImage *image = [UIImage imageNamed:@"no-entry.png"];
-    [cell.imageView setImage:image];
-    [cell.imageView setUserInteractionEnabled:YES];
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(subtract:)];
-    [tap setNumberOfTapsRequired:1];
-    [cell.imageView setGestureRecognizers:[NSArray arrayWithObject:tap]];
-}
-
-- (void)subtract:(UIImageView *)sender {
-    NSLog(@"subtract");
-//    NSIndexPath *indexPath = [(UITableView *)[sender superview] indexPathForCell:self];
-    NSIndexPath *indexPath =
-            [self.tableView
-                    indexPathForCell:(UITableViewCell *)[[sender superview] superview]];
-    NSLog([NSString stringWithFormat:@"%d %d", indexPath.section, indexPath.row]);
+    OrderCellAccessory *accessory = [cell accessoryView];
+    [accessory increaseQuantity];
 }
 
 @end
