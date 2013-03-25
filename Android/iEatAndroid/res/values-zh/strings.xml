@@ -21,4 +21,15 @@
 
     <string name="input_error_group_name_is_null">团名不能为空！</string>
     <string name="loading_restaurants_fail">加载饭馆失败！</string>
+    <string name="group_info_label_name">团名</string>
+    <string name="group_info_label_owner">创建者</string>
+    <string name="group_info_label_telephone">电话</string>
+    <string name="group_info_restaurant_label_name">饭店名称</string>
+    <string name="group_info_restaurant_label_telephone">订餐电话</string>
+    <string name="group_info_restaurant_label_address">餐馆地址</string>
+    <string name="group_info_restaurant_label_desc">备注</string>
+    <string name="group_myself_title">我的订餐</string>
+    <string name="group_myself_tab_label">我的订餐</string>
+    <string name="group_member_title">团圆订餐信息</string>
+    <string name="group_member_tab_label">团员信息</string>
 </resources>

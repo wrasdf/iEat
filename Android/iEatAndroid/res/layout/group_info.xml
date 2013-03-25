@@ -3,7 +3,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              android:layout_height="wrap_content">
     <TextView android:layout_height="wrap_content"
             android:layout_width="fill_parent"
             android:text="@string/group_info_layout_title"/>
@@ -13,13 +13,13 @@
             <TextView android:layout_weight="0.3"
                       android:layout_width="0dp"
                       android:layout_height="wrap_content"
-                      android:text="团名"
-                    />
+                      android:text="@string/group_info_label_name"/>
 
             <TextView android:layout_height="wrap_content"
+                      android:id="@+id/group_info_name"
                     android:layout_width="0dp"
                     android:layout_weight="0.7"
-                    android:text="name"/>
+                    android:text=""/>
 
         </TableRow>
 
@@ -27,15 +27,31 @@
             <TextView android:layout_weight="0.3"
                       android:layout_width="0dp"
                       android:layout_height="wrap_content"
-                      android:text="团名"
+                      android:text="@string/group_info_label_owner"
                     />
 
             <TextView android:layout_height="wrap_content"
+                      android:id="@+id/group_info_owner_name"
                       android:layout_width="0dp"
                       android:layout_weight="0.7"
-                      android:text="name"/>
+                      android:text=""/>
 
         </TableRow>
+
+        <TableRow android:orientation="horizontal">
+            <TextView android:layout_weight="0.3"
+                      android:layout_width="0dp"
+                      android:layout_height="wrap_content"
+                      android:text="@string/group_info_label_telephone"/>
+
+            <TextView android:layout_height="wrap_content"
+                      android:id="@+id/group_info_owner_name"
+                      android:layout_width="0dp"
+                      android:layout_weight="0.7"
+                      android:text="NO VALUE"/>
+
+        </TableRow>
+
     </TableLayout>
 
     <TextView android:layout_width="fill_parent"
@@ -47,13 +63,55 @@
             <TextView android:layout_weight="0.3"
                       android:layout_width="0dp"
                       android:layout_height="wrap_content"
-                      android:text="团名"
-                    />
+                      android:text="@string/group_info_restaurant_label_name"/>
 
             <TextView android:layout_height="wrap_content"
                       android:layout_width="0dp"
                       android:layout_weight="0.7"
-                      android:text="name"/>
+                      android:id="@+id/group_info_restaurant_name"
+                      android:text=""/>
+
+        </TableRow>
+
+        <TableRow android:orientation="horizontal">
+            <TextView android:layout_weight="0.3"
+                      android:layout_width="0dp"
+                      android:layout_height="wrap_content"
+                      android:text="@string/group_info_restaurant_label_telephone"/>
+
+            <TextView android:layout_height="wrap_content"
+                      android:layout_width="0dp"
+                      android:layout_weight="0.7"
+                      android:id="@+id/group_info_restaurant_telephone"
+                      android:text=""/>
+
+        </TableRow>
+
+        <TableRow android:orientation="horizontal">
+            <TextView android:layout_weight="0.3"
+                      android:layout_width="0dp"
+                      android:layout_height="wrap_content"
+                      android:text="@string/group_info_restaurant_label_address"/>
+
+            <TextView android:layout_height="wrap_content"
+                      android:layout_width="0dp"
+                      android:layout_weight="0.7"
+                      android:id="@+id/group_info_restaurant_address"
+                      android:text=""/>
+
+        </TableRow>
+
+        <TableRow android:orientation="horizontal">
+            <TextView android:layout_weight="0.3"
+                      android:layout_width="0dp"
+                      android:layout_height="wrap_content"
+                      android:text="@string/group_info_restaurant_label_desc"/>
+
+            <TextView android:layout_height="wrap_content"
+                      android:layout_width="0dp"
+                      android:layout_weight="0.7"
+                      android:id="@+id/group_info_restaurant_desc"
+                      android:text="NO VALUE"/>
 
         </TableRow>
 

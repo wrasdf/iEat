@@ -20,4 +20,15 @@
 
     <string name="input_error_group_name_is_null">Group name should not be null!</string>
     <string name="loading_restaurants_fail">Fail to load restaurants</string>
+    <string name="group_info_label_name">Name</string>
+    <string name="group_info_label_owner">Owner</string>
+    <string name="group_info_label_telephone">Telelphone</string>
+    <string name="group_info_restaurant_label_name">Restaurant Name</string>
+    <string name="group_info_restaurant_label_telephone">Telephone</string>
+    <string name="group_info_restaurant_label_address">Address</string>
+    <string name="group_info_restaurant_label_desc">Desc</string>
+    <string name="group_myself_title">My Order</string>
+    <string name="group_myself_tab_label">My Order</string>
+    <string name="group_member_title">Our Member</string>
+    <string name="group_member_tab_label">Member Info</string>
 </resources>

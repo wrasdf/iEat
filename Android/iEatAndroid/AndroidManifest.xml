@@ -23,6 +23,8 @@
         <activity android:name=".activity.GroupCreateActivity"/>
         <activity android:name=".activity.GroupInfoActivity"/>
         <activity android:name=".activity.GroupAnalysisActivity"/>
+        <activity android:name=".activity.GroupMyselfActivity"/>
+        <activity android:name=".activity.GroupMemberActivity"/>
     </application>
 
 </manifest>

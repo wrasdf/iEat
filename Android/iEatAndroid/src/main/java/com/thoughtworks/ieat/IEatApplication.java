@@ -14,6 +14,7 @@ public class IEatApplication extends Application {
     private static String currentUserName;
     public static String token;
     public static final String EXTRA_GROUP_ID = "EXTRA_GROUP_ID";
+    public static final String EXTRA_GROUP = "EXTRA_GROUP";
 
     @Override
     public void onCreate() {

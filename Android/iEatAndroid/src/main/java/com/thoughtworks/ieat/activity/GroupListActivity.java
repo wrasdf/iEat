@@ -97,7 +97,7 @@ public class GroupListActivity extends Activity {
 
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(GroupListActivity.this, GroupTabActivity.class);
-                intent.putExtra(IEatApplication.EXTRA_GROUP_ID, adapter.getItem(i).getId());
+                intent.putExtra(IEatApplication.EXTRA_GROUP, adapter.getItem(i));
                 GroupListActivity.this.startActivity(intent);
             }
         });
@@ -118,7 +118,7 @@ public class GroupListActivity extends Activity {
 
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(GroupListActivity.this, GroupTabActivity.class);
-                intent.putExtra(IEatApplication.EXTRA_GROUP_ID, adapter.getItem(i).getId());
+                intent.putExtra(IEatApplication.EXTRA_GROUP, adapter.getItem(i));
                 GroupListActivity.this.startActivity(intent);
             }
         });

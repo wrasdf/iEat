@@ -172,7 +172,7 @@ public class GroupCreateActivity extends Activity {
             progressDialog.dismiss();
             if (result.isSuccessful()) {
                 Intent intent = new Intent(GroupCreateActivity.this, GroupTabActivity.class);
-                intent.putExtra(IEatApplication.EXTRA_GROUP_ID, result.getData().getId());
+                intent.putExtra(IEatApplication.EXTRA_GROUP, result.getData());
                 GroupCreateActivity.this.startActivity(intent);
             } else {
                 Toast.makeText(GroupCreateActivity.this, result.getErrorMessage(), Toast.LENGTH_SHORT).show();
