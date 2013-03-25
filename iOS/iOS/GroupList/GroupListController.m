@@ -39,6 +39,8 @@
 }
 - (void)GetGroupList {
     groups = [GroupDataService groupListOfToday];
+    [myGroups removeAllObjects];
+    [otherGroups removeAllObjects];
     User *user = [User CurrentUser];
     for (NSDictionary * group in groups){
       if (group[@"joined"] == @"1")   {
@@ -98,6 +100,15 @@
     return 0;
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
+    if (section == SectionMyGroup && [myGroups count] == 0) {
+        return @"没有与您相关的团                                    ";
+    } else if (section == SectionAvailableGroup && [otherGroups count] == 0){
+        return @"现在暂时没有其他可加入的团                   ";
+    }
+    return [super tableView:tableView titleForFooterInSection:section];
+}
+
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     if (section == SectionMyGroup){
         return @"我的饭团";
@@ -113,9 +124,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-
     NSString *cellIdentifier = @"GroupSummaryCell";
-
     GroupSummaryViewCell *cell = (GroupSummaryViewCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if(cell == nil) {
         cell = [[GroupSummaryViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
