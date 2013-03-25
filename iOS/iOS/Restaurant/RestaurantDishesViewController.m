@@ -7,19 +7,20 @@
 //
 
 #import "RestaurantDishesViewController.h"
+#import "GroupDataService.h"
 
 @interface RestaurantDishesViewController ()
 {
-    NSArray *dishTypes;
+    NSArray *dishes;
 }
 @end
 
 @implementation RestaurantDishesViewController
 
-- (id)initWithRestaurant:(int)restaurantId {
+- (id)initWithGroupId:(int)groupId {
     self = [super initWithStyle:UITableViewStyleGrouped];
     if (self) {
-        dishTypes = @[@"招牌菜", @"凉菜类", @"热菜类", @"水饺", @"饮料"];
+        dishes = [GroupDataService GetGroupDishes:groupId];
     }
     return self;
 }
@@ -27,7 +28,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self CreateSearchBar];
 
+}
+
+- (void)CreateSearchBar {
     UIView *header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 64)];
 
     UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectZero];
@@ -38,7 +43,6 @@
     [searchBar sizeToFit];
     [header addSubview:searchBar];
     [[self tableView] setTableHeaderView:header];
-
 }
 
 - (void)didReceiveMemoryWarning
@@ -48,17 +52,17 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [dishTypes count];
+    return [dishes count];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    return [dishTypes objectAtIndex:section];
+    return [dishes objectAtIndex:section][@"name"];
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 2;
+    return [[dishes objectAtIndex:section][@"dishes"] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -66,7 +70,7 @@
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil){
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
     }
     [self configCell:cell atIndexPath:indexPath];
     
@@ -74,64 +78,58 @@
 }
 
 - (void)configCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)path {
-    
-    cell.textLabel.text = @"得莫利炖鱼  36￥";
+
+    NSArray * typeDishes = [dishes objectAtIndex:path.section][@"dishes"];
+    cell.textLabel.text = [typeDishes objectAtIndex:path.row][@"name"];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ ￥", [typeDishes objectAtIndex:path.row][@"price"]];
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
+- (void)AddAccessoryButton:(UITableViewCell *)cell {
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [button setTitle:@"1" forState:UIControlStateNormal];
+    [button setFrame:CGRectMake(0, 10, 25, 25)];
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-#pragma mark - Table view delegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+    [cell setAccessoryView:button];
 }
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
 
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return [super tableView:tableView editingStyleForRowAtIndexPath:indexPath];
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    UIButton *button = [cell accessoryView];
+    if (button == nil){
+        [self AddAccessoryButton:cell ];
+        [self AddSubtractButton:cell ];
+    } else{
+        NSInteger value = [button.titleLabel.text integerValue];
+        value +=1;
+        [button setTitle:[NSString stringWithFormat:@"%d", value] forState:UIControlStateNormal];
+    }
+    [cell setHighlighted:NO];
+}
+
+- (void)AddSubtractButton:(UITableViewCell *)cell {
+    UIImage *image = [UIImage imageNamed:@"no-entry.png"];
+    [cell.imageView setImage:image];
+    [cell.imageView setUserInteractionEnabled:YES];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(subtract:)];
+    [tap setNumberOfTapsRequired:1];
+    [cell.imageView setGestureRecognizers:[NSArray arrayWithObject:tap]];
+}
+
+- (void)subtract:(UIImageView *)sender {
+    NSLog(@"subtract");
+//    NSIndexPath *indexPath = [(UITableView *)[sender superview] indexPathForCell:self];
+    NSIndexPath *indexPath =
+            [self.tableView
+                    indexPathForCell:(UITableViewCell *)[[sender superview] superview]];
+    NSLog([NSString stringWithFormat:@"%d %d", indexPath.section, indexPath.row]);
 }
 
 @end

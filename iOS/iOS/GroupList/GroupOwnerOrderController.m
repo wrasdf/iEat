@@ -87,6 +87,7 @@
     cell.textLabel.text = dish[@"name"];
     NSString *price = [NSString stringWithFormat:@"%@ ￥", dish[@"price"]];
     cell.detailTextLabel.text = price;
+
     UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [button setTitle:[NSString stringWithFormat:@"%@", dish[@"quantity"]] forState:UIControlStateNormal];
     [button setFrame:CGRectMake(0, 10, 25, 25)];

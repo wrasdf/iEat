@@ -67,4 +67,16 @@ const NSString * serverUrl = @"http://localhost:3000";
     NSLog([request responseString]) ;
     return [[request responseData] objectFromJSONData];
 }
+
++ (NSArray *)GetGroupDishes:(int)restaurantId {
+    NSString *token = [[User CurrentUser] token];
+    NSString *urlString = [NSString stringWithFormat:@"%@/api/v1/groups/%d/dishes?token=%@", serverUrl, restaurantId, token];
+    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:urlString]];
+    [request addRequestHeader:@"Accept" value:@"application/json"];
+    [request setDelegate:self];
+    [request startSynchronous];
+    NSLog([request responseString]) ;
+    return [[request responseData] objectFromJSONData];
+}
+
 @end

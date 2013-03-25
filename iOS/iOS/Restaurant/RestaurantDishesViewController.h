@@ -10,5 +10,5 @@
 
 @interface RestaurantDishesViewController : UITableViewController<UISearchBarDelegate>
 
-- (id)initWithRestaurant:(int)restaurantId;
+- (id)initWithGroupId:(int)groupId;
 @end

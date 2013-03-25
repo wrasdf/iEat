@@ -15,4 +15,5 @@
 + (NSDictionary *)createGroupWithName:(NSString *)name restaurant:(NSString *)restaurant_id duedate:(NSString *)duedate;
 
 + (NSDictionary *)GetGroupById:(id)groupId;
++ (NSArray *)GetGroupDishes:(int)restaurantId;
 @end
