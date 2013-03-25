@@ -8,11 +8,12 @@
 
 #import "RestaurantDishesViewController.h"
 #import "GroupDataService.h"
-#import "OrderCellAccessory.h"
 
 @interface RestaurantDishesViewController ()
 {
     NSArray *dishes;
+    NSMutableDictionary *orders;
+    int orderGroupId;
 }
 @end
 
@@ -21,7 +22,9 @@
 - (id)initWithGroupId:(int)groupId {
     self = [super initWithStyle:UITableViewStyleGrouped];
     if (self) {
+        orderGroupId = groupId;
         dishes = [GroupDataService GetGroupDishes:groupId];
+        orders = [[NSMutableDictionary alloc] init];
     }
     return self;
 }
@@ -30,7 +33,22 @@
 {
     [super viewDidLoad];
     [self CreateSearchBar];
+    [self createSubmitButtonOnNavigationBar];
 
+}
+-(void)createSubmitButtonOnNavigationBar {
+
+    UIBarButtonItem *addButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"确定" style:UIBarButtonItemStylePlain target:self action:@selector(submitOrder:)];
+    self.navigationItem.rightBarButtonItem = addButtonItem;
+}
+
+- (void)submitOrder:(id)sender {
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+    for (NSString* key in orders){
+        NSDictionary *order = [[NSDictionary alloc] initWithObjectsAndKeys:key, @"id", orders[key], @"quantity", nil];
+        [array addObject:order];
+    }
+    [GroupDataService SubmitOrder: array forGroup: orderGroupId];
 }
 
 - (void)CreateSearchBar {
@@ -82,7 +100,9 @@
     NSArray * typeDishes = [dishes objectAtIndex:path.section][@"dishes"];
     cell.textLabel.text = [typeDishes objectAtIndex:path.row][@"name"];
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ ￥", [typeDishes objectAtIndex:path.row][@"price"]];
-    [cell setAccessoryView:[[OrderCellAccessory alloc] initWithIndexPath:path]];
+    OrderCellAccessory *cellAccessory = [[OrderCellAccessory alloc] initWithIndexPath:path];
+    cellAccessory.delegate = self;
+    [cell setAccessoryView:cellAccessory];
 }
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
@@ -93,6 +113,16 @@
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
     OrderCellAccessory *accessory = [cell accessoryView];
     [accessory increaseQuantity];
+}
+
+- (void)updateQuantityAtIndexPath:(NSIndexPath *)indexPath withQuantity:(int)quantity {
+    NSArray * typeDishes = [dishes objectAtIndex:indexPath.section][@"dishes"];
+    id key = [typeDishes objectAtIndex:indexPath.row][@"id"];
+    NSLog([NSString stringWithFormat:@"%@ %d", key, quantity]);
+    if(quantity == 0)
+        [orders removeObjectForKey:key];
+    else
+        [orders setObject:[NSNumber numberWithInt:quantity] forKey:key];
 }
 
 @end

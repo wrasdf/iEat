@@ -42,14 +42,14 @@
     for (NSDictionary * order in orders){
         NSArray * dishes = order[@"order_dishes"];
         for (NSDictionary *dish in dishes){
-            NSLog([NSString stringWithFormat:@"%@ %@ %@", dish[@"name"], dish[@"price"], dish[@"quantityBtn"]]);
+            NSLog([NSString stringWithFormat:@"%@ %@ %@", dish[@"name"], dish[@"price"], dish[@"quantity"]]);
             NSMutableDictionary * dict = [dishesDict objectForKey:dish[@"name"]];
             if (dict){
-                unsigned long quantity = [dict[@"quantityBtn"] integerValue] + [dish[@"quantityBtn"] integerValue];
-                [dict setValue:[NSNumber numberWithInt:quantity] forKey:@"quantityBtn"];
+                unsigned long quantity = [dict[@"quantity"] integerValue] + [dish[@"quantity"] integerValue];
+                [dict setValue:[NSNumber numberWithInt:quantity] forKey:@"quantity"];
             }
             else{
-                NSMutableDictionary *tmp = [[NSMutableDictionary alloc] initWithObjectsAndKeys:dish[@"quantityBtn"], @"quantityBtn", dish[@"price"], @"price", nil];
+                NSMutableDictionary *tmp = [[NSMutableDictionary alloc] initWithObjectsAndKeys:dish[@"quantity"], @"quantity", dish[@"price"], @"price", nil];
                 [dishesDict setObject:tmp forKey:dish[@"name"]];
             }
         }
@@ -115,7 +115,7 @@
         cell.textLabel.text = @"总计";
         int total  = 0;
         for (id dish in allValues) {
-           total += [dish[@"price"] integerValue] * [dish[@"quantityBtn"] integerValue];
+           total += [dish[@"price"] integerValue] * [dish[@"quantity"] integerValue];
         }
         cell.detailTextLabel.text = [NSString stringWithFormat:@"%d ￥", total];
         return cell;
@@ -124,7 +124,7 @@
     NSString *price = [NSString stringWithFormat:@"%@ ￥", [allValues objectAtIndex:indexPath.row][@"price"]];
     cell.detailTextLabel.text = price;
     UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    NSString *quantity = [NSString stringWithFormat:@"%@", [allValues objectAtIndex:indexPath.row][@"quantityBtn"]];
+    NSString *quantity = [NSString stringWithFormat:@"%@", [allValues objectAtIndex:indexPath.row][@"quantity"]];
 
     [button setTitle:quantity forState:UIControlStateNormal];
     [button setFrame:CGRectMake(0, 10, 25, 25)];

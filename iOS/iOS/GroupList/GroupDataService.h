@@ -16,4 +16,6 @@
 
 + (NSDictionary *)GetGroupById:(id)groupId;
 + (NSArray *)GetGroupDishes:(int)restaurantId;
+
++ (void)SubmitOrder:(NSMutableDictionary *)orders forGroup:(int)group;
 @end

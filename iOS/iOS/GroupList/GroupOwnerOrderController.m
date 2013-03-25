@@ -12,7 +12,7 @@
 
 @interface GroupOwnerOrderController ()
 {
-    NSArray *myDishes;
+    NSMutableArray *myDishes;
 }
 @end
 
@@ -24,7 +24,7 @@
     if (self) {
         UITabBarItem *tabBarItem = [[UITabBarItem alloc] initWithTitle:@"我的订餐" image:[UIImage imageNamed:@"user.png"] tag:3];
         [self setTabBarItem:tabBarItem];
-        myDishes = [[NSArray alloc] init];
+        myDishes = [[NSMutableArray alloc] init];
     }
     return self;
 }
@@ -37,10 +37,10 @@
     User *user = [User CurrentUser];
     NSArray *myOrders = [dishes filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF.user.name == %@", user.name]];
     if([myOrders count] != 0){
-        myDishes = myOrders[0][@"order_dishes"];
+        for (id order in myOrders){
+            [myDishes addObjectsFromArray:order[@"order_dishes"]];
+        }
     }
-
-
 }
 
 - (void)didReceiveMemoryWarning
@@ -78,7 +78,7 @@
         cell.textLabel.text = @"总计";
         int total  = 0;
         for (id dish in myDishes) {
-            total += [dish[@"price"] integerValue] * [dish[@"quantityBtn"] integerValue];
+            total += [dish[@"price"] integerValue] * [dish[@"quantity"] integerValue];
         }
         cell.detailTextLabel.text = [NSString stringWithFormat:@"%d ￥", total];
         return cell;
@@ -89,7 +89,7 @@
     cell.detailTextLabel.text = price;
 
     UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [button setTitle:[NSString stringWithFormat:@"%@", dish[@"quantityBtn"]] forState:UIControlStateNormal];
+    [button setTitle:[NSString stringWithFormat:@"%@", dish[@"quantity"]] forState:UIControlStateNormal];
     [button setFrame:CGRectMake(0, 10, 25, 25)];
     [cell setAccessoryView:button];
     return cell;

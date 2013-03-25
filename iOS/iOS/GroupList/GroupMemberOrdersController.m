@@ -81,8 +81,8 @@
         cell.textLabel.text = @"总计";
         int total  = 0;
         for (id dish in dishes) {
-            NSLog([NSString stringWithFormat:@"%@ %@ %@", dish[@"name"], dish[@"price"], dish[@"quantityBtn"]]);
-            total += [dish[@"price"] integerValue] * [dish[@"quantityBtn"] integerValue];
+            NSLog([NSString stringWithFormat:@"%@ %@ %@", dish[@"name"], dish[@"price"], dish[@"quantity"]]);
+            total += [dish[@"price"] integerValue] * [dish[@"quantity"] integerValue];
         }
         cell.detailTextLabel.text = [NSString stringWithFormat:@"%d ￥", total];
         return cell;
@@ -93,7 +93,7 @@
     NSString *price = [NSString stringWithFormat:@"%@ ￥", dish[@"price"]];
     cell.detailTextLabel.text = price;
     UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [button setTitle:[NSString stringWithFormat:@"%@", dish[@"quantityBtn"]] forState:UIControlStateNormal];
+    [button setTitle:[NSString stringWithFormat:@"%@", dish[@"quantity"]] forState:UIControlStateNormal];
     [button setFrame:CGRectMake(0, 10, 25, 25)];
     [cell setAccessoryView:button];
     return cell;

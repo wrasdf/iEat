@@ -28,7 +28,7 @@
     if (self) {
         quantities = 0;
         quantityBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        [self updateQuantity];
+        [self setQuantity];
         [self addSubview:quantityBtn];
         subtractBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [subtractBtn setImage:[UIImage imageNamed:@"no_entry.ico"] forState:UIControlStateNormal];
@@ -41,12 +41,12 @@
 - (void)subtractQuantity:(id)sender {
     if (quantities> 0){
         quantities  = quantities -1;
+        [self setQuantity];
+        [[self delegate] updateQuantityAtIndexPath:indexPath withQuantity:quantities];
     }
-    [self updateQuantity];
 }
 
-
-- (void)updateQuantity {
+- (void)setQuantity {
     [quantityBtn setTitle:[NSString stringWithFormat:@"%d", quantities] forState:UIControlStateNormal];
 }
 
@@ -59,17 +59,7 @@
 
 - (void)increaseQuantity {
     quantities +=1;
-    [self updateQuantity];
+    [self setQuantity];
+    [[self delegate] updateQuantityAtIndexPath:indexPath withQuantity:quantities];
 }
-
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
-}
-*/
-
 @end

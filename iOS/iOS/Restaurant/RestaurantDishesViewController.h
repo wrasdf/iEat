@@ -8,7 +8,9 @@
 
 
 
-@interface RestaurantDishesViewController : UITableViewController<UISearchBarDelegate>
+#import "OrderCellAccessory.h"
+
+@interface RestaurantDishesViewController : UITableViewController<UISearchBarDelegate, OrderCellAccessoryDelegate>
 
 - (id)initWithGroupId:(int)groupId;
 @end
