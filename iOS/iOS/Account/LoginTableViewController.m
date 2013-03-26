@@ -117,6 +117,10 @@ enum {
     NSString *username = ((EditTableViewCell *) [[self.tableView visibleCells] objectAtIndex:0]).textField.text;
     NSString *password = ((EditTableViewCell *) [[self.tableView visibleCells] objectAtIndex:1]).textField.text;
 
+    [self LoginWith:username password:password];
+}
+
+- (void)LoginWith:(NSString *)username password:(NSString *)password {
     if (username && password && username.length != 0 && password.length != 0) {
         [self sendLoginRequestWithUserName:username password:password];
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];

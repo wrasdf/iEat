@@ -9,6 +9,7 @@
 
 
 @interface Dish : NSObject
+@property(nonatomic, copy) NSNumber *id;
 @property(nonatomic, copy) NSString *name;
 @property(nonatomic, copy) NSString *description;
 @property(nonatomic, copy) NSString *imageUrl;

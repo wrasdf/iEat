@@ -7,19 +7,24 @@
 //
 
 #import "RestaurantDishesViewController.h"
+#import "GroupDataService.h"
 
 @interface RestaurantDishesViewController ()
 {
-    NSArray *dishTypes;
+    NSArray *dishes;
+    NSMutableDictionary *orders;
+    int orderGroupId;
 }
 @end
 
 @implementation RestaurantDishesViewController
 
-- (id)initWithRestaurant:(int)restaurantId {
+- (id)initWithGroupId:(int)groupId {
     self = [super initWithStyle:UITableViewStyleGrouped];
     if (self) {
-        dishTypes = @[@"招牌菜", @"凉菜类", @"热菜类", @"水饺", @"饮料"];
+        orderGroupId = groupId;
+        dishes = [GroupDataService GetGroupDishes:groupId];
+        orders = [[NSMutableDictionary alloc] init];
     }
     return self;
 }
@@ -27,7 +32,26 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self CreateSearchBar];
+    [self createSubmitButtonOnNavigationBar];
 
+}
+-(void)createSubmitButtonOnNavigationBar {
+
+    UIBarButtonItem *addButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"确定" style:UIBarButtonItemStylePlain target:self action:@selector(submitOrder:)];
+    self.navigationItem.rightBarButtonItem = addButtonItem;
+}
+
+- (void)submitOrder:(id)sender {
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+    for (NSString* key in orders){
+        NSDictionary *order = [[NSDictionary alloc] initWithObjectsAndKeys:key, @"id", orders[key], @"quantity", nil];
+        [array addObject:order];
+    }
+    [GroupDataService SubmitOrder: array forGroup: orderGroupId];
+}
+
+- (void)CreateSearchBar {
     UIView *header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 64)];
 
     UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectZero];
@@ -38,7 +62,6 @@
     [searchBar sizeToFit];
     [header addSubview:searchBar];
     [[self tableView] setTableHeaderView:header];
-
 }
 
 - (void)didReceiveMemoryWarning
@@ -48,17 +71,17 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [dishTypes count];
+    return [dishes count];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    return [dishTypes objectAtIndex:section];
+    return [dishes objectAtIndex:section][@"name"];
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 2;
+    return [[dishes objectAtIndex:section][@"dishes"] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -66,7 +89,7 @@
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil){
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
     }
     [self configCell:cell atIndexPath:indexPath];
     
@@ -74,64 +97,32 @@
 }
 
 - (void)configCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)path {
-    
-    cell.textLabel.text = @"得莫利炖鱼  36￥";
-}
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-#pragma mark - Table view delegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+    NSArray * typeDishes = [dishes objectAtIndex:path.section][@"dishes"];
+    cell.textLabel.text = [typeDishes objectAtIndex:path.row][@"name"];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ ￥", [typeDishes objectAtIndex:path.row][@"price"]];
+    OrderCellAccessory *cellAccessory = [[OrderCellAccessory alloc] initWithIndexPath:path];
+    cellAccessory.delegate = self;
+    [cell setAccessoryView:cellAccessory];
 }
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
 
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    OrderCellAccessory *accessory = [cell accessoryView];
+    [accessory increaseQuantity];
+}
+
+- (void)updateQuantityAtIndexPath:(NSIndexPath *)indexPath withQuantity:(int)quantity {
+    NSArray * typeDishes = [dishes objectAtIndex:indexPath.section][@"dishes"];
+    id key = [typeDishes objectAtIndex:indexPath.row][@"id"];
+    NSLog([NSString stringWithFormat:@"%@ %d", key, quantity]);
+    if(quantity == 0)
+        [orders removeObjectForKey:key];
+    else
+        [orders setObject:[NSNumber numberWithInt:quantity] forKey:key];
 }
 
 @end

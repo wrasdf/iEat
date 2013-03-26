@@ -70,7 +70,7 @@
 
 - (void)gotoOrderFood:(id)sender {
     NSLog(@"买饭去");
-    RestaurantDishesViewController *restaurantDishesViewController = [[RestaurantDishesViewController alloc] initWithRestaurant:[group[@"restaurant"][@"id"] intValue]];
+    RestaurantDishesViewController *restaurantDishesViewController = [[RestaurantDishesViewController alloc] initWithGroupId:[group[@"id"] intValue]];
     [[self navigationController] pushViewController:restaurantDishesViewController animated:YES];
 
 }

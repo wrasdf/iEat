@@ -12,7 +12,7 @@
 
 @interface GroupOwnerOrderController ()
 {
-    NSArray *myDishes;
+    NSMutableArray *myDishes;
 }
 @end
 
@@ -24,7 +24,7 @@
     if (self) {
         UITabBarItem *tabBarItem = [[UITabBarItem alloc] initWithTitle:@"我的订餐" image:[UIImage imageNamed:@"user.png"] tag:3];
         [self setTabBarItem:tabBarItem];
-        myDishes = [[NSArray alloc] init];
+        myDishes = [[NSMutableArray alloc] init];
     }
     return self;
 }
@@ -37,10 +37,10 @@
     User *user = [User CurrentUser];
     NSArray *myOrders = [dishes filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF.user.name == %@", user.name]];
     if([myOrders count] != 0){
-        myDishes = myOrders[0][@"order_dishes"];
+        for (id order in myOrders){
+            [myDishes addObjectsFromArray:order[@"order_dishes"]];
+        }
     }
-
-
 }
 
 - (void)didReceiveMemoryWarning
@@ -87,6 +87,7 @@
     cell.textLabel.text = dish[@"name"];
     NSString *price = [NSString stringWithFormat:@"%@ ￥", dish[@"price"]];
     cell.detailTextLabel.text = price;
+
     UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [button setTitle:[NSString stringWithFormat:@"%@", dish[@"quantity"]] forState:UIControlStateNormal];
     [button setFrame:CGRectMake(0, 10, 25, 25)];
