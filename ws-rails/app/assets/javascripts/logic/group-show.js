@@ -16,7 +16,7 @@ var iEatGroupShow = (function () {
             updateMyStatus(group.orders);
             updateOthersStatus(group.orders);
             updateAllStatus(group.orders);
-            $(window).hashchange();
+            initStatusByHash();
         });
 
         $("#group-show .restaurant-info-btn").bind("click", function () {
@@ -54,6 +54,14 @@ var iEatGroupShow = (function () {
 
     }
 
+    function initStatusByHash(){
+        var triggerIndex = location.hash.replace("#", "") ;
+        if (!triggerIndex) {
+            triggerIndex = 0;
+        }
+        iEatGroupShow.activeFooterItemByIndex(triggerIndex);
+    }
+
     function updateRestaurantDetails(restaurantData) {
         var str = '<li><span class="subject">饭店名称</span><span>' + restaurantData.name + '</span></li>';
         str += '<li><span class="subject">订餐电话</span><span>' + restaurantData.telephone + '</span></li>';
@@ -71,9 +79,14 @@ var iEatGroupShow = (function () {
         $("#group-show .current-group-details").html(str).listview('refresh').show();
     }
 
-    function generateOrderItemStrByOrderData(data) {
+    function generateOrderItemStrByOrderData(data,editStatus) {
         var total = 0;
-        var str = '<li><h2>' + data.user.name + '</h2><table><tbody>';
+        if(editStatus){
+            var str = '<li><h2>' + data.user.name + ' <button data-mini="true" data-inline="true" data-disabled="false">删除</button></h2><table><tbody>';
+        }else{
+            var str = '<li><h2>' + data.user.name + '</h2><table><tbody>';
+        }
+
         $.each(data.order_dishes, function (index, value) {
             str += '<tr><td class="dish-name">' + value.name + '</td>';
             str += '<td class="dish-price">' + value.price + ' ￥</td>';
@@ -150,10 +163,12 @@ var iEatGroupShow = (function () {
         } else {
 
             $.each(myOrders, function (index, value) {
-                str += generateOrderItemStrByOrderData(value);
+                str += generateOrderItemStrByOrderData(value,true);
             });
         }
+
         $(".my-orders-details .order-status").html(str).listview("refresh");
+        $("#group-show").trigger("create");
     }
 
     function updateOthersStatus(orders) {
@@ -161,7 +176,7 @@ var iEatGroupShow = (function () {
         var otherOrders = refactorOrders(orders).otherOrders;
 
         if (otherOrders.length == 0) {
-            str = '<li class="no-orders">当前没有其他人没有订餐。</li>';
+            str = '<li class="no-orders">当前没有其他人订餐。</li>';
         } else {
             $.each(otherOrders, function (index, value) {
                 str += generateOrderItemStrByOrderData(value);
@@ -175,7 +190,7 @@ var iEatGroupShow = (function () {
         var allStatus = refactorOrders(orders).allStatus;
         var total = 0;
         if (allStatus.length == 0) {
-            str += '<li class="no-orders">当前没有其他人没有订餐</li>';
+            str += '<li class="no-orders">当前没有其他人订餐</li>';
         } else {
             str += '<li><table><tbody>';
             $.each(allStatus, function (index, order) {
@@ -239,14 +254,6 @@ var iEatGroupShow = (function () {
     }
 
 })();
-
-$(window).hashchange(function () {
-    var triggerIndex = location.hash.replace("#", "") ;
-    if (!triggerIndex) {
-        triggerIndex = 0;
-    }
-    iEatGroupShow.activeFooterItemByIndex(triggerIndex);
-});
 
 $("#group-show").bind("pageshow", function () {
     if ($.cookie("orderCreateStatus") == "success") {

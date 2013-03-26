@@ -95,6 +95,34 @@
   .details{position:relative; display: block;}
   .details .more{position:absolute; right: 0px; top: 0px; border: 1px #000 soild;}
 }
+#my-bills{
+  table{width: 100%;
+    tr{ border-bottom: 1px #ccc dashed;}
+    tr:last-child{ border-bottom: 0px;}
+    td.dish-name{ padding:5px 0; font-weight: normal; }
+    td.dish-price{text-align: right; width: 50px;}
+    td.dish-count{width: 50px;}
+  }
+  .get-money-back-content,.pay-back-content{display: none;}
+  .get-money-back-content li,.pay-back-content li{padding:5px 15px;
+    .bills-title{float:left; margin-top: 10px;}
+    .ui-btn{float:right;}
+    .dish-count{
+      position: relative;
+      .ui-li-count{
+        margin-top: 0px;
+        top: -10px;
+        right: 5px;
+      }
+    }
+  }
+  .get-money-back-content{
+    .ui-li-heading{margin: 0;}
+  }
+
+
+}
+
 #bill-details{
   .ui-controlgroup-controls{width:auto; display: block;}
 }

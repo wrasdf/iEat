@@ -58,7 +58,6 @@ var iEatGroupDetails = (function () {
         });
 
         $("#user-order-dishes .confirm-foods").bind("click",function(){
-
             var orderDishes = getMyOrderDishes();
             if(orderDishes.length == 0){
                 iEatUtility.msg({
@@ -104,14 +103,12 @@ var iEatGroupDetails = (function () {
         var result = [];
         $("#user-order-dishes .edit-restaurant-details li.ui-li-static").each(function (index, value) {
             var $value = $(value);
-            if ($value.find(".number-input").val() == 0) {
-                return true;
+            if ($value.find(".number-input").val() != 0 && $value.data("dish-id")) {
+                result.push({
+                    "id" : $value.data("dish-id"),
+                    "quantity": $value.find(".number-input").val()
+                });
             }
-            result.push({
-                "id" : $value.data("dish-id"),
-                "quantity": $value.find(".number-input").val()
-            });
-
         });
         return result;
     }

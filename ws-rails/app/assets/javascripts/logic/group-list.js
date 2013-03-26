@@ -89,7 +89,7 @@ var iEatGroupList = (function () {
         });
 
         $("#group-list .ui-btn-right.my-bills").bind("click", function () {
-            window.location.href = "/mybills";
+            window.location.href = "/mybills#0";
         });
 
         $("#group-list .group-item").bind("click", function () {

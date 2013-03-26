@@ -13,14 +13,105 @@
         %a.ui-btn-left{"data-icon" => "arrow-l", "data-theme" => "c", :href => "javascript:void(0);"} 返回
         %h1 My Bills
       %div.info-details{"data-role" => "content"}
+        .get-money-back-content
+          %ul{"data-role"=>"listview", "data-inset"=>"true"}
+            %li
+              %h3
+                %span.bills-title 2012.12.14 Kerry
+                %button.mark-paid{"data-mini"=>"true", "data-inline"=>"true"} 删除
+              %table
+                %tr
+                  %td.dish-name 宫保鸡丁
+                  %td.dish-price 12￥
+                  %td.dish-count
+                    .dish-count
+                      %span.ui-li-count 2
+                %tr
+                  %td.dish-name 宫保鸡丁
+                  %td.dish-price 12￥
+                  %td.dish-count
+                    .dish-count
+                      %span.ui-li-count 2
+                %tr
+                  %td.dish-name 总计
+                  %td.dish-price 24￥
+                  %td.dish-count
+            %li
+              %h3
+                %span.bills-title 2012.12.14 Kerry
+                %button.mark-paid{"data-mini"=>"true", "data-inline"=>"true"} 删除
+              %table
+                %tr
+                  %td.dish-name 宫保鸡丁
+                  %td.dish-price 12￥
+                  %td.dish-count
+                    .dish-count
+                      %span.ui-li-count 2
+                %tr
+                  %td.dish-name 宫保鸡丁
+                  %td.dish-price 12￥
+                  %td.dish-count
+                    .dish-count
+                      %span.ui-li-count 2
+                %tr
+                  %td.dish-name 总计
+                  %td.dish-price 24￥
+                  %td.dish-count
+
+          %a.send-notification{"data-role" => "button", :href => "javascript:void(0);"} 提醒还钱
+
+        .pay-back-content
+          %ul{"data-role"=>"listview", "data-inset"=>"true"}
+            %li
+              %h3
+                %span.data 2012.12.14
+                %span.info owner: Kerry
+              %table
+                %tr
+                  %td.dish-name 宫保鸡丁
+                  %td.dish-price 12￥
+                  %td.dish-count
+                    .dish-count
+                      %span.ui-li-count 2
+                %tr
+                  %td.dish-name 宫保鸡丁
+                  %td.dish-price 12￥
+                  %td.dish-count
+                    .dish-count
+                      %span.ui-li-count 2
+                %tr
+                  %td.dish-name 总计
+                  %td.dish-price 24￥
+                  %td.dish-count
+            %li
+              %h3
+                %span.data 2012.12.14
+                %span.info owner: Kerry
+              %table
+                %tr
+                  %td.dish-name 宫保鸡丁
+                  %td.dish-price 12￥
+                  %td.dish-count
+                    .dish-count
+                      %span.ui-li-count 2
+                %tr
+                  %td.dish-name 宫保鸡丁
+                  %td.dish-price 12￥
+                  %td.dish-count
+                    .dish-count
+                      %span.ui-li-count 2
+                %tr
+                  %td.dish-name 总计
+                  %td.dish-price 24￥
+                  %td.dish-count
 
       %div.fixed-footer{"data-position" => "fixed", "data-role" => "footer"}
         %div{"data-role" => "navbar"}
           %ul
             %li
-              %a.restaurant-info-btn{:href => "","data-icon"=>"star","data-iconpos"=>"top"} 待收款
+              %a.get-money-back-tab{:href => "","data-icon"=>"star","data-iconpos"=>"top"} 待收款
             %li
-              %a.all-info-btn{:href => "","data-icon"=>"star","data-iconpos"=>"top"} 待还款
+              %a.pay-back-tab{:href => "","data-icon"=>"star","data-iconpos"=>"top"} 待还款
 
   = javascript_include_tag "jquery/jquery-1.9.1"
   = javascript_include_tag "jquery/jquery.mobile-1.3.0"
