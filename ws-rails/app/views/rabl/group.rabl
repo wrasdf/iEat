@@ -1,2 +1,3 @@
 object :@group, :root => false
-attributes :id, :user, :restaurant, :description, :due_date, :name
+attributes :id, :restaurant, :description, :due_date, :name
+attributes :user => :owner
