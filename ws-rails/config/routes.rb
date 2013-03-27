@@ -21,6 +21,7 @@ WsRails::Application.routes.draw do
       get 'groups/:id' => 'groups#detail'
       post 'groups/create' => 'groups#create'
       post 'groups/:group_id/orders/create' => 'orders#create'
+      get 'mybills/orders' => 'orders#list'
       resources :groups
     end
   end

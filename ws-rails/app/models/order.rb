@@ -3,7 +3,13 @@ class Order < ActiveRecord::Base
   belongs_to :user
 
   has_many :order_dishes
+  attr_accessible :user, :group, :paid
 
-  attr_accessible :user, :group
-  # attr_accessible :title, :body
+  def has_unpaid_orders
+
+  end
+
+  def has_payback_orders
+
+  end
 end

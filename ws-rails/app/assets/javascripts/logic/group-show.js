@@ -32,9 +32,13 @@ var iEatGroupShow = (function () {
         });
 
         $("#group-show .my-orders-btn").bind("click", function () {
+            var self = this;
             $("#group-show .details-content").hide();
             $("#group-show .my-orders-details").show();
             window.location.hash = "#2";
+            window.setTimeout(function(){
+                $(self).addClass("ui-btn-active");
+            },0)
         });
 
         $("#group-show .members-orders-btn").bind("click", function () {
@@ -82,7 +86,7 @@ var iEatGroupShow = (function () {
     function generateOrderItemStrByOrderData(data,editStatus) {
         var total = 0;
         if(editStatus){
-            var str = '<li><h2>' + data.user.name + ' <button data-mini="true" data-inline="true" data-disabled="false">删除</button></h2><table><tbody>';
+            var str = '<li><h2><span class="user-name">' + data.user.name + '</span><button data-mini="true" data-inline="true" data-disabled="false">删除</button></h2><table><tbody>';
         }else{
             var str = '<li><h2>' + data.user.name + '</h2><table><tbody>';
         }

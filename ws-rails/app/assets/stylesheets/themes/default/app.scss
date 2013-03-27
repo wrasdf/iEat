@@ -34,8 +34,14 @@
         }
       }
     }
+
     .order-status li.no-orders{padding:12px 15px;}
     .restaurant-details,.my-orders-details,.all-status,.members-details{display: none;}
+    .my-orders-details{
+      h2.ui-li-heading{padding: 0px;}
+      .user-name{float:left; margin-top: 10px;}
+      .ui-btn-inline{float: right}
+    }
   }
 }
 #user-order-dishes{
@@ -119,8 +125,6 @@
   .get-money-back-content{
     .ui-li-heading{margin: 0;}
   }
-
-
 }
 
 #bill-details{

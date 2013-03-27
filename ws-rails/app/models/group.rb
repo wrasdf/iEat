@@ -7,11 +7,5 @@ class Group < ActiveRecord::Base
 
   validates_presence_of :user, :restaurant, :due_date
 
-  def as_json
-    
-  end
 
-  def to_json
-    
-  end
 end
