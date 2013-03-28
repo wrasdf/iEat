@@ -17,10 +17,15 @@ class Api::V1::OrdersController < Api::V1::BaseController
 
   def list
     @unpaid_orders = Order.all.select{|order| order.user != @current_user && order.group.user == @current_user && order.paid != true}
-    @payback_orders = Order.all.select{|order| order.user == @current_user && order.group.user != @current_user && order.paid != true} #
-
-    @orders = {:unpaidOrders => @unpaid_orders, :paybackOrders => @payback_orders} #, :paybackOrders => @payback_orders
+    @payback_orders = Order.all.select{|order| order.user == @current_user && order.group.user != @current_user && order.paid != true}
     render :file => 'rabl/order-list'
+  end
+
+  def paid
+    order = Order.find(params[:id])
+    order.paid = true
+    order.save!()
+    respond_with(order)
   end
 
 

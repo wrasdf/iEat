@@ -18,6 +18,8 @@
             %li
               %h3
                 %span.bills-title 2012.12.14 Kerry
+                -#%span.data 2012.12.14
+                -#%span.info owner: Kerry
                 %button.mark-paid{"data-mini"=>"true", "data-inline"=>"true"} 删除
               %table
                 %tr
@@ -64,8 +66,9 @@
           %ul{"data-role"=>"listview", "data-inset"=>"true"}
             %li
               %h3
-                %span.data 2012.12.14
-                %span.info owner: Kerry
+                -#%span.data 2012.12.14
+                -#%span.info owner: Kerry
+                %span.bills-title 2012.12.14 Kerry
               %table
                 %tr
                   %td.dish-name 宫保鸡丁

@@ -6,7 +6,7 @@ class Api::V1::DishesController < Api::V1::BaseController
     @restaurant = @group.restaurant
     @cuisines = @restaurant.cuisines
 
-    render :file => 'rabl/cuisines.rabl'
+    render :file => 'rabl/cuisines'
   end
 
 end

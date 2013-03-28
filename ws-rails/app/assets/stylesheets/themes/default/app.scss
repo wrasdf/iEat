@@ -111,7 +111,6 @@
   }
   .get-money-back-content,.pay-back-content{display: none;}
   .get-money-back-content li,.pay-back-content li{padding:5px 15px;
-    .bills-title{float:left; margin-top: 10px;}
     .ui-btn{float:right;}
     .dish-count{
       position: relative;
@@ -124,7 +123,14 @@
   }
   .get-money-back-content{
     .ui-li-heading{margin: 0;}
+    .bills-title{float:left; margin-top: 10px;}
   }
+  .pay-back-content{
+    .ui-li-heading{margin: 5px 0;}
+    .bills-title{float:left; margin-top: 5px;}
+  }
+
+  .no-item{padding: 10px 0; display: inline-block}
 }
 
 #bill-details{

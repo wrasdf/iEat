@@ -1,11 +1,11 @@
 var iEatMyBills = (function () {
-
+    var token = $.cookie("token");
     function pageInit(f) {
         if(f && typeof f == "function"){
             f();
         }
-        bindClickEvent();
-        initStatusByHash();
+
+        renderPageUI();
     }
 
     function initStatusByHash(){
@@ -14,6 +14,72 @@ var iEatMyBills = (function () {
             triggerIndex = 0;
         }
         iEatMyBills.activeFooterItemByIndex(triggerIndex);
+    }
+
+    function renderGetMoneyBackUI(data){
+        var str = getListViewDomStrByData(data,"getMoneyBack");
+        $(".get-money-back-content ul").html(str).listview("refresh");
+    }
+
+    function renderPaybackUI(data){
+        var str = getListViewDomStrByData(data,"payback");
+        $(".pay-back-content ul").html(str).listview("refresh");
+    }
+
+    function getListViewDomStrByData(data,renderType){
+
+        if(data.length == 0){
+            return '<li><span class="no-item">没有欠款哦。</span></li>';
+        }
+
+        var str = '';
+
+        $.each(data,function(index,item){
+            var totalPrice = 0;
+            if(renderType == "getMoneyBack"){
+                str += '<li><h3><span class="bills-title">'+item.created_at +'  '+ item.user.name+'</span><button data-order-id="'+item.id+'" class="mark-paid" data-mini="true" data-inline="true">删除</button></h3>';
+            }else{
+                str += '<li><h3><span class="data">'+item.created_at +'</span><span class="info">Owner: '+item.group.user.name+'</span></h3>';
+            }
+            str += '<table>';
+            $.each(item.order_dishes,function(i,order){
+                str += '<tr>';
+                str += '<td class="dish-name">'+order.name+'</td>';
+                str += '<td class="dish-price">'+order.price+' ￥</td>';
+                str += '<td class="dish-count"><div class="dish-count"><span class="ui-li-count ui-btn-up-c ui-btn-corner-all">'+order.quantity+'</span></div></td>';
+                str += '</tr>';
+                totalPrice += order.price * order.quantity;
+            });
+            str += '<tr><td class="dish-name">总计</td><td class="dish-price">'+totalPrice+' ￥</td><td class="dish-count"></td></tr>';
+            str += '</table></li>';
+        });
+        return str;
+    }
+
+    function renderPageUI(){
+
+        $.ajax({
+            type : 'GET',
+            url : "/api/v1/mybills",
+            data : {
+                "token" : token
+            },
+            dataType : "json",
+            success : function(o){
+                renderGetMoneyBackUI(o.unpaid_orders);
+                renderPaybackUI(o.payback_orders);
+                $("#my-bills").trigger("create");
+                bindClickEvent();
+                initStatusByHash();
+            },
+            error : function (xhr) {
+                iEatUtility.msg({
+                    type:"error",
+                    msg : $.parseJSON(xhr.responseText).message
+                });
+            }
+        });
+
     }
 
     function bindClickEvent() {
@@ -49,6 +115,29 @@ var iEatMyBills = (function () {
             },0)
         });
 
+        $(".mark-paid").bind("click",function(){
+            var orderId = $(this).data("order-id");
+            var self = this;
+            $.ajax({
+                type : 'GET',
+                url : "/api/v1/mybills/paid/"+orderId,
+                data : {
+                    "token" : token
+                },
+                dataType : "json",
+                success : function(o){
+                    console.log(o);
+                    $(self).parents("li").remove();
+                },
+                error : function (xhr) {
+                    iEatUtility.msg({
+                        type:"error",
+                        msg : $.parseJSON(xhr.responseText).message
+                    });
+                }
+            });
+        });
+
     }
 
     function activeFooterItemByIndex(index){
@@ -69,6 +158,6 @@ var iEatMyBills = (function () {
 
 })();
 
-$("#my-bills").bind("pageshow",function(){
+$("#my-bills").bind("pageinit",function(){
     iEatMyBills.pageInit();
 });
