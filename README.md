@@ -192,6 +192,77 @@ parametes:
 </pre>
 
 
+## Get user unpaid & payback orders
++ ajax type -> Get
++ url : api/v1/mybills
++ return json:
+
+<pre>
+{
+    "unpaid_orders": [{
+            "id": 8,
+            "created_at": "2013-03-22T02:50:00Z",
+            "group": {
+                "name": "Telstra",
+                "user": {
+                    "id": 2,
+                    "name": "kerry",
+                    "email": "rwang@thoughtworks.com"
+                }
+            },
+            "user": {
+                "name": "Zhifang",
+                "email": "zfhu@thoughtwors.com",
+                "telephone": null
+            },
+            "order_dishes": [{
+                    "dish_id": 133,
+                    "quantity": 1,
+                    "name": "双菇三鲜(香菇、鲜蘑、猪肉)(1两)",
+                    "price": 6.0
+                }
+            ]
+        }
+    ],
+    "payback_orders": [{
+            "id": 23,
+            "created_at": "2013-03-28T07:26:59Z",
+            "group": {
+                "name": "xing",
+                "user": {
+                    "id": 3,
+                    "name": "qingshan",
+                    "email": "qszhuan@thoughtworks.com"
+                }
+            },
+            "user": {
+                "name": "kerry",
+                "email": "rwang@thoughtworks.com",
+                "telephone": null
+            },
+            "order_dishes": [{
+                    "dish_id": 41,
+                    "quantity": 1,
+                    "name": "猪肚饭",
+                    "price": 15.0
+                }, {
+                    "dish_id": 42,
+                    "quantity": 1,
+                    "name": "牛肚饭",
+                    "price": 15.0
+                }
+            ]
+        }
+    ]]
+}
+</pre>
+
+## Set user paid status
+
++ ajax type -> Get
++ url : api/v1/mybills/paid/:id
+
+
 ## User sign in
 
 + ajax type -> Post
@@ -220,6 +291,12 @@ parametes:
     "telephone" : "xxxxxxx"
 }
 </pre>
+
+## User sign out
+
++ ajax type -> get
++ url : api/v1/users/sign_get
+
 
 
 
