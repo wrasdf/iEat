@@ -25,6 +25,15 @@ var iEatMyBills = (function () {
         $(".pay-back-content ul").html(str).listview("refresh");
     }
 
+    function dateFormat(date){
+        var dateObj = new Date(date);
+        var _date = dateObj.getDate();
+        var _month = dateObj.getMonth() + 1; //Months are zero based
+        var _year = dateObj.getFullYear();
+
+        return _year + "-" + _month + "-"+ _date;
+    }
+
     function getListViewDomStrByData(data,renderType){
 
         if(data.length == 0){
@@ -36,9 +45,9 @@ var iEatMyBills = (function () {
         $.each(data,function(index,item){
             var totalPrice = 0;
             if(renderType == "getMoneyBack"){
-                str += '<li><h3><span class="bills-title">'+item.created_at +'  '+ item.user.name+'</span><button data-order-id="'+item.id+'" class="mark-paid" data-mini="true" data-inline="true">删除</button></h3>';
+                str += '<li><h3><span class="bills-title">'+dateFormat(item.created_at) +'  '+ item.user.name+'</span><button data-order-id="'+item.id+'" class="mark-paid" data-mini="true" data-inline="true">删除</button></h3>';
             }else{
-                str += '<li><h3><span class="data">'+item.created_at +'</span><span class="info">Owner: '+item.group.user.name+'</span></h3>';
+                str += '<li><h3><span class="data">'+dateFormat(item.created_at) +'</span><span class="info">&nbsp;'+item.group.user.name+'</span></h3>';
             }
             str += '<table>';
             $.each(item.order_dishes,function(i,order){
