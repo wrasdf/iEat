@@ -55,6 +55,13 @@ $.extend(iEatUtility,(function(){
         $.removeCookie('currentGroupId', { path: '/' });
     }
 
+    function securityCheck(){
+        var token = $.cookie("token");
+        if(token == "null" || !token){
+            window.location.href = "/users/sign_in";
+        }
+    }
+
     function message(obj){
         $("<div class='ui-msg "+obj.type+"'>"+obj.msg+"</div>")
             .appendTo($.mobile.pageContainer)
@@ -72,6 +79,7 @@ $.extend(iEatUtility,(function(){
 
     return {
         clearCookie : clearCookie,
+        securityCheck : securityCheck,
         msg : message
     }
 

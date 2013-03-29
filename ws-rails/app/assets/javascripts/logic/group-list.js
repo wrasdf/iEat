@@ -1,5 +1,6 @@
-var token = $.cookie("token");
+
 var iEatGroupList = (function () {
+    var token = $.cookie("token");
     function reFreshGroupList() {
         iEatUtility.getTodayGroupList(token,function (data) {
             var data = refactorActiveData(data);
@@ -102,10 +103,6 @@ var iEatGroupList = (function () {
     }
 
     function pageInit() {
-        if(token == "null" || !token){
-            window.location.href = "/users/sign_in";
-            return;
-        }
         reFreshGroupList()
     }
 
@@ -115,7 +112,8 @@ var iEatGroupList = (function () {
 
 })();
 
-$(document).bind("pageinit",function(){
+$(document).bind("pageshow",function(){
+    iEatUtility.securityCheck();
     iEatGroupList.pageInit();
 });
 

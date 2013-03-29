@@ -260,6 +260,7 @@ var iEatGroupShow = (function () {
 })();
 
 $("#group-show").bind("pageshow", function () {
+    iEatUtility.securityCheck();
     if ($.cookie("orderCreateStatus") == "success") {
         iEatUtility.msg({
             type: "success",

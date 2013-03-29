@@ -38,7 +38,6 @@ var iEatSignUp = (function () {
                 },
                 error : function (xhr) {
                     var errors = $.parseJSON(xhr.responseText)["errors"];
-                    console.log(errors);
                     var errorsArray = [];
                     var messages;
                     for(var i in errors){

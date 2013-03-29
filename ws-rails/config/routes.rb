@@ -2,6 +2,7 @@ WsRails::Application.routes.draw do
   resources :orders
 
   get 'mybills' => 'my_bills#index'
+  get 'email/:id' => 'user_mailer#confirm'
 
   resources :restaurants do
     resources :dishes

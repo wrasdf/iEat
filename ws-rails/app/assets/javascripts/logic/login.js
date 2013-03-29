@@ -1,10 +1,9 @@
-$(document).bind("pageinit", function () {
+$(document).bind("pageshow", function () {
 
     iEatUtility.clearCookie();
 
-    $.get("/users/sign_out");
-
     var username = $.cookie("userName") || "";
+
     $("#input-data").val(username);
 
     $("#sign-up").bind("click",function(){

@@ -4,7 +4,6 @@ var iEatMyBills = (function () {
         if(f && typeof f == "function"){
             f();
         }
-
         renderPageUI();
     }
 
@@ -126,7 +125,6 @@ var iEatMyBills = (function () {
                 },
                 dataType : "json",
                 success : function(o){
-                    console.log(o);
                     $(self).parents("li").remove();
                 },
                 error : function (xhr) {
@@ -159,5 +157,6 @@ var iEatMyBills = (function () {
 })();
 
 $("#my-bills").bind("pageinit",function(){
+    iEatUtility.securityCheck();
     iEatMyBills.pageInit();
 });

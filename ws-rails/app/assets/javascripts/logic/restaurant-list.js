@@ -33,5 +33,6 @@ var iEatRestaurant = (function(){
 })();
 
 $(document).bind("pageshow",function(){
+    iEatUtility.securityCheck();
     iEatRestaurant.pageInit();
 });

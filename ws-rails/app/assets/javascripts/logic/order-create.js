@@ -134,6 +134,7 @@ var iEatGroupDetails = (function () {
 })();
 
 $(document).bind("pageshow",function(){
+    iEatUtility.securityCheck();
     iEatGroupDetails.pageInit();
 
 });

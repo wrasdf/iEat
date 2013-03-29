@@ -238,5 +238,6 @@ var iEatCreate = (function () {
 })();
 
 $(document).bind("pageshow", function () {
+    iEatUtility.securityCheck();
     iEatCreate.pageInit();
 });
