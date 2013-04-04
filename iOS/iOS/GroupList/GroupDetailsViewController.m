@@ -39,6 +39,8 @@
         restDesc = @[@"饭店名称", @"订餐电话", @"饭店地址"];
         groupDesc = @[@"团名", @"团长"];
         [self setTitle:@"本团信息"];
+        UITabBarItem *tabBarItem = [[UITabBarItem alloc] initWithTitle:@"本团信息" image:[UIImage imageNamed:@"heart.png"] tag:1];
+        [self setTabBarItem:tabBarItem];
     }
     return self;
 }
@@ -48,8 +50,6 @@
     [super viewDidLoad];
     [[self tableView] setTableFooterView:[self CreateFooterVIew]];
 
-    UITabBarItem *tabBarItem = [[UITabBarItem alloc] initWithTitle:@"本团信息" image:[UIImage imageNamed:@"heart.png"] tag:1];
-    [self setTabBarItem:tabBarItem];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

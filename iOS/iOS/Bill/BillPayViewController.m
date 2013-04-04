@@ -23,7 +23,7 @@
 {
     self = [super initWithStyle:style];
     if (self) {
-        UITabBarItem *tabBarItem = [[UITabBarItem alloc] initWithTitle:@"交团费" image:[UIImage imageNamed:@"group.png"] tag:2];
+        UITabBarItem *tabBarItem = [[UITabBarItem alloc] initWithTitle:@"交团费" image:[UIImage imageNamed:@"arrow_up.png"] tag:2];
         [self setTabBarItem:tabBarItem];
     }
     return self;

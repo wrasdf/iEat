@@ -28,7 +28,6 @@
     groupOwnersDishesController.delegate = self;
     groupMemberDishesController.delegate = self;
     self.viewControllers = @[groupDetailsViewController,groupStatController, groupOwnersDishesController, groupMemberDishesController];
-    [self setSelectedIndex:0];
 }
 
 - (id)initWithGroupId:(id)groupId {
@@ -47,9 +46,9 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    NSUInteger i = [self selectedIndex];
-    NSLog([NSString stringWithFormat:@"%d", i]);
-    [self setSelectedIndex:i];
+//    NSUInteger i = [self selectedIndex];
+//    NSLog([NSString stringWithFormat:@"%d", i]);
+//    [self setSelectedIndex:i];
     [super viewDidAppear:animated];
 }
 

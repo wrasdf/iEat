@@ -80,6 +80,7 @@
 - (void)myBills:(id)myBills {
     BillTabBarController* billTabController = [[BillTabBarController alloc] init];
 
+    [billTabController setSelectedIndex:0];
     [[self navigationController] pushViewController:billTabController animated:YES];
 }
 
@@ -186,6 +187,7 @@
 //    GroupTabBarController* groupsTabController = [[GroupTabBarController alloc]initWithGroup:groupSelected];
     GroupTabBarController* groupsTabController = [[GroupTabBarController alloc] initWithGroupId:groupId];
 
+    [groupsTabController setSelectedIndex:0];
     [[self navigationController] pushViewController:groupsTabController animated:YES];
 }
 

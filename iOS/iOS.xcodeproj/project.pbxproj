@@ -44,6 +44,7 @@
 		6AC70712128960B1B614CF57 /* phone.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AC70C90AD9EEC6859F6B1E8 /* phone.png */; };
 		6AC7075FDFA98EC171B4CFF7 /* GroupDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC70C85EBD548ADA58F5B7F /* GroupDetailsViewController.m */; };
 		6AC70763CDDCDE528E5A1F2D /* Restaurant.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC70CE4765AA9BD85D5E899 /* Restaurant.m */; };
+		6AC70852D8C1670E54755E16 /* arrow_up.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AC70D616FE05A28CB6D8837 /* arrow_up.png */; };
 		6AC70895C3C527EF2D06B0AD /* bar-chart.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AC70F67CE0ECE7A97676102 /* bar-chart.png */; };
 		6AC708CF7C209E157D378469 /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC702BA954C794B008339D0 /* Group.m */; };
 		6AC708DF5CBC27A0541857CD /* RestaurantDataService.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC70ED0DA26C87AF13DDDC5 /* RestaurantDataService.m */; };
@@ -60,6 +61,7 @@
 		6AC70D0EDA3961385A65E3CC /* BillTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC707E583D85A308DA66047 /* BillTabBarController.m */; };
 		6AC70D820CEA3EBD3AFF41EC /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AC709C33D5F867A0F5A6544 /* star.png */; };
 		6AC70E92D9E6454A85CE1567 /* user.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AC7058C84C654621D40EAF9 /* user.png */; };
+		6AC70F8DFDF9820750CEF07B /* arrow_down.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AC701D0A8BCC3BCB8A40F23 /* arrow_down.png */; };
 		9E53179B55864B80B164A3C8 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BA6710C06BB14FE089DBE799 /* libPods.a */; };
 		BB7EE24D16D86C270000DFCE /* EditTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB7EE24C16D86C270000DFCE /* EditTableViewCell.m */; };
 		BB7EE26A16D883860000DFCE /* LoginTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB7EE26816D883860000DFCE /* LoginTableViewController.m */; };
@@ -116,6 +118,7 @@
 		6AC7010B191BDBFC9AE5EE79 /* fork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fork.png; sourceTree = "<group>"; };
 		6AC701676998F6D6108C9407 /* RestaurantListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestaurantListViewController.h; sourceTree = "<group>"; };
 		6AC70170955A96B1B5FCDA41 /* GroupMemberOrdersController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupMemberOrdersController.m; sourceTree = "<group>"; };
+		6AC701D0A8BCC3BCB8A40F23 /* arrow_down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow_down.png; sourceTree = "<group>"; };
 		6AC701EC912C611613F9843C /* Settings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Settings.m; sourceTree = "<group>"; };
 		6AC702214B081EFA3EFBE2CB /* GroupTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupTabBarController.m; sourceTree = "<group>"; };
 		6AC702A6374E716F6832F263 /* GroupOwnerOrderController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupOwnerOrderController.h; sourceTree = "<group>"; };
@@ -163,6 +166,7 @@
 		6AC70C90AD9EEC6859F6B1E8 /* phone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = phone.png; sourceTree = "<group>"; };
 		6AC70CCEAC924B0561003FCE /* gear2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gear2.png; sourceTree = "<group>"; };
 		6AC70CE4765AA9BD85D5E899 /* Restaurant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Restaurant.m; sourceTree = "<group>"; };
+		6AC70D616FE05A28CB6D8837 /* arrow_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow_up.png; sourceTree = "<group>"; };
 		6AC70ED0DA26C87AF13DDDC5 /* RestaurantDataService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestaurantDataService.m; sourceTree = "<group>"; };
 		6AC70ED81BB8B4AE38856FBC /* RestaurantDishesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestaurantDishesViewController.h; sourceTree = "<group>"; };
 		6AC70F1893E31232A3ED582F /* BillDataDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BillDataDelegate.h; sourceTree = "<group>"; };
@@ -393,6 +397,8 @@
 				6AC70007AEB128FA587672FF /* coffee.png */,
 				6AC705DC8CE20EDF3BD9A0E2 /* no_entry.ico */,
 				6AC700130E84B136C3073BAF /* no_entry.png */,
+				6AC701D0A8BCC3BCB8A40F23 /* arrow_down.png */,
+				6AC70D616FE05A28CB6D8837 /* arrow_up.png */,
 			);
 			path = images;
 			sourceTree = "<group>";
@@ -544,6 +550,8 @@
 				6AC7046F2CC43EBCA29E8C6D /* coffee.png in Resources */,
 				6AC7052163D6A8B21DE29B75 /* no_entry.ico in Resources */,
 				6AC701A870E93360733640D9 /* no_entry.png in Resources */,
+				6AC70F8DFDF9820750CEF07B /* arrow_down.png in Resources */,
+				6AC70852D8C1670E54755E16 /* arrow_up.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
