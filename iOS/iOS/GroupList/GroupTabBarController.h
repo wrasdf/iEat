@@ -11,10 +11,8 @@
 #import "GroupDataDelegate.h"
 
 @interface GroupTabBarController : UITabBarController<GroupDataDelegate>
-- (id)initWithGroup:(NSDictionary *)group;
 
 - (id)initWithGroupId:(id)groupId;
 
-+ (id)objectWithGroupId:(int)groupId;
 
 @end

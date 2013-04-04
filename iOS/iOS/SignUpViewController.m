@@ -11,11 +11,13 @@
 #import "ASIFormDataRequest.h"
 #import "MBProgressHUD.h"
 #import "User.h"
+#import "Settings.h"
 
 @interface SignUpViewController ()
  enum{
      UserNameCell = 0,
      EmailCell,
+     PhoneCell,
      PasswordCell,
      PasswordConfirmCell,
      CellCount
@@ -28,6 +30,7 @@
     NSString * password;
     NSString * email;
     NSString * confirmPassword;
+    NSString * phoneNumber;
 }
 
 - (void)viewDidLoad
@@ -66,7 +69,7 @@
 }
 
 - (void)Ok {
-    if ([userName length] && [password length] && [email length] && [password isEqualToString:confirmPassword] ){
+    if ([userName length] && [password length] && [email length] && [password isEqualToString:confirmPassword] && [phoneNumber length]){
         [self sendSignUpMessage];
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         hud.labelText = @"注册中...";
@@ -78,13 +81,19 @@
 
 - (void)sendSignUpMessage {
     //Start request
-    NSURL *url = [NSURL URLWithString:@"http://localhost:3000"];
+    NSString *urlString = [NSString stringWithFormat:@"%@%@", [Settings serverUri] , @"/api/v1/users"];
+    NSURL *url = [NSURL URLWithString:urlString];
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
     [request setPostValue:userName forKey:@"username"];
     [request setPostValue:password forKey:@"password"];
+    [request setPostValue:password forKey:@"password_confirmation"];
     [request setPostValue:email forKey:@"email"];
+    [request setPostValue:phoneNumber forKey:@"telephone"];
+    [request setRequestMethod:@"POST"];
+    [request addRequestHeader:@"Accept" value:@"application/json"];
     [request setDelegate:self];
     [request startAsynchronous];
+    NSLog([request responseString]);
 }
 
 - (void)requestFinished:(ASIHTTPRequest *)request
@@ -142,6 +151,13 @@
         [cell.textField addTarget:self action:@selector(CheckUsername:) forControlEvents:UIControlEventEditingChanged];
 
     }
+    if (indexPath.row == PhoneCell) {
+        cell.label.text = @"电话";
+        cell.textField.text = @"";
+        cell.textField.placeholder = @"请输入你的手机号";
+        [cell.textField addTarget:self action:@selector(CheckPhoneNumber:) forControlEvents:UIControlEventEditingChanged];
+
+    }
     else if (indexPath.row == EmailCell) {
         cell.label.text = @"Email";
         cell.textField.text = @"";
@@ -167,16 +183,32 @@
     return cell;
 }
 
+- (void)CheckPhoneNumber:(UITextField *)textField {
+    if ([[textField text] length] <= 0){
+//        [[[UIAlertView alloc] initWithTitle:@"Error" message:@"Please input phone number" delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil] show];
+//        [textField setTextColor:[UIColor redColor] ];
+        [textField setBackgroundColor:[UIColor redColor]];
+        phoneNumber = @"";
+        return;
+    }
+    phoneNumber = textField.text;
+    [textField setTextColor:[UIColor darkTextColor] ];
+    [textField setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
+
+}
+
 - (void)CheckUsername:(UITextField *)textField {
    if ([[textField text] length] <= 0){
-       [[[UIAlertView alloc] initWithTitle:@"Error" message:@"Please input username" delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil] show];
-       [textField setTextColor:[UIColor redColor] ];
+//       [[[UIAlertView alloc] initWithTitle:@"Error" message:@"Please input username" delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil] show];
+//       [textField setTextColor:[UIColor redColor] ];
+       [textField setBackgroundColor:[UIColor redColor]];
+
        userName = @"";
        return;
    }
     userName = textField.text;
     [textField setTextColor:[UIColor darkTextColor] ];
-
+    [textField setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
 }
 
 - (void)CheckPassword:(UITextField *)textField {

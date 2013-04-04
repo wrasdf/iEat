@@ -15,6 +15,7 @@
 #import "GroupOwnerOrderController.h"
 #import "GroupMemberOrdersController.h"
 #import "GroupTabBarController.h"
+#import "BillTabBarController.h"
 
 @implementation GroupListController {
     NSArray *groups;
@@ -77,7 +78,9 @@
 }
 
 - (void)myBills:(id)myBills {
+    BillTabBarController* billTabController = [[BillTabBarController alloc] init];
 
+    [[self navigationController] pushViewController:billTabController animated:YES];
 }
 
 - (void)Logout:(id)Logout {

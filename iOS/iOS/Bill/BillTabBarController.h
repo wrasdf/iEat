@@ -8,6 +8,8 @@
 
 
 
-@interface BillTabBarController : UITabBarController
+#import "BillDataDelegate.h"
+
+@interface BillTabBarController : UITabBarController<BillDataDelegate>
 
 @end

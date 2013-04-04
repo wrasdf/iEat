@@ -17,16 +17,6 @@
     NSDictionary *groupInfo;
     id grpId;
 }
-//
-//
-//- (id)initWithGroup:(NSDictionary *)group {
-//    self = [super init];
-//    if (self != nil){
-//        groupInfo = group;
-//        [self InitTabs];
-//    }
-//    return self;
-//}
 
 - (void)InitTabs {
     GroupDetailsViewController* groupDetailsViewController = [[GroupDetailsViewController alloc] initWithStyle:UITableViewStyleGrouped];
