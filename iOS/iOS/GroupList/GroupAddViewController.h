@@ -9,7 +9,7 @@
 
 @class GroupListController;
 
-@interface GroupAddViewController : UITableViewController
+@interface GroupAddViewController : UITableViewController <UITextFieldDelegate>
 - (void)SetGroupListController:(GroupListController *)controller;
 
 

@@ -68,11 +68,16 @@
 
 -(void) createBarButtonOnNavigationBar{
 
-    UIBarButtonItem *addButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(add:)];
-    self.navigationItem.rightBarButtonItem = addButtonItem;
+    UIBarButtonItem *billBtn = [[UIBarButtonItem alloc] initWithTitle:@"账单" style:UIBarButtonItemStylePlain target:self action:@selector(myBills:)];
+//    UIBarButtonItem *addButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(add:)];
+    self.navigationItem.rightBarButtonItem = billBtn;
 
     UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithTitle:@"注销" style:UIBarButtonItemStylePlain target:self action:@selector(Logout:)];
     self.navigationItem.leftBarButtonItem = leftButton;
+}
+
+- (void)myBills:(id)myBills {
+
 }
 
 - (void)Logout:(id)Logout {
@@ -85,13 +90,10 @@
     [self GetGroupList];
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self createBarButtonOnNavigationBar];
+    self.tableView.tableHeaderView = [self CreateHeaderView];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -122,6 +124,19 @@
     }
     return nil;
 }
+
+
+- (UIView *)CreateHeaderView {
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 40)];
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [button setTitle:@"创建我的饭团" forState:UIControlStateNormal];
+    [button setFrame:CGRectMake(0, 0, 320, 40)];
+    [button addTarget:self action:@selector(add:) forControlEvents:UIControlEventTouchUpInside];
+    [view addSubview:button];
+    [view setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
+    return view;
+}
+
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return SectionCount;
@@ -164,8 +179,10 @@
 }
 
 - (void)ShowGroupDetails:(id)groupId {
-    NSDictionary *groupSelected = [GroupDataService GetGroupById:groupId] ;
-    GroupTabBarController* groupsTabController = [[GroupTabBarController alloc]initWithGroup:groupSelected];
+//    NSDictionary *groupSelected = [GroupDataService GetGroupById:groupId] ;
+//    GroupTabBarController* groupsTabController = [[GroupTabBarController alloc]initWithGroup:groupSelected];
+    GroupTabBarController* groupsTabController = [[GroupTabBarController alloc] initWithGroupId:groupId];
+
     [[self navigationController] pushViewController:groupsTabController animated:YES];
 }
 
@@ -186,5 +203,7 @@
     cell.dueDateLabel.text = [@"截止日期: " stringByAppendingString: group[@"due_date"]];
     cell.ownerLabel.text = group[@"owner"][@"name"];
 }
+
+
 
 @end

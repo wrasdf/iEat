@@ -25,7 +25,7 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
 //    [PayBillLocalNotification scheduleBillNotification];
-    [PayBillLocalNotification payBill];
+//    [PayBillLocalNotification payBill];
 
     return YES;
 }

@@ -133,6 +133,7 @@
 
     if (cell == nil) {
         cell = [[[NSBundle mainBundle] loadNibNamed:@"EditTableViewCell" owner:self options:nil] objectAtIndex:0];
+        cell.textField.delegate = self;
     }
     if (indexPath.row == UserNameCell) {
         cell.label.text = @"用户名";
@@ -216,5 +217,25 @@
     [textField setTextColor:[UIColor darkTextColor] ];
 }
 
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    NSLog(@"textFieldShouldReturn");
+
+    [textField resignFirstResponder];
+    return YES;
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField1 {
+//    [textField1 resignFirstResponder];
+
+}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+    [super touchesEnded:touches withEvent:event];
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField1 {
+    [textField1 resignFirstResponder];
+}
 
 @end

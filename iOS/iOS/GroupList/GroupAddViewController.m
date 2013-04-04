@@ -72,7 +72,8 @@ enum {
 {
     [super viewDidLoad];
 
-    [self.tableView setEditing:NO];
+//    [self.tableView setEditing:NO];
+    [self.tableView endEditing:YES];
     self.clearsSelectionOnViewWillAppear = YES;
     UIBarButtonItem *addButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"确定" style:UIBarButtonItemStylePlain target:self action:@selector(add:)];
     self.navigationItem.rightBarButtonItem = addButtonItem;
@@ -189,6 +190,12 @@ enum {
 
 - (void)SetGroupListController:(GroupListController *)controller {
     listController = controller;
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    NSLog(@"touchesBegan");
+    [self.view endEditing:YES];
 }
 
 @end

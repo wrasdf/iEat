@@ -55,6 +55,7 @@
 		6AC70A958F02DF56BC601FE9 /* GroupOwnerOrderController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC70B205E5BAE3796DB5835 /* GroupOwnerOrderController.m */; };
 		6AC70AC408935E74EED8B359 /* heart.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AC70F7DC34100081CD11ABD /* heart.png */; };
 		6AC70C17CB4FABAD6A621E5F /* GroupDataService.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC70B730E68A856BA29CADB /* GroupDataService.m */; };
+		6AC70D0EDA3961385A65E3CC /* BillTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC707E583D85A308DA66047 /* BillTabBarController.m */; };
 		6AC70D820CEA3EBD3AFF41EC /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AC709C33D5F867A0F5A6544 /* star.png */; };
 		6AC70E92D9E6454A85CE1567 /* user.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AC7058C84C654621D40EAF9 /* user.png */; };
 		9E53179B55864B80B164A3C8 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BA6710C06BB14FE089DBE799 /* libPods.a */; };
@@ -84,7 +85,7 @@
 		36867471FF070E422553B83D /* CreateUIElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateUIElement.h; sourceTree = "<group>"; };
 		368677F321327182574ED069 /* GroupListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupListController.m; sourceTree = "<group>"; };
 		36867D439D4BF89C7322B14F /* CreateUIElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateUIElement.m; sourceTree = "<group>"; };
-		494BC0ED16D0D86A00DA45B9 /* iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		494BC0ED16D0D86A00DA45B9 /* IEat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IEat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		494BC0F116D0D86A00DA45B9 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		494BC0F316D0D86A00DA45B9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		494BC0F516D0D86A00DA45B9 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -133,6 +134,7 @@
 		6AC7075069ABA5C9DD2E15D3 /* Restaurant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Restaurant.h; sourceTree = "<group>"; };
 		6AC707BC2FBDE033E3868E24 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		6AC707D626E6A3030CEDFB20 /* GroupMemberOrdersController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupMemberOrdersController.h; sourceTree = "<group>"; };
+		6AC707E583D85A308DA66047 /* BillTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BillTabBarController.m; sourceTree = "<group>"; };
 		6AC707FE081AF5C7B832E512 /* Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Settings.h; sourceTree = "<group>"; };
 		6AC70877D88D0825D0D7EAC8 /* PayBillLocalNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayBillLocalNotification.m; sourceTree = "<group>"; };
 		6AC709248BAEA90A7F51529D /* GroupAddViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupAddViewController.h; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 		6AC70ED0DA26C87AF13DDDC5 /* RestaurantDataService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestaurantDataService.m; sourceTree = "<group>"; };
 		6AC70ED81BB8B4AE38856FBC /* RestaurantDishesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestaurantDishesViewController.h; sourceTree = "<group>"; };
 		6AC70F19E361020B65F51503 /* OrderCellAccessory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderCellAccessory.h; sourceTree = "<group>"; };
+		6AC70F6761842B7C570772F2 /* BillTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BillTabBarController.h; sourceTree = "<group>"; };
 		6AC70F67CE0ECE7A97676102 /* bar-chart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bar-chart.png"; sourceTree = "<group>"; };
 		6AC70F7DC34100081CD11ABD /* heart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = heart.png; sourceTree = "<group>"; };
 		BA6710C06BB14FE089DBE799 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -278,7 +281,7 @@
 		494BC0EE16D0D86A00DA45B9 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				494BC0ED16D0D86A00DA45B9 /* iOS.app */,
+				494BC0ED16D0D86A00DA45B9 /* IEat.app */,
 				494BC10E16D0D86B00DA45B9 /* iOSTests.octest */,
 			);
 			name = Products;
@@ -316,6 +319,7 @@
 				6AC70AD5423E38C35D1FE9CD /* Model */,
 				6AC70664965E5EAE3C0FBF11 /* Notification */,
 				6AC705FCC09949F3D709E68A /* Settings */,
+				6AC7003AB56CFDAE362F55D2 /* Bill */,
 			);
 			path = iOS;
 			sourceTree = "<group>";
@@ -351,6 +355,15 @@
 				494BC11816D0D86B00DA45B9 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		6AC7003AB56CFDAE362F55D2 /* Bill */ = {
+			isa = PBXGroup;
+			children = (
+				6AC70F6761842B7C570772F2 /* BillTabBarController.h */,
+				6AC707E583D85A308DA66047 /* BillTabBarController.m */,
+			);
+			path = Bill;
 			sourceTree = "<group>";
 		};
 		6AC700F2E6E4A22AB2D17F82 /* images */ = {
@@ -445,7 +458,7 @@
 			);
 			name = iOS;
 			productName = iOS;
-			productReference = 494BC0ED16D0D86A00DA45B9 /* iOS.app */;
+			productReference = 494BC0ED16D0D86A00DA45B9 /* IEat.app */;
 			productType = "com.apple.product-type.application";
 		};
 		494BC10D16D0D86B00DA45B9 /* iOSTests */ = {
@@ -593,6 +606,7 @@
 				6AC7026DB495EE4BD5631DD2 /* GroupTabBarController.m in Sources */,
 				6AC70A5103FB905B41E4CE14 /* OrderCellAccessory.m in Sources */,
 				6AC7095980F1CB89E6DC4766 /* Settings.m in Sources */,
+				6AC70D0EDA3961385A65E3CC /* BillTabBarController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -688,6 +702,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 57835B580DD34FEDB60789E8 /* Pods.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"${PROJECT_DIR}/\"/**",
 					"\"$(SRCROOT)/Pods\"",
@@ -695,8 +710,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iOS/iOS-Prefix.pch";
 				INFOPLIST_FILE = "iOS/iOS-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				PRODUCT_NAME = IEat;
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -705,6 +721,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 57835B580DD34FEDB60789E8 /* Pods.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"${PROJECT_DIR}/\"/**",
 					"\"$(SRCROOT)/Pods\"",
@@ -712,8 +729,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iOS/iOS-Prefix.pch";
 				INFOPLIST_FILE = "iOS/iOS-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				PRODUCT_NAME = IEat;
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

@@ -37,8 +37,14 @@
 {
     [super viewDidLoad];
 
+
+    [[self tableView] setTableFooterView:[self CreateFooterView]];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
     NSDictionary *groupInfo = [[self delegate] GetGroupInfo];
     NSArray * orders = groupInfo[@"orders"];
+    [dishesDict removeAllObjects];
     for (NSDictionary * order in orders){
         NSArray * dishes = order[@"order_dishes"];
         for (NSDictionary *dish in dishes){
@@ -56,9 +62,10 @@
     }
     allKeys = [dishesDict allKeys];
     allValues = [dishesDict allValues];
-
-    [[self tableView] setTableFooterView:[self CreateFooterView]];
+    [self.tableView reloadData];
+    [super viewWillAppear:animated];
 }
+
 
 - (UIView *)CreateFooterView {
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 64)];

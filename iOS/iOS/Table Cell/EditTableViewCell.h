@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface EditTableViewCell : UITableViewCell
+@interface EditTableViewCell : UITableViewCell<UITextFieldDelegate>
 
 @property (strong, nonatomic) IBOutlet UILabel *label;
 @property (strong, nonatomic) IBOutlet UITextField *textField;

@@ -12,4 +12,27 @@
 
 @synthesize label, textField;
 
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    [super touchesBegan:touches withEvent:event];
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField1 {
+//    [textField1 resignFirstResponder];
+
+}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+    [super touchesEnded:touches withEvent:event];
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField1 {
+    [textField1 resignFirstResponder];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField1 {
+    [textField1 resignFirstResponder];
+    return YES;
+}
+
 @end

@@ -32,16 +32,24 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+}
+
+- (void)viewWillAppear:(BOOL)animated {
     NSDictionary *groupInfo = [[self delegate] GetGroupInfo];
     NSArray * dishes = groupInfo[@"orders"];
     User *user = [User CurrentUser];
     NSArray *myOrders = [dishes filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF.user.name == %@", user.name]];
+    [myDishes removeAllObjects];
     if([myOrders count] != 0){
         for (id order in myOrders){
             [myDishes addObjectsFromArray:order[@"order_dishes"]];
         }
     }
+    [self.tableView reloadData];
+    [super viewWillAppear:animated];
 }
+
 
 - (void)didReceiveMemoryWarning
 {

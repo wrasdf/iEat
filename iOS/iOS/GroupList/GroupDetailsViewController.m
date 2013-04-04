@@ -50,12 +50,16 @@
 
     UITabBarItem *tabBarItem = [[UITabBarItem alloc] initWithTitle:@"本团信息" image:[UIImage imageNamed:@"heart.png"] tag:1];
     [self setTabBarItem:tabBarItem];
+}
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     group = [[self delegate] GetGroupInfo];
     groupDescVals = [[NSArray alloc] initWithObjects:group[@"name"],  group[@"owner"][@"name"], nil];
     restDescVals = [[NSArray alloc] initWithObjects:group[@"restaurant"][@"name"],group[@"restaurant"][@"telephone"],group[@"restaurant"][@"address"], nil];
-
+    [[self tableView] reloadData];
 }
+
 
 - (UIView *)CreateFooterVIew {
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 64)];
@@ -70,6 +74,7 @@
 
 - (void)gotoOrderFood:(id)sender {
     NSLog(@"买饭去");
+    [(GroupTabBarController *) self.delegate setSelectedIndex:2];
     RestaurantDishesViewController *restaurantDishesViewController = [[RestaurantDishesViewController alloc] initWithGroupId:[group[@"id"] intValue]];
     [[self navigationController] pushViewController:restaurantDishesViewController animated:YES];
 

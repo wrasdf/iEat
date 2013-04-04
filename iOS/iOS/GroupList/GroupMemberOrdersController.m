@@ -32,10 +32,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    }
+
+- (void)viewWillAppear:(BOOL)animated {
     NSDictionary *groupInfo = [[self delegate] GetGroupInfo];
     NSArray * dishes = groupInfo[@"orders"];
     User *user = [User CurrentUser];
     orders = [dishes filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF.user.name != %@", user.name]];
+    [self.tableView reloadData];
+    [super viewWillAppear:animated];
 }
 
 - (void)didReceiveMemoryWarning

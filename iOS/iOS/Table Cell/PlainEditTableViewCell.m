@@ -20,6 +20,7 @@
         [textField setContentVerticalAlignment:UIControlContentHorizontalAlignmentCenter];
         [textField setPlaceholder:@"请输入一个团名"];
         [self.contentView addSubview:textField];
+        textField.delegate = self;
     }
     return self;
 }
@@ -29,10 +30,23 @@
     [textField setFrame:self.bounds];
 }
 
+- (void)textFieldDidBeginEditing:(UITextField *)textField1 {
+//    [textField1 resignFirstResponder];
+
+}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+    [super touchesEnded:touches withEvent:event];
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField1 {
+    [textField1 resignFirstResponder];
+}
+
 - (BOOL)textFieldShouldReturn:(UITextField *)textField1 {
     [textField1 resignFirstResponder];
     return YES;
 }
-
+//
 
 @end

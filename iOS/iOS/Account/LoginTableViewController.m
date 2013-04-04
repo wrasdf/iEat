@@ -41,7 +41,7 @@ enum {
 - (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
     if (self) {
-        groupListController = [[GroupListController alloc] initWithStyle:UITableViewStyleGrouped];
+        groupListController = [[GroupListController alloc] initWithStyle:UITableViewStylePlain];
     }
 
     return self;
@@ -89,6 +89,7 @@ enum {
     EditTableViewCell *cell = (EditTableViewCell *) [tableView dequeueReusableCellWithIdentifier:EditCellIdentifier];
     if (cell == nil) {
         cell = [[[NSBundle mainBundle] loadNibNamed:@"EditTableViewCell" owner:self options:nil] objectAtIndex:0];
+        cell.textField.delegate = self;
     }
     if (indexPath.section == SectionLogin) {
         if (indexPath.row == CellUser) {
@@ -167,6 +168,8 @@ enum {
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     NSLog(@"touchesBegan");
+    [super touchesBegan:touches withEvent:event];
+
     [self.view endEditing:YES];
 }
 
@@ -176,5 +179,19 @@ enum {
     [textField resignFirstResponder];
     return YES;
 }
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField1 {
+//    [textField1 resignFirstResponder];
+
+}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+    [super touchesEnded:touches withEvent:event];
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField1 {
+    [textField1 resignFirstResponder];
+}
+
 
 @end

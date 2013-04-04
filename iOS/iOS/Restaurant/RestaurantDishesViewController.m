@@ -49,6 +49,9 @@
         [array addObject:order];
     }
     [GroupDataService SubmitOrder: array forGroup: orderGroupId];
+
+    UINavigationController *navController = self.navigationController;
+    [navController popViewControllerAnimated:NO];
 }
 
 - (void)CreateSearchBar {
