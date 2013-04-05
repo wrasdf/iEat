@@ -14,6 +14,8 @@
 #import "MBProgressHUD.h"
 #import "JSONKit.h"
 #import "GroupListController.h"
+#import "GroupDataService.h"
+#import "Settings.h"
 
 @interface LoginTableViewController ()
 
@@ -49,7 +51,9 @@ enum {
     [super viewWillAppear:animated];
     User *currentUser = [User CurrentUser];
     if (currentUser){
-        [(UINavigationController *) [self parentViewController] pushViewController:groupListController animated:YES];
+        NSArray *listOfToday = [GroupDataService groupListOfToday];
+        if(listOfToday != nil)
+            [(UINavigationController *) [self parentViewController] pushViewController:groupListController animated:YES];
     }
 }
 
@@ -103,16 +107,6 @@ enum {
     return cell;
 }
 
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
-}
 - (IBAction)Login:(id)sender {
     NSString *username = ((EditTableViewCell *) [[self.tableView visibleCells] objectAtIndex:0]).textField.text;
     NSString *password = ((EditTableViewCell *) [[self.tableView visibleCells] objectAtIndex:1]).textField.text;
@@ -131,7 +125,9 @@ enum {
 }
 
 - (void)sendLoginRequestWithUserName:(NSString *)username password:(NSString *)password {
-    NSURL *url = [NSURL URLWithString:@"http://localhost:3000/api/v1/users/sign_in"];
+    NSString *urlstring = [NSString stringWithFormat:@"%@%@", Settings.serverUri, @"/api/v1/users/sign_in"];
+    NSURL *url = [NSURL URLWithString:urlstring];
+
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
     [request setPostValue:username forKey:@"data"];
     [request setPostValue:password forKey:@"password"];
@@ -167,4 +163,18 @@ enum {
     SignUpViewController *signUpViewController = [[SignUpViewController alloc] initWithStyle:UITableViewStyleGrouped];
     [self presentViewController: signUpViewController animated:YES completion:NULL];
 }
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    NSLog(@"touchesBegan");
+    [self.view endEditing:YES];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    NSLog(@"textFieldShouldReturn");
+
+    [textField resignFirstResponder];
+    return YES;
+}
+
 @end

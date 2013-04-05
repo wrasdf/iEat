@@ -47,6 +47,7 @@
 		6AC708CF7C209E157D378469 /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC702BA954C794B008339D0 /* Group.m */; };
 		6AC708DF5CBC27A0541857CD /* RestaurantDataService.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC70ED0DA26C87AF13DDDC5 /* RestaurantDataService.m */; };
 		6AC7092CA6D8607B53F050C7 /* GroupAddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC70C109EB3D3020808AFCC /* GroupAddViewController.m */; };
+		6AC7095980F1CB89E6DC4766 /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC701EC912C611613F9843C /* Settings.m */; };
 		6AC70959AF382E769E7DBD17 /* Dish.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC703E61CD4B05A591202AF /* Dish.m */; };
 		6AC70A334B4B914D3118ACD8 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AC70C88117EE93387B966B3 /* CFNetwork.framework */; };
 		6AC70A5103FB905B41E4CE14 /* OrderCellAccessory.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC7097FB95A235A35E03FD7 /* OrderCellAccessory.m */; };
@@ -112,6 +113,7 @@
 		6AC7010B191BDBFC9AE5EE79 /* fork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fork.png; sourceTree = "<group>"; };
 		6AC701676998F6D6108C9407 /* RestaurantListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestaurantListViewController.h; sourceTree = "<group>"; };
 		6AC70170955A96B1B5FCDA41 /* GroupMemberOrdersController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupMemberOrdersController.m; sourceTree = "<group>"; };
+		6AC701EC912C611613F9843C /* Settings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Settings.m; sourceTree = "<group>"; };
 		6AC702214B081EFA3EFBE2CB /* GroupTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupTabBarController.m; sourceTree = "<group>"; };
 		6AC702A6374E716F6832F263 /* GroupOwnerOrderController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupOwnerOrderController.h; sourceTree = "<group>"; };
 		6AC702BA954C794B008339D0 /* Group.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Group.m; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 		6AC7075069ABA5C9DD2E15D3 /* Restaurant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Restaurant.h; sourceTree = "<group>"; };
 		6AC707BC2FBDE033E3868E24 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		6AC707D626E6A3030CEDFB20 /* GroupMemberOrdersController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupMemberOrdersController.h; sourceTree = "<group>"; };
+		6AC707FE081AF5C7B832E512 /* Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Settings.h; sourceTree = "<group>"; };
 		6AC70877D88D0825D0D7EAC8 /* PayBillLocalNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayBillLocalNotification.m; sourceTree = "<group>"; };
 		6AC709248BAEA90A7F51529D /* GroupAddViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupAddViewController.h; sourceTree = "<group>"; };
 		6AC7095A335441F39E9DCEE9 /* RestaurantListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestaurantListViewController.m; sourceTree = "<group>"; };
@@ -312,6 +315,7 @@
 				6AC700F2E6E4A22AB2D17F82 /* images */,
 				6AC70AD5423E38C35D1FE9CD /* Model */,
 				6AC70664965E5EAE3C0FBF11 /* Notification */,
+				6AC705FCC09949F3D709E68A /* Settings */,
 			);
 			path = iOS;
 			sourceTree = "<group>";
@@ -366,6 +370,15 @@
 				6AC700130E84B136C3073BAF /* no_entry.png */,
 			);
 			path = images;
+			sourceTree = "<group>";
+		};
+		6AC705FCC09949F3D709E68A /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				6AC707FE081AF5C7B832E512 /* Settings.h */,
+				6AC701EC912C611613F9843C /* Settings.m */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		6AC70664965E5EAE3C0FBF11 /* Notification */ = {
@@ -579,6 +592,7 @@
 				6AC705468FB992363D7EE3AF /* GroupMemberOrdersController.m in Sources */,
 				6AC7026DB495EE4BD5631DD2 /* GroupTabBarController.m in Sources */,
 				6AC70A5103FB905B41E4CE14 /* OrderCellAccessory.m in Sources */,
+				6AC7095980F1CB89E6DC4766 /* Settings.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -629,7 +643,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -657,7 +671,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;

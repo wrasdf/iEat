@@ -6,6 +6,7 @@
 
 
 #import "User.h"
+#import "Settings.h"
 
 
 @implementation User {
@@ -17,9 +18,8 @@
 
 
 + (User *)CurrentUser {
-    NSUserDefaults *standardUserDefault = [NSUserDefaults standardUserDefaults];
-    NSString *username = [standardUserDefault objectForKey:@"username"];
-    NSString *token = [standardUserDefault objectForKey:@"token"];
+    NSString *username = [Settings getUserName];
+    NSString *token = [Settings getUserToken];
     NSLog(@"current user: %@ token %@", username, token);
     return (username && token) ? [[User alloc] initWithName:username email:nil token:token] : nil;
 }
@@ -33,10 +33,9 @@
 
 
 + (void)SetCurrentUserName:(NSString *)name email:(NSString *)email token:(NSString *)token {
-    NSUserDefaults *standardUserDefault = [NSUserDefaults standardUserDefaults];
-    [standardUserDefault setObject:name forKey:@"username"];
-    [standardUserDefault setObject:email forKey:@"email"];
-    [standardUserDefault setObject:token forKey:@"token"];
+    [Settings setUserName:name];
+    [Settings setUserEmail:email];
+    [Settings setUserToken:token];
     NSLog(@"user logged in: %@ %@ %@",name, email, token);
 }
 @end
