@@ -32,10 +32,10 @@
 - (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
     if (self) {
-        [[self tableView] setRowHeight:56];
         [self setTitle:@"饭团列表"];
         myGroups = [[NSMutableArray alloc] init];
         otherGroups = [[NSMutableArray alloc] init];
+        [[self tableView] setRowHeight:60];
     }
     return self;
 }
@@ -70,7 +70,6 @@
 -(void) createBarButtonOnNavigationBar{
 
     UIBarButtonItem *billBtn = [[UIBarButtonItem alloc] initWithTitle:@"账单" style:UIBarButtonItemStylePlain target:self action:@selector(myBills:)];
-//    UIBarButtonItem *addButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(add:)];
     self.navigationItem.rightBarButtonItem = billBtn;
 
     UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithTitle:@"注销" style:UIBarButtonItemStylePlain target:self action:@selector(Logout:)];
@@ -92,6 +91,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self GetGroupList];
+
 }
 
 - (void)viewDidLoad {
@@ -102,22 +102,29 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if(section == SectionMyGroup){
-        return [myGroups count];
+        NSUInteger myGrouCount = [myGroups count];
+        return myGrouCount  == 0 ? 1 : myGrouCount;
     }
     else if(section == SectionAvailableGroup){
-        return [otherGroups count];
+        NSUInteger count = [otherGroups count];
+        return count == 0 ? 1 : count;
     }
     return 0;
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
-    if (section == SectionMyGroup && [myGroups count] == 0) {
-        return @"没有与您相关的团                                    ";
-    } else if (section == SectionAvailableGroup && [otherGroups count] == 0){
-        return @"现在暂时没有其他可加入的团                   ";
-    }
-    return [super tableView:tableView titleForFooterInSection:section];
-}
+//- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+//    if (section == SectionMyGroup && [myGroups count] == 0) {
+//        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, 340, 40)];
+//        label.text = @"  没有与您相关的团";
+//        return label;
+//    } else if (section == SectionAvailableGroup && [otherGroups count] == 0){
+//        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, 340, 40)];
+//        label.text = @"  现在暂时没有其他可加入的团";
+//        return label;
+//    }
+//    return nil;//[super tableView:tableView viewForFooterInSection:section];
+//}
+
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     if (section == SectionMyGroup){
@@ -147,6 +154,20 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ((indexPath.section == SectionMyGroup) && ([myGroups count] == 0)){
+        UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"emptyCell"];
+        cell.textLabel.text = @"没有与您相关的团";
+        [cell.textLabel setFont:[UIFont systemFontOfSize:14.0] ];
+        return cell;
+    }
+    if ((indexPath.section == SectionAvailableGroup) && ([otherGroups count] == 0)){
+        UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"emptyCell"];
+        cell.textLabel.text = @"现在暂时没有其他可加入的团";
+        [cell.textLabel setFont:[UIFont systemFontOfSize:14.0] ];
+
+        return cell;
+    }
+
     NSString *cellIdentifier = @"GroupSummaryCell";
     GroupSummaryViewCell *cell = (GroupSummaryViewCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if(cell == nil) {
@@ -169,6 +190,12 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == SectionMyGroup && [myGroups count]== 0) {
+        return;
+    }else if (indexPath.section == SectionAvailableGroup && [otherGroups count] == 0){
+        return;
+    }
+
     id group;
     if (indexPath.section == SectionMyGroup){
         group = [myGroups objectAtIndex:indexPath.row];
@@ -183,8 +210,6 @@
 }
 
 - (void)ShowGroupDetails:(id)groupId {
-//    NSDictionary *groupSelected = [GroupDataService GetGroupById:groupId] ;
-//    GroupTabBarController* groupsTabController = [[GroupTabBarController alloc]initWithGroup:groupSelected];
     GroupTabBarController* groupsTabController = [[GroupTabBarController alloc] initWithGroupId:groupId];
 
     [groupsTabController setSelectedIndex:0];

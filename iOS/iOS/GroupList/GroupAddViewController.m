@@ -48,13 +48,13 @@ enum {
         formatter = [[NSDateFormatter alloc] init];
         [formatter setDateFormat:@"yyyy-MM-dd HH:mm"];
 
-        datePickerController = [[UIViewController alloc] init];
-        [datePickerController setTitle:@"截止日期"];
-        [[datePickerController view] setBackgroundColor:[UIColor underPageBackgroundColor]];
-        datePicker = [[UIDatePicker alloc] initWithFrame:datePickerController.view.bounds];
+//        datePickerController = [[UIViewController alloc] init];
+//        [datePickerController setTitle:@"截止日期"];
+//        [[datePickerController view] setBackgroundColor:[UIColor underPageBackgroundColor]];
+        datePicker = [[UIDatePicker alloc] initWithFrame:CGRectMake(0, 0, 360, 0)];
         [datePicker setDatePickerMode:UIDatePickerModeTime];
         [datePicker addTarget:self action:@selector(selectDueDate:) forControlEvents:UIControlEventValueChanged];
-        [datePickerController.view addSubview:datePicker];
+//        [datePickerController.view addSubview:datePicker];
 
         group = [[Group alloc] init];
         group.dueDate = [formatter stringFromDate:[NSDate date]];
@@ -72,11 +72,11 @@ enum {
 {
     [super viewDidLoad];
 
-//    [self.tableView setEditing:NO];
     [self.tableView endEditing:YES];
     self.clearsSelectionOnViewWillAppear = YES;
     UIBarButtonItem *addButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"确定" style:UIBarButtonItemStylePlain target:self action:@selector(add:)];
     self.navigationItem.rightBarButtonItem = addButtonItem;
+    self.tableView.tableFooterView = datePicker;
 }
 
 - (void)add:(id)sender {
@@ -122,6 +122,8 @@ enum {
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    if (section == SectionDueDate)
+        return 0;
     return 1;
 }
 
@@ -138,11 +140,7 @@ enum {
         if (cell == nil) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:IngredientsCellIdentifier];
         }
-        if (indexPath.section == SectionDueDate){
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-            cell.textLabel.text = group.dueDate;
-        }
-        else if (indexPath.section == SectionRestName){
+         if (indexPath.section == SectionRestName){
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             cell.textLabel.text = group.restaurant.name;
         }
@@ -166,13 +164,6 @@ enum {
         viewController = [[RestaurantListViewController alloc] initWithStyle:UITableViewCellStyleDefault];
         [viewController setTitle:@"餐馆列表"];
         [(RestaurantListViewController *)viewController setRestaurant:group.restaurant];
-    }
-    else if (indexPath.section == SectionDueDate){
-        viewController = datePickerController;
-        [datePicker setDate:[formatter dateFromString:group.dueDate]];
-    }
-    else{
-        return;
     }
     [self.navigationController pushViewController:viewController animated:YES];
 }

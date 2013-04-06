@@ -84,6 +84,9 @@
 #define TEXT_LEFT_MARGIN    8.0
 #define TEXT_RIGHT_MARGIN   5.0
 #define OWNER_WIDTH         60.0
+#define CEILING             6.0
+#define GROUP_CEILING       22.0
+#define DATE_CEILING        42.0
 
 - (CGRect)_imageViewFrame {
     if (self.editing) {
@@ -96,33 +99,33 @@
 
 - (CGRect)_restaurantLabelFrame {
     if (self.editing) {
-        return CGRectMake(IMAGE_SIZE + EDITING_INSET + TEXT_LEFT_MARGIN, 4.0, self.contentView.bounds.size.width - IMAGE_SIZE - EDITING_INSET - TEXT_LEFT_MARGIN, 12.0);
+        return CGRectMake(IMAGE_SIZE + EDITING_INSET + TEXT_LEFT_MARGIN, CEILING, self.contentView.bounds.size.width - IMAGE_SIZE - EDITING_INSET - TEXT_LEFT_MARGIN, 12.0);
     }
     else {
-        return CGRectMake(IMAGE_SIZE + TEXT_LEFT_MARGIN, 4.0, self.contentView.bounds.size.width - IMAGE_SIZE - TEXT_RIGHT_MARGIN * 2 - OWNER_WIDTH, 12.0);
+        return CGRectMake(IMAGE_SIZE + TEXT_LEFT_MARGIN, CEILING, self.contentView.bounds.size.width - IMAGE_SIZE - TEXT_RIGHT_MARGIN * 2 - OWNER_WIDTH, 12.0);
     }
 }
 
 - (CGRect)_groupNameLabelFrame {
     if (self.editing) {
-        return CGRectMake(IMAGE_SIZE + EDITING_INSET + TEXT_LEFT_MARGIN, 20.0, self.contentView.bounds.size.width - IMAGE_SIZE - EDITING_INSET - TEXT_LEFT_MARGIN, 16.0);
+        return CGRectMake(IMAGE_SIZE + EDITING_INSET + TEXT_LEFT_MARGIN, GROUP_CEILING, self.contentView.bounds.size.width - IMAGE_SIZE - EDITING_INSET - TEXT_LEFT_MARGIN, 16.0);
     }
     else {
-        return CGRectMake(IMAGE_SIZE + TEXT_LEFT_MARGIN, 20.0, self.contentView.bounds.size.width - IMAGE_SIZE - TEXT_RIGHT_MARGIN * 2 , 16.0);
+        return CGRectMake(IMAGE_SIZE + TEXT_LEFT_MARGIN, GROUP_CEILING, self.contentView.bounds.size.width - IMAGE_SIZE - TEXT_RIGHT_MARGIN * 2 , 16.0);
     }
 }
 
 - (CGRect)_dueDateLabelFrame {
     CGRect contentViewBounds = self.contentView.bounds;
     if (self.editing)
-        return CGRectMake(IMAGE_SIZE + EDITING_INSET + TEXT_LEFT_MARGIN, 40.0, contentViewBounds.size.width - IMAGE_SIZE - EDITING_INSET - TEXT_LEFT_MARGIN, 12.0);
+        return CGRectMake(IMAGE_SIZE + EDITING_INSET + TEXT_LEFT_MARGIN, DATE_CEILING, contentViewBounds.size.width - IMAGE_SIZE - EDITING_INSET - TEXT_LEFT_MARGIN, 12.0);
     else
-        return CGRectMake(IMAGE_SIZE + TEXT_LEFT_MARGIN, 40.0, contentViewBounds.size.width - IMAGE_SIZE - TEXT_LEFT_MARGIN, 12.0);
+        return CGRectMake(IMAGE_SIZE + TEXT_LEFT_MARGIN, DATE_CEILING, contentViewBounds.size.width - IMAGE_SIZE - TEXT_LEFT_MARGIN, 12.0);
 }
 
 - (CGRect)_ownerLabelFrame {
     CGRect contentViewBounds = self.contentView.bounds;
-    return CGRectMake(contentViewBounds.size.width - OWNER_WIDTH - TEXT_RIGHT_MARGIN, 4.0, OWNER_WIDTH, 12.0);
+    return CGRectMake(contentViewBounds.size.width - OWNER_WIDTH - TEXT_RIGHT_MARGIN, CEILING, OWNER_WIDTH, 12.0);
 }
 
 
