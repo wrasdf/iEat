@@ -3,10 +3,7 @@
   %head
     %title My Page
     %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}
-    = stylesheet_link_tag "themes/default/common", :media => "all"
-    = stylesheet_link_tag "themes/default/jquery.mobile-1.3.0", :media => "all"
-    = stylesheet_link_tag "themes/default/mobiscroll.datetime-2.4.1.min", :media => "all"
-    = stylesheet_link_tag "themes/default/app", :media => "all"
+    = stylesheet_link_tag "themes/default/all", :media => "all"
   %body
     #create-group{"data-role" => "page"}
       %div{"data-role" => "header"}
@@ -24,10 +21,4 @@
             %span#show-Time
         %div#timePicker
         %a.create-group-btn{"data-role" => "button", :href => "javascript:void(0);"} 创建
-  = javascript_include_tag "jquery/jquery-1.9.1"
-  = javascript_include_tag "jquery/jquery.mobile-1.3.0"
-  = javascript_include_tag "jquery/jquery.cookie"
-  = javascript_include_tag "jquery/mobiscroll.datetime-2.4.1.min"
-  = javascript_include_tag "utility/date"
-  = javascript_include_tag "utility/utility"
-  = javascript_include_tag "logic/group-create"
+  = javascript_include_tag "compress/group-create-all"

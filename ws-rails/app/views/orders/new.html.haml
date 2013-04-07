@@ -3,9 +3,7 @@
   %head
     %title My Page
     %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}
-    = stylesheet_link_tag "themes/default/common", :media => "all"
-    = stylesheet_link_tag "themes/default/jquery.mobile-1.3.0", :media => "all"
-    = stylesheet_link_tag "themes/default/app", :media => "all"
+    = stylesheet_link_tag "themes/default/all", :media => "all"
   %body
     #user-order-dishes{"data-role" => "page"}
       %div{"data-role" => "header"}
@@ -15,8 +13,4 @@
         %div{"data-collapsed-icon" => "arrow-d", "data-content-theme" => "b", "data-expanded-icon" => "arrow-u", "data-role" => "collapsible", "data-theme" => "b"}
         .edit-my-orders-content
         %a.confirm-foods{"data-role" => "button", :href => "javascript:void(0);"} 确认
-  = javascript_include_tag "jquery/jquery-1.9.1"
-  = javascript_include_tag "jquery/jquery.mobile-1.3.0"
-  = javascript_include_tag "jquery/jquery.cookie"
-  = javascript_include_tag "utility/utility"
-  = javascript_include_tag "logic/order-create"
+  = javascript_include_tag "compress/order-create-all"

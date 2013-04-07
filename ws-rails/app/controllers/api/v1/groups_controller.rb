@@ -10,6 +10,7 @@ class Api::V1::GroupsController < Api::V1::BaseController
     restaurant = Restaurant.find(params[:restaurant_id])
     @group = Group.create(:user => current_user, :restaurant => restaurant, :name => params[:name], :due_date => params[:due_date])
     if @group.valid?
+      #UserMailer.send.deliver
       render :file => 'rabl/group'
     else
       respond_with(@group)
