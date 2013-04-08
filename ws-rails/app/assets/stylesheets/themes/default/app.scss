@@ -1,3 +1,6 @@
+#main,.container,.content,.row,.ui-mobile-viewport{height: 100%;}
+.loading{ width: 46px; height: 46px; background:url(images/ajax-loader.gif) no-repeat; position: fixed; top: 40px; left: 50%; margin-left: -23px;}
+#login-page,#sign-up,#my-bills,#group-list,#group-show,#create-group,#user-order-dishes,#restaurants-list{display: none;}
 
 .ui-btn-inner{font-size: 16px;}
 .ui-msg{width: 100%; z-index: 100000; padding: 10px;position: fixed; top: -500px; font-size: 14px;box-sizing: border-box; text-align: center;}

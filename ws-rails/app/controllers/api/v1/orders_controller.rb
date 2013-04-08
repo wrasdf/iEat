@@ -28,5 +28,15 @@ class Api::V1::OrdersController < Api::V1::BaseController
     respond_with(order)
   end
 
+  def delete
+    order = Order.find(params[:id])
+    order.delete
+    respond_to do |format|
+      format.json{
+        render :json => {:status =>'success'}.to_json, :status => 200
+      }
+    end
+  end
+
 
 end

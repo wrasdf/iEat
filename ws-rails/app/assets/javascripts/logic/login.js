@@ -1,4 +1,6 @@
-$(document).bind("pageshow", function () {
+$("#login-page").bind("pageshow", function () {
+
+    iEatUtility.clearLoading($(this));
 
     iEatUtility.clearCookie();
 

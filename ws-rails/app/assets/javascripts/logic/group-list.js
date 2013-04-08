@@ -103,6 +103,7 @@ var iEatGroupList = (function () {
     }
 
     function pageInit() {
+        iEatUtility.clearLoading($("#group-list"));
         reFreshGroupList()
     }
 

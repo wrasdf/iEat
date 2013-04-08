@@ -1,7 +1,9 @@
 var iEatRestaurant = (function(){
 
     function pageInit(){
-        console.log(1111);
+
+        iEatUtility.clearLoading($("#restaurants-list"));
+
         $(".ui-btn-left").bind("click",function(){
             window.location.href = "/groups/new";
         });

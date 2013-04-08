@@ -3,6 +3,7 @@ var iEatGroupShow = (function () {
     var currentGroupId = $.cookie("currentGroupId");
     var token = $.cookie("token");
     var userName = $.cookie("userName");
+    var setIntervalForDeleteButton = null;
 
     function pageInit(f) {
 
@@ -10,14 +11,9 @@ var iEatGroupShow = (function () {
             f();
         }
 
-        getGroupDetails(function (group) {
-            updateGroupInfoDetails(group);
-            updateRestaurantDetails(group.restaurant);
-            updateMyStatus(group.orders);
-            updateOthersStatus(group.orders);
-            updateAllStatus(group.orders);
-            initStatusByHash();
-        });
+        iEatUtility.clearLoading($("#group-show"));
+
+        rebuildGroupDetailsPage();
 
         $("#group-show .restaurant-info-btn").bind("click", function () {
             $("#group-show .details-content").hide();
@@ -38,7 +34,7 @@ var iEatGroupShow = (function () {
             window.location.hash = "#2";
             window.setTimeout(function(){
                 $(self).addClass("ui-btn-active");
-            },0)
+            },0);
         });
 
         $("#group-show .members-orders-btn").bind("click", function () {
@@ -55,6 +51,60 @@ var iEatGroupShow = (function () {
         $("#group-show .ui-btn-left").bind("click", function () {
             window.location.href = "/groups";
         });
+
+    }
+
+    function rebuildGroupDetailsPage(){
+        getGroupDetails(function (group) {
+            updateGroupInfoDetails(group);
+            updateRestaurantDetails(group.restaurant);
+            updateMyStatus(group.orders);
+            updateOthersStatus(group.orders);
+            updateAllStatus(group.orders);
+            initStatusByHash();
+            deleteButtonForMyOrders(group)
+        });
+    }
+
+    function deleteButtonForMyOrders(data){
+
+        var dueDate = new Date(data.due_date).getTime();
+        var currentTime = Date.parse(new Date().toUTCString());
+
+        $("#group-show .my-orders-details li .ui-btn").unbind("click").bind("click",function(){
+            var orderId = $(this).find('button').data("order-id");
+            $.ajax({
+                type: "get",
+                url: "/api/v1/orders/delete/" + orderId + "?token=" + token,
+                dataType: "json",
+                success: function (data) {
+                    if (data && data.status == 'success') {
+                        if(setIntervalForDeleteButton){
+                            window.clearInterval(setIntervalForDeleteButton);
+                            setIntervalForDeleteButton = null;
+                        }
+                        rebuildGroupDetailsPage();
+                    }
+                },
+                error: function () {
+                    alert("API : /api/v1/orders/delete/:id is ERROR!");
+                }
+            });
+        });
+
+        function hideDeleteButton(){
+            if(currentTime - dueDate > 0){
+                $(".my-orders-details li .ui-btn").hide();
+            }
+        }
+
+        hideDeleteButton();
+
+        setIntervalForDeleteButton = window.setInterval(function(){
+            hideDeleteButton();
+            window.clearInterval(setIntervalForDeleteButton);
+            setIntervalForDeleteButton = null;
+        },5000);
 
     }
 
@@ -77,16 +127,18 @@ var iEatGroupShow = (function () {
     }
 
     function updateGroupInfoDetails(group) {
+
         var str = '<li><span class="subject">团名</span><span>' + group.name + '</span></li>';
         str += '<li><span class="subject">Owner</span><span>' + group.owner.name + '</span></li>';
         str += '<li><span class="subject">电话:</span><span>' + (group.owner.telephone || "暂时没有")  + '</span></li>';
+        str += '<li><span class="subject">截止时间:</span><span>' + (group.due_date)  + '</span></li>';
         $("#group-show .current-group-details").html(str).listview('refresh').show();
     }
 
     function generateOrderItemStrByOrderData(data,editStatus) {
         var total = 0;
         if(editStatus){
-            var str = '<li><h2><span class="user-name">' + data.user.name + '</span><button data-mini="true" data-inline="true" data-disabled="false">删除</button></h2><table><tbody>';
+            var str = '<li><h2><span class="user-name">' + data.user.name + '</span><button data-order-id="'+data.id+'" data-mini="true" data-inline="true" data-disabled="false">删除</button></h2><table><tbody>';
         }else{
             var str = '<li><h2>' + data.user.name + '</h2><table><tbody>';
         }
@@ -266,7 +318,7 @@ $("#group-show").bind("pageshow", function () {
             type: "success",
             msg: "Your order is success created."
         });
-        $.cookie("orderCreateStatus", "null");
+        $.cookie("orderCreateStatus", "null", { expires: 1, path: '/' });
     }
 
     if ($.cookie("groupCreateStatus") == "success") {
@@ -274,7 +326,7 @@ $("#group-show").bind("pageshow", function () {
             type: "success",
             msg: "Your Group is success created."
         });
-        $.cookie("groupCreateStatus", "null");
+        $.cookie("groupCreateStatus", "null", { expires: 1, path: '/' });
     }
     iEatGroupShow.pageInit();
 });

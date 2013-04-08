@@ -4,6 +4,7 @@ var iEatSignUp = (function () {
         if(f && typeof f == "function"){
             f();
         }
+        iEatUtility.clearLoading($("#sign-up"));
         iEatUtility.clearCookie();
         bindClickEvent();
     }

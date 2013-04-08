@@ -5,6 +5,7 @@
     %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}
     = stylesheet_link_tag "themes/default/all", :media => "all"
   %body
+    .loading
     #my-bills{"data-role" => "page"}
       %div{"data-role" => "header"}
         %a.ui-btn-left{"data-icon" => "arrow-l", "data-theme" => "c", :href => "javascript:void(0);"} 返回
@@ -57,7 +58,7 @@
                   %td.dish-price 24￥
                   %td.dish-count
 
-          %a.send-notification{"data-role" => "button", :href => "javascript:void(0);"} 提醒还钱
+          -#%a.send-notification{"data-role" => "button", :href => "javascript:void(0);"} 提醒还钱
 
         .pay-back-content
           %ul{"data-role"=>"listview", "data-inset"=>"true"}

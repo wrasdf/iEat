@@ -79,7 +79,6 @@ var iEatCreate = (function () {
                 });
                 return;
             }
-
             $.ajax({
                 type: 'POST',
                 url: "/api/v1/groups/create",
@@ -202,6 +201,7 @@ var iEatCreate = (function () {
         if (f && typeof f == "function") {
             f();
         }
+        iEatUtility.clearLoading($("#create-group"));
         updateGroupName($.cookie("createGroupName"));
         getRestaurants();
         uiPickerInit();

@@ -123,6 +123,7 @@ var iEatGroupDetails = (function () {
         if(f && typeof f == "function"){
             f();
         }
+        iEatUtility.clearLoading($("#user-order-dishes"));
         clearCache();
         getAllDishes();
     }

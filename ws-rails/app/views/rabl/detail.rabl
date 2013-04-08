@@ -7,6 +7,7 @@ attributes :id, :restaurant, :description, :due_date, :name, :created_at
  }
 
  child(:orders) {
+     attributes :id
      child(:user) {
         attributes :id, :name, :email
      }

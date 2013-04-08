@@ -4,6 +4,7 @@ var iEatMyBills = (function () {
         if(f && typeof f == "function"){
             f();
         }
+        iEatUtility.clearLoading($("#my-bills"));
         renderPageUI();
     }
 

@@ -84,3 +84,17 @@ $.extend(iEatUtility,(function(){
     }
 
 })());
+
+
+$.extend(iEatUtility,(function(){
+
+    function clearLoading(dom){
+        $(".loading").hide();
+        dom.show();
+    }
+
+    return {
+        clearLoading : clearLoading
+    }
+
+})());
