@@ -165,6 +165,16 @@
 }
 </pre>
 
+## Get current group due_date API
++ ajax type -> get
++ url : api/v1/groups/:id/due_date
++ return json:
++ note : Time Zone is UTC 
+
+<pre>
+  {"id":11,"due_date":"2013-03-29T18:56:00Z","name":"XXXX"}
+</pre>
+
 
 ## Create group API
 + ajax type -> Post
@@ -190,6 +200,15 @@ parametes:
     "dishes" : "[{"id":1,"quantity":"1"},{"id":2,"quantity":"1"}]"
 }
 </pre>
+
++ if out of due date will return 
+
+<pre>
+{
+    "status" : "out_of_dueDate"
+}
+</pre>
+
 
 
 ## Get user unpaid & payback orders
