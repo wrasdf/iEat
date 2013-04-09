@@ -6,9 +6,6 @@ class Api::V1::OrdersController < Api::V1::BaseController
   def create
     group = Group.find(params[:group_id])
 
-    puts "==========#{group.due_date}==========#{Time.current}"
-    puts "==========#{group.due_date > Time.current}=============="
-
     if group.due_date > Time.current
 
       @order = Order.create(:user => current_user, :group => group)
