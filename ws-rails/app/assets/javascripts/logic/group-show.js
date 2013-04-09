@@ -1,6 +1,7 @@
 var iEatGroupShow = (function () {
 
-    var currentGroupId = $.cookie("currentGroupId");
+    var urlRegexp = /^.+groups\/(\d+)(#?)/g;
+    var currentGroupId = urlRegexp.exec(window.location.href)[1];
     var token = $.cookie("token");
     var userName = $.cookie("userName");
     var setIntervalForDeleteButton = null;
@@ -15,15 +16,23 @@ var iEatGroupShow = (function () {
         rebuildGroupDetailsPage();
 
         $("#group-show .restaurant-info-btn").bind("click", function () {
+            var self = this;
             $("#group-show .details-content").hide();
             $("#group-show .group-details").show();
             window.location.hash = "#0";
+            window.setTimeout(function(){
+                $(self).addClass("ui-btn-active");
+            },0);
         });
 
         $("#group-show .all-info-btn").bind("click", function () {
+            var self = this;
             $("#group-show .details-content").hide();
             $("#group-show .all-status").show();
             window.location.hash = "#1";
+            window.setTimeout(function(){
+                $(self).addClass("ui-btn-active");
+            },0);
         });
 
         $("#group-show .my-orders-btn").bind("click", function () {
@@ -37,9 +46,13 @@ var iEatGroupShow = (function () {
         });
 
         $("#group-show .members-orders-btn").bind("click", function () {
+            var self = this;
             $("#group-show .details-content").hide();
             $("#group-show .members-details").show();
             window.location.hash = "#3";
+            window.setTimeout(function(){
+                $(self).addClass("ui-btn-active");
+            },0);
         });
 
 
