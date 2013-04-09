@@ -4,7 +4,7 @@ var iEatGroupDetails = (function () {
     var currentGroupId = $.cookie("currentGroupId");
     var token = $.cookie("token");
 
-    function getAllDishes(){
+    function getAllDishes(callback){
         $.ajax({
             type : "get",
             url : "/api/v1/groups/"+currentGroupId+"/dishes?token="+token,
@@ -25,10 +25,11 @@ var iEatGroupDetails = (function () {
                         str += '<a class="reduce" data-inline="true" data-icon="minus" data-role="button" href="javascript:void(0);"> </a>';
                         str += '</div></li>';
                     });
-                })
+                });
                 str += '</ul>';
                 $(".edit-my-orders-content").html(str).trigger("create");
                 bindFunction();
+                callback();
             },
             error : function(){
                 alert("API : /api/v1/groups/:id/dishes is ERROR!");
@@ -58,6 +59,7 @@ var iEatGroupDetails = (function () {
         });
 
         $("#user-order-dishes .confirm-foods").bind("click",function(){
+
             var orderDishes = getMyOrderDishes();
             if(orderDishes.length == 0){
                 iEatUtility.msg({
@@ -74,7 +76,19 @@ var iEatGroupDetails = (function () {
                     token : token,
                     dishes : JSON.stringify(getMyOrderDishes())
                 },
-                success : function(){
+                success : function(o){
+                    if(o.status && o.status == "out_of_dueDate"){
+                        iEatUtility.msg({
+                            type : "error",
+                            msg : "你已经超出点餐时间。"
+                        });
+
+                        window.setTimeout(function(){
+                            window.location.href = "/groups/"+currentGroupId;
+                        },2000);
+
+                        return;
+                    }
                     $.cookie("orderCreateStatus","success",{ expires: 1, path: '/' });
                     window.location.href = "/groups/"+currentGroupId+"#2";
                 },
@@ -125,7 +139,9 @@ var iEatGroupDetails = (function () {
         }
         iEatUtility.clearLoading($("#user-order-dishes"));
         clearCache();
-        getAllDishes();
+        getAllDishes(function(){
+
+        });
     }
 
     return {

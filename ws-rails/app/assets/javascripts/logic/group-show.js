@@ -12,7 +12,6 @@ var iEatGroupShow = (function () {
         }
 
         iEatUtility.clearLoading($("#group-show"));
-
         rebuildGroupDetailsPage();
 
         $("#group-show .restaurant-info-btn").bind("click", function () {
@@ -43,10 +42,6 @@ var iEatGroupShow = (function () {
             window.location.hash = "#3";
         });
 
-        $("#group-show .buy-foods").bind("click", function () {
-            var currentGroupId = $.cookie("currentGroupId");
-            window.location.href = "/groups/" + currentGroupId + "/orders/new";
-        });
 
         $("#group-show .ui-btn-left").bind("click", function () {
             window.location.href = "/groups";
@@ -62,16 +57,44 @@ var iEatGroupShow = (function () {
             updateOthersStatus(group.orders);
             updateAllStatus(group.orders);
             initStatusByHash();
-            deleteButtonForMyOrders(group)
+            dueDateActions(group)
         });
     }
 
-    function deleteButtonForMyOrders(data){
 
-        var dueDate = new Date(data.due_date).getTime();
-        var currentTime = Date.parse(new Date().toUTCString());
+
+    function dueDateActions(data){
+
+        function isOutOfDueDate(){
+            var dueDate = new Date(data.due_date).getTime();
+            var currentTime = new Date().getTime();
+            return currentTime - dueDate > 0;
+        }
+
+        function hideOutOfDueDateButtons(isShowMsg){
+
+            if(isOutOfDueDate()){
+
+                $(".buy-foods").hide();
+                $(".my-orders-details li .ui-btn").hide();
+
+                if(isShowMsg){
+                    iEatUtility.msg({
+                        type: "error",
+                        msg: "Out of this group's due date."
+                    });
+                }
+
+            }
+        }
 
         $("#group-show .my-orders-details li .ui-btn").unbind("click").bind("click",function(){
+
+            if(isOutOfDueDate()){
+                hideOutOfDueDateButtons(true);
+                return false;
+            }
+
             var orderId = $(this).find('button').data("order-id");
             $.ajax({
                 type: "get",
@@ -92,19 +115,16 @@ var iEatGroupShow = (function () {
             });
         });
 
-        function hideDeleteButton(){
-            if(currentTime - dueDate > 0){
-                $(".my-orders-details li .ui-btn").hide();
+        $("#group-show .buy-foods").bind("click", function () {
+            if(isOutOfDueDate()){
+                hideOutOfDueDateButtons(true);
+                return false;
             }
-        }
+            var currentGroupId = $.cookie("currentGroupId");
+            window.location.href = "/groups/" + currentGroupId + "/orders/new";
+        });
 
-        hideDeleteButton();
-
-        setIntervalForDeleteButton = window.setInterval(function(){
-            hideDeleteButton();
-            window.clearInterval(setIntervalForDeleteButton);
-            setIntervalForDeleteButton = null;
-        },5000);
+        hideOutOfDueDateButtons();
 
     }
 
@@ -131,7 +151,7 @@ var iEatGroupShow = (function () {
         var str = '<li><span class="subject">团名</span><span>' + group.name + '</span></li>';
         str += '<li><span class="subject">Owner</span><span>' + group.owner.name + '</span></li>';
         str += '<li><span class="subject">电话:</span><span>' + (group.owner.telephone || "暂时没有")  + '</span></li>';
-        str += '<li><span class="subject">截止时间:</span><span>' + (group.due_date)  + '</span></li>';
+        str += '<li><span class="subject">截止时间:</span><span>' + new Date(group.due_date).format("isoDateTime");  + '</span></li>';
         $("#group-show .current-group-details").html(str).listview('refresh').show();
     }
 

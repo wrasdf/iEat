@@ -20,6 +20,7 @@ WsRails::Application.routes.draw do
       get 'groups/:id/dishes' => 'dishes#detail'
       get 'groups/active' => 'groups#active'
       get 'groups/:id' => 'groups#detail'
+      get 'groups/:id/due_date' => 'groups#due_date'
       post 'groups/create' => 'groups#create'
       post 'groups/:group_id/orders/create' => 'orders#create'
       get 'mybills' => 'orders#list'

@@ -5,13 +5,27 @@ class Api::V1::OrdersController < Api::V1::BaseController
 
   def create
     group = Group.find(params[:group_id])
-    @order = Order.create(:user => current_user, :group => group)
 
-    Oj.load(params[:dishes]).each do |dish|
-      OrderDish.create(:order => @order, :dish_id => dish['id'], :quantity => dish['quantity'].to_i)
+    render :json => {:status =>'out_of_dueDate'}.to_json, :status => 200
+
+    return
+
+    if group.due_date > Time.current
+
+      @order = Order.create(:user => current_user, :group => group)
+
+      Oj.load(params[:dishes]).each do |dish|
+        OrderDish.create(:order => @order, :dish_id => dish['id'], :quantity => dish['quantity'].to_i)
+      end
+
+      render :file => 'rabl/order'
+
+    else
+
+      render :json => {:status =>'out_of_dueDate'}.to_json, :status => 200
+
     end
 
-    render :file => 'rabl/order'
 
   end
 
