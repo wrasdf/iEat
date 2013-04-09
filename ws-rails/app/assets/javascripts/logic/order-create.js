@@ -1,10 +1,11 @@
 
 var iEatGroupDetails = (function () {
 
-    var currentGroupId = $.cookie("currentGroupId");
+    var urlRegexp = /^.+\/(\d+)\/.+$/g;
+    var currentGroupId = urlRegexp.exec(window.location.href)[1];
     var token = $.cookie("token");
 
-    function getAllDishes(callback){
+    function getAllDishes(){
         $.ajax({
             type : "get",
             url : "/api/v1/groups/"+currentGroupId+"/dishes?token="+token,
@@ -29,7 +30,6 @@ var iEatGroupDetails = (function () {
                 str += '</ul>';
                 $(".edit-my-orders-content").html(str).trigger("create");
                 bindFunction();
-                callback();
             },
             error : function(){
                 alert("API : /api/v1/groups/:id/dishes is ERROR!");
@@ -139,9 +139,7 @@ var iEatGroupDetails = (function () {
         }
         iEatUtility.clearLoading($("#user-order-dishes"));
         clearCache();
-        getAllDishes(function(){
-
-        });
+        getAllDishes();
     }
 
     return {

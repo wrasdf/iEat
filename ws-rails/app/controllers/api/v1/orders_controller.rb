@@ -6,9 +6,8 @@ class Api::V1::OrdersController < Api::V1::BaseController
   def create
     group = Group.find(params[:group_id])
 
-    render :json => {:status =>'out_of_dueDate'}.to_json, :status => 200
-
-    return
+    puts "==========#{group.due_date}==========#{Time.current}"
+    puts "==========#{group.due_date > Time.current}=============="
 
     if group.due_date > Time.current
 
