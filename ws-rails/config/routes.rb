@@ -31,7 +31,7 @@ WsRails::Application.routes.draw do
   end
 
   authenticated :user do
-    root :to => redirect("/users/sign_in")
+    root :to => redirect("/groups")
   end
 
   root :to => redirect("/users/sign_in")
