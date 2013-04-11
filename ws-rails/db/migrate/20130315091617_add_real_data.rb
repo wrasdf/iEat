@@ -1,4 +1,22 @@
 require 'oj'
+
+class Restaurant < ActiveRecord::Base
+  has_many :cuisines
+  attr_accessible :name, :telephone, :address, :image_url, :note
+end
+
+class Cuisine < ActiveRecord::Base
+  belongs_to :restaurant
+  has_many :dishes
+  attr_accessible :id, :name, :restaurant
+end
+
+class Dish < ActiveRecord::Base
+  belongs_to :restaurant
+  belongs_to :cuisine
+  attr_accessible :id, :description, :image_url, :name, :price, :restaurant, :cuisine
+end
+
 class MigrateScript
 
   def initialize
@@ -14,7 +32,7 @@ class MigrateScript
     data
   end
 
-  def prepareAllData
+  def prepare_all_data
     all = Oj.load(@data)
     all.each do |restaurant|
       @restaurant = Restaurant.create! :name => restaurant['name'], :telephone => restaurant['telephone'], :address => restaurant['address'], :note=> restaurant['note']
@@ -32,7 +50,7 @@ end
 class AddRealData < ActiveRecord::Migration
   def change
     migrate = MigrateScript.new()
-    migrate.prepareAllData
+    migrate.prepare_all_data
   end
 end
 
