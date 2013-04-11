@@ -2,28 +2,30 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:paddingLeft="@dimen/device_padding"
+              android:paddingRight="@dimen/device_padding"
+              android:paddingTop="@dimen/device_padding">
+
     <TextView android:layout_width="fill_parent"
               android:layout_height="wrap_content"
-              android:text="@string/group_member_title"/>
+              android:text="@string/group_member_title"
+              android:layout_marginBottom="@dimen/section_margin"/>
 
-    <TableLayout android:layout_width="fill_parent"
-                 android:layout_height="wrap_content">
-        <TableRow android:orientation="horizontal">
-            <TextView android:layout_weight="0.3"
-                      android:layout_width="0dp"
-                      android:layout_height="wrap_content"
-                      android:text="团名"/>
+    <TextView android:id="@+id/group_member_no_content"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:background="@drawable/list_item_bg"
+              android:paddingLeft="@dimen/device_padding"
+              android:paddingTop="@dimen/vertical_padding"
+              android:paddingBottom="@dimen/vertical_padding"
+              android:text="@string/group_myself_no_content"/>
 
-            <TextView android:layout_height="wrap_content"
-                      android:layout_width="0dp"
-                      android:layout_weight="0.7"
-                      android:text="name"/>
-
-        </TableRow>
-    </TableLayout>
-    <Button android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/buy_command"
-            ></Button>
+    <ListView android:id="@+id/group_memeber_order_list"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:visibility="gone"
+              android:dividerHeight="2dp"
+              android:divider="@null"/>
 </LinearLayout>

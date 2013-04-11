@@ -11,20 +11,25 @@
                  android:label="@string/app_name"
                  android:theme="@android:style/Theme.Holo.Light">
         <activity android:name=".activity.LoginActivity"
-                android:theme="@android:style/Theme.Holo.Light.NoActionBar">
+                android:theme="@android:style/Theme.Holo.Light.NoActionBar"
+                android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
 
-        <activity android:name=".activity.GroupListActivity"/>
-        <activity android:name=".activity.GroupTabActivity"/>
-        <activity android:name=".activity.GroupCreateActivity"/>
-        <activity android:name=".activity.GroupInfoActivity"/>
-        <activity android:name=".activity.GroupAnalysisActivity"/>
-        <activity android:name=".activity.GroupMyselfActivity"/>
-        <activity android:name=".activity.GroupMemberActivity"/>
+        <activity android:name=".activity.GroupListActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.GroupTabActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.GroupCreateActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.GroupInfoActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.GroupAnalysisActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.GroupMyselfActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.GroupMemberActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.OrderCreateActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.BillActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.PayBackActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.UnpaidOrderActivity" android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

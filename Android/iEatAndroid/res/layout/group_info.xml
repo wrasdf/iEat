@@ -3,16 +3,25 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="wrap_content">
+              android:layout_height="wrap_content"
+              android:paddingLeft="@dimen/device_padding"
+              android:paddingRight="@dimen/device_padding"
+              android:paddingTop="@dimen/device_padding">
+
     <TextView android:layout_height="wrap_content"
             android:layout_width="fill_parent"
             android:text="@string/group_info_layout_title"/>
     <TableLayout android:layout_width="fill_parent"
+                 android:layout_marginTop="@dimen/section_margin"
             android:layout_height="wrap_content">
-        <TableRow android:orientation="horizontal">
+        <TableRow android:orientation="horizontal"
+                  android:paddingTop="@dimen/vertical_padding"
+                  android:paddingBottom="@dimen/vertical_padding"
+                  android:background="@drawable/list_item_bg_top">
             <TextView android:layout_weight="0.3"
                       android:layout_width="0dp"
                       android:layout_height="wrap_content"
+                      android:paddingLeft="@dimen/device_padding"
                       android:text="@string/group_info_label_name"/>
 
             <TextView android:layout_height="wrap_content"
@@ -23,12 +32,17 @@
 
         </TableRow>
 
-        <TableRow android:orientation="horizontal">
+        <LinearLayout android:layout_width="fill_parent" android:layout_height="1dp" android:background="@color/heavy_silver"/>
+
+        <TableRow android:orientation="horizontal"
+                  android:paddingTop="@dimen/vertical_padding"
+                  android:paddingBottom="@dimen/vertical_padding"
+                  android:background="@drawable/list_item_bg_rectangle">
             <TextView android:layout_weight="0.3"
                       android:layout_width="0dp"
                       android:layout_height="wrap_content"
-                      android:text="@string/group_info_label_owner"
-                    />
+                      android:paddingLeft="@dimen/device_padding"
+                      android:text="@string/group_info_label_owner"/>
 
             <TextView android:layout_height="wrap_content"
                       android:id="@+id/group_info_owner_name"
@@ -38,10 +52,16 @@
 
         </TableRow>
 
-        <TableRow android:orientation="horizontal">
+        <LinearLayout android:layout_width="fill_parent" android:layout_height="1dp" android:background="@color/heavy_silver"/>
+
+        <TableRow android:orientation="horizontal"
+                  android:paddingTop="@dimen/vertical_padding"
+                  android:paddingBottom="@dimen/vertical_padding"
+                  android:background="@drawable/list_item_bg_bottom">
             <TextView android:layout_weight="0.3"
                       android:layout_width="0dp"
                       android:layout_height="wrap_content"
+                      android:paddingLeft="@dimen/device_padding"
                       android:text="@string/group_info_label_telephone"/>
 
             <TextView android:layout_height="wrap_content"
@@ -56,13 +76,22 @@
 
     <TextView android:layout_width="fill_parent"
               android:layout_height="wrap_content"
+              android:layout_marginTop="@dimen/section_margin"
               android:text="@string/restaurant_info_layout_title"/>
     <TableLayout android:layout_width="fill_parent"
-                 android:layout_height="wrap_content">
-        <TableRow android:orientation="horizontal">
+                 android:layout_height="wrap_content"
+                 android:layout_marginTop="@dimen/section_margin"
+                 android:divider="@color/black"
+                 android:showDividers="middle">
+        <TableRow android:orientation="horizontal"
+                  android:showDividers="middle"
+                  android:paddingTop="@dimen/vertical_padding"
+                  android:paddingBottom="@dimen/vertical_padding"
+                android:background="@drawable/list_item_bg_top">
             <TextView android:layout_weight="0.3"
                       android:layout_width="0dp"
                       android:layout_height="wrap_content"
+                      android:paddingLeft="@dimen/device_padding"
                       android:text="@string/group_info_restaurant_label_name"/>
 
             <TextView android:layout_height="wrap_content"
@@ -73,10 +102,16 @@
 
         </TableRow>
 
-        <TableRow android:orientation="horizontal">
+        <LinearLayout android:layout_width="fill_parent" android:layout_height="1dp" android:background="@color/heavy_silver"/>
+
+        <TableRow android:orientation="horizontal"
+                  android:paddingTop="@dimen/vertical_padding"
+                  android:paddingBottom="@dimen/vertical_padding"
+                android:background="@drawable/list_item_bg_rectangle">
             <TextView android:layout_weight="0.3"
                       android:layout_width="0dp"
                       android:layout_height="wrap_content"
+                      android:paddingLeft="@dimen/device_padding"
                       android:text="@string/group_info_restaurant_label_telephone"/>
 
             <TextView android:layout_height="wrap_content"
@@ -87,10 +122,16 @@
 
         </TableRow>
 
-        <TableRow android:orientation="horizontal">
+        <LinearLayout android:layout_width="fill_parent" android:layout_height="1dp" android:background="@color/heavy_silver"/>
+
+        <TableRow android:orientation="horizontal"
+                  android:paddingTop="@dimen/vertical_padding"
+                  android:paddingBottom="@dimen/vertical_padding"
+                android:background="@drawable/list_item_bg_rectangle">
             <TextView android:layout_weight="0.3"
                       android:layout_width="0dp"
                       android:layout_height="wrap_content"
+                      android:paddingLeft="@dimen/device_padding"
                       android:text="@string/group_info_restaurant_label_address"/>
 
             <TextView android:layout_height="wrap_content"
@@ -101,10 +142,16 @@
 
         </TableRow>
 
-        <TableRow android:orientation="horizontal">
+        <LinearLayout android:layout_width="fill_parent" android:layout_height="1dp" android:background="@color/heavy_silver"/>
+
+        <TableRow android:orientation="horizontal"
+                  android:paddingTop="@dimen/vertical_padding"
+                  android:paddingBottom="@dimen/vertical_padding"
+                android:background="@drawable/list_item_bg_bottom">
             <TextView android:layout_weight="0.3"
                       android:layout_width="0dp"
                       android:layout_height="wrap_content"
+                      android:paddingLeft="@dimen/device_padding"
                       android:text="@string/group_info_restaurant_label_desc"/>
 
             <TextView android:layout_height="wrap_content"

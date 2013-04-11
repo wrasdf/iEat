@@ -3,10 +3,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="match_parent"
+              android:paddingLeft="@dimen/device_padding"
+              android:paddingRight="@dimen/device_padding"
               android:layout_height="match_parent">
 
     <TextView android:layout_width="fill_parent"
               android:layout_height="wrap_content"
+              android:layout_marginTop="5dp"
               android:text="@string/create_group_name_label"/>
     <EditText android:id="@+id/created_group_name"
               android:layout_width="fill_parent"
@@ -33,6 +36,7 @@
     <TimePicker android:id="@+id/time_picker"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingTop="-10dp"
                 android:layout_gravity="center">
     </TimePicker>
 

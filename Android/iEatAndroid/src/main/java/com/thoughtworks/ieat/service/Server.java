@@ -1,13 +1,13 @@
 package com.thoughtworks.ieat.service;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.thoughtworks.ieat.IEatApplication;
-import com.thoughtworks.ieat.domain.AppHttpResponse;
-import com.thoughtworks.ieat.domain.Group;
-import com.thoughtworks.ieat.domain.Restaurant;
-import com.thoughtworks.ieat.domain.UserToken;
+import com.thoughtworks.ieat.domain.*;
 import com.thoughtworks.ieat.utils.HttpUtils;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,8 +24,7 @@ public class Server {
             appHttpResponse = HttpUtils.post(url, postParams, UserToken.class);
 
             if (appHttpResponse.isSuccessful()) {
-                IEatApplication.token = appHttpResponse.getData().getToken();
-                IEatApplication.login(appHttpResponse.getData().getName());
+                IEatApplication.login(appHttpResponse.getData().getName(), appHttpResponse.getData().getToken());
             }
         } catch (Exception e) {
             appHttpResponse.setException(e);
@@ -48,7 +47,7 @@ public class Server {
     public static AppHttpResponse<Group> getGroup(Integer groupId) {
         AppHttpResponse<Group> appHttpResponse;
         try {
-            appHttpResponse = HttpUtils.get("/groups/" + groupId + ".json", Group.class);
+            appHttpResponse = HttpUtils.get("/api/v1/groups/" + groupId + ".json", Group.class);
         } catch (Exception e) {
             appHttpResponse = new AppHttpResponse<Group>();
             appHttpResponse.setException(e);
@@ -77,6 +76,44 @@ public class Server {
             appHttpResponse = HttpUtils.get("/api/v1/restaurants", new TypeToken<List<Restaurant>>() {}.getType());
         } catch (Exception e) {
             appHttpResponse = new AppHttpResponse<List<Restaurant>>();
+            appHttpResponse.setException(e);
+        }
+        return appHttpResponse;
+    }
+
+    public static AppHttpResponse<List<Dishes>> listDishes(Integer groupId) {
+        AppHttpResponse<List<Dishes>> appHttpResponse;
+        try {
+            appHttpResponse = HttpUtils.get("/api/v1/groups/" + groupId + "/dishes", new TypeToken<List<Dishes>>() {}.getType());
+        } catch (Exception e) {
+            appHttpResponse = new AppHttpResponse<List<Dishes>>();
+            appHttpResponse.setException(e);
+        }
+        return appHttpResponse;
+    }
+
+    public static AppHttpResponse<Group> createOrder(Integer groupId, List<Map<String, String>> selectedDishList) {
+        AppHttpResponse<Group> appHttpResponse;
+        Gson gson = new GsonBuilder().create();
+        String orderDishListJson = gson.toJson(selectedDishList);
+        HashMap<String, String> postContent = new HashMap<String, String>();
+        postContent.put("dishes", orderDishListJson);
+        String postJsonData = gson.toJson(postContent);
+        try {
+            appHttpResponse = HttpUtils.post("/api/v1/groups/" + groupId + "/orders/create", postJsonData, Group.class);
+        } catch (Exception e) {
+            appHttpResponse = new AppHttpResponse<Group>();
+            appHttpResponse.setException(e);
+        }
+        return appHttpResponse;
+    }
+
+    public static AppHttpResponse<MyBill> getMyBill() {
+        AppHttpResponse<MyBill> appHttpResponse;
+        try {
+            appHttpResponse = HttpUtils.get("/api/v1/mybills", MyBill.class);
+        } catch (IOException e) {
+            appHttpResponse = new AppHttpResponse<MyBill>();
             appHttpResponse.setException(e);
         }
         return appHttpResponse;

@@ -1,40 +1,41 @@
 package com.thoughtworks.ieat.activity;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 import com.thoughtworks.ieat.IEatApplication;
 import com.thoughtworks.ieat.R;
-import com.thoughtworks.ieat.activity.view.GroupItemView;
-import com.thoughtworks.ieat.activity.view.GroupsAdapter;
 import com.thoughtworks.ieat.domain.AppHttpResponse;
 import com.thoughtworks.ieat.domain.Group;
 import com.thoughtworks.ieat.service.Server;
+import com.thoughtworks.ieat.view.EmptyAdapter;
+import com.thoughtworks.ieat.view.GroupsAdapter;
 
 import java.util.LinkedList;
 import java.util.List;
 
-public class GroupListActivity extends Activity {
+public class GroupListActivity extends ActionBarActivity {
 
     private ListView myGroupLayout;
     private ListView todayGroupLayout;
 
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
+
         this.requestWindowFeature(Window.FEATURE_ACTION_BAR);
         setContentView(R.layout.group_list);
         myGroupLayout = (ListView) findViewById(R.id.my_groups);
         todayGroupLayout = (ListView) findViewById(R.id.today_groups);
-        getActionBar().setTitle(R.string.title_group_list);
+        getActionBar().setTitle(R.string.group_list_title);
     }
 
     public void onResume() {
@@ -46,6 +47,44 @@ public class GroupListActivity extends Activity {
     public void createGroup(View view) {
         Intent intent = new Intent(this, GroupCreateActivity.class);
         startActivity(intent);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        getMenuInflater().inflate(R.menu.group_list, menu);
+        getActionBar().setHomeButtonEnabled(false);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_logout_button:
+                logout();
+                break;
+            case R.id.menu_recharge_button:
+                goToRecharge();
+                break;
+        }
+        return false;
+    }
+
+    private void goToRecharge() {
+        Intent intent = new Intent(this, BillActivity.class);
+        startActivity(intent);
+    }
+
+    private void logout() {
+        ((IEatApplication) getApplication()).logout();
+
+        goToLogin();
+        finish();
+    }
+
+    private void goToLogin() {
+        Intent loginIntent = new Intent(this, LoginActivity.class);
+        startActivity(loginIntent);
     }
 
     public class GroupListAsyncTask extends AsyncTask<Void, Void, AppHttpResponse<List<Group>>> {
@@ -91,14 +130,18 @@ public class GroupListActivity extends Activity {
             }
             myGroupList.add(myGroup);
         }
+
+        if (myGroupList.isEmpty()) {
+            EmptyAdapter emptyAdapter = new EmptyAdapter(getApplicationContext(), getResources().getString(R.string.my_group_list_empty_reminder));
+            myGroupLayout.setAdapter(emptyAdapter);
+            return;
+        }
         final GroupsAdapter adapter = new GroupsAdapter(getApplicationContext(), myGroupList);
         myGroupLayout.setAdapter(adapter);
         myGroupLayout.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(GroupListActivity.this, GroupTabActivity.class);
-                intent.putExtra(IEatApplication.EXTRA_GROUP, adapter.getItem(i));
-                GroupListActivity.this.startActivity(intent);
+                new ClickedGroupAsyncTask(GroupListActivity.this).execute(adapter.getItem(i).getId());
             }
         });
 
@@ -112,15 +155,52 @@ public class GroupListActivity extends Activity {
             }
             otherGroups.add(group);
         }
+
+        if (otherGroups.isEmpty()) {
+            todayGroupLayout.setAdapter(new EmptyAdapter(getApplicationContext(), getResources().getString(R.string.active_group_list_empty_reminder)));
+            return;
+        }
+
         final GroupsAdapter adapter = new GroupsAdapter(getApplicationContext(), otherGroups);
         todayGroupLayout.setAdapter(adapter);
         todayGroupLayout.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(GroupListActivity.this, GroupTabActivity.class);
-                intent.putExtra(IEatApplication.EXTRA_GROUP, adapter.getItem(i));
-                GroupListActivity.this.startActivity(intent);
+
+                new ClickedGroupAsyncTask(GroupListActivity.this).execute(adapter.getItem(i).getId());
             }
         });
+    }
+
+    private class ClickedGroupAsyncTask extends AsyncTask<Integer, Void, AppHttpResponse<Group>>{
+        private final Context context;
+        private ProgressDialog progressDialog;
+
+        public ClickedGroupAsyncTask(Context activity) {
+            this.context = activity;
+        }
+
+        @Override
+        public void onPreExecute() {
+            progressDialog = new ProgressDialog(context);
+            progressDialog.setMessage("loading group...");
+            progressDialog.setCanceledOnTouchOutside(false);
+            progressDialog.show();
+        }
+
+        @Override
+        protected AppHttpResponse<Group> doInBackground(Integer... params) {
+            return Server.getGroup(params[0]);
+        }
+
+        @Override
+        protected void onPostExecute(AppHttpResponse<Group> response) {
+            progressDialog.dismiss();
+            if (response.isSuccessful()) {
+                Intent intent = new Intent(GroupListActivity.this, GroupTabActivity.class);
+                intent.putExtra(IEatApplication.EXTRA_GROUP, response.getData());
+                GroupListActivity.this.startActivity(intent);
+            }
+        }
     }
 }

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:paddingLeft="@dimen/device_padding"
+              android:paddingRight="@dimen/device_padding"
+              android:paddingTop="@dimen/device_padding">
+    <ListView android:id="@+id/dish_list"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content">
+
+    </ListView>
+
+</LinearLayout>

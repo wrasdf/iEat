@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.thoughtworks.ieat.actionbar;
+package com.thoughtworks.ieat.view.actionbar;
 
 import android.content.ComponentName;
 import android.content.Context;

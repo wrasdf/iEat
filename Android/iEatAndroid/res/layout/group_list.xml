@@ -3,33 +3,35 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="match_parent"
+              android:paddingLeft="@dimen/device_padding"
+              android:paddingRight="@dimen/device_padding"
               android:layout_height="match_parent">
 
     <Button android:id="@+id/creat_group"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:onClick="createGroup"
+            android:layout_marginTop="10dp"
             android:text="@string/create_group_button_label"/>
 
     <TextView android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="@string/my_group_list_label"
+            android:layout_marginTop="10dp"
             android:gravity="left"/>
     <ListView android:id="@+id/my_groups"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content">
-
     </ListView>
+
     <TextView android:layout_width="fill_parent"
               android:layout_height="wrap_content"
               android:text="@string/active_group_list_label"
+              android:layout_marginTop="10dp"
               android:gravity="left"/>
-
-
     <ListView android:id="@+id/today_groups"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content">
-
     </ListView>
 
 </LinearLayout>

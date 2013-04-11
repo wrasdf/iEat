@@ -14,15 +14,11 @@
  * limitations under the License.
  */
 
-package com.thoughtworks.ieat.actionbar;
+package com.thoughtworks.ieat.view.actionbar;
 
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
-import android.view.ActionProvider;
-import android.view.ContextMenu;
-import android.view.MenuItem;
-import android.view.SubMenu;
-import android.view.View;
+import android.view.*;
 
 /**
  * A <em>really</em> dumb implementation of the {@link android.view.MenuItem} interface, that's only
@@ -30,6 +26,7 @@ import android.view.View;
  * <code>com.android.internal.view.menu.MenuItemImpl</code> in AOSP for a more complete
  * implementation.
  */
+
 public class SimpleMenuItem implements MenuItem {
 
     private SimpleMenu mMenu;
@@ -128,7 +125,7 @@ public class SimpleMenuItem implements MenuItem {
         // Noop
         return this;
     }
-
+    
     public ActionProvider getActionProvider() {
         // Noop
         return null;
@@ -151,7 +148,6 @@ public class SimpleMenuItem implements MenuItem {
 
     @Override
     public MenuItem setOnActionExpandListener(OnActionExpandListener onActionExpandListener) {
-        // Noop
         return this;
     }
 

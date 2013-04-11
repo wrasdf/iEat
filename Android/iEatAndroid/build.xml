@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="iEat" >
+
+    <!-- The local.properties file is created and updated by the 'android' tool.
+         It contains the path to the SDK. It should *NOT* be checked into
+         Version Control Systems. -->
+	<!--property file="local.properties" /-->
+		
+		<!-- Import all variables from the environment -->
+		<property environment="env" />
+
+    <!-- The ant.properties file can be created by you. It is only edited by the
+         'android' tool to add properties to it.
+         This is the place to change some Ant specific build properties.
+         Here are some properties you may want to change/update:
+
+         source.dir
+             The name of the source directory. Default is 'src'.
+         out.dir
+             The name of the output directory. Default is 'bin'.
+
+         For other overridable properties, look at the beginning of the rules
+         files in the SDK, at tools/ant/build.xml
+
+         Properties related to the SDK location or the project target should
+         be updated using the 'android' tool with the 'update' action.
+
+         This file is an integral part of the build system for your
+         application and should be checked into Version Control Systems.
+
+         -->
+    <property file="ant.properties" />
+
+    <!-- The project.properties file is created and updated by the 'android'
+         tool, as well as ADT.
+
+         This contains project specific properties such as project target, and library
+         dependencies. Lower level build properties are stored in ant.properties
+         (or in .classpath for Eclipse projects).
+
+         This file is an integral part of the build system for your
+         application and should be checked into Version Control Systems. -->
+    <loadproperties srcFile="project.properties" />
+	
+	<property name="dropbox.dir" value="${env.DROPBOX_ROOT}" />
+	
+	<property name="sdk.dir" value="${env.ANDROID_SDK_ROOT}" />
+	
+	
+	
+    <!-- quick check on sdk.dir -->
+    <fail
+            message="sdk.dir is missing. Make sure to generate local.properties using 'android update project' or to inject it through an env var"
+            unless="sdk.dir"
+    />
+	
+	
+<!-- extension targets. Uncomment the ones where you want to do custom work
+     in between standard targets -->
+<!--
+    <target name="-pre-build">
+    </target>
+    <target name="-pre-compile">
+    </target>
+
+    /* This is typically used for code obfuscation.
+       Compiled code location: ${out.classes.absolute.dir}
+       If this is not done in place, override ${out.dex.input.absolute.dir} */
+    <target name="-post-compile">
+    </target>
+-->
+	
+	
+    <!-- Import the actual build file.
+
+         To customize existing targets, there are two options:
+         - Customize only one target:
+             - copy/paste the target into this file, *before* the
+               <import> task.
+             - customize it to your needs.
+         - Customize the whole content of build.xml
+             - copy/paste the content of the rules files (minus the top node)
+               into this file, replacing the <import> task.
+             - customize to your needs.
+
+         ***********************
+         ****** IMPORTANT ******
+         ***********************
+         In all cases you must update the value of version-tag below to read 'custom' instead of an integer,
+         in order to avoid having your file be overridden by tools such as "android update project"
+    -->
+    <!-- version-tag: custom -->
+    <import file="${sdk.dir}/tools/ant/build.xml" />
+	
+	<!--  APK FILE NAME PREFIX-->
+	<property name="APK_NAME" value="iEat" />
+	<property name="VERSION_NUMBER" value="0.1" />
+
+	<target name="printinfo">
+		<property environment="env" />
+		<echo message="VERSION_NUMBER: ${VERSION_NUMBER}" />
+		<echo message="${env.BUILD_NUMBER}" />
+		<echo message="${out.absolute.dir}" />
+		<echo message="${gen.absolute.dir}" />
+		<echo message="SDK.DIR ==== ${sdk.dir}" />
+		<echo message="${basedir}" />
+	</target>
+	
+	
+	<!-- Gets the latest SVN revision number
+		 and updates the versionCode in the manifest file
+		-->
+	<target name="svn-revision">
+		<!--
+		Exec `svn info` to get the revision of the code being built.
+		Note that the output of this command is in "name: value" format
+		so we can pretend it's a java properties file.
+		-->
+		<exec executable="svn" output="svn-info.properties">
+			<arg line="info"/>
+		</exec>
+		<property prefix="svn" file="svn-info.properties"/>
+		<echo>Revision: ${svn.Revision}</echo>
+
+		<!--
+		Write the revision number into the Manifest as the last
+		segment of the VersionName property
+		-->
+		<!--
+		<replaceregexp file="AndroidManifest.xml"
+			match='android:versionName="([^".]+\.[^".]+)(\.[^"]*)?"'
+			replace='android:versionName="\1.${svn.Revision}"'
+		/>	
+		-->
+
+		<replaceregexp file="AndroidManifest.xml"
+			match='android:versionCode="([^"]*)"'
+			replace='android:versionCode="${svn.Revision}"'
+		/>				
+		
+		<!-- 
+		Clean up
+		-->
+		<delete file="svn-info.properties"/>
+	</target>
+	
+	<target name="build" depends="clean">
+		<!--<copy file="${basedir}/config/mock-server/app_config.properties" todir="${basedir}/res/raw" overwrite="true" />-->
+		<ant target="debug" />
+	    <move file="${basedir}/bin/${APK_NAME}-debug.apk" tofile="${basedir}/bin/${APK_NAME}-${VERSION_NUMBER}.apk" />
+	</target>
+
+    <target name="install" depends="build">
+        <exec executable="${env.ANDROID_HOME}/platform-tools/adb">
+            <arg value="uninstall"/>
+            <arg value="com.thoughtworks.ieat"/>
+        </exec>
+        <exec executable="${env.ANDROID_HOME}/platform-tools/adb">
+            <arg value="install"/>
+            <arg value="${basedir}/bin/${APK_NAME}-${VERSION_NUMBER}.apk"/>
+        </exec>
+        <exec executable="${env.ANDROID_HOME}/platform-tools/adb">
+            <arg value="shell"/>
+            <arg value="am"/>
+            <arg value="start"/>
+            <arg value="-n"/>
+            <arg value="com.thoughtworks.ieat/.activity.LoginActivity"/>
+        </exec>
+    </target>
+	
+
+	<target name="build-prodapp">
+		<!-- For security, we DO NOT want an app_config.properties file in the RELESASE APK-->
+		<!-- remove app_config.properties file, file may exist from a previous build task-->
+		<delete file="${basedir}/res/raw/app_config.properties"/>
+		<!-- release version does not use values from app_config.properties, but requires a file with that name to exist to compile -->
+		<touch file="${basedir}/res/raw/app_config.properties" />
+		<ant target="release" />
+		<!-- Rename the package -->
+		<move file="${basedir}/bin/${APK_NAME}-release.apk" tofile="${basedir}/bin/${APK_NAME}-${VERSION_NUMBER}.apk" />
+		<!-- zip all proguard build-artefacts -->
+		<ant target="archive-proguard-gen-files" />
+	</target>
+
+	<!-- zip all proguard generated build-artefacts -->
+	<target name="archive-proguard-gen-files">
+		<zip 	
+			destfile="${basedir}/bin/proguard/proguard-${VERSION_NUMBER}.zip"
+			basedir="${basedir}/bin/proguard"
+			includes="*.txt"
+		/>
+	</target>
+	
+</project>

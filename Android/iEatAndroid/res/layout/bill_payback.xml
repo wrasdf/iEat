@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:paddingLeft="@dimen/device_padding"
+              android:paddingRight="@dimen/device_padding"
+              android:paddingTop="@dimen/device_padding">
+
+    <TextView android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:id="@+id/bill_payback_not_content"
+              android:text="@string/bill_payback_no_content"/>
+
+    <ListView android:id="@+id/bill_payback_list"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:visibility="gone"
+              android:dividerHeight="2dp"/>
+
+</LinearLayout>

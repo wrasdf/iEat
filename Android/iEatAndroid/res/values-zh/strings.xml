@@ -1,26 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="hello">Hello iEatAndroid!</string>
-    <string name="app_name">iEatAndroid</string>
-    <string name="title_group_list">饭团列表</string>
+    <string name="app_name">饭团</string>
+    <string name="group_list_title">饭团列表</string>
     <string name="group_info_layout_title">本团介绍</string>
     <string name="restaurant_info_layout_title">餐馆简介</string>
     <string name="group_info_tab_label">本团信息</string>
     <string name="group_analysis_tab_label">统计信息</string>
     <string name="group_analysis_title">统计信息</string>
     <string name="buy_command">买饭去</string>
-    <string name="create_group_button_label">Create My Group</string>
-    <string name="my_group_list_label">My Groups</string>
-    <string name="active_group_list_label">Available Groups</string>
+    <string name="create_group_button_label">+创建组</string>
+    <string name="my_group_list_label">与我相关的饭团</string>
+    <string name="my_group_list_empty_reminder">没有与您相关联的团</string>
+    <string name="active_group_list_label">可参加的饭团们</string>
+    <string name="active_group_list_empty_reminder">现在暂时没有其它可加入的饭团</string>
+    <string name="group_owner_label">创建者:</string>
     <string name="create_group_name_label">饭团名</string>
     <string name="choosing_restaurant_list_label">饭馆们</string>
     <string name="select_other_restaurant_button_label">选择其它馆子</string>
     <string name="due_time_label">截至时间</string>
     <string name="create_confirm_button_label">创建</string>
 
-
     <string name="input_error_group_name_is_null">团名不能为空！</string>
     <string name="loading_restaurants_fail">加载饭馆失败！</string>
+    <string name="group_list_menu_item_recharge">我的账单</string>
     <string name="group_info_label_name">团名</string>
     <string name="group_info_label_owner">创建者</string>
     <string name="group_info_label_telephone">电话</string>
@@ -30,6 +33,23 @@
     <string name="group_info_restaurant_label_desc">备注</string>
     <string name="group_myself_title">我的订餐</string>
     <string name="group_myself_tab_label">我的订餐</string>
-    <string name="group_member_title">团圆订餐信息</string>
+    <string name="group_member_title">团员订餐信息</string>
     <string name="group_member_tab_label">团员信息</string>
+    <string name="group_tab_order">去点餐</string>
+    <string name="order_create_confirm_btn_label">确认</string>
+    <string name="bill_unpaid_label">收款</string>
+    <string name="bill_payback_label">还钱</string>
+    <string name="bill_payback_no_content">没有欠款哦！</string>
+    <string name="bill_unpaid_no_content">无人欠款哦！</string>
+    <string name="bill_reminder_button_label">提醒还钱</string>
+    <string name="logout_label">退出</string>
+    <string name="group_create_title">创建饭团</string>
+    <string name="signal_yuan">&#165;</string>
+    <string name="dish_choosing_noting_message">您未点菜</string>
+    <string name="group_info_telephone_empty">暂时没有</string>
+    <string name="group_analysis_no_content">当前没有人订餐</string>
+    <string name="group_total_cost_label">总计</string>
+    <string name="group_myself_no_content">当前用户没有点餐</string>
+    <string name="group_member_no_content">当前没有其他人点餐</string>
+    <string name="delete_button_label">删除</string>
 </resources>

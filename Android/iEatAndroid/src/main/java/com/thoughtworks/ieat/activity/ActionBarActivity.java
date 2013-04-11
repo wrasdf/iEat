@@ -14,12 +14,13 @@
  * limitations under the License.
  */
 
-package com.thoughtworks.ieat.actionbar;
+package com.thoughtworks.ieat.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
+import com.thoughtworks.ieat.view.actionbar.ActionBarHelper;
 
 /**
  * A base activity that defers common functionality across app activities to an {@link
@@ -76,7 +77,7 @@ public abstract class ActionBarActivity extends Activity {
 
     /**{@inheritDoc}*/
     @Override
-    protected void onTitleChanged(CharSequence title, int color) {
+    public void onTitleChanged(CharSequence title, int color) {
         mActionBarHelper.onTitleChanged(title, color);
         super.onTitleChanged(title, color);
     }

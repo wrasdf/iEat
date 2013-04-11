@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="hello">Hello iEatAndroid!</string>
-    <string name="app_name">iEatAndroid</string>
-    <string name="title_group_list">Group List</string>
+    <string name="app_name">iEat</string>
+    <string name="group_list_title">Group List</string>
     <string name="group_info_layout_title">Group Info</string>
     <string name="restaurant_info_layout_title">Introduction to Restaurant</string>
     <string name="group_info_tab_label">Group Info</string>
     <string name="group_analysis_tab_label">Analysis Info</string>
     <string name="group_analysis_title">Analysis Info</string>
     <string name="buy_command">Buy</string>
-    <string name="create_group_button_label">Create My Group</string>
+    <string name="create_group_button_label">+Create My Group</string>
     <string name="my_group_list_label">My Groups</string>
+    <string name="my_group_list_empty_reminder">No group is about you</string>
     <string name="active_group_list_label">Available Groups</string>
+    <string name="active_group_list_empty_reminder">No group could be joined by now</string>
+    <string name="group_owner_label">Owner:</string>
     <string name="create_group_name_label">Group Name</string>
     <string name="choosing_restaurant_list_label">All Restaurants</string>
     <string name="select_other_restaurant_button_label">Select Other Restaurant</string>
@@ -20,6 +23,8 @@
 
     <string name="input_error_group_name_is_null">Group name should not be null!</string>
     <string name="loading_restaurants_fail">Fail to load restaurants</string>
+    <string name="group_list_menu_item_recharge">Recharge</string>
+    <string name="group_total_cost_label">Total Cost</string>
     <string name="group_info_label_name">Name</string>
     <string name="group_info_label_owner">Owner</string>
     <string name="group_info_label_telephone">Telelphone</string>
@@ -31,4 +36,20 @@
     <string name="group_myself_tab_label">My Order</string>
     <string name="group_member_title">Our Member</string>
     <string name="group_member_tab_label">Member Info</string>
+    <string name="group_tab_order">Order</string>
+    <string name="order_create_confirm_btn_label">Create</string>
+    <string name="bill_unpaid_label">Get my money back</string>
+    <string name="bill_payback_label">Pay</string>
+    <string name="bill_payback_no_content">No bill need to be paid</string>
+    <string name="bill_unpaid_no_content">No one owe me!</string>
+    <string name="bill_reminder_button_label">Get my money back</string>
+    <string name="logout_label">Logout</string>
+    <string name="group_create_title">Create Group</string>
+    <string name="signal_yuan">&#165;</string>
+    <string name="dish_choosing_noting_message">No dish is selected</string>
+    <string name="group_info_telephone_empty">No Value</string>
+    <string name="group_analysis_no_content">No Orders</string>
+    <string name="group_myself_no_content">Current user didn\'t order.</string>
+    <string name="group_member_no_content">No other people order.</string>
+    <string name="delete_button_label">Delete</string>
 </resources>

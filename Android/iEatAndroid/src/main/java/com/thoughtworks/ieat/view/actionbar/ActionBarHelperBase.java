@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.thoughtworks.ieat.actionbar;
+package com.thoughtworks.ieat.view.actionbar;
 
 import android.app.Activity;
 import android.content.Context;
@@ -37,6 +37,9 @@ public class ActionBarHelperBase extends ActionBarHelper {
     private static final String MENU_RES_NAMESPACE = "http://schemas.android.com/apk/res/android";
     private static final String MENU_ATTR_ID = "id";
     private static final String MENU_ATTR_SHOW_AS_ACTION = "showAsAction";
+    
+    
+    private TextView titleView;
 
     protected Set<Integer> mActionItemIds = new HashSet<Integer>();
 
@@ -47,7 +50,7 @@ public class ActionBarHelperBase extends ActionBarHelper {
     /**{@inheritDoc}*/
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        mActivity.requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
+    	mActivity.requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
     }
 
     /**{@inheritDoc}*/
@@ -77,28 +80,33 @@ public class ActionBarHelperBase extends ActionBarHelper {
             return;
         }
 
-        LinearLayout.LayoutParams springLayoutParams = new LinearLayout.LayoutParams(
+/*        LinearLayout.LayoutParams springLayoutParams = new LinearLayout.LayoutParams(
                 0, ViewGroup.LayoutParams.FILL_PARENT);
         springLayoutParams.weight = 1;
-
+*/        
         // Add Home button
         SimpleMenu tempMenu = new SimpleMenu(mActivity);
         SimpleMenuItem homeItem = new SimpleMenuItem(
-                tempMenu, android.R.id.home, 0, mActivity.getString(R.string.app_name));
+                tempMenu, R.id.actionbar_home_button, 0, "");
         homeItem.setIcon(R.drawable.icon);
         addActionItemCompatFromMenuItem(homeItem);
 
         // Add title text
-        TextView titleText = new TextView(mActivity, null, R.attr.actionbarCompatTitleStyle);
-        titleText.setLayoutParams(springLayoutParams);
+/*        TextView titleText = new TextView(mActivity, null, R.attr.actionbarCompatTitleStyle);
+//        titleText.setLayoutParams(springLayoutParams);
         titleText.setText(mActivity.getTitle());
-        actionBarCompat.addView(titleText);
-    }
+        actionBarCompat.addView(titleText); */
+/*        
+        SimpleMenuItem settingsMenu = new SimpleMenuItem(tempMenu, R.id.action_bar_settings, 1, "");
+        settingsMenu.setIcon(R.drawable.menu_settings);
+        addActionItemCompatFromMenuItem(settingsMenu);
+*/    }
 
     /**{@inheritDoc}*/
     @Override
     public void setRefreshActionItemState(boolean refreshing) {
         View refreshButton = mActivity.findViewById(R.id.actionbar_compat_item_refresh);
+
         View refreshIndicator = mActivity.findViewById(
                 R.id.actionbar_compat_item_refresh_progress);
 
@@ -126,9 +134,9 @@ public class ActionBarHelperBase extends ActionBarHelper {
 
     /**{@inheritDoc}*/
     @Override
-    protected void onTitleChanged(CharSequence title, int color) {
-        TextView titleView = (TextView) mActivity.findViewById(R.id.actionbar_compat_title);
-        if (titleView != null) {
+    public void onTitleChanged(CharSequence title, int color) {
+        titleView = (TextView) mActivity.findViewById(R.id.headerTitle);
+        if (titleView != null){
             titleView.setText(title);
         }
     }
@@ -153,40 +161,61 @@ public class ActionBarHelperBase extends ActionBarHelper {
      * Adds an action button to the compatibility action bar, using menu information from a {@link
      * android.view.MenuItem}. If the menu item ID is <code>menu_refresh</code>, the menu item's
      * state can be changed to show a loading spinner using
-     * {@link com.example.android.actionbarcompat.ActionBarHelperBase#setRefreshActionItemState(boolean)}.
      */
     private View addActionItemCompatFromMenuItem(final MenuItem item) {
         final int itemId = item.getItemId();
 
-        final ViewGroup actionBar = getActionBarCompat();
+        //final ViewGroup actionBar = getActionBarCompat();
+      final ViewGroup actionBar = getActionBarCompat();
         if (actionBar == null) {
             return null;
         }
+        
+        LinearLayout buttonsLayout = (LinearLayout) actionBar.findViewById( R.id.actionbar_compat_buttonsLayout );
 
+        if( buttonsLayout == null ) {
+            return null;
+        }
+        
         // Create the button
         ImageButton actionButton = new ImageButton(mActivity, null,
-                itemId == android.R.id.home
+                itemId == R.id.actionbar_home_button
                         ? R.attr.actionbarCompatItemHomeStyle
                         : R.attr.actionbarCompatItemStyle);
-        actionButton.setLayoutParams(new ViewGroup.LayoutParams(
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
                 (int) mActivity.getResources().getDimension(
-                        itemId == android.R.id.home
+                        itemId == R.id.actionbar_home_button
                                 ? R.dimen.actionbar_compat_button_home_width
                                 : R.dimen.actionbar_compat_button_width),
-                ViewGroup.LayoutParams.FILL_PARENT));
-        if (itemId == R.id.menu_refresh) {
-            actionButton.setId(R.id.actionbar_compat_item_refresh);
+                ViewGroup.LayoutParams.FILL_PARENT);
+
+        actionButton.setLayoutParams(layoutParams);
+        actionButton.setId(itemId);
+
+        if (itemId == R.id.actionbar_home_button) {
+        	actionButton.setId(R.id.actionbar_home_button_imageId);
         }
+        else if (itemId == R.id.menu_refresh) {
+        	actionButton.setId(R.id.actionbar_compat_item_refresh);
+        }
+
         actionButton.setImageDrawable(item.getIcon());
-        actionButton.setScaleType(ImageView.ScaleType.CENTER);
-        actionButton.setContentDescription(item.getTitle());
+        
+        actionButton.setPadding(0, 2, 0, 2);
+        actionButton.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
+       // actionButton.setContentDescription(item.getTitle());
         actionButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 mActivity.onMenuItemSelected(Window.FEATURE_OPTIONS_PANEL, item);
             }
         });
 
-        actionBar.addView(actionButton);
+        if( itemId == R.id.actionbar_home_button ) {
+            actionBar.addView(actionButton);
+        }
+        else {
+            buttonsLayout.addView(actionButton);
+        }
 
         if (item.getItemId() == R.id.menu_refresh) {
             // Refresh buttons should be stateful, and allow for indeterminate progress indicators,
@@ -200,17 +229,18 @@ public class ActionBarHelperBase extends ActionBarHelper {
                     R.dimen.actionbar_compat_height);
             final int progressIndicatorWidth = buttonWidth / 2;
 
-            LinearLayout.LayoutParams indicatorLayoutParams = new LinearLayout.LayoutParams(
-                    progressIndicatorWidth, progressIndicatorWidth);
-            indicatorLayoutParams.setMargins(
+            LinearLayout.LayoutParams progressIndicatorParams = new LinearLayout.LayoutParams(progressIndicatorWidth, progressIndicatorWidth);
+            progressIndicatorParams.setMargins(
                     (buttonWidth - progressIndicatorWidth) / 2,
                     (buttonHeight - progressIndicatorWidth) / 2,
                     (buttonWidth - progressIndicatorWidth) / 2,
                     0);
-            indicator.setLayoutParams(indicatorLayoutParams);
+            indicator.setLayoutParams(progressIndicatorParams);
+
             indicator.setVisibility(View.GONE);
             indicator.setId(R.id.actionbar_compat_item_refresh_progress);
-            actionBar.addView(indicator);
+
+            buttonsLayout.addView(indicator);
         }
 
         return actionButton;
@@ -265,6 +295,7 @@ public class ActionBarHelperBase extends ActionBarHelper {
                                     MENU_ATTR_SHOW_AS_ACTION, -1);
                             if (showAsAction == MenuItem.SHOW_AS_ACTION_ALWAYS ||
                                     showAsAction == MenuItem.SHOW_AS_ACTION_IF_ROOM) {
+
                                 mActionItemIds.add(itemId);
                             }
                             break;
@@ -288,4 +319,64 @@ public class ActionBarHelperBase extends ActionBarHelper {
         }
 
     }
+
+	@Override
+	public void setActionBarTheme(int color, int logoResId)
+	{
+		if (titleView != null) {
+			titleView.setTextColor(color);
+		
+			String text = titleView.getText().toString();
+			
+			if( text != null ) {
+			    titleView.setContentDescription( text );
+			}
+		}
+		
+		if (getActionBarCompat() != null)
+		{
+			ImageButton actionButton = (ImageButton)getActionBarCompat().findViewById(R.id.actionbar_home_button_imageId);
+			actionButton.setImageResource(logoResId);
+		}
+	}
+	
+	@Override
+	public void hideIcons() {
+	    ViewGroup actionBar = getActionBarCompat();
+        
+        if( actionBar != null ) {
+                
+            LinearLayout buttonsLayout = (LinearLayout) actionBar.findViewById( R.id.actionbar_compat_buttonsLayout );
+
+            if( buttonsLayout != null ) {
+                buttonsLayout.setVisibility(View.GONE);
+            }
+        }
+	}
+	
+    @Override
+    public void setActionBarSettingsIconTheme(int color, int logoResId)
+	{
+        ViewGroup actionBar = getActionBarCompat();
+	         
+        if( actionBar != null ) {
+	            
+            LinearLayout buttonsLayout = (LinearLayout) actionBar.findViewById( R.id.actionbar_compat_buttonsLayout );
+
+            if( buttonsLayout != null ) {
+
+                int count = buttonsLayout.getChildCount();
+    	                        
+                for( int i = 0; i < count; i++ ) {
+    	            
+                    ImageButton button = (ImageButton)buttonsLayout.getChildAt( i );
+        	            
+                    if( button != null ) {
+    	                             
+                        button.setImageResource(logoResId);
+                    }
+                }
+            }
+        }
+	}
 }

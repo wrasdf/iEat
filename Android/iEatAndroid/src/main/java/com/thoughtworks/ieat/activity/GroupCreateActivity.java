@@ -1,10 +1,15 @@
 package com.thoughtworks.ieat.activity;
 
-import android.app.*;
+import android.app.AlertDialog;
+import android.app.Fragment;
+import android.app.FragmentTransaction;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
@@ -14,12 +19,13 @@ import com.thoughtworks.ieat.domain.AppHttpResponse;
 import com.thoughtworks.ieat.domain.Group;
 import com.thoughtworks.ieat.domain.Restaurant;
 import com.thoughtworks.ieat.service.Server;
+import com.thoughtworks.ieat.view.LabelItemView;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 
-public class GroupCreateActivity extends Activity {
+public class GroupCreateActivity extends ActionBarActivity {
 
     private TimePicker timePicker;
     private EditText groupNameView;
@@ -37,6 +43,7 @@ public class GroupCreateActivity extends Activity {
 
         timePicker = (TimePicker) findViewById(R.id.time_picker);
         initTimePicker(timePicker);
+        getActionBar().setTitle(R.string.group_create_title);
     }
 
     @Override
@@ -67,7 +74,27 @@ public class GroupCreateActivity extends Activity {
         createGroupAsyncTask.execute(groupName, String.valueOf(selectedRestaurantId), new SimpleDateFormat(IEatApplication.DATE_PATTERN).format(selectedTime.getTime()));
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getActionBar().setDisplayHomeAsUpEnabled(true);
+        return super.onCreateOptionsMenu(menu);
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+            case R.id.actionbar_home_button:
+                gotoDashBoard();
+                break;
+        }
+        return false;
+    }
+
+    private void gotoDashBoard() {
+        Intent loginIntent = new Intent(this, GroupListActivity.class);
+        startActivity(loginIntent);
+    }
 
     public void showRestaurantsDialog(View view) {
         FragmentTransaction ft = getFragmentManager().beginTransaction();
@@ -94,10 +121,11 @@ public class GroupCreateActivity extends Activity {
                                          }
 
                                          public View getView(int i, View view, ViewGroup viewGroup) {
-                                             TextView textView = new TextView(GroupCreateActivity.this);
-                                             textView.setText(allRestaurants.get(i).getName());
-                                             textView.setContentDescription(String.valueOf(allRestaurants.get(i).getId()));
-                                             return textView;
+                                             LabelItemView restaurantLabel = new LabelItemView(GroupCreateActivity.this);
+                                             restaurantLabel.setText(allRestaurants.get(i).getName());
+                                             restaurantLabel.setContentDescription(String.valueOf(allRestaurants.get(i).getId()));
+                                             restaurantLabel.setBackgroundDrawable(null);
+                                             return restaurantLabel;
                                          }
                                      }, 0,
                 new DialogInterface.OnClickListener() {
@@ -165,7 +193,11 @@ public class GroupCreateActivity extends Activity {
             String groupName = params[0];
             String groupId = params[1];
             String dueTimeStr = params[2];
-            return Server.createGroup(groupName, groupId, dueTimeStr);
+            AppHttpResponse<Group> groupCreateResponse = Server.createGroup(groupName, groupId, dueTimeStr);
+            if (groupCreateResponse.isSuccessful()) {
+                groupCreateResponse = Server.getGroup(groupCreateResponse.getData().getId());
+            }
+            return groupCreateResponse;
         }
 
         protected void onPostExecute(AppHttpResponse<Group> result) {
@@ -173,6 +205,7 @@ public class GroupCreateActivity extends Activity {
             if (result.isSuccessful()) {
                 Intent intent = new Intent(GroupCreateActivity.this, GroupTabActivity.class);
                 intent.putExtra(IEatApplication.EXTRA_GROUP, result.getData());
+                intent.putExtra(IEatApplication.EXTRA_TAG, getResources().getString(R.string.group_info_tab_label));
                 GroupCreateActivity.this.startActivity(intent);
             } else {
                 Toast.makeText(GroupCreateActivity.this, result.getErrorMessage(), Toast.LENGTH_SHORT).show();

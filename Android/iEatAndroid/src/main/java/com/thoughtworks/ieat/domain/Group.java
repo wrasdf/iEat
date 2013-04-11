@@ -4,6 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 public class Group implements Serializable {
 
@@ -26,6 +27,8 @@ public class Group implements Serializable {
     private Integer restaurantId;
 
     private String description;
+
+    private List<Order> orders;
 
     public Integer getId() {
         return id;
@@ -94,5 +97,9 @@ public class Group implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
     }
 }

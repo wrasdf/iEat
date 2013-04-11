@@ -1,28 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              android:layout_height="wrap_content"
+              android:orientation="vertical"
+              android:paddingLeft="@dimen/device_padding"
+              android:paddingRight="@dimen/device_padding"
+              android:paddingTop="@dimen/device_padding">
+
     <TextView android:layout_width="fill_parent"
               android:layout_height="wrap_content"
-              android:text="@string/group_myself_title"/>
+              android:text="@string/group_myself_title"
+              android:layout_marginBottom="@dimen/section_margin"/>
+
+    <TextView android:id="@+id/group_myself_no_content"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:background="@drawable/list_item_bg"
+              android:paddingLeft="@dimen/device_padding"
+              android:paddingTop="@dimen/vertical_padding"
+              android:paddingBottom="@dimen/vertical_padding"
+              android:text="@string/group_member_no_content"/>
+
+    <LinearLayout android:id="@+id/group_myself_order_list"
+                  android:layout_width="fill_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="vertical"
+                  android:visibility="gone">
+
+        <TextView android:layout_width="fill_parent"
+                  android:layout_height="wrap_content"
+                  android:id="@+id/group_myself_username"
+                  android:textStyle="bold"
+                  android:background="@drawable/list_item_bg_top"/>
 
     <TableLayout android:layout_width="fill_parent"
-                 android:layout_height="wrap_content">
-        <TableRow android:orientation="horizontal">
-            <TextView android:layout_weight="0.3"
-                      android:layout_width="0dp"
-                      android:layout_height="wrap_content"
-                      android:text="团名"/>
+                 android:layout_height="wrap_content"
+                 android:id="@+id/group_myself_order_table">
 
-            <TextView android:layout_height="wrap_content"
-                      android:layout_width="0dp"
-                      android:layout_weight="0.7"
-                      android:text="name"/>
-
-        </TableRow>
     </TableLayout>
-    <Button android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/buy_command"
-            ></Button>
+
+    </LinearLayout>
+
 </LinearLayout>

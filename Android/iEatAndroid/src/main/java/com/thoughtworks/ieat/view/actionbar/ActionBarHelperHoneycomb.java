@@ -14,16 +14,12 @@
  * limitations under the License.
  */
 
-package com.thoughtworks.ieat.actionbar;
+package com.thoughtworks.ieat.view.actionbar;
 
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
+import android.view.*;
 import com.thoughtworks.ieat.R;
 
 /**
@@ -39,8 +35,14 @@ public class ActionBarHelperHoneycomb extends ActionBarHelper {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public void onCreate(Bundle savedInstanceState) {
+        mActivity.requestWindowFeature(Window.FEATURE_ACTION_BAR);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(final Menu menu) {
         mOptionsMenu = menu;
+        mActivity.getActionBar().setHomeButtonEnabled(true);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -77,5 +79,27 @@ public class ActionBarHelperHoneycomb extends ActionBarHelper {
      */
     protected Context getActionBarThemedContext() {
         return mActivity;
+    }
+
+    @Override
+    public void setActionBarTheme(int color, int logoResId) {
+//        int titleId = Resources.getSystem().getIdentifier("action_bar_title", "id", "android");
+//        TextView titleTextView = (TextView) mActivity.getWindow().findViewById(titleId);
+//        titleTextView.setPadding(20, 0, 0, 0);
+//        titleTextView.setTextColor(color);
+//        titleTextView.setClickable(false);
+//        titleTextView.setTypeface(null, Typeface.BOLD);
+        mActivity.getActionBar().setLogo(logoResId);
+
+    }
+
+    @Override
+    public void setActionBarSettingsIconTheme(int color, int logoResId) {
+        mActivity.getActionBar().setLogo(logoResId);
+    }
+
+    @Override
+    public void hideIcons() {
+        
     }
 }

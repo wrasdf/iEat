@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal">
+
+    <TextView android:layout_weight="0.8"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:layout_marginLeft="@dimen/section_margin"
+              android:id="@+id/dish_row_name"/>
+
+    <TextView android:layout_height="wrap_content"
+              android:layout_width="0dp"
+              android:layout_weight="0.05"
+              android:text="@string/signal_yuan"/>
+    <TextView android:layout_height="wrap_content"
+              android:layout_width="0dp"
+              android:layout_weight="0.1"
+              android:id="@+id/dish_row_price"/>
+
+    <TextView android:layout_height="wrap_content"
+              android:layout_width="0dp"
+              android:layout_weight="0.05"
+              android:background="@drawable/list_item_bg_white"
+              android:gravity="center"
+              android:visibility="invisible"
+              android:id="@+id/dish_row_quantity"/>
+
+</merge>

@@ -14,12 +14,9 @@
  * limitations under the License.
  */
 
-package com.thoughtworks.ieat.actionbar;
+package com.thoughtworks.ieat.view.actionbar;
 
 import android.app.Activity;
-import android.content.Context;
-import android.view.Menu;
-import android.view.MenuItem;
 
 /**
  * An extension of {@link com.example.android.actionbarcompat.ActionBarHelper} that provides Android
@@ -30,8 +27,4 @@ public class ActionBarHelperICS extends ActionBarHelperHoneycomb {
         super(activity);
     }
 
-    @Override
-    protected Context getActionBarThemedContext() {
-        return mActivity.getActionBar().getThemedContext();
-    }
 }

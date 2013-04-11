@@ -15,6 +15,8 @@ public class IEatApplication extends Application {
     public static String token;
     public static final String EXTRA_GROUP_ID = "EXTRA_GROUP_ID";
     public static final String EXTRA_GROUP = "EXTRA_GROUP";
+    public static final String EXTRA_TAG = "EXTRA_TAG";
+    public static final String EXTRA_ORDER_LIST = "EXTRA_ORDER_LIST";
 
     @Override
     public void onCreate() {
@@ -23,14 +25,18 @@ public class IEatApplication extends Application {
         ApplicationData.init(prefs);
     }
 
-    public static void login(String username) {
+    public static void login(String username, String token) {
         ApplicationData.setUsername(username);
+        ApplicationData.setUserToken(token);
         currentUserName = username;
+        IEatApplication.token = token;
     }
 
     public void logout() {
         currentUserName = null;
-
+        token = null;
+        ApplicationData.setUsername(null);
+        ApplicationData.setUserToken(null);
     }
 
     public static String currentUser() {
@@ -38,6 +44,13 @@ public class IEatApplication extends Application {
             currentUserName = ApplicationData.getCurrentUser();
         }
         return currentUserName;
+    }
+
+    public static String getToken() {
+        if (token == null) {
+            token = ApplicationData.getToken();
+        }
+        return token;
     }
 
 }

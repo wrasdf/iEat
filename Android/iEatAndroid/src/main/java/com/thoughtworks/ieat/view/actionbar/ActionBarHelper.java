@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.thoughtworks.ieat.actionbar;
+package com.thoughtworks.ieat.view.actionbar;
 
 import android.app.Activity;
 import android.os.Build;
@@ -35,7 +35,7 @@ public abstract class ActionBarHelper {
     protected Activity mActivity;
 
     /**
-     * Factory method for creating {@link com.thoughtworks.ieat.actionbar.ActionBarHelper} objects for a
+     * Factory method for creating {@link ActionBarHelper} objects for a
      * given activity. Depending on which device the app is running, either a basic helper or
      * Honeycomb-specific helper will be returned.
      */
@@ -77,11 +77,11 @@ public abstract class ActionBarHelper {
     /**
      * Action bar helper code to be run in {@link android.app.Activity#onTitleChanged(CharSequence, int)}.
      */
-    protected void onTitleChanged(CharSequence title, int color) {
+    public void onTitleChanged(CharSequence title, int color) {
     }
 
     /**
-     * Sets the indeterminate loading state of the item with ID {@link R.id.menu_refresh}.
+     * Sets the indeterminate loading state of the item with ID.
      * (where the item ID was menu_refresh).
      */
     public abstract void setRefreshActionItemState(boolean refreshing);
@@ -94,4 +94,10 @@ public abstract class ActionBarHelper {
     public MenuInflater getMenuInflater(MenuInflater superMenuInflater) {
         return superMenuInflater;
     }
+    
+    public abstract void hideIcons();
+    
+    public abstract void setActionBarTheme(int color, int logoResId);
+    
+    public abstract void setActionBarSettingsIconTheme(int color, int logoResId);
 }

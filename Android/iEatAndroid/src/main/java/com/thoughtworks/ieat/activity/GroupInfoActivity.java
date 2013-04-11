@@ -1,17 +1,20 @@
 package com.thoughtworks.ieat.activity;
 
-import android.app.Activity;
-import android.app.ProgressDialog;
-import android.os.AsyncTask;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
+import android.view.View;
+import android.view.Window;
 import android.widget.TextView;
 import com.thoughtworks.ieat.IEatApplication;
 import com.thoughtworks.ieat.R;
-import com.thoughtworks.ieat.domain.AppHttpResponse;
 import com.thoughtworks.ieat.domain.Group;
-import com.thoughtworks.ieat.service.Server;
 
-public class GroupInfoActivity extends Activity {
+public class GroupInfoActivity extends ActionBarActivity {
 
 
     private Group group;
@@ -19,6 +22,7 @@ public class GroupInfoActivity extends Activity {
     @Override
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
+        getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
         setContentView(R.layout.group_info);
 
         group = (Group) getIntent().getExtras().get(IEatApplication.EXTRA_GROUP);
@@ -28,7 +32,8 @@ public class GroupInfoActivity extends Activity {
 
 
         ((TextView) findViewById(R.id.group_info_restaurant_name)).setText(group.getRestaurant().getName());
-        ((TextView) findViewById(R.id.group_info_restaurant_telephone)).setText(group.getRestaurant().getTelephone());
+        TextView telephoneView = (TextView) findViewById(R.id.group_info_restaurant_telephone);
+        setTelephone(telephoneView);
         ((TextView) findViewById(R.id.group_info_restaurant_address)).setText(group.getRestaurant().getAddress());
     }
 
@@ -37,5 +42,40 @@ public class GroupInfoActivity extends Activity {
         super.onResume();
     }
 
+    private void setTelephone(TextView telephoneView) {
+        String telephone = group.getRestaurant().getTelephone();
+        if (telephone == null || telephone.isEmpty() || "NO VALUE".equals(telephone.trim())) {
+            telephoneView.setText(R.string.group_info_telephone_empty);
+        } else {
+            SpannableString spannableString = new SpannableString(telephone);
+            PhoneClickableSpan phoneClickableSpan = new PhoneClickableSpan(telephone);
+            spannableString.setSpan(phoneClickableSpan, 0, telephone.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            telephoneView.setText(spannableString);
+            telephoneView.setMovementMethod(LinkMovementMethod.getInstance());
+        }
+    }
+
+    protected class PhoneClickableSpan extends ClickableSpan {
+
+        private String phoneNumber;
+
+        public PhoneClickableSpan(String phoneNumber) {
+            this.phoneNumber = phoneNumber.replace(" ", "");
+        }
+
+        @Override
+        public void onClick(View widget) {
+            Intent callIntent = new Intent(Intent.ACTION_DIAL);
+            callIntent.setData(Uri.parse("tel:" + phoneNumber));
+            GroupInfoActivity.this.startActivity(callIntent);
+        }
+
+//        @Override
+//        public void updateDrawState(TextPaint textPaint) {
+//            textPaint.setColor(getPaint());
+//            textPaint.setLinearText(false);
+//        }
+
+    }
 
 }

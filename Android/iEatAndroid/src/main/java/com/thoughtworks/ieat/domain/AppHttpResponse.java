@@ -19,6 +19,7 @@ public class AppHttpResponse<T> {
 
     public void setException(Throwable e) {
         exception = e;
+        errorMessage = e.getMessage();
         isSuccessful = false;
     }
 

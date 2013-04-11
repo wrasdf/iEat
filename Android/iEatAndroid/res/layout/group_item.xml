@@ -2,23 +2,31 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="horizontal"
               android:layout_width="fill_parent"
-              android:layout_height="wrap_content" android:gravity="center_vertical">
+              android:layout_height="wrap_content"
+              android:paddingTop="@dimen/vertical_padding"
+              android:paddingBottom="@dimen/vertical_padding"
+              android:paddingLeft="@dimen/device_padding"
+              android:background="@drawable/list_item_bg"
+              android:gravity="center_vertical">
     <TextView android:id="@+id/group_name"
               android:layout_height="wrap_content"
               android:layout_width="0dp"
+              android:textColor="@color/black"
               android:layout_weight="0.2"/>
     <TextView android:id="@+id/restaurant_name"
               android:layout_height="wrap_content"
               android:layout_width="0dp"
+              android:textColor="@color/black"
               android:layout_weight="0.2"/>
     <TextView android:id="@+id/group_owner"
               android:layout_height="wrap_content"
               android:layout_width="0dp"
               android:layout_weight="0.3"
-              android:text="Owner:"/>
-    <TextView android:id="@+id/group_item_arrow"
+              android:textColor="@color/black"
+              android:text="@string/group_owner_label"/>
+    <ImageView android:id="@+id/group_item_arrow"
               android:layout_height="wrap_content"
               android:layout_width="wrap_content"
-              android:background="@drawable/navigate_next"/>
+              android:src="@drawable/navigate_next"/>
 
 </LinearLayout>

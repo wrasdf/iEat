@@ -27,6 +27,12 @@ public class LoginActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
 
+        if (IEatApplication.currentUser() != null && IEatApplication.getToken() != null) {
+            goToApp();
+            finish();
+            return;
+        }
+
         usernameView = (EditText) findViewById(R.id.username);
         usernameView.setTypeface(Typeface.DEFAULT);
         passwordView = (EditText) findViewById(R.id.password);
@@ -39,6 +45,11 @@ public class LoginActivity extends Activity {
         });
     }
 
+    private void goToApp() {
+        Intent intent = new Intent(this, GroupListActivity.class);
+        startActivity(intent);
+    }
+
     public void login(View view) {
 
         String username = usernameView.getText().toString();
@@ -46,8 +57,6 @@ public class LoginActivity extends Activity {
 
         LoginAsyncTask loginTask = new LoginAsyncTask(this);
         loginTask.execute(username, pwd);
-
-
     }
 
 
@@ -55,7 +64,6 @@ public class LoginActivity extends Activity {
 
         private final Context context;
         private ProgressDialog loadingProgress;
-        private String username;
 
         public LoginAsyncTask(Context context) {
             this.context = context;
@@ -70,7 +78,6 @@ public class LoginActivity extends Activity {
 
         public AppHttpResponse<UserToken> doInBackground(String... params) {
             AppHttpResponse appHttpResponse = Server.signIn(params[0], params[1]);
-            username = params[0];
             return appHttpResponse;
         }
 
@@ -79,6 +86,7 @@ public class LoginActivity extends Activity {
             if (response.isSuccessful()) {
                 Intent intent = new Intent(context, GroupListActivity.class);
                 startActivity(intent);
+                finish();
             } else {
                 Toast.makeText(context, response.getErrorMessage(), Toast.LENGTH_SHORT).show();
             }

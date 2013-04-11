@@ -1,9 +1,7 @@
-package com.thoughtworks.ieat.activity.view;
+package com.thoughtworks.ieat.view;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.thoughtworks.ieat.R;
