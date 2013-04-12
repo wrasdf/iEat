@@ -20,6 +20,7 @@
     NSString *urlString = [NSString stringWithFormat:@"%@%@?token=%@", Settings.serverUri, @"/api/v1/mybills", token];
     NSURL *url = [NSURL URLWithString:urlString];
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+    [request setValidatesSecureCertificate:NO];
     [request addRequestHeader:@"Accept" value:@"application/json"];
     [request setDelegate:self];
     [request startSynchronous];
@@ -33,6 +34,7 @@
     NSString *urlString = [NSString stringWithFormat:@"%@/api/v1/mybills/paid/%d?token=%@", Settings.serverUri, billId, token];
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:urlString]];
     [request addRequestHeader:@"Accept" value:@"application/json"];
+    [request setValidatesSecureCertificate:NO];
 //    [request setPostValue:token forKey:@"token"];
 //    [request setRequestMethod:@"POST"];
     [request setDelegate:self];

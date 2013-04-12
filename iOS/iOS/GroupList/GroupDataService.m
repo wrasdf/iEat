@@ -20,6 +20,7 @@
     NSString *urlString = [NSString stringWithFormat:@"%@%@?token=%@", Settings.serverUri, @"/api/v1/groups/active", token];
     NSURL *url = [NSURL URLWithString:urlString];
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+    [request setValidatesSecureCertificate:NO];
     [request addRequestHeader:@"Accept" value:@"application/json"];
     [request setDelegate:self];
     [request startSynchronous];
@@ -33,6 +34,7 @@
 + (BOOL)removeGroup:(NSString *)groupId {
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", Settings.serverUri, @"/groups/1"]];
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+    [request setValidatesSecureCertificate:NO];
     [request setRequestMethod:@"DELETE"];
     [request setDelegate:self];
     [request startSynchronous];
@@ -47,6 +49,7 @@
 
     NSURL *url = [NSURL URLWithString:urlString];
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+    [request setValidatesSecureCertificate:NO];
     [request setPostValue:token forKey:@"token"];
     [request setPostValue:name forKey:@"name"];
     [request setPostValue:restaurant_id forKey:@"restaurant_id"];
@@ -63,6 +66,7 @@
     NSString *token = [[User CurrentUser] token];
     NSString *urlString = [NSString stringWithFormat:@"%@%@%@?token=%@", Settings.serverUri, @"/api/v1/groups/", groupId, token];
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:urlString]];
+    [request setValidatesSecureCertificate:NO];
     [request addRequestHeader:@"Accept" value:@"application/json"];
     [request setDelegate:self];
     [request startSynchronous];
@@ -70,10 +74,11 @@
     return [[request responseData] objectFromJSONData];
 }
 
-+ (NSArray *)GetGroupDishes:(int)restaurantId {
++ (NSArray *)GetGroupDishes:(int)groupId {
     NSString *token = [[User CurrentUser] token];
-    NSString *urlString = [NSString stringWithFormat:@"%@/api/v1/groups/%d/dishes?token=%@", Settings.serverUri, restaurantId, token];
+    NSString *urlString = [NSString stringWithFormat:@"%@/api/v1/groups/%d/dishes?token=%@", Settings.serverUri, groupId, token];
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:urlString]];
+    [request setValidatesSecureCertificate:NO];
     [request addRequestHeader:@"Accept" value:@"application/json"];
     [request setDelegate:self];
     [request startSynchronous];
@@ -85,6 +90,7 @@
     NSString *token = [[User CurrentUser] token];
     NSString *urlString = [NSString stringWithFormat:@"%@/api/v1/groups/%d/orders/create", Settings.serverUri, group];
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:urlString]];
+    [request setValidatesSecureCertificate:NO];
     [request addRequestHeader:@"Accept" value:@"application/json"];
     [request setPostValue:token forKey:@"token"];
     NSString *value = [orders JSONString];
@@ -96,4 +102,18 @@
     NSLog([request responseString]) ;
 //    return [[request responseData] objectFromJSONData];
 }
+
++ (void)DeleteOrder:(int)orderId {
+    NSString *token = [[User CurrentUser] token];
+    NSString *urlString = [NSString stringWithFormat:@"%@/api/v1/orders/delete/%d?token=%@", Settings.serverUri, orderId, token];
+    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:urlString]];
+    [request setValidatesSecureCertificate:NO];
+    [request addRequestHeader:@"Accept" value:@"application/json"];
+//    [request setPostValue:token forKey:@"token"];
+//    [request setRequestMethod:@"POST"];
+    [request setDelegate:self];
+    [request startSynchronous];
+    NSLog([request responseString]) ;
+}
+
 @end

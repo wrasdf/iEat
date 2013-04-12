@@ -9,4 +9,6 @@
 
 @protocol GroupDataDelegate
 - (NSDictionary *)GetGroupInfo;
+- (void)UpdateGroupInfo;
+
 @end

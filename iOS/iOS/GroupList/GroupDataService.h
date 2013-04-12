@@ -15,7 +15,9 @@
 + (NSDictionary *)createGroupWithName:(NSString *)name restaurant:(NSString *)restaurant_id duedate:(NSString *)duedate;
 
 + (NSDictionary *)GetGroupById:(id)groupId;
-+ (NSArray *)GetGroupDishes:(int)restaurantId;
++ (NSArray *)GetGroupDishes:(int)groupId;
 
 + (void)SubmitOrder:(NSMutableDictionary *)orders forGroup:(int)group;
+
++ (void)DeleteOrder:(int)orderId;
 @end

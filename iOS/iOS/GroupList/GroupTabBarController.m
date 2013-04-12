@@ -8,7 +8,7 @@
 
 #import "GroupTabBarController.h"
 #import "GroupMemberOrdersController.h"
-#import "GroupOwnerOrderController.h"
+#import "GroupMyOrderController.h"
 #import "GroupStatsController.h"
 #import "GroupDetailsViewController.h"
 #import "GroupDataService.h"
@@ -21,7 +21,7 @@
 - (void)InitTabs {
     GroupDetailsViewController* groupDetailsViewController = [[GroupDetailsViewController alloc] initWithStyle:UITableViewStyleGrouped];
     GroupStatsController* groupStatController = [[GroupStatsController alloc] initWithStyle:UITableViewStyleGrouped];
-    GroupOwnerOrderController* groupOwnersDishesController = [[GroupOwnerOrderController alloc] initWithStyle:UITableViewStyleGrouped];
+    GroupMyOrderController * groupOwnersDishesController = [[GroupMyOrderController alloc] initWithStyle:UITableViewStyleGrouped];
     GroupMemberOrdersController* groupMemberDishesController = [[GroupMemberOrdersController alloc] initWithStyle:UITableViewStyleGrouped];
     groupDetailsViewController.delegate = self;
     groupStatController.delegate = self;

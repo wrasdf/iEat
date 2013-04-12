@@ -14,15 +14,17 @@
     NSArray *dishes;
     NSMutableDictionary *orders;
     int orderGroupId;
+    NSDate *dueDate;
 }
 @end
 
 @implementation RestaurantDishesViewController
 
-- (id)initWithGroupId:(int)groupId {
-    self = [super initWithStyle:UITableViewStyleGrouped];
+- (id)initWithGroupId:(int)groupId dueDate:(NSDate *)date {
+    self = [super initWithStyle:UITableViewStylePlain];
     if (self) {
         orderGroupId = groupId;
+        dueDate = date;
         dishes = [GroupDataService GetGroupDishes:groupId];
         orders = [[NSMutableDictionary alloc] init];
     }
@@ -32,7 +34,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self CreateSearchBar];
+//    [self CreateSearchBar];
     [self createSubmitButtonOnNavigationBar];
 
 }
@@ -43,6 +45,11 @@
 }
 
 - (void)submitOrder:(id)sender {
+
+    if ([[NSDate date] compare:dueDate] == NSOrderedDescending){
+        [[[UIAlertView alloc] initWithTitle:@"失败" message:@"已过订饭时间" delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil] show];
+        return;
+    }
     NSMutableArray *array = [[NSMutableArray alloc] init];
     for (NSString* key in orders){
         NSDictionary *order = [[NSDictionary alloc] initWithObjectsAndKeys:key, @"id", orders[key], @"quantity", nil];

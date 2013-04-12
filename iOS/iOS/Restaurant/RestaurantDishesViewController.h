@@ -12,5 +12,5 @@
 
 @interface RestaurantDishesViewController : UITableViewController<UISearchBarDelegate, OrderCellAccessoryDelegate>
 
-- (id)initWithGroupId:(int)groupId;
+- (id)initWithGroupId:(int)groupId dueDate:(NSDate *)date;
 @end

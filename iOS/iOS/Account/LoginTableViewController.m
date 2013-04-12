@@ -130,6 +130,7 @@ enum {
     NSURL *url = [NSURL URLWithString:urlstring];
 
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+    [request setValidatesSecureCertificate:NO];
     [request setPostValue:username forKey:@"data"];
     [request setPostValue:password forKey:@"password"];
     [request setDelegate:self];

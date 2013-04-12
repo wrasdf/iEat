@@ -15,6 +15,7 @@
     NSMutableDictionary *dishesDict;
     NSArray *allKeys;
     NSArray *allValues;
+    NSString *tel;
 }
 
 @end
@@ -43,6 +44,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     NSDictionary *groupInfo = [[self delegate] GetGroupInfo];
+    tel = groupInfo[@"restaurant"][@"telephone"];
     NSArray * orders = groupInfo[@"orders"];
     [dishesDict removeAllObjects];
     for (NSDictionary * order in orders){
@@ -77,9 +79,17 @@
     [view addSubview:button];
     return view;
 }
-
+- (BOOL)isNumericString:(NSString *)inputString {
+    NSCharacterSet *characterSet = [NSCharacterSet characterSetWithCharactersInString:inputString];
+    NSCharacterSet *alphaNums = [NSCharacterSet decimalDigitCharacterSet];
+    return [alphaNums isSupersetOfSet:characterSet];
+}
 - (void)callRestaurant:(id)callRestaurant {
-    NSString *theCall = [NSString stringWithFormat:@"tel://%@",@"13426049524"];
+    if (![self isNumericString:tel]) {
+        [[[UIAlertView alloc] initWithTitle:@"失败" message:@"餐馆电话未提供或不正确" delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil] show];
+        return;
+    }
+    NSString *theCall = [NSString stringWithFormat:@"tel://%@",tel];
     NSLog(@"making call with %@",theCall);
 #if !(TARGET_IPHONE_SIMULATOR)
     UIApplication *myApp = [UIApplication sharedApplication];

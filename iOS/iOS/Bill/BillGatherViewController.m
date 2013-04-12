@@ -46,6 +46,7 @@
     else{
         [payOffBtn setEnabled:YES];
         [payOffBtn setTitle:@"提醒还钱" forState:UIControlStateNormal];
+        [payOffBtn setHidden:YES];
     }
 }
 

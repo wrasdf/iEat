@@ -12,7 +12,7 @@
 #import "GroupAddViewController.h"
 #import "GroupDetailsViewController.h"
 #import "GroupStatsController.h"
-#import "GroupOwnerOrderController.h"
+#import "GroupMyOrderController.h"
 #import "GroupMemberOrdersController.h"
 #import "GroupTabBarController.h"
 #import "BillTabBarController.h"
@@ -45,10 +45,10 @@
     [otherGroups removeAllObjects];
     User *user = [User CurrentUser];
     for (NSDictionary * group in groups){
-      if (group[@"joined"] == @"1")   {
+      if ([group[@"joined"] boolValue])   {
           [myGroups addObject:group];
       }
-      else if ([((NSDictionary *) (group[@"owner"]))[@"name"] isEqual:user.name] ){
+      else if ([group[@"owner"][@"name"] isEqual:user.name] ){
           [myGroups addObject:group];
       }
       else{
@@ -219,13 +219,22 @@
 - (void)configureCell:(GroupSummaryViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
 
     UIImage *image = [UIImage imageNamed:@"coffee.png" ];
-    [cell.imageView setImage:image];
+    UIImage *created = [UIImage imageNamed:@"created.png" ];
+    UIImage *joined = [UIImage imageNamed:@"joined.png" ];
     NSDictionary * group;
+    User *user = [User CurrentUser];
     if (indexPath.section == SectionMyGroup){
         group = myGroups[indexPath.row];
+        if([group[@"owner"][@"name"] isEqual:user.name]){
+            [cell.imageView setImage:created];
+        }else{
+            [cell.imageView setImage:joined];
+        }
 
     } else if (indexPath.section == SectionAvailableGroup){
         group = otherGroups[indexPath.row];
+        [cell.imageView setImage:image];
+
     }
 
     cell.restaurantNameLabel.text = group[@"restaurant"][@"name"];

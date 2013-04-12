@@ -13,6 +13,7 @@
 
 + (NSString *)serverUri {
     return @"http://localhost:3000";
+    return @"https://10.18.7.120";
 }
 
 + (void)setUserName:(NSString *)username {

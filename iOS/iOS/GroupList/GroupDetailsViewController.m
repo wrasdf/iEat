@@ -24,6 +24,9 @@
     NSArray *groupDesc;
     NSArray *groupDescVals;
     NSDictionary *group;
+    NSDateFormatter *dateFormatter;
+    NSDate* dueDate;
+
 }
 @end
 
@@ -38,6 +41,8 @@
         sections = @[@"饭团信息", @"餐馆简介"];
         restDesc = @[@"饭店名称", @"订餐电话", @"饭店地址"];
         groupDesc = @[@"团名", @"团长"];
+        dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZZZ"];
         [self setTitle:@"本团信息"];
         UITabBarItem *tabBarItem = [[UITabBarItem alloc] initWithTitle:@"本团信息" image:[UIImage imageNamed:@"heart.png"] tag:1];
         [self setTabBarItem:tabBarItem];
@@ -55,6 +60,9 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     group = [[self delegate] GetGroupInfo];
+
+    dueDate = [dateFormatter dateFromString:group[@"due_date"]];
+
     groupDescVals = [[NSArray alloc] initWithObjects:group[@"name"],  group[@"owner"][@"name"], nil];
     restDescVals = [[NSArray alloc] initWithObjects:group[@"restaurant"][@"name"],group[@"restaurant"][@"telephone"],group[@"restaurant"][@"address"], nil];
     [[self tableView] reloadData];
@@ -74,8 +82,12 @@
 
 - (void)gotoOrderFood:(id)sender {
     NSLog(@"买饭去");
+    if ([[NSDate date] compare:dueDate] == NSOrderedDescending){
+        [[[UIAlertView alloc] initWithTitle:@"失败" message:@"已过订饭时间" delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil] show];
+        return;
+    }
     [(GroupTabBarController *) self.delegate setSelectedIndex:2];
-    RestaurantDishesViewController *restaurantDishesViewController = [[RestaurantDishesViewController alloc] initWithGroupId:[group[@"id"] intValue]];
+    RestaurantDishesViewController *restaurantDishesViewController = [[RestaurantDishesViewController alloc] initWithGroupId:[group[@"id"] intValue] dueDate:dueDate];
     [[self navigationController] pushViewController:restaurantDishesViewController animated:YES];
 
 }

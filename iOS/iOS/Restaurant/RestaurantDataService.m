@@ -10,13 +10,15 @@
 #import "User.h"
 #import "ASIFormDataRequest.h"
 #import "JSONKit.h"
+#import "Settings.h"
 
 @implementation RestaurantDataService
 + (NSArray *)restaurantList {
     NSString *token = [[User CurrentUser] token];
-    NSString *urlString = [@"http://localhost:3000/api/v1/restaurants?token=" stringByAppendingString:token];
+    NSString *urlString = [NSString stringWithFormat:@"%@/api/v1/restaurants?token=%@",[Settings serverUri], token];
     NSURL *url = [NSURL URLWithString:urlString];
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+    [request setValidatesSecureCertificate:NO];
     [request addRequestHeader:@"Accept" value:@"application/json"];
     [request setDelegate:self];
     [request startSynchronous];

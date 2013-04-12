@@ -84,6 +84,7 @@
     NSString *urlString = [NSString stringWithFormat:@"%@%@", [Settings serverUri] , @"/api/v1/users"];
     NSURL *url = [NSURL URLWithString:urlString];
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+    [request setValidatesSecureCertificate:NO];
     [request setPostValue:userName forKey:@"username"];
     [request setPostValue:password forKey:@"password"];
     [request setPostValue:password forKey:@"password_confirmation"];

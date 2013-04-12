@@ -66,12 +66,12 @@
     id order = [orders objectAtIndex:section];
 
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 40)];
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [button setTitle:@"删除" forState:UIControlStateNormal];
-    [button setFrame:CGRectMake(270, 10, 40, 30)];
-    [button setTag:[[order objectForKey:@"id"] integerValue]];
-    [button addTarget:self action:@selector(moneyGoHome:) forControlEvents:UIControlEventTouchUpInside];
-    [view addSubview:button];
+//    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+//    [button setTitle:@"删除" forState:UIControlStateNormal];
+//    [button setFrame:CGRectMake(270, 10, 40, 30)];
+//    [button setTag:[[order objectForKey:@"id"] integerValue]];
+//    [button addTarget:self action:@selector(moneyGoHome:) forControlEvents:UIControlEventTouchUpInside];
+//    [view addSubview:button];
 
     UILabel *sectionTitle = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 200, 30)];
 

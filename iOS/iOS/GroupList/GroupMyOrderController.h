@@ -1,5 +1,5 @@
 //
-//  GroupOwnerOrderController.h
+//  GroupMyOrderController.h
 //  iOS
 //
 //  Created by 颛 清山 on 03/09/13.
@@ -10,7 +10,7 @@
 
 @protocol GroupDataDelegate;
 
-@interface GroupOwnerOrderController : UITableViewController
+@interface GroupMyOrderController : UITableViewController
 @property(nonatomic, strong) NSObject <GroupDataDelegate> *delegate;
 
 @end
