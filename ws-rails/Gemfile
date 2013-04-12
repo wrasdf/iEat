@@ -34,4 +34,6 @@ gem 'rabl-rails'
 gem 'oj'
 gem "squeel"
 gem "yui-compressor"
+gem "pg"
+gem "activerecord-postgresql-adapter"
 gem 'sprockets', '~> 2.0'
