@@ -22,7 +22,6 @@ public class GroupInfoActivity extends ActionBarActivity {
     @Override
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
-        getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
         setContentView(R.layout.group_info);
 
         group = (Group) getIntent().getExtras().get(IEatApplication.EXTRA_GROUP);

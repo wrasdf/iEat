@@ -55,8 +55,29 @@ public class LoginActivity extends Activity {
         String username = usernameView.getText().toString();
         String pwd = passwordView.getText().toString();
 
+        if (hasInputEmpty()) return;
+
         LoginAsyncTask loginTask = new LoginAsyncTask(this);
         loginTask.execute(username, pwd);
+    }
+
+    private boolean hasInputEmpty() {
+        if (toastEmptyMessage(usernameView, R.string.login_username_label)) return true;
+        if (toastEmptyMessage(passwordView, R.string.login_password_label)) return true;
+        return false;
+    }
+
+    private boolean toastEmptyMessage(EditText editView, int viewLabelId) {
+        if (editView.getText().toString().equals("")) {
+            Toast.makeText(this, getString(viewLabelId) + getString(R.string.input_empty_message), Toast.LENGTH_SHORT).show();
+            return true;
+        }
+        return false;
+    }
+
+    public void goToRegister(View view) {
+        Intent intent = new Intent(this, RegisterActivity.class);
+        startActivity(intent);
     }
 
 

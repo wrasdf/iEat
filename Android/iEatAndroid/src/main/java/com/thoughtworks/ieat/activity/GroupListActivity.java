@@ -31,11 +31,11 @@ public class GroupListActivity extends ActionBarActivity {
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
 
-        this.requestWindowFeature(Window.FEATURE_ACTION_BAR);
+//        this.requestWindowFeature(Window.FEATURE_ACTION_BAR);
         setContentView(R.layout.group_list);
         myGroupLayout = (ListView) findViewById(R.id.my_groups);
         todayGroupLayout = (ListView) findViewById(R.id.today_groups);
-        getActionBar().setTitle(R.string.group_list_title);
+        setTitle(R.string.group_list_title);
     }
 
     public void onResume() {

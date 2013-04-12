@@ -43,7 +43,7 @@ public class GroupCreateActivity extends ActionBarActivity {
 
         timePicker = (TimePicker) findViewById(R.id.time_picker);
         initTimePicker(timePicker);
-        getActionBar().setTitle(R.string.group_create_title);
+        setTitle(R.string.group_create_title);
     }
 
     @Override

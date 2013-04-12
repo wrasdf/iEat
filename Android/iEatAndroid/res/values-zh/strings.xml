@@ -52,4 +52,16 @@
     <string name="group_myself_no_content">当前用户没有点餐</string>
     <string name="group_member_no_content">当前没有其他人点餐</string>
     <string name="delete_button_label">删除</string>
+    <string name="login_button_label">登陆</string>
+    <string name="login_page_register_button_label">注册</string>
+    <string name="register_username_lable">用户名</string>
+    <string name="register_email_label">邮箱</string>
+    <string name="register_phone_number_label">电话</string>
+    <string name="register_password_label">密码</string>
+    <string name="register_password_confirm_label">重复密码</string>
+    <string name="input_empty_message">不能为空</string>
+    <string name="register_password_not_same_message">密码前后输入不一致</string>
+    <string name="register_title">注册</string>
+    <string name="login_username_label">用户名/邮箱</string>
+    <string name="login_password_label">password</string>
 </resources>

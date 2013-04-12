@@ -36,7 +36,7 @@ public class OrderCreateActivity extends ActionBarActivity {
         group = (Group) getIntent().getExtras().get(IEatApplication.EXTRA_GROUP);
 
         dishesView = (ListView) findViewById(R.id.dish_list);
-        getActionBar().setTitle(group.getRestaurant().getName());
+        setTitle(group.getRestaurant().getName());
     }
 
     @Override

@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import com.thoughtworks.ieat.activity.GroupMemberActivity;
 import com.thoughtworks.ieat.domain.Order;
 
 import java.util.List;
@@ -32,8 +31,8 @@ public class OrderAdapter extends BaseAdapter{
     }
 
     public View getView(int i, View view, ViewGroup viewGroup) {
-        OrderView orderView = new OrderView(context, getItem(i));
-        orderView.setClickable(false);
+        OrderView orderView = new OrderView(context);
+        orderView.addOrder(getItem(i));
         return orderView;
     }
 }

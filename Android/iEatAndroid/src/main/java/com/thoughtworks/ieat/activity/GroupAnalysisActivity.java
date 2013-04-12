@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TableLayout;
 import android.widget.TableRow;
-import android.widget.TextView;
 import com.thoughtworks.ieat.IEatApplication;
 import com.thoughtworks.ieat.R;
 import com.thoughtworks.ieat.domain.Group;
@@ -34,6 +33,7 @@ public class GroupAnalysisActivity extends Activity {
             return;
         } else {
             findViewById(R.id.group_analysis_no_content).setVisibility(View.GONE);
+            tableLayout.setVisibility(View.VISIBLE);
             addRows(tableLayout, group.getOrders());
         }
 

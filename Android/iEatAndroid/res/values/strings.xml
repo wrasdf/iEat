@@ -52,4 +52,16 @@
     <string name="group_myself_no_content">Current user didn\'t order.</string>
     <string name="group_member_no_content">No other people order.</string>
     <string name="delete_button_label">Delete</string>
+    <string name="login_button_label">Log In</string>
+    <string name="login_page_register_button_label">Register</string>
+    <string name="register_username_lable">Username</string>
+    <string name="register_email_label">Email Address</string>
+    <string name="register_phone_number_label">Phone Number</string>
+    <string name="register_password_label">Password</string>
+    <string name="register_password_confirm_label">Input password again</string>
+    <string name="input_empty_message"> should not be empty</string>
+    <string name="register_password_not_same_message">Input different password</string>
+    <string name="register_title">Register</string>
+    <string name="login_username_label">Username/Email</string>
+    <string name="login_password_label">password</string>
 </resources>

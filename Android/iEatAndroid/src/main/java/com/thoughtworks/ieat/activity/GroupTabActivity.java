@@ -27,8 +27,8 @@ public class GroupTabActivity extends TabActivity implements TabHost.TabContentF
     @Override
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
-
         setContentView(R.layout.group_tab_main);
+
         group = (Group) getIntent().getExtras().get(IEatApplication.EXTRA_GROUP);
         actionSourceTag = getIntent().getExtras().getString(IEatApplication.EXTRA_TAG);
         setTabs(group);

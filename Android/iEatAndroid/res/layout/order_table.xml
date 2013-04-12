@@ -10,18 +10,21 @@
                   android:layout_height="wrap_content"
                   android:orientation="horizontal"
                   android:paddingLeft="@dimen/horizontal_padding"
-                  android:background="@drawable/list_item_bg_top">
+                  android:background="@drawable/list_item_bg_top_header">
 
         <TextView android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
                   android:id="@+id/order_table_header_username"
+                  android:paddingLeft="@dimen/horizontal_padding"
+                  android:paddingTop="@dimen/vertical_padding"
+                  android:paddingBottom="@dimen/vertical_padding"
                   android:textStyle="bold"/>
 
         <Button android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/delete"
-                android:text="@string/delete_button_label"
-                android:visibility="invisible"/>
+                android:visibility="gone"
+                android:text="@string/delete_button_label"/>
     </LinearLayout>
 
     <TableLayout android:layout_width="fill_parent"

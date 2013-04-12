@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:paddingTop="30dp"
+              android:paddingLeft="@dimen/device_padding"
+              android:paddingRight="@dimen/device_padding">
+
+    <EditText android:layout_height="wrap_content"
+              android:layout_width="fill_parent"
+              android:id="@+id/register_username"
+              android:hint="@string/register_username_lable"
+              android:inputType="text"
+              android:lines="1"/>
+
+    <EditText android:layout_height="wrap_content"
+              android:layout_width="fill_parent"
+              android:layout_marginTop="10dp"
+              android:inputType="textEmailAddress"
+              android:id="@+id/register_email"
+              android:hint="@string/register_email_label"
+              android:layout_gravity="center_horizontal|bottom"
+              android:lines="1"/>
+
+    <EditText android:layout_height="wrap_content"
+              android:layout_width="fill_parent"
+              android:layout_marginTop="10dp"
+              android:inputType="number"
+              android:id="@+id/register_phone_number"
+              android:hint="@string/register_phone_number_label"
+              android:layout_gravity="center_horizontal|bottom"
+              android:lines="1"/>
+
+    <EditText android:layout_height="wrap_content"
+              android:layout_width="fill_parent"
+              android:layout_marginTop="10dp"
+              android:inputType="textPassword"
+              android:id="@+id/register_password"
+              android:hint="@string/register_password_label"
+              android:layout_gravity="center_horizontal|bottom"
+              android:lines="1"/>
+
+    <EditText android:layout_height="wrap_content"
+              android:layout_width="fill_parent"
+              android:layout_marginTop="10dp"
+              android:inputType="textPassword"
+              android:id="@+id/register_password_confirm"
+              android:hint="@string/register_password_confirm_label"
+              android:layout_gravity="center_horizontal|bottom"
+              android:lines="1"/>
+
+    <Button android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:id="@+id/login_Button"
+            android:text="@string/login_page_register_button_label"
+            android:onClick="register"/>
+
+</LinearLayout>

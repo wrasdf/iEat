@@ -118,4 +118,15 @@ public class Server {
         }
         return appHttpResponse;
     }
+
+    public static AppHttpResponse<User> signUp(Map<String, String> userInfo) {
+        AppHttpResponse<User> appHttpResponse;
+        try {
+            appHttpResponse = HttpUtils.post("/api/v1/users", userInfo, User.class);
+        } catch (Exception e) {
+            appHttpResponse = new AppHttpResponse<User>();
+            appHttpResponse.setException(e);
+        }
+        return appHttpResponse;
+    }
 }

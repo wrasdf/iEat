@@ -24,6 +24,7 @@
             android:layout_height="30dp"
             android:id="@+id/dish_count_minus"
             android:text="-"
+            android:clickable="true"
             android:background="@drawable/list_item_bg"/>
 
     <EditText android:layout_width="0dp"
@@ -36,6 +37,7 @@
             android:id="@+id/dish_count_plus"
             android:layout_height="30dp"
             android:background="@drawable/list_item_bg"
+            android:clickable="true"
             android:text="+"/>
 
 </LinearLayout>
