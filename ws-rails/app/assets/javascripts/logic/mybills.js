@@ -75,6 +75,11 @@ var iEatMyBills = (function () {
             },
             dataType : "json",
             success : function(o){
+
+                if(!iEatUtility.isTokenValid(o)){
+                    return false;
+                }
+
                 renderGetMoneyBackUI(o.unpaid_orders);
                 renderPaybackUI(o.payback_orders);
                 $("#my-bills").trigger("create");

@@ -32,8 +32,8 @@ var iEatSignUp = (function () {
                 dataType: "json",
                 success : function(o){
                     if(o){
-                        $.cookie('userName', o.name,{ expires: 10, path: '/' });
-                        $.cookie('userEmail', o.email,{ expires: 10, path: '/' });
+                        $.cookie('userName', o.name,{ expires: 14, path: '/' });
+                        $.cookie('userEmail', o.email,{ expires: 14, path: '/' });
                         window.location.href="/users/sign_in";
                     }
                 },

@@ -37,7 +37,22 @@ var iEatUtility = (function(){
 
     }
 
+    function isTokenValid(response){
+        if(response && response.error == "Token is invalid."){
+            iEatUtility.msg({
+                type: "error",
+                msg: response.error,
+                cb : function(){
+                    window.location.href = "/users/sign_in";
+                }
+            });
+            return false;
+        }
+        return true;
+    }
+
     return {
+        isTokenValid : isTokenValid,
         getTodayGroupList : getTodayGroupList,
         getAllRestaurants : getAllRestaurants
     }
@@ -63,7 +78,13 @@ $.extend(iEatUtility,(function(){
     }
 
     function message(obj){
-        $("<div class='ui-msg "+obj.type+"'>"+obj.msg+"</div>")
+        var config = $.extend({
+            type: "success",
+            msg: "",
+            cb : function(){}
+        },obj || {});
+
+        $("<div class='ui-msg "+config.type+"'>"+config.msg+"</div>")
             .appendTo($.mobile.pageContainer)
             .css({
                 "top":"-"+(parseInt($('.ui-msg').innerHeight()+1))
@@ -74,6 +95,7 @@ $.extend(iEatUtility,(function(){
             .delay( 1500 )
             .fadeOut( 400, function(){
                 $(this).remove();
+                config.cb();
             });
     }
 

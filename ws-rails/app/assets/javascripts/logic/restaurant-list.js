@@ -9,7 +9,7 @@ var iEatRestaurant = (function(){
         });
 
         $(".restaurant-list-content li a").unbind("click").bind("click",function(){
-            $.cookie("selectedRestaurantId",$(this).data("id"),{ expires: 1, path: '/' });
+            $.cookie("selectedRestaurantId",$(this).data("id"),{ expires: 14, path: '/' });
             window.location.href = "/groups/new";
         });
 

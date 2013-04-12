@@ -11,6 +11,11 @@ var iEatGroupDetails = (function () {
             url : "/api/v1/groups/"+currentGroupId+"/dishes?token="+token,
             dataType : "json",
             success : function(o){
+
+                if(!iEatUtility.isTokenValid(o)){
+                    return false;
+                }
+
                 var str = '<ul data-role="listview" data-inset="true" data-filter="true" data-filter-placeholder="Search dish..." class="edit-restaurant-details">';
                 $.each(o,function(i,cuisine){
                     str += '<li data-role="list-divider" data-theme="c">'+ cuisine.name+'</li>';
@@ -77,7 +82,13 @@ var iEatGroupDetails = (function () {
                     dishes : JSON.stringify(getMyOrderDishes())
                 },
                 success : function(o){
+
+                    if(!iEatUtility.isTokenValid(o)){
+                        return false;
+                    }
+
                     if(o.status && o.status == "out_of_dueDate"){
+
                         iEatUtility.msg({
                             type : "error",
                             msg : "你已经超出点餐时间。"
@@ -89,7 +100,7 @@ var iEatGroupDetails = (function () {
 
                         return;
                     }
-                    $.cookie("orderCreateStatus","success",{ expires: 1, path: '/' });
+                    $.cookie("orderCreateStatus","success",{ expires: 14, path: '/' });
                     window.location.href = "/groups/"+currentGroupId+"#2";
                 },
                 error : function(){

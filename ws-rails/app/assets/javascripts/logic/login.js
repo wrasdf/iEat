@@ -35,9 +35,9 @@ $("#login-page").bind("pageshow", function () {
             },
             success : function(o){
                 if(o.success){
-                    $.cookie('token', o.token,{ expires: 10, path: '/' });
-                    $.cookie('userName', o.name,{ expires: 10, path: '/' });
-                    $.cookie('userEmail', o.email,{ expires: 10, path: '/' });
+                    $.cookie('token', o.token,{ expires: 14, path: '/' });
+                    $.cookie('userName', o.name,{ expires: 14, path: '/' });
+                    $.cookie('userEmail', o.email,{ expires: 14, path: '/' });
                     window.location.href="/groups";
                 }
             },

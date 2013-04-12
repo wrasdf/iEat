@@ -93,10 +93,10 @@ var iEatCreate = (function () {
                     if (o) {
                         var createdGroupId = o.id;
                         var groupName = $("#group-name").val();
-                        $.cookie("currentGroupId", createdGroupId, { expires: 1, path: '/' });
-                        $.cookie("groupCreateStatus", "success", { expires: 1, path: '/' });
+                        $.cookie("currentGroupId", createdGroupId, { expires: 14, path: '/' });
+                        $.cookie("groupCreateStatus", "success", { expires: 14, path: '/' });
                         if(groupName){
-                            $.cookie("createGroupName",groupName, { expires: 1, path: '/' });
+                            $.cookie("createGroupName",groupName, { expires: 14, path: '/' });
                         }
                         window.location.href = "/groups/" + createdGroupId;
                     }
@@ -117,7 +117,7 @@ var iEatCreate = (function () {
         $(".more-restaurants").bind("click", function () {
             var groupName = $("#group-name").val();
             if(groupName){
-                $.cookie("createGroupName",groupName, { expires: 1, path: '/' });
+                $.cookie("createGroupName",groupName, { expires: 14, path: '/' });
             }
             window.location.href = "/restaurants";
         });
@@ -131,6 +131,11 @@ var iEatCreate = (function () {
             url: "/api/v1/restaurants?token="+token,
             dataType: 'json',
             success: function (o) {
+
+                if(!iEatUtility.isTokenValid(o)){
+                    return false;
+                }
+
                 if (o) {
                     var selectedRestaurantId = $.cookie("selectedRestaurantId");
                     updateRestaurantsUI(o,selectedRestaurantId);

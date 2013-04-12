@@ -3,6 +3,11 @@ var iEatGroupList = (function () {
     var token = $.cookie("token");
     function reFreshGroupList() {
         iEatUtility.getTodayGroupList(token,function (data) {
+
+            if(!iEatUtility.isTokenValid(data)){
+                return false;
+            }
+
             var data = refactorActiveData(data);
             var str = '';
             var myRelatedGroups = data.myRelatedGroups;
@@ -95,7 +100,7 @@ var iEatGroupList = (function () {
 
         $("#group-list .group-item").bind("click", function () {
             var currentGroupId = $(this).data("id");
-            $.cookie("currentGroupId",currentGroupId,{ expires: 1, path: '/' });
+            $.cookie("currentGroupId",currentGroupId,{ expires: 14, path: '/' });
             window.location.href = "/groups/"+currentGroupId;
         });
 

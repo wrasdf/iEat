@@ -114,6 +114,11 @@ var iEatGroupShow = (function () {
                 url: "/api/v1/orders/delete/" + orderId + "?token=" + token,
                 dataType: "json",
                 success: function (data) {
+
+                    if(!iEatUtility.isTokenValid(data)){
+                        return false;
+                    }
+
                     if (data && data.status == 'success') {
                         if(setIntervalForDeleteButton){
                             window.clearInterval(setIntervalForDeleteButton);
@@ -325,6 +330,9 @@ var iEatGroupShow = (function () {
             url: "/api/v1/groups/" + currentGroupId + "?token=" + token,
             dataType: "json",
             success: function (data) {
+                if(!iEatUtility.isTokenValid(data)){
+                    return false;
+                }
                 if (data) {
                     if (callback) {
                         callback(data);
@@ -351,7 +359,7 @@ $("#group-show").bind("pageshow", function () {
             type: "success",
             msg: "Your order is success created."
         });
-        $.cookie("orderCreateStatus", "null", { expires: 1, path: '/' });
+        $.cookie("orderCreateStatus", "null", { expires: 14, path: '/' });
     }
 
     if ($.cookie("groupCreateStatus") == "success") {
@@ -359,7 +367,7 @@ $("#group-show").bind("pageshow", function () {
             type: "success",
             msg: "Your Group is success created."
         });
-        $.cookie("groupCreateStatus", "null", { expires: 1, path: '/' });
+        $.cookie("groupCreateStatus", "null", { expires: 14, path: '/' });
     }
     iEatGroupShow.pageInit();
 });
