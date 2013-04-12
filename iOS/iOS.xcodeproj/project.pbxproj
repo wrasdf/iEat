@@ -73,6 +73,10 @@
 		BBA6E72A16DD024B00561F93 /* GroupSummaryViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA6E72916DD024B00561F93 /* GroupSummaryViewCell.m */; };
 		BBBC94FE16D6684F0009938F /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBBC94FD16D6684F0009938F /* StoreKit.framework */; };
 		BBBC950016D668630009938F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBBC94FF16D668630009938F /* SystemConfiguration.framework */; };
+		BBD1AF5F1718226F00DB7B71 /* apple-touch-icon-iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = BBD1AF5E1718226F00DB7B71 /* apple-touch-icon-iphone.png */; };
+		BBD1AF621718227700DB7B71 /* apple-touch-icon-iphone4.png in Resources */ = {isa = PBXBuildFile; fileRef = BBD1AF611718227700DB7B71 /* apple-touch-icon-iphone4.png */; };
+		BBD1AF65171822B400DB7B71 /* apple-touch-icon-iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = BBD1AF63171822B400DB7B71 /* apple-touch-icon-iphone.png */; };
+		BBD1AF66171822B400DB7B71 /* apple-touch-icon-iphone4.png in Resources */ = {isa = PBXBuildFile; fileRef = BBD1AF64171822B400DB7B71 /* apple-touch-icon-iphone4.png */; };
 		BBE4ABEB16DBA1BA00C5883D /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BBE4ABEA16DBA1BA00C5883D /* libxml2.2.dylib */; };
 /* End PBXBuildFile section */
 
@@ -191,6 +195,10 @@
 		BBA6E72916DD024B00561F93 /* GroupSummaryViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupSummaryViewCell.m; sourceTree = "<group>"; };
 		BBBC94FD16D6684F0009938F /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		BBBC94FF16D668630009938F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		BBD1AF5E1718226F00DB7B71 /* apple-touch-icon-iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "apple-touch-icon-iphone.png"; sourceTree = "<group>"; };
+		BBD1AF611718227700DB7B71 /* apple-touch-icon-iphone4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "apple-touch-icon-iphone4.png"; sourceTree = "<group>"; };
+		BBD1AF63171822B400DB7B71 /* apple-touch-icon-iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "apple-touch-icon-iphone.png"; sourceTree = "<group>"; };
+		BBD1AF64171822B400DB7B71 /* apple-touch-icon-iphone4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "apple-touch-icon-iphone4.png"; sourceTree = "<group>"; };
 		BBE4ABEA16DBA1BA00C5883D /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -278,6 +286,8 @@
 		494BC0E216D0D86A00DA45B9 = {
 			isa = PBXGroup;
 			children = (
+				BBD1AF611718227700DB7B71 /* apple-touch-icon-iphone4.png */,
+				BBD1AF5E1718226F00DB7B71 /* apple-touch-icon-iphone.png */,
 				BBE4ABEA16DBA1BA00C5883D /* libxml2.2.dylib */,
 				494BC0F716D0D86A00DA45B9 /* iOS */,
 				494BC11516D0D86B00DA45B9 /* iOSTests */,
@@ -389,6 +399,8 @@
 		6AC700F2E6E4A22AB2D17F82 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				BBD1AF63171822B400DB7B71 /* apple-touch-icon-iphone.png */,
+				BBD1AF64171822B400DB7B71 /* apple-touch-icon-iphone4.png */,
 				6AC7010B191BDBFC9AE5EE79 /* fork.png */,
 				6AC70C90AD9EEC6859F6B1E8 /* phone.png */,
 				6AC7058C84C654621D40EAF9 /* user.png */,
@@ -560,6 +572,10 @@
 				6AC70852D8C1670E54755E16 /* arrow_up.png in Resources */,
 				6AC70D8F694A73487ED59CD6 /* created.png in Resources */,
 				6AC70E74AE0490478B917C7D /* joined.png in Resources */,
+				BBD1AF5F1718226F00DB7B71 /* apple-touch-icon-iphone.png in Resources */,
+				BBD1AF621718227700DB7B71 /* apple-touch-icon-iphone4.png in Resources */,
+				BBD1AF65171822B400DB7B71 /* apple-touch-icon-iphone.png in Resources */,
+				BBD1AF66171822B400DB7B71 /* apple-touch-icon-iphone4.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
