@@ -120,6 +120,7 @@
         "email": "rwang@thoughtworks.com"
     },
     "orders": [{
+            "id" : 23,
             "user": {
                 "id": 2,
                 "name": "kerry",
@@ -141,6 +142,7 @@
             ]
         },
         {
+            "id" : 24,
             "user": {
                 "id": 1,
                 "name": "Beany",
