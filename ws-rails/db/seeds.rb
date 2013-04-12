@@ -25,7 +25,7 @@ userWangrui = User.create! :name => "kerry", :email => "rwang@thoughtworks.com",
 userWangrui.confirm!
 userQingshan = User.create! :name => "qingshan", :email => "qszhuan@thoughtworks.com", :password => "12345678".dup, :password_confirmation => "12345678".dup
 userQingshan.confirm!
-userXiaochong = User.create! :name => "xiaochong", :email => "xczhang@thoughtworks.com", :password => "12345678".dup, :password_confirmation => "12345678".dup
-userXiaochong.confirm!
 userYaoxin = User.create! :name => "xyao", :email => "xyao@thoughtworks.com", :password => "12345678".dup, :password_confirmation => "12345678".dup
 userYaoxin.confirm!
+zhuAo = User.create! :name => "azhu", :email => "azhu@thoughtworks.com", :password => "12345678".dup, :password_confirmation => "12345678".dup
+zhuAo.confirm!
