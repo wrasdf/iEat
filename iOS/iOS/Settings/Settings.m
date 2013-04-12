@@ -12,8 +12,8 @@
 
 
 + (NSString *)serverUri {
-    return @"http://localhost:3000";
-    return @"https://10.18.7.120";
+//    return @"http://localhost:3000";
+    return @"https://ieat.thoughtworks.biz";
 }
 
 + (void)setUserName:(NSString *)username {

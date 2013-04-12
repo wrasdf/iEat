@@ -43,6 +43,10 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    [self redrawData:animated];
+}
+
+- (void)redrawData:(BOOL)animated {
     NSDictionary *groupInfo = [[self delegate] GetGroupInfo];
     dueDate = [dateFormatter dateFromString:groupInfo[@"due_date"]];
     NSArray * dishes = groupInfo[@"orders"];
@@ -95,12 +99,7 @@
     [GroupDataService DeleteOrder:sender.tag];
     [[self delegate] UpdateGroupInfo];
 
-    NSDictionary *groupInfo = [[self delegate] GetGroupInfo];
-    dueDate = [dateFormatter dateFromString:groupInfo[@"due_date"]];
-    NSArray * dishes = groupInfo[@"orders"];
-    User *user = [User CurrentUser];
-    myOrders = [dishes filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF.user.name == %@", user.name]];
-    [self.tableView reloadData];
+    [self redrawData:YES];
 }
 
 
@@ -121,6 +120,8 @@
     }
     if ([myOrders count] == 0){
         cell.textLabel.text = @"当前您没有订餐";
+        cell.detailTextLabel.text = @"";
+        [cell setAccessoryView:nil];
         return cell;
     }
     NSDictionary * order = [myOrders objectAtIndex:indexPath.section];
