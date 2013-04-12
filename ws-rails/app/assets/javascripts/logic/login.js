@@ -8,7 +8,7 @@ $("#login-page").bind("pageshow", function () {
 
     $("#input-data").val(username);
 
-    $("#sign-up").bind("click",function(){
+    $("#sign-up").parent().bind("click",function(){
         window.location.href = "/users/sign_up";
     });
 
