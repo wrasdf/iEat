@@ -21,18 +21,21 @@ WsRails::Application.configure do
   #config.action_mailer.raise_delivery_errors = true
   #config.action_mailer.default :charset => "utf-8"
 
-  ActionMailer::Base.delivery_method = :smtp
+  config.action_mailer.default_url_options = { :host => 'localhost' }
+  config.action_mailer.perform_deliveries = false
+
+  #ActionMailer::Base.delivery_method = :smtp
   #ActionMailer::Base.default_content_type = "text/html"
 
-  config.action_mailer.smtp_settings = {
-    address: "smtp.gmail.com",
-    port: 587,
-    domain: "localhost:3000",
-    authentication: "plain",
-    enable_starttls_auto: true,
-    user_name: ENV["GMAIL_USERNAME"],
-    password: ENV["GMAIL_PASSWORD"]
-  }
+  #config.action_mailer.smtp_settings = {
+  #  address: "smtp.gmail.com",
+  #  port: 587,
+  #  domain: "localhost:3000",
+  #  authentication: "plain",
+  #  enable_starttls_auto: true,
+  #  user_name: ENV["GMAIL_USERNAME"],
+  #  password: ENV["GMAIL_PASSWORD"]
+  #}
 
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log
