@@ -65,4 +65,5 @@
     <string name="login_username_label">Username/Email</string>
     <string name="login_password_label">password</string>
     <string name="bill_title">My Bills</string>
+    <string name="group_info_label_due_date">Due DateTime</string>
 </resources>

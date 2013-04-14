@@ -14,6 +14,8 @@ import com.thoughtworks.ieat.IEatApplication;
 import com.thoughtworks.ieat.R;
 import com.thoughtworks.ieat.domain.Group;
 
+import java.text.SimpleDateFormat;
+
 public class GroupInfoActivity extends Activity {
 
 
@@ -28,6 +30,7 @@ public class GroupInfoActivity extends Activity {
 
         ((TextView) findViewById(R.id.group_info_name)).setText(group.getName());
         ((TextView) findViewById(R.id.group_info_owner_name)).setText(group.getOwner().getName());
+        ((TextView) findViewById(R.id.group_info_due_date)).setText(new SimpleDateFormat(IEatApplication.DATE_DISPLAY_PATTERN).format(group.getDueDate()));
 
 
         ((TextView) findViewById(R.id.group_info_restaurant_name)).setText(group.getRestaurant().getName());
@@ -68,12 +71,6 @@ public class GroupInfoActivity extends Activity {
             callIntent.setData(Uri.parse("tel:" + phoneNumber));
             GroupInfoActivity.this.startActivity(callIntent);
         }
-
-//        @Override
-//        public void updateDrawState(TextPaint textPaint) {
-//            textPaint.setColor(getPaint());
-//            textPaint.setLinearText(false);
-//        }
 
     }
 

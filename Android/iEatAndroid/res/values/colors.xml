@@ -7,5 +7,6 @@
     <color name="light_black">#666666</color>
     <color name="black">#ff000000</color>
 
+    <color name="system_background">#ffe2e2e2</color>
     <color name="actionbar_title_color">#224894</color>
 </resources>

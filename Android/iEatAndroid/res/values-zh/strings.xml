@@ -65,4 +65,5 @@
     <string name="login_username_label">用户名/邮箱</string>
     <string name="login_password_label">password</string>
     <string name="bill_title">我的账单</string>
+    <string name="group_info_label_due_date">截至时间</string>
 </resources>

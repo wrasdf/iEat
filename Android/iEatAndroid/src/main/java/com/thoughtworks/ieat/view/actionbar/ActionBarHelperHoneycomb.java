@@ -83,12 +83,6 @@ public class ActionBarHelperHoneycomb extends ActionBarHelper {
 
     @Override
     public void setActionBarTheme(int color, int logoResId) {
-//        int titleId = Resources.getSystem().getIdentifier("action_bar_title", "id", "android");
-//        TextView titleTextView = (TextView) mActivity.getWindow().findViewById(titleId);
-//        titleTextView.setPadding(20, 0, 0, 0);
-//        titleTextView.setTextColor(color);
-//        titleTextView.setClickable(false);
-//        titleTextView.setTypeface(null, Typeface.BOLD);
         mActivity.getActionBar().setLogo(logoResId);
 
     }

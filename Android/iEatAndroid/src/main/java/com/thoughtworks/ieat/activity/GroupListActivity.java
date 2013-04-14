@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -53,6 +54,7 @@ public class GroupListActivity extends ActionBarActivity implements PostProcesso
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.group_list, menu);
         setTitle(R.string.group_list_title);
+        getActionBarHelper().setDisplayHomeAsUpEnabled(false);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -67,6 +69,14 @@ public class GroupListActivity extends ActionBarActivity implements PostProcesso
                 break;
         }
         return false;
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            IEatApplication.exit();
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
     private void goToRecharge() {
