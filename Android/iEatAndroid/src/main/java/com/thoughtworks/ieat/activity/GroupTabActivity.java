@@ -68,6 +68,7 @@ public class GroupTabActivity extends TabActivity{
         retValue |= super.onCreateOptionsMenu(menu);
 
         getActionBarHelper().setDisplayHomeAsUpEnabled(true);
+        setTitle(group.getName());
         return retValue;
     }
 

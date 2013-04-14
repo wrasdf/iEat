@@ -194,7 +194,7 @@ public class ActionBarHelperBase extends ActionBarHelper {
         }
 
         actionButton.setText(item.getTitle());
-        actionButton.setGravity(Gravity.CENTER_VERTICAL);
+        actionButton.setGravity(Gravity.CENTER);
         actionButton.setTextSize(13);
 
         actionButton.setPadding(0, 2, 0, 2);

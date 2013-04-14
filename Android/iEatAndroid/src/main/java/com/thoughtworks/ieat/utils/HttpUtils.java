@@ -16,9 +16,11 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.protocol.HTTP;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
+import java.net.URLEncoder;
 import java.util.LinkedList;
 import java.util.Map;
 
@@ -43,14 +45,22 @@ public class HttpUtils {
     }
 
     public static <T> AppHttpResponse<T> post(String url, Map<String, String> postParams, Class<T> responseClass) throws IOException {
+        String postJson = new Gson().toJson(postParams);
+        return post(url, postJson, responseClass);
+    }
+
+    public static <E> AppHttpResponse<E> post(String url, String postJsonData, Class<E> responseClass) throws IOException {
         HttpPost httpPost = new HttpPost(url + "?token=" + IEatApplication.getToken());
-        LinkedList<BasicNameValuePair> basicNameValuePairLinkedList = new LinkedList<BasicNameValuePair>();
-        for (Map.Entry<String, String> param : postParams.entrySet()) {
-            basicNameValuePairLinkedList.add(new BasicNameValuePair(param.getKey(), param.getValue()));
-        }
-        httpPost.setEntity(new UrlEncodedFormEntity(basicNameValuePairLinkedList));
+        StringEntity entity = new StringEntity(postJsonData, HTTP.UTF_8);
+        httpPost.setEntity(entity);
+        httpPost.setHeader("Accept", "application/json");
+        httpPost.setHeader("Content-type", "application/json");
+        httpPost.addHeader("charset", HTTP.UTF_8);
+
+
         HttpResponse response = getHttpClient().execute(getHttpHost(), httpPost);
-        return parseResponse(response, responseClass);
+        AppHttpResponse<E> appHttpResponse = parseResponse(response, responseClass);
+        return appHttpResponse;
     }
 
     private static <E> AppHttpResponse<E> parseResponse(HttpResponse response, Class<E> responseClass) throws IOException {
@@ -93,17 +103,5 @@ public class HttpUtils {
             httpHost = new HttpHost(PropertyUtils.getServerHost(), PropertyUtils.getServerPort());
         }
         return httpHost;
-    }
-
-    public static AppHttpResponse<Group> post(String url, String postJsonData, Class<Group> responseClass) throws IOException {
-        HttpPost httpPost = new HttpPost(url + "?token=" + IEatApplication.getToken());
-        StringEntity entity = new StringEntity(postJsonData);
-        httpPost.setEntity(entity);
-        httpPost.setHeader("Accept", "application/json");
-        httpPost.setHeader("Content-type", "application/json");
-
-        HttpResponse response = getHttpClient().execute(getHttpHost(), httpPost);
-        AppHttpResponse<Group> appHttpResponse = parseResponse(response, responseClass);
-        return appHttpResponse;
     }
 }
