@@ -67,6 +67,7 @@ public class BillActivity extends TabActivity{
             case android.R.id.home:
                 Intent intent = new Intent(this, GroupListActivity.class);
                 startActivity(intent);
+                finish();
                 break;
         }
         return false;

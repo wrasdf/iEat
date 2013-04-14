@@ -59,6 +59,14 @@ public class GroupTabActivity extends TabActivity{
     }
 
     @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            goToDashBoard();
+        }
+        return super.onKeyDown(keyCode, event);    //To change body of overridden methods use File | Settings | File Templates.
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         if (group.getDueDate().getTime() > System.currentTimeMillis()) {
             getMenuInflater().inflate(R.menu.group_info, menu);
@@ -82,11 +90,17 @@ public class GroupTabActivity extends TabActivity{
                 break;
             case R.id.actionbar_home_button:
             case android.R.id.home:
-                intent = new Intent(this, GroupListActivity.class);
-                startActivity(intent);
+                goToDashBoard();
                 break;
         }
         return false;
+    }
+
+    private void goToDashBoard() {
+        Intent intent = new Intent(this, GroupListActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+        finish();
     }
 
     protected ActionBarHelper getActionBarHelper() {

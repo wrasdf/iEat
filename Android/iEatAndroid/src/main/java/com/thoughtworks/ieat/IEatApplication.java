@@ -1,11 +1,15 @@
 package com.thoughtworks.ieat;
 
+import android.app.Activity;
 import android.app.Application;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import com.thoughtworks.ieat.domain.User;
 import com.thoughtworks.ieat.utils.ApplicationData;
 import com.thoughtworks.ieat.utils.PropertyUtils;
+
+import java.util.LinkedList;
+import java.util.List;
 
 public class IEatApplication extends Application {
 
@@ -18,6 +22,8 @@ public class IEatApplication extends Application {
     public static final String EXTRA_TAG = "EXTRA_TAG";
     public static final String EXTRA_ORDER_LIST = "EXTRA_ORDER_LIST";
     public static final String EXTRA_BILL = "EXTRA_BILL";
+
+    private static List<Activity> activeActivity = new LinkedList<Activity>();
 
     @Override
     public void onCreate() {
@@ -52,6 +58,17 @@ public class IEatApplication extends Application {
             token = ApplicationData.getToken();
         }
         return token;
+    }
+
+    public static void addActivity(Activity activity) {
+        activeActivity.add(activity);
+    }
+
+    public static void exit() {
+        for (Activity activity : activeActivity) {
+            activity.finish();
+        }
+        System.exit(0);
     }
 
 }

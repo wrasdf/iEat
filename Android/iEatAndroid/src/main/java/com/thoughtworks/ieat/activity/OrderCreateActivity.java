@@ -162,6 +162,7 @@ public class OrderCreateActivity extends ActionBarActivity {
                     intent.putExtra(IEatApplication.EXTRA_TAG, String.valueOf(R.string.group_member_tab_label));
                 }
                 context.startActivity(intent);
+                finish();
             } else {
                 Toast.makeText(OrderCreateActivity.this, response.getErrorMessage(), Toast.LENGTH_SHORT).show();
             }

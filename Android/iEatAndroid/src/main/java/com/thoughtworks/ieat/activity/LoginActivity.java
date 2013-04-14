@@ -48,6 +48,7 @@ public class LoginActivity extends Activity {
     private void goToApp() {
         Intent intent = new Intent(this, GroupListActivity.class);
         startActivity(intent);
+        finish();
     }
 
     public void login(View view) {
@@ -59,6 +60,14 @@ public class LoginActivity extends Activity {
 
         LoginAsyncTask loginTask = new LoginAsyncTask(this);
         loginTask.execute(username, pwd);
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            IEatApplication.exit();
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
     private boolean hasInputEmpty() {

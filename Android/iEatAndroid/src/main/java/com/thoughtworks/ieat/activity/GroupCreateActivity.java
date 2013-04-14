@@ -97,6 +97,7 @@ public class GroupCreateActivity extends ActionBarActivity {
     private void gotoDashBoard() {
         Intent loginIntent = new Intent(this, GroupListActivity.class);
         startActivity(loginIntent);
+        finish();
     }
 
     public void showRestaurantsDialog(View view) {
@@ -210,6 +211,7 @@ public class GroupCreateActivity extends ActionBarActivity {
                 intent.putExtra(IEatApplication.EXTRA_GROUP, result.getData());
                 intent.putExtra(IEatApplication.EXTRA_TAG, getResources().getString(R.string.group_info_tab_label));
                 GroupCreateActivity.this.startActivity(intent);
+                finish();
             } else {
                 Toast.makeText(GroupCreateActivity.this, result.getErrorMessage(), Toast.LENGTH_SHORT).show();
             }

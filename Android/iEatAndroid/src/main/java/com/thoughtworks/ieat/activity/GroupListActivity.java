@@ -36,7 +36,7 @@ public class GroupListActivity extends ActionBarActivity implements PostProcesso
         setContentView(R.layout.group_list);
         myGroupLayout = (ListView) findViewById(R.id.my_groups);
         todayGroupLayout = (ListView) findViewById(R.id.today_groups);
-
+        IEatApplication.addActivity(this);
     }
 
     public void onResume() {
@@ -77,12 +77,13 @@ public class GroupListActivity extends ActionBarActivity implements PostProcesso
         ((IEatApplication) getApplication()).logout();
 
         goToLogin();
-        finish();
     }
 
     private void goToLogin() {
         Intent loginIntent = new Intent(this, LoginActivity.class);
+        loginIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(loginIntent);
+        finish();
     }
 
     public void process(AppHttpResponse<MyBill> appHttpResponse) {

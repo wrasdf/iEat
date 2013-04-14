@@ -67,6 +67,7 @@ public class RegisterActivity extends ActionBarActivity {
     private void goToLogin() {
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
+        finish();
     }
 
     private boolean hasInvalidInput() {
@@ -119,7 +120,9 @@ public class RegisterActivity extends ActionBarActivity {
             if (userAppHttpResponse.isSuccessful()) {
                 Toast.makeText(context, "successful", Toast.LENGTH_SHORT);
                 Intent intent = new Intent(context, GroupListActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 context.startActivity(intent);
+                finish();
             } else {
                 Toast.makeText(context, userAppHttpResponse.getErrorMessage(), Toast.LENGTH_SHORT);
             }
