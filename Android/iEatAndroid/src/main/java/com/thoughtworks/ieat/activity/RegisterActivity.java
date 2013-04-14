@@ -37,7 +37,7 @@ public class RegisterActivity extends ActionBarActivity {
         passwordConfirmView = (EditText) findViewById(R.id.register_password_confirm);
 
         setTitle(R.string.register_title);
-        getActionBar().setDisplayHomeAsUpEnabled(true);
+        getActionBarHelper().setDisplayHomeAsUpEnabled(true);
     }
 
     public void register(View view) {

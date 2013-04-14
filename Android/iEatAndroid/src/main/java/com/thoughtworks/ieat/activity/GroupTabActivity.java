@@ -1,25 +1,19 @@
 package com.thoughtworks.ieat.activity;
 
-import android.app.LocalActivityManager;
-import android.app.ProgressDialog;
 import android.app.TabActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
+import android.view.*;
 import android.widget.TabHost;
 import com.thoughtworks.ieat.IEatApplication;
 import com.thoughtworks.ieat.R;
-import com.thoughtworks.ieat.domain.AppHttpResponse;
 import com.thoughtworks.ieat.domain.Group;
-import com.thoughtworks.ieat.service.Server;
+import com.thoughtworks.ieat.view.actionbar.ActionBarHelper;
 
-public class GroupTabActivity extends TabActivity implements TabHost.TabContentFactory{
+public class GroupTabActivity extends TabActivity{
+    final ActionBarHelper mActionBarHelper = ActionBarHelper.createInstance(this);
 
     private Group group;
     private String actionSourceTag;
@@ -27,6 +21,7 @@ public class GroupTabActivity extends TabActivity implements TabHost.TabContentF
     @Override
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
+        mActionBarHelper.onCreate(bundle);
         setContentView(R.layout.group_tab_main);
 
         group = (Group) getIntent().getExtras().get(IEatApplication.EXTRA_GROUP);
@@ -68,8 +63,12 @@ public class GroupTabActivity extends TabActivity implements TabHost.TabContentF
         if (group.getDueDate().getTime() > System.currentTimeMillis()) {
             getMenuInflater().inflate(R.menu.group_info, menu);
         }
-        getActionBar().setDisplayHomeAsUpEnabled(true);
-        return super.onCreateOptionsMenu(menu);
+        boolean retValue = false;
+        retValue |= mActionBarHelper.onCreateOptionsMenu(menu);
+        retValue |= super.onCreateOptionsMenu(menu);
+
+        getActionBarHelper().setDisplayHomeAsUpEnabled(true);
+        return retValue;
     }
 
     @Override
@@ -88,6 +87,29 @@ public class GroupTabActivity extends TabActivity implements TabHost.TabContentF
         }
         return false;
     }
+
+    protected ActionBarHelper getActionBarHelper() {
+        return mActionBarHelper;
+    }
+
+    /**{@inheritDoc}*/
+    @Override
+    public MenuInflater getMenuInflater() {
+        return mActionBarHelper.getMenuInflater(super.getMenuInflater());
+    }
+
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        mActionBarHelper.onPostCreate(savedInstanceState);
+    }
+
+    @Override
+    public void onTitleChanged(CharSequence title, int color) {
+        mActionBarHelper.onTitleChanged(title, color);
+        super.onTitleChanged(title, color);
+    }
+
 
     public View createTabContent(String tag) {
         LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);

@@ -1,5 +1,6 @@
 package com.thoughtworks.ieat.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -8,13 +9,12 @@ import android.text.SpannableString;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.view.View;
-import android.view.Window;
 import android.widget.TextView;
 import com.thoughtworks.ieat.IEatApplication;
 import com.thoughtworks.ieat.R;
 import com.thoughtworks.ieat.domain.Group;
 
-public class GroupInfoActivity extends ActionBarActivity {
+public class GroupInfoActivity extends Activity {
 
 
     private Group group;
@@ -43,7 +43,7 @@ public class GroupInfoActivity extends ActionBarActivity {
 
     private void setTelephone(TextView telephoneView) {
         String telephone = group.getRestaurant().getTelephone();
-        if (telephone == null || telephone.isEmpty() || "NO VALUE".equals(telephone.trim())) {
+        if (telephone == null || telephone.trim() == "" || "NO VALUE".equals(telephone.trim())) {
             telephoneView.setText(R.string.group_info_telephone_empty);
         } else {
             SpannableString spannableString = new SpannableString(telephone);

@@ -1,5 +1,6 @@
 package com.thoughtworks.ieat.activity;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
@@ -11,7 +12,7 @@ import com.thoughtworks.ieat.view.OrderAdapter;
 
 import java.util.List;
 
-public class UnpaidOrderActivity extends ActionBarActivity {
+public class UnpaidOrderActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

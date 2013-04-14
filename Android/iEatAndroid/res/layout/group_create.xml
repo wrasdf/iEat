@@ -2,7 +2,7 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
-              android:layout_width="match_parent"
+              android:layout_width="fill_parent"
               android:paddingLeft="@dimen/device_padding"
               android:paddingRight="@dimen/device_padding"
               android:layout_height="match_parent">
@@ -39,11 +39,5 @@
                 android:paddingTop="-10dp"
                 android:layout_gravity="center">
     </TimePicker>
-
-    <Button android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:onClick="createGroup"
-            android:text="@string/create_confirm_button_label"/>
-
 
 </LinearLayout>

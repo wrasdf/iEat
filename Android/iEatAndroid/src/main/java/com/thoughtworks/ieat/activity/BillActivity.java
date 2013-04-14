@@ -1,29 +1,32 @@
 package com.thoughtworks.ieat.activity;
 
-import android.app.ProgressDialog;
 import android.app.TabActivity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.TabHost;
 import com.thoughtworks.ieat.IEatApplication;
 import com.thoughtworks.ieat.R;
-import com.thoughtworks.ieat.domain.AppHttpResponse;
+import com.thoughtworks.ieat.activity.asynctask.BillAsyncTask;
 import com.thoughtworks.ieat.domain.MyBill;
-import com.thoughtworks.ieat.service.Server;
+import com.thoughtworks.ieat.view.actionbar.ActionBarHelper;
 
-public class BillActivity extends TabActivity {
+public class BillActivity extends TabActivity{
+    final ActionBarHelper mActionBarHelper = ActionBarHelper.createInstance(this);
+    private MyBill myBill;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        mActionBarHelper.onCreate(savedInstanceState);
         setContentView(R.layout.my_bill);
 
+        myBill = ((MyBill) getIntent().getExtras().get(IEatApplication.EXTRA_BILL));
+
+        setTabs(myBill);
     }
 
     private void setTabs(MyBill myBill) {
@@ -47,16 +50,14 @@ public class BillActivity extends TabActivity {
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-
-        new BillAsyncTask(this).execute();
-    }
-
-    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getActionBar().setDisplayHomeAsUpEnabled(true);
-        return true;
+        boolean retValue = false;
+        retValue |= mActionBarHelper.onCreateOptionsMenu(menu);
+        retValue |= super.onCreateOptionsMenu(menu);
+
+        getActionBarHelper().setDisplayHomeAsUpEnabled(true);
+        setTitle(R.string.bill_title);
+        return retValue;
     }
 
     @Override
@@ -71,33 +72,27 @@ public class BillActivity extends TabActivity {
         return false;
     }
 
-    private class BillAsyncTask extends AsyncTask<Void, Void, AppHttpResponse<MyBill>> {
-        private final Context context;
-        private ProgressDialog progressBar;
+    protected ActionBarHelper getActionBarHelper() {
+        return mActionBarHelper;
+    }
 
-        public BillAsyncTask(Context activity) {
-            this.context = activity;
-        }
+    /**{@inheritDoc}*/
+    @Override
+    public MenuInflater getMenuInflater() {
+        return mActionBarHelper.getMenuInflater(super.getMenuInflater());
+    }
 
-        @Override
-        protected void onPreExecute() {
-            progressBar = new ProgressDialog(context);
-            progressBar.setMessage("loading group...");
-            progressBar.setCanceledOnTouchOutside(false);
-            progressBar.show();
-        }
+    /**{@inheritDoc}*/
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        mActionBarHelper.onPostCreate(savedInstanceState);
+    }
 
-        @Override
-        protected AppHttpResponse<MyBill> doInBackground(Void... params) {
-            return Server.getMyBill();
-        }
-
-        @Override
-        protected void onPostExecute(AppHttpResponse<MyBill> myBillAppHttpResponse) {
-            progressBar.dismiss();
-            if (myBillAppHttpResponse.isSuccessful()) {
-                setTabs(myBillAppHttpResponse.getData());
-            }
-        }
+    /**{@inheritDoc}*/
+    @Override
+    public void onTitleChanged(CharSequence title, int color) {
+        mActionBarHelper.onTitleChanged(title, color);
+        super.onTitleChanged(title, color);
     }
 }

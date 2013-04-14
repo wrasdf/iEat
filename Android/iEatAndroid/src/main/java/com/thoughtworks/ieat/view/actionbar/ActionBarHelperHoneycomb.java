@@ -99,6 +99,11 @@ public class ActionBarHelperHoneycomb extends ActionBarHelper {
     }
 
     @Override
+    public void setDisplayHomeAsUpEnabled(boolean b) {
+        mActivity.getActionBar().setDisplayHomeAsUpEnabled(b);
+    }
+
+    @Override
     public void hideIcons() {
         
     }

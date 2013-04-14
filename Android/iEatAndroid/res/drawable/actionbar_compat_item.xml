@@ -14,13 +14,10 @@
   limitations under the License.
   -->
 
-<resources>
-    <dimen name="actionbar_compat_height">48dp</dimen>
-    <dimen name="actionbar_compat_button_width">56dp</dimen>
-    <dimen name="actionbar_compat_button_home_width">56dp</dimen>
-
-    <dimen name="section_margin">10dp</dimen>
-    <dimen name="device_padding">10dp</dimen>
-    <dimen name="vertical_padding">5dp</dimen>
-    <dimen name="horizontal_padding">5dp</dimen>
-</resources>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/actionbar_compat_item_pressed"
+        android:state_pressed="true" />
+    <item android:drawable="@drawable/actionbar_compat_item_focused"
+        android:state_focused="true" />
+    <item android:drawable="@android:color/transparent" />
+</selector>

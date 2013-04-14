@@ -64,4 +64,5 @@
     <string name="register_title">注册</string>
     <string name="login_username_label">用户名/邮箱</string>
     <string name="login_password_label">password</string>
+    <string name="bill_title">我的账单</string>
 </resources>

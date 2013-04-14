@@ -100,4 +100,6 @@ public abstract class ActionBarHelper {
     public abstract void setActionBarTheme(int color, int logoResId);
     
     public abstract void setActionBarSettingsIconTheme(int color, int logoResId);
+
+    public abstract void setDisplayHomeAsUpEnabled(boolean b);
 }

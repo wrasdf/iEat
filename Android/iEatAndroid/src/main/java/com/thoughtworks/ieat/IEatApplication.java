@@ -10,13 +10,14 @@ import com.thoughtworks.ieat.utils.PropertyUtils;
 public class IEatApplication extends Application {
 
     public static final String DATE_PATTERN = "yyyy-MM-dd'T'HH:mm:ss'Z'";
-
     private static String currentUserName;
+
     public static String token;
     public static final String EXTRA_GROUP_ID = "EXTRA_GROUP_ID";
     public static final String EXTRA_GROUP = "EXTRA_GROUP";
     public static final String EXTRA_TAG = "EXTRA_TAG";
     public static final String EXTRA_ORDER_LIST = "EXTRA_ORDER_LIST";
+    public static final String EXTRA_BILL = "EXTRA_BILL";
 
     @Override
     public void onCreate() {

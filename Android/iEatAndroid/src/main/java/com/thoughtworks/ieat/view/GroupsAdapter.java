@@ -33,6 +33,7 @@ public class GroupsAdapter extends BaseAdapter {
 
     public View getView(int position, View convertView, ViewGroup parent) {
         convertView = new GroupItemView(context, groups.get(position));
+        convertView.setClickable(false);
         if (getCount() == 1) {
             convertView.setBackgroundResource(R.drawable.list_item_bg);
         } else if (position == 0) {

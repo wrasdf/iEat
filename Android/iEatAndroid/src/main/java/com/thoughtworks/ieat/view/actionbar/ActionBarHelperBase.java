@@ -84,12 +84,12 @@ public class ActionBarHelperBase extends ActionBarHelper {
                 0, ViewGroup.LayoutParams.FILL_PARENT);
         springLayoutParams.weight = 1;
 */        
-        // Add Home button
-        SimpleMenu tempMenu = new SimpleMenu(mActivity);
-        SimpleMenuItem homeItem = new SimpleMenuItem(
-                tempMenu, R.id.actionbar_home_button, 0, "");
-        homeItem.setIcon(R.drawable.icon);
-        addActionItemCompatFromMenuItem(homeItem);
+//        Add Home button
+//        SimpleMenu tempMenu = new SimpleMenu(mActivity);
+//        SimpleMenuItem homeItem = new SimpleMenuItem(
+//                tempMenu, R.id.actionbar_home_button, 0, "");
+//        homeItem.setIcon(R.drawable.icon);
+//        addActionItemCompatFromMenuItem(homeItem);
 
         // Add title text
 /*        TextView titleText = new TextView(mActivity, null, R.attr.actionbarCompatTitleStyle);
@@ -178,15 +178,9 @@ public class ActionBarHelperBase extends ActionBarHelper {
         }
         
         // Create the button
-        ImageButton actionButton = new ImageButton(mActivity, null,
-                itemId == R.id.actionbar_home_button
-                        ? R.attr.actionbarCompatItemHomeStyle
-                        : R.attr.actionbarCompatItemStyle);
+        Button actionButton = new Button(mActivity, null, R.attr.actionbarCompatItemStyle);
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
-                (int) mActivity.getResources().getDimension(
-                        itemId == R.id.actionbar_home_button
-                                ? R.dimen.actionbar_compat_button_home_width
-                                : R.dimen.actionbar_compat_button_width),
+                (int) mActivity.getResources().getDimension(R.dimen.actionbar_compat_button_width),
                 ViewGroup.LayoutParams.FILL_PARENT);
 
         actionButton.setLayoutParams(layoutParams);
@@ -199,11 +193,11 @@ public class ActionBarHelperBase extends ActionBarHelper {
         	actionButton.setId(R.id.actionbar_compat_item_refresh);
         }
 
-        actionButton.setImageDrawable(item.getIcon());
-        
+        actionButton.setText(item.getTitle());
+        actionButton.setGravity(Gravity.CENTER_VERTICAL);
+        actionButton.setTextSize(13);
+
         actionButton.setPadding(0, 2, 0, 2);
-        actionButton.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
-       // actionButton.setContentDescription(item.getTitle());
         actionButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 mActivity.onMenuItemSelected(Window.FEATURE_OPTIONS_PANEL, item);
@@ -379,4 +373,22 @@ public class ActionBarHelperBase extends ActionBarHelper {
             }
         }
 	}
+
+    @Override
+    public void setDisplayHomeAsUpEnabled(boolean show) {
+        if (show) {
+//            SimpleMenu tempMenu = new SimpleMenu(mActivity);
+            final SimpleMenuItem homeItem = new SimpleMenuItem(
+                    null, R.id.actionbar_home_button, 0, "");
+            getActionBarCompat().findViewById(R.id.actionbar_home_button).setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+
+                    mActivity.onOptionsItemSelected(homeItem);
+                }
+            });
+            getActionBarCompat().findViewById(R.id.up_indicator).setVisibility(View.VISIBLE);
+        } else {
+            getActionBarCompat().findViewById(R.id.up_indicator).setVisibility(View.GONE);
+        }
+    }
 }

@@ -1,5 +1,6 @@
 package com.thoughtworks.ieat.activity;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
@@ -10,7 +11,7 @@ import com.thoughtworks.ieat.view.OrderAdapter;
 
 import java.util.List;
 
-public class PayBackActivity extends ActionBarActivity{
+public class PayBackActivity extends Activity {
 
     private List<Order> paidOrders;
 

@@ -8,14 +8,16 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 import com.thoughtworks.ieat.IEatApplication;
 import com.thoughtworks.ieat.R;
+import com.thoughtworks.ieat.activity.asynctask.BillAsyncTask;
+import com.thoughtworks.ieat.activity.asynctask.PostProcessor;
 import com.thoughtworks.ieat.domain.AppHttpResponse;
 import com.thoughtworks.ieat.domain.Group;
+import com.thoughtworks.ieat.domain.MyBill;
 import com.thoughtworks.ieat.service.Server;
 import com.thoughtworks.ieat.view.EmptyAdapter;
 import com.thoughtworks.ieat.view.GroupsAdapter;
@@ -23,7 +25,7 @@ import com.thoughtworks.ieat.view.GroupsAdapter;
 import java.util.LinkedList;
 import java.util.List;
 
-public class GroupListActivity extends ActionBarActivity {
+public class GroupListActivity extends ActionBarActivity implements PostProcessor<MyBill>{
 
     private ListView myGroupLayout;
     private ListView todayGroupLayout;
@@ -31,16 +33,14 @@ public class GroupListActivity extends ActionBarActivity {
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
 
-//        this.requestWindowFeature(Window.FEATURE_ACTION_BAR);
         setContentView(R.layout.group_list);
         myGroupLayout = (ListView) findViewById(R.id.my_groups);
         todayGroupLayout = (ListView) findViewById(R.id.today_groups);
-        setTitle(R.string.group_list_title);
+
     }
 
     public void onResume() {
         super.onResume();
-
         new GroupListAsyncTask(this).execute();
     }
 
@@ -51,10 +51,9 @@ public class GroupListActivity extends ActionBarActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        super.onCreateOptionsMenu(menu);
         getMenuInflater().inflate(R.menu.group_list, menu);
-        getActionBar().setHomeButtonEnabled(false);
-        return true;
+        setTitle(R.string.group_list_title);
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
@@ -71,8 +70,7 @@ public class GroupListActivity extends ActionBarActivity {
     }
 
     private void goToRecharge() {
-        Intent intent = new Intent(this, BillActivity.class);
-        startActivity(intent);
+        new BillAsyncTask(this, this).execute();
     }
 
     private void logout() {
@@ -85,6 +83,12 @@ public class GroupListActivity extends ActionBarActivity {
     private void goToLogin() {
         Intent loginIntent = new Intent(this, LoginActivity.class);
         startActivity(loginIntent);
+    }
+
+    public void process(AppHttpResponse<MyBill> appHttpResponse) {
+        Intent intent = new Intent(this, BillActivity.class);
+        intent.putExtra(IEatApplication.EXTRA_BILL, appHttpResponse.getData());
+        startActivity(intent);
     }
 
     public class GroupListAsyncTask extends AsyncTask<Void, Void, AppHttpResponse<List<Group>>> {

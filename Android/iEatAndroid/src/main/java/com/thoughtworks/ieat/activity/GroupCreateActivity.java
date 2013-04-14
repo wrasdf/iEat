@@ -49,11 +49,10 @@ public class GroupCreateActivity extends ActionBarActivity {
     @Override
     public void onResume() {
         super.onResume();
-        RestaurantListAsyncTask restaurantListAsyncTask = new RestaurantListAsyncTask();
-        restaurantListAsyncTask.execute();
+        new RestaurantListAsyncTask().execute();
     }
 
-    public void createGroup(View view) {
+    public void createGroup() {
         String groupName = groupNameView.getText().toString();
         if (groupName == null) {
             Toast.makeText(this, getResources().getString(R.string.input_error_group_name_is_null), Toast.LENGTH_SHORT);
@@ -76,7 +75,8 @@ public class GroupCreateActivity extends ActionBarActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getActionBar().setDisplayHomeAsUpEnabled(true);
+        getMenuInflater().inflate(R.menu.group_create, menu);
+        getActionBarHelper().setDisplayHomeAsUpEnabled(true);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -86,6 +86,9 @@ public class GroupCreateActivity extends ActionBarActivity {
             case android.R.id.home:
             case R.id.actionbar_home_button:
                 gotoDashBoard();
+                break;
+            case R.id.group_create_button:
+                createGroup();
                 break;
         }
         return false;
@@ -97,12 +100,12 @@ public class GroupCreateActivity extends ActionBarActivity {
     }
 
     public void showRestaurantsDialog(View view) {
-        FragmentTransaction ft = getFragmentManager().beginTransaction();
-        Fragment existedFragment = getFragmentManager().findFragmentByTag("dialog");
-        if (existedFragment != null) {
-            ft.remove(existedFragment);
-        }
-        ft.addToBackStack(null);
+//        FragmentTransaction ft = getFragmentManager().beginTransaction();
+//        Fragment existedFragment = getFragmentManager().findFragmentByTag("dialog");
+//        if (existedFragment != null) {
+//            ft.remove(existedFragment);
+//        }
+//        ft.addToBackStack(null);
 
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);

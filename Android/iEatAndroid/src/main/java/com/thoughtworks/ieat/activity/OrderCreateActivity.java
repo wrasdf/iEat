@@ -64,7 +64,7 @@ public class OrderCreateActivity extends ActionBarActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.order_create, menu);
-        getActionBar().setDisplayHomeAsUpEnabled(true);
+        getActionBarHelper().setDisplayHomeAsUpEnabled(true);
         return super.onCreateOptionsMenu(menu);
     }
 
