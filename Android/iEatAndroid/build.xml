@@ -94,7 +94,7 @@
 	
 	<!--  APK FILE NAME PREFIX-->
 	<property name="APK_NAME" value="iEat" />
-	<property name="VERSION_NUMBER" value="0.1" />
+	<property name="VERSION_NUMBER" value="1.0" />
 
 	<target name="printinfo">
 		<property environment="env" />
