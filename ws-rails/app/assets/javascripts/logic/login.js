@@ -2,8 +2,6 @@ $("#login-page").bind("pageshow", function () {
 
     iEatUtility.clearLoading($(this));
 
-    iEatUtility.clearCookie();
-
     var username = $.cookie("userName") || "";
 
     $("#input-data").val(username);

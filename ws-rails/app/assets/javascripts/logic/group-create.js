@@ -90,6 +90,11 @@ var iEatCreate = (function () {
                 },
                 dataType : "json",
                 success: function (o) {
+
+                    if(!iEatUtility.isTokenValid(o)){
+                        return false;
+                    }
+
                     if (o) {
                         var createdGroupId = o.id;
                         var groupName = $("#group-name").val();

@@ -26,6 +26,11 @@ var iEatUtility = (function(){
             url : "/api/v1/restaurants?token="+token,
             dataType:'json',
             success : function(data){
+
+                if(!iEatUtility.isTokenValid(data)){
+                    return false;
+                }
+
                 if(callback){
                     callback(data);
                 }
