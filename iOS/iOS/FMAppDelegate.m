@@ -18,7 +18,7 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
     LoginTableViewController *loginTableViewController = [[LoginTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
-    [loginTableViewController setTitle:@"IEat"];
+    [loginTableViewController setTitle:@"iEat"];
     UINavigationController *iEatAppNavigationController = [[UINavigationController alloc] initWithRootViewController:loginTableViewController];
     // Override point for customization after application launch.
     self.window.rootViewController = iEatAppNavigationController;
