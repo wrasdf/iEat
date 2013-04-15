@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "494BC0EC16D0D86A00DA45B9"
-               BuildableName = "iOS.app"
+               BuildableName = "IEat.app"
                BlueprintName = "iOS"
                ReferencedContainer = "container:iOS.xcodeproj">
             </BuildableReference>
@@ -43,7 +43,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "494BC0EC16D0D86A00DA45B9"
-            BuildableName = "iOS.app"
+            BuildableName = "IEat.app"
             BlueprintName = "iOS"
             ReferencedContainer = "container:iOS.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "494BC0EC16D0D86A00DA45B9"
-            BuildableName = "iOS.app"
+            BuildableName = "IEat.app"
             BlueprintName = "iOS"
             ReferencedContainer = "container:iOS.xcodeproj">
          </BuildableReference>
@@ -80,7 +80,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "494BC0EC16D0D86A00DA45B9"
-            BuildableName = "iOS.app"
+            BuildableName = "IEat.app"
             BlueprintName = "iOS"
             ReferencedContainer = "container:iOS.xcodeproj">
          </BuildableReference>
