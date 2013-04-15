@@ -26,6 +26,8 @@
         SectionAvailableGroup,
         SectionCount
     };
+    NSDateFormatter *dateFormatter;
+    NSDateFormatter *localDateFormatter;
 }
 
 
@@ -36,6 +38,11 @@
         myGroups = [[NSMutableArray alloc] init];
         otherGroups = [[NSMutableArray alloc] init];
         [[self tableView] setRowHeight:60];
+        dateFormatter = [[NSDateFormatter alloc] init];
+        localDateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZZZ"];
+        [localDateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
+        localDateFormatter.timeZone = [NSTimeZone systemTimeZone];
     }
     return self;
 }
@@ -234,12 +241,13 @@
     } else if (indexPath.section == SectionAvailableGroup){
         group = otherGroups[indexPath.row];
         [cell.imageView setImage:image];
-
     }
 
     cell.restaurantNameLabel.text = group[@"restaurant"][@"name"];
     cell.groupNameLabel.text = group[@"name"];
-    cell.dueDateLabel.text = [@"截止日期: " stringByAppendingString: group[@"due_date"]];
+    NSDate *dueDate = [dateFormatter dateFromString:group[@"due_date"]];
+    NSString *dueDateString = [localDateFormatter stringFromDate:dueDate];
+    cell.dueDateLabel.text = [@"截止日期: " stringByAppendingString:dueDateString];
     cell.ownerLabel.text = group[@"owner"][@"name"];
 }
 
