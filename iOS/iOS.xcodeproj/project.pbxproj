@@ -95,7 +95,7 @@
 		36867471FF070E422553B83D /* CreateUIElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateUIElement.h; sourceTree = "<group>"; };
 		368677F321327182574ED069 /* GroupListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupListController.m; sourceTree = "<group>"; };
 		36867D439D4BF89C7322B14F /* CreateUIElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateUIElement.m; sourceTree = "<group>"; };
-		494BC0ED16D0D86A00DA45B9 /* IEat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IEat.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		494BC0ED16D0D86A00DA45B9 /* iEat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iEat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		494BC0F116D0D86A00DA45B9 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		494BC0F316D0D86A00DA45B9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		494BC0F516D0D86A00DA45B9 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -304,7 +304,7 @@
 		494BC0EE16D0D86A00DA45B9 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				494BC0ED16D0D86A00DA45B9 /* IEat.app */,
+				494BC0ED16D0D86A00DA45B9 /* iEat.app */,
 				494BC10E16D0D86B00DA45B9 /* iOSTests.octest */,
 			);
 			name = Products;
@@ -494,7 +494,7 @@
 			);
 			name = iOS;
 			productName = iOS;
-			productReference = 494BC0ED16D0D86A00DA45B9 /* IEat.app */;
+			productReference = 494BC0ED16D0D86A00DA45B9 /* iEat.app */;
 			productType = "com.apple.product-type.application";
 		};
 		494BC10D16D0D86B00DA45B9 /* iOSTests */ = {
@@ -757,7 +757,7 @@
 				GCC_PREFIX_HEADER = "iOS/iOS-Prefix.pch";
 				INFOPLIST_FILE = "iOS/iOS-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
-				PRODUCT_NAME = IEat;
+				PRODUCT_NAME = iEat;
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
@@ -776,7 +776,7 @@
 				GCC_PREFIX_HEADER = "iOS/iOS-Prefix.pch";
 				INFOPLIST_FILE = "iOS/iOS-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
-				PRODUCT_NAME = IEat;
+				PRODUCT_NAME = iEat;
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
