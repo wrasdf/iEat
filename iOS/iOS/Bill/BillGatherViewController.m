@@ -42,6 +42,7 @@
     if ([orders count] == 0){
         [payOffBtn setEnabled:NO];
         [payOffBtn setTitle:@"没有欠款哦" forState:UIControlStateNormal];
+        [payOffBtn setHidden:NO];
     }
     else{
         [payOffBtn setEnabled:YES];
