@@ -120,8 +120,13 @@ $.extend(iEatUtility,(function(){
         dom.show();
     }
 
+    function escapeHtmlEntities(str){
+        return $("<div />").text(str).html();
+    }
+
     return {
-        clearLoading : clearLoading
+        clearLoading : clearLoading,
+        escapeHtmlEntities : escapeHtmlEntities
     }
 
 })());

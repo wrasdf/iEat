@@ -48,7 +48,7 @@ var iEatGroupList = (function () {
                 customizeIconClass = "joined"
             }
 
-            return  '<li><a class="group-item '+customizeIconClass+'" href="javascript:void(0);" data-id="'+itemData.id+'" data-role-type=""><span class="group-name">' + itemData.name + '</span><span class="restaurant-name">' + itemData["restaurant"].name + '</span></a></li>';
+            return  '<li><a class="group-item '+customizeIconClass+'" href="javascript:void(0);" data-id="'+itemData.id+'" data-role-type=""><span class="group-name">' + iEatUtility.escapeHtmlEntities(itemData.name) + '</span><span class="restaurant-name">' + itemData["restaurant"].name + '</span></a></li>';
         }
 
     }

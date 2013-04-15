@@ -71,7 +71,8 @@ var iEatCreate = (function () {
         $(".create-group-btn").bind("click", function () {
             var token = $.cookie("token");
 
-            var groupName = $("#group-name").val();
+            var groupName = iEatUtility.escapeHtmlEntities($("#group-name").val());
+
             if(!groupName){
                 iEatUtility.msg({
                     type: "error",
@@ -79,6 +80,7 @@ var iEatCreate = (function () {
                 });
                 return;
             }
+
             $.ajax({
                 type: 'POST',
                 url: "/api/v1/groups/create",
@@ -97,7 +99,6 @@ var iEatCreate = (function () {
 
                     if (o) {
                         var createdGroupId = o.id;
-                        var groupName = $("#group-name").val();
                         $.cookie("currentGroupId", createdGroupId, { expires: 14, path: '/' });
                         $.cookie("groupCreateStatus", "success", { expires: 14, path: '/' });
                         if(groupName){

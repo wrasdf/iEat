@@ -13,11 +13,11 @@ var iEatSignUp = (function () {
 
         $(".register-form").bind("submit",function(e){
             e.preventDefault();
-            var name = $("#input-username").val();
-            var email = $("#input-email").val();
-            var tel = $("#input-telephone").val();
-            var password = $("#input-password").val();
-            var confirmPassword = $("#input-password-confirmation").val();
+            var name = iEatUtility.escapeHtmlEntities($("#input-username").val());
+            var email = iEatUtility.escapeHtmlEntities($("#input-email").val());
+            var tel = iEatUtility.escapeHtmlEntities($("#input-telephone").val());
+            var password = iEatUtility.escapeHtmlEntities($("#input-password").val());
+            var confirmPassword = iEatUtility.escapeHtmlEntities($("#input-password-confirmation").val());
 
             $.ajax({
                 type : 'POST',

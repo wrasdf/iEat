@@ -166,8 +166,8 @@ var iEatGroupShow = (function () {
 
     function updateGroupInfoDetails(group) {
 
-        var str = '<li><span class="subject">团名</span><span>' + group.name + '</span></li>';
-        str += '<li><span class="subject">Owner</span><span>' + group.owner.name + '</span></li>';
+        var str = '<li><span class="subject">团名</span><span>' + iEatUtility.escapeHtmlEntities(group.name) + '</span></li>';
+        str += '<li><span class="subject">Owner</span><span>' + iEatUtility.escapeHtmlEntities(group.owner.name) + '</span></li>';
         str += '<li><span class="subject">电话:</span><span>' + (group.owner.telephone || "暂时没有")  + '</span></li>';
         str += '<li><span class="subject">截止时间:</span><span>' + new Date(group.due_date).format("isoDateTime");  + '</span></li>';
         $("#group-show .current-group-details").html(str).listview('refresh').show();
@@ -176,7 +176,7 @@ var iEatGroupShow = (function () {
     function generateOrderItemStrByOrderData(data,editStatus) {
         var total = 0;
         if(editStatus){
-            var str = '<li><h2><span class="user-name">' + data.user.name + '</span><button data-order-id="'+data.id+'" data-mini="true" data-inline="true" data-disabled="false">删除</button></h2><table><tbody>';
+            var str = '<li><h2><span class="user-name">' + iEatUtility.escapeHtmlEntities(data.user.name) + '</span><button data-order-id="'+data.id+'" data-mini="true" data-inline="true" data-disabled="false">删除</button></h2><table><tbody>';
         }else{
             var str = '<li><h2>' + data.user.name + '</h2><table><tbody>';
         }

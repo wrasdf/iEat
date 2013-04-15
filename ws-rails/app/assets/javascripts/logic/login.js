@@ -29,8 +29,8 @@ $("#login-page").bind("pageshow", function () {
 
     $(".login-form").submit(function(e){
         e.preventDefault();
-        var data = $("#input-data").val();
-        var password = $("#input-password").val();
+        var data = iEatUtility.escapeHtmlEntities($("#input-data").val());
+        var password = iEatUtility.escapeHtmlEntities($("#input-password").val());
 
         $.mobile.pageLoadErrorMessage = false;
 

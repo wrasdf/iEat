@@ -46,9 +46,9 @@ var iEatMyBills = (function () {
         $.each(data,function(index,item){
             var totalPrice = 0;
             if(renderType == "getMoneyBack"){
-                str += '<li><h3><span class="bills-title">'+dateFormat(item.created_at) +'  '+ item.user.name+'</span><button data-order-id="'+item.id+'" class="mark-paid" data-mini="true" data-inline="true">删除</button></h3>';
+                str += '<li><h3><span class="bills-title">'+dateFormat(item.created_at) +'  '+ iEatUtility.escapeHtmlEntities(item.user.name)+'</span><button data-order-id="'+item.id+'" class="mark-paid" data-mini="true" data-inline="true">删除</button></h3>';
             }else{
-                str += '<li><h3><span class="data">'+dateFormat(item.created_at) +'</span><span class="info">&nbsp;'+item.group.user.name+'</span></h3>';
+                str += '<li><h3><span class="data">'+dateFormat(item.created_at) +'</span><span class="info">&nbsp;'+iEatUtility.escapeHtmlEntities(item.group.user.name)+'</span></h3>';
             }
             str += '<table>';
             $.each(item.order_dishes,function(i,order){
