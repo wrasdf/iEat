@@ -85,7 +85,7 @@
     NSURL *url = [NSURL URLWithString:urlString];
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
     [request setValidatesSecureCertificate:NO];
-    [request setPostValue:userName forKey:@"username"];
+    [request setPostValue:userName forKey:@"name"];
     [request setPostValue:password forKey:@"password"];
     [request setPostValue:password forKey:@"password_confirmation"];
     [request setPostValue:email forKey:@"email"];
@@ -167,14 +167,14 @@
     }
     else if (indexPath.row == PasswordCell){
         cell.label.text = @"密码";
-        cell.textField.placeholder = @"不少于6个字符";
+        cell.textField.placeholder = @"不少于8个字符";
         cell.textField.clearButtonMode = cell.textField.secureTextEntry = YES;
         [cell.textField addTarget:self action:@selector(CheckPassword:) forControlEvents:UIControlEventEditingChanged];
 
     }
     else if (indexPath.row == PasswordConfirmCell){
         cell.label.text = @"密码确认";
-        cell.textField.placeholder = @"不少于6个字符";
+        cell.textField.placeholder = @"不少于8个字符";
         cell.textField.clearButtonMode = cell.textField.secureTextEntry = YES;
         [cell.textField addTarget:self action:@selector(ConfirmPassword:) forControlEvents:UIControlEventEditingChanged];
 
