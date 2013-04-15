@@ -121,21 +121,17 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"BillCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
-    if (cell == nil){
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
-    }
+    UITableViewCell *cell = [self dishCell];
 
     NSArray * dishes = [[orders objectAtIndex:indexPath.section] objectForKey:@"order_dishes"];
     if ([dishes count] == indexPath.row) {
-        cell.textLabel.text = @"总计";
-        int total = 0;
+        UITableViewCell *summaryCell = [self summaryCell];
+        float total = 0;
         for (id dish in dishes) {
-            total += [dish[@"price"] integerValue] * [dish[@"quantity"] integerValue];
+            total += [dish[@"price"] floatValue] * [dish[@"quantity"] integerValue];
         }
-        cell.detailTextLabel.text = [NSString stringWithFormat:@"%d ￥", total];
+        summaryCell.detailTextLabel.text = [NSString stringWithFormat:@"%.2f ￥", total];
+        return summaryCell;
     }
     else{
         id dish = [dishes objectAtIndex:indexPath.row];
@@ -148,6 +144,29 @@
     }
     
     return cell;
+}
+
+
+-(UITableViewCell*)summaryCell {
+    static NSString *SummaryCellIdentifier = @"SummaryCell";
+    UITableViewCell *summaryCell = [[self tableView] dequeueReusableCellWithIdentifier:SummaryCellIdentifier];
+    if (summaryCell == nil){
+        summaryCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:SummaryCellIdentifier];
+    }
+    summaryCell.textLabel.text = @"总计";
+    return summaryCell;
+}
+
+
+-(UITableViewCell*)dishCell {
+    static NSString *dishCellIdentifier = @"DishCell";
+    UITableViewCell *dishCell = [[self tableView] dequeueReusableCellWithIdentifier:dishCellIdentifier];
+    if (dishCell == nil){
+        dishCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:dishCellIdentifier];
+    }
+    dishCell.textLabel.numberOfLines = 1;
+    [dishCell.textLabel setAdjustsFontSizeToFitWidth:YES];
+    return dishCell;
 }
 
 

@@ -113,11 +113,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil){
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
-    }
+    UITableViewCell *cell = [self dishCell];
     if ([myOrders count] == 0){
         cell.textLabel.text = @"当前您没有订餐";
         cell.detailTextLabel.text = @"";
@@ -127,17 +123,20 @@
     NSDictionary * order = [myOrders objectAtIndex:indexPath.section];
     NSArray * dishes = order[@"order_dishes"];
     if ([dishes count] == indexPath.row){
-        cell.textLabel.text = @"总计";
-        int total  = 0;
+        float total  = 0;
         for (id dish in dishes) {
             NSLog([NSString stringWithFormat:@"%@ %@ %@", dish[@"name"], dish[@"price"], dish[@"quantity"]]);
-            total += [dish[@"price"] integerValue] * [dish[@"quantity"] integerValue];
+            total += [dish[@"price"] floatValue] * [dish[@"quantity"] integerValue];
         }
-        cell.detailTextLabel.text = [NSString stringWithFormat:@"%d ￥", total];
-        return cell;
+        UITableViewCell *summaryCell = [self summaryCell];
+        summaryCell.detailTextLabel.text = [NSString stringWithFormat:@"%.2f ￥", total];
+        return summaryCell;
     }
 
+    [cell sizeToFit];
+
     NSDictionary *dish = [dishes objectAtIndex:indexPath.row];
+
     cell.textLabel.text = dish[@"name"];
     NSString *price = [NSString stringWithFormat:@"%@ ￥", dish[@"price"]];
     cell.detailTextLabel.text = price;
@@ -148,4 +147,25 @@
     return cell;
 }
 
+-(UITableViewCell*)summaryCell {
+    static NSString *SummaryCellIdentifier = @"SummaryCell";
+    UITableViewCell *summaryCell = [[self tableView] dequeueReusableCellWithIdentifier:SummaryCellIdentifier];
+    if (summaryCell == nil){
+        summaryCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:SummaryCellIdentifier];
+    }
+    summaryCell.textLabel.text = @"总计";
+    return summaryCell;
+}
+
+
+-(UITableViewCell*)dishCell {
+    static NSString *dishCellIdentifier = @"DishCell";
+    UITableViewCell *dishCell = [[self tableView] dequeueReusableCellWithIdentifier:dishCellIdentifier];
+    if (dishCell == nil){
+        dishCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:dishCellIdentifier];
+    }
+    dishCell.textLabel.numberOfLines = 1;
+    [dishCell.textLabel setAdjustsFontSizeToFitWidth:YES];
+    return dishCell;
+}
 @end

@@ -118,24 +118,20 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
-    if (cell == nil){
-        cell  = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
-    }
+    UITableViewCell *cell = [self dishCell];
+
     if ([dishesDict count] == 0){
         cell.textLabel.text = @"当前没有订餐";
         return cell;
     }
     if (indexPath.row == [dishesDict count]) {
-        cell.textLabel.text = @"总计";
-        int total  = 0;
+        UITableViewCell *summaryCell = [self summaryCell];
+        float total  = 0;
         for (id dish in allValues) {
-           total += [dish[@"price"] integerValue] * [dish[@"quantity"] integerValue];
+           total += [dish[@"price"] floatValue] * [dish[@"quantity"] integerValue];
         }
-        cell.detailTextLabel.text = [NSString stringWithFormat:@"%d ￥", total];
-        return cell;
+        summaryCell.detailTextLabel.text = [NSString stringWithFormat:@"%.2f ￥", total];
+        return summaryCell;
     }
     cell.textLabel.text = [allKeys objectAtIndex:(NSUInteger)indexPath.row];
     NSString *price = [NSString stringWithFormat:@"%@ ￥", [allValues objectAtIndex:indexPath.row][@"price"]];
@@ -148,6 +144,29 @@
     [cell setAccessoryView:button];
 
     return cell;
+}
+
+
+-(UITableViewCell*)summaryCell {
+    static NSString *SummaryCellIdentifier = @"SummaryCell";
+    UITableViewCell *summaryCell = [[self tableView] dequeueReusableCellWithIdentifier:SummaryCellIdentifier];
+    if (summaryCell == nil){
+        summaryCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:SummaryCellIdentifier];
+    }
+    summaryCell.textLabel.text = @"总计";
+    return summaryCell;
+}
+
+
+-(UITableViewCell*)dishCell {
+    static NSString *dishCellIdentifier = @"DishCell";
+    UITableViewCell *dishCell = [[self tableView] dequeueReusableCellWithIdentifier:dishCellIdentifier];
+    if (dishCell == nil){
+        dishCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:dishCellIdentifier];
+    }
+    dishCell.textLabel.numberOfLines = 1;
+    [dishCell.textLabel setAdjustsFontSizeToFitWidth:YES];
+    return dishCell;
 }
 
 
