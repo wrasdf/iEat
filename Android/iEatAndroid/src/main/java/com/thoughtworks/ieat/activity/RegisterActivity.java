@@ -5,9 +5,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.thoughtworks.ieat.R;
 import com.thoughtworks.ieat.domain.AppHttpResponse;
@@ -35,6 +37,13 @@ public class RegisterActivity extends ActionBarActivity {
         phoneNumberView = (EditText) findViewById(R.id.register_phone_number);
         passwordView = (EditText) findViewById(R.id.register_password);
         passwordConfirmView = (EditText) findViewById(R.id.register_password_confirm);
+
+        passwordConfirmView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                register(null);
+                return false;
+            }
+        });
 
         setTitle(R.string.register_title);
         getActionBarHelper().setDisplayHomeAsUpEnabled(true);
@@ -77,6 +86,11 @@ public class RegisterActivity extends ActionBarActivity {
         if (toastEmptyMessage(passwordView, R.string.register_password_label)) return true;
         if (toastEmptyMessage(passwordConfirmView, R.string.register_password_confirm_label)) return true;
 
+        if (passwordView.getText().toString().length() < 8) {
+            Toast.makeText(this, getString(R.string.register_password_is_short), Toast.LENGTH_SHORT);
+            return true;
+        }
+
         if (!passwordView.getText().toString().equals(passwordConfirmView.getText().toString())) {
             Toast.makeText(this, getString(R.string.register_password_not_same_message), Toast.LENGTH_SHORT);
             return true;
@@ -104,7 +118,7 @@ public class RegisterActivity extends ActionBarActivity {
         @Override
         protected void onPreExecute() {
             loadingProgress = new ProgressDialog(context);
-            loadingProgress.setMessage("login...");
+            loadingProgress.setMessage("Registering...");
             loadingProgress.setCanceledOnTouchOutside(false);
             loadingProgress.show();
         }
@@ -119,7 +133,7 @@ public class RegisterActivity extends ActionBarActivity {
             loadingProgress.dismiss();
             if (userAppHttpResponse.isSuccessful()) {
                 Toast.makeText(context, "successful", Toast.LENGTH_SHORT);
-                Intent intent = new Intent(context, GroupListActivity.class);
+                Intent intent = new Intent(context, LoginActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 context.startActivity(intent);
                 finish();
