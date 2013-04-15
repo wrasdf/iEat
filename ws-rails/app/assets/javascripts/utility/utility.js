@@ -125,3 +125,28 @@ $.extend(iEatUtility,(function(){
     }
 
 })());
+
+
+$.extend(iEatUtility,(function(){
+
+    function devicesTrack(){
+
+        var iOSDevice = /ipad|iphone|ipod/i.test(navigator.userAgent.toLowerCase());
+        var isAndroid = /android/i.test(navigator.userAgent.toLowerCase());
+
+        if (isAndroid){
+            return "Android";
+        }
+
+        if (iOSDevice){
+            return "iOS";
+        }
+
+        return "";
+    }
+
+    return {
+        devicesTrack : devicesTrack
+    }
+
+})());
