@@ -55,7 +55,7 @@ public class GroupCreateActivity extends ActionBarActivity {
     public void createGroup() {
         String groupName = groupNameView.getText().toString();
         if (groupName == null) {
-            Toast.makeText(this, getResources().getString(R.string.input_error_group_name_is_null), Toast.LENGTH_SHORT);
+            Toast.makeText(this, getResources().getString(R.string.input_error_group_name_is_null), Toast.LENGTH_SHORT).show();
             return;
         }
 

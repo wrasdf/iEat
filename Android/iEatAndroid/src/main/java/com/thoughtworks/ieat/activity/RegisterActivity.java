@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
@@ -46,7 +47,6 @@ public class RegisterActivity extends ActionBarActivity {
         });
 
         setTitle(R.string.register_title);
-        getActionBarHelper().setDisplayHomeAsUpEnabled(true);
     }
 
     public void register(View view) {
@@ -73,6 +73,12 @@ public class RegisterActivity extends ActionBarActivity {
         return false;
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getActionBarHelper().setDisplayHomeAsUpEnabled(true);
+        return super.onCreateOptionsMenu(menu);
+    }
+
     private void goToLogin() {
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
@@ -87,12 +93,12 @@ public class RegisterActivity extends ActionBarActivity {
         if (toastEmptyMessage(passwordConfirmView, R.string.register_password_confirm_label)) return true;
 
         if (passwordView.getText().toString().length() < 8) {
-            Toast.makeText(this, getString(R.string.register_password_is_short), Toast.LENGTH_SHORT);
+            Toast.makeText(this, getString(R.string.register_password_is_short), Toast.LENGTH_SHORT).show();
             return true;
         }
 
         if (!passwordView.getText().toString().equals(passwordConfirmView.getText().toString())) {
-            Toast.makeText(this, getString(R.string.register_password_not_same_message), Toast.LENGTH_SHORT);
+            Toast.makeText(this, getString(R.string.register_password_not_same_message), Toast.LENGTH_SHORT).show();
             return true;
         }
         return false;
@@ -132,13 +138,13 @@ public class RegisterActivity extends ActionBarActivity {
         protected void onPostExecute(AppHttpResponse<User> userAppHttpResponse) {
             loadingProgress.dismiss();
             if (userAppHttpResponse.isSuccessful()) {
-                Toast.makeText(context, "successful", Toast.LENGTH_SHORT);
+                Toast.makeText(context, "successful", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(context, LoginActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 context.startActivity(intent);
                 finish();
             } else {
-                Toast.makeText(context, userAppHttpResponse.getErrorMessage(), Toast.LENGTH_SHORT);
+                Toast.makeText(context, userAppHttpResponse.getErrorMessage(), Toast.LENGTH_SHORT).show();
             }
 
         }
