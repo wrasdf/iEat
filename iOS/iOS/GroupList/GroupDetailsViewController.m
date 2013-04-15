@@ -140,6 +140,7 @@
     [[cell textLabel] setTextAlignment:NSTextAlignmentLeft];
     [cell.textLabel setTextColor:[UIColor grayColor]];
     [cell.detailTextLabel setTextColor:[UIColor grayColor]];
+    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
 
     if (path.section == SectionRestDesc)
    {

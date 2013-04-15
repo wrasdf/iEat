@@ -90,6 +90,7 @@ enum {
     if (cell == nil) {
         cell = [[[NSBundle mainBundle] loadNibNamed:@"EditTableViewCell" owner:self options:nil] objectAtIndex:0];
         cell.textField.delegate = self;
+        [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     }
     if (indexPath.section == SectionLogin) {
         if (indexPath.row == CellUser) {

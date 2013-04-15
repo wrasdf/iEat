@@ -144,6 +144,7 @@
     if (cell == nil) {
         cell = [[[NSBundle mainBundle] loadNibNamed:@"EditTableViewCell" owner:self options:nil] objectAtIndex:0];
         cell.textField.delegate = self;
+        [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     }
     if (indexPath.row == UserNameCell) {
         cell.label.text = @"用户名";

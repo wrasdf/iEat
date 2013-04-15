@@ -138,8 +138,9 @@
     UITableViewCell *summaryCell = [[self tableView] dequeueReusableCellWithIdentifier:SummaryCellIdentifier];
     if (summaryCell == nil){
         summaryCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:SummaryCellIdentifier];
+        [summaryCell setSelectionStyle:UITableViewCellSelectionStyleNone];
+        summaryCell.textLabel.text = @"总计";
     }
-    summaryCell.textLabel.text = @"总计";
     return summaryCell;
 }
 
@@ -147,11 +148,12 @@
 -(UITableViewCell*)dishCell {
     static NSString *dishCellIdentifier = @"DishCell";
     UITableViewCell *dishCell = [[self tableView] dequeueReusableCellWithIdentifier:dishCellIdentifier];
-    if (dishCell == nil){
+    if (dishCell == nil) {
         dishCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:dishCellIdentifier];
+        [dishCell setSelectionStyle:UITableViewCellSelectionStyleNone];
+        dishCell.textLabel.numberOfLines = 1;
+        [dishCell.textLabel setAdjustsFontSizeToFitWidth:YES];
     }
-    dishCell.textLabel.numberOfLines = 1;
-    [dishCell.textLabel setAdjustsFontSizeToFitWidth:YES];
     return dishCell;
 }
 
