@@ -37,6 +37,7 @@ public class AppHttpResponse<T> {
     }
 
     public void setErrorMessage(String errorMessage) {
+        isSuccessful = false;
         this.errorMessage = errorMessage;
     }
 }

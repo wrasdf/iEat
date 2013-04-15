@@ -6,15 +6,21 @@ import com.google.gson.reflect.TypeToken;
 import com.thoughtworks.ieat.IEatApplication;
 import com.thoughtworks.ieat.domain.*;
 import com.thoughtworks.ieat.utils.HttpUtils;
+import de.akquinet.android.androlog.Log;
 
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Logger;
 
 public class Server {
+
+    private static String TAG = "HTTP Server";
+    private static String errorMessage = "";
+
     public static AppHttpResponse<UserToken> signIn(String username, String password) {
-        AppHttpResponse<UserToken> appHttpResponse = new AppHttpResponse<UserToken>();
+        AppHttpResponse<UserToken> appHttpResponse;
         try {
             String url = "/api/v1/users/sign_in";
             Map<String, String> postParams = new HashMap<String, String>();
@@ -27,6 +33,8 @@ public class Server {
                 IEatApplication.login(appHttpResponse.getData().getName(), appHttpResponse.getData().getToken());
             }
         } catch (Exception e) {
+            Log.e(TAG, errorMessage, e);
+            appHttpResponse = new AppHttpResponse<UserToken>();
             appHttpResponse.setException(e);
         }
         return appHttpResponse;
@@ -38,6 +46,7 @@ public class Server {
             String url = "/api/v1/groups/active.json";
             appHttpResponse = HttpUtils.get(url, new TypeToken<List<Group>>() {}.getType());
         } catch (Exception e) {
+            Log.e(TAG, errorMessage, e);
             appHttpResponse = new AppHttpResponse<List<Group>>();
             appHttpResponse.setException(e);
         }
@@ -49,6 +58,7 @@ public class Server {
         try {
             appHttpResponse = HttpUtils.get("/api/v1/groups/" + groupId + ".json", Group.class);
         } catch (Exception e) {
+            Log.e(TAG, errorMessage, e);
             appHttpResponse = new AppHttpResponse<Group>();
             appHttpResponse.setException(e);
         }
@@ -64,6 +74,7 @@ public class Server {
         try {
             appHttpResponse = HttpUtils.post("/api/v1/groups/create", params, Group.class);
         } catch (Exception e) {
+            Log.e(TAG, errorMessage, e);
             appHttpResponse = new AppHttpResponse<Group>();
             appHttpResponse.setException(e);
         }
@@ -75,6 +86,7 @@ public class Server {
         try {
             appHttpResponse = HttpUtils.get("/api/v1/restaurants", new TypeToken<List<Restaurant>>() {}.getType());
         } catch (Exception e) {
+            Log.e(TAG, errorMessage, e);
             appHttpResponse = new AppHttpResponse<List<Restaurant>>();
             appHttpResponse.setException(e);
         }
@@ -86,6 +98,7 @@ public class Server {
         try {
             appHttpResponse = HttpUtils.get("/api/v1/groups/" + groupId + "/dishes", new TypeToken<List<Dishes>>() {}.getType());
         } catch (Exception e) {
+            Log.e(TAG, errorMessage, e);
             appHttpResponse = new AppHttpResponse<List<Dishes>>();
             appHttpResponse.setException(e);
         }
@@ -102,6 +115,7 @@ public class Server {
         try {
             appHttpResponse = HttpUtils.post("/api/v1/groups/" + groupId + "/orders/create", postJsonData, Group.class);
         } catch (Exception e) {
+            Log.e(TAG, errorMessage, e);
             appHttpResponse = new AppHttpResponse<Group>();
             appHttpResponse.setException(e);
         }
@@ -113,6 +127,7 @@ public class Server {
         try {
             appHttpResponse = HttpUtils.get("/api/v1/mybills", MyBill.class);
         } catch (IOException e) {
+            Log.e(TAG, errorMessage, e);
             appHttpResponse = new AppHttpResponse<MyBill>();
             appHttpResponse.setException(e);
         }
@@ -124,6 +139,7 @@ public class Server {
         try {
             appHttpResponse = HttpUtils.post("/api/v1/users", userInfo, User.class);
         } catch (Exception e) {
+            Log.e(TAG, errorMessage, e);
             appHttpResponse = new AppHttpResponse<User>();
             appHttpResponse.setException(e);
         }
