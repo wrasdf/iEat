@@ -96,11 +96,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil){
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
-    }
+    UITableViewCell *cell = [self dishCell];
     [self configCell:cell atIndexPath:indexPath];
     
     return cell;
@@ -117,6 +113,19 @@
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
 
+}
+
+
+-(UITableViewCell*)dishCell {
+    static NSString *dishCellIdentifier = @"DishCell";
+    UITableViewCell *dishCell = [[self tableView] dequeueReusableCellWithIdentifier:dishCellIdentifier];
+    if (dishCell == nil){
+        dishCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:dishCellIdentifier];
+        [dishCell setSelectionStyle:UITableViewCellSelectionStyleNone];
+        dishCell.textLabel.numberOfLines = 1;
+        [dishCell.textLabel setAdjustsFontSizeToFitWidth:YES];
+    }
+    return dishCell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
