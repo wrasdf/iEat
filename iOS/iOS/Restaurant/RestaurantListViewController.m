@@ -25,7 +25,7 @@
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
-        [self.tableView setRowHeight:70];
+        [self.tableView setRowHeight:75];
         restaurant = [[Restaurant alloc] init];
 
     }
@@ -69,14 +69,14 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
-        NSDictionary *restaurant = [restaurants objectAtIndex:indexPath.row];
-        cell.textLabel.text = restaurant[@"name"];
-        NSString *info = [NSString stringWithFormat:@"电话：%@.\n地址：%@", restaurant[@"telephone"], restaurant[@"address"]];
-        cell.detailTextLabel.text = info;
-        [cell.detailTextLabel setAdjustsFontSizeToFitWidth:NO];
+        [cell.detailTextLabel setAdjustsFontSizeToFitWidth:YES];
         cell.detailTextLabel.numberOfLines=0;
     }
-    
+    NSDictionary *restaurant = [restaurants objectAtIndex:indexPath.row];
+    cell.textLabel.text = restaurant[@"name"];
+    NSString *info = [NSString stringWithFormat:@"电话：%@.\n地址：%@", restaurant[@"telephone"], restaurant[@"address"]];
+    cell.detailTextLabel.text = info;
+
     return cell;
 }
 
