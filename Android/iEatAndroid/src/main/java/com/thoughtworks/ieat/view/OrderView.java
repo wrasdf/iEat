@@ -48,7 +48,7 @@ public class OrderView extends LinearLayout {
         addOrderRows(order);
     }
 
-    private void addDeleteAction(OnClickListener deleteListener) {
+    public void addDeleteAction(OnClickListener deleteListener) {
         deleteButton.setVisibility(View.VISIBLE);
         deleteButton.setOnClickListener(deleteListener);
     }

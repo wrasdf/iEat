@@ -24,6 +24,7 @@ import com.thoughtworks.ieat.view.LabelItemView;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
+import java.util.TimeZone;
 
 public class GroupCreateActivity extends ActionBarActivity {
 
@@ -65,12 +66,14 @@ public class GroupCreateActivity extends ActionBarActivity {
         Integer hour = timePicker.getCurrentHour();
         Integer minute = timePicker.getCurrentMinute();
         Calendar selectedTime = Calendar.getInstance();
-        selectedTime.set(Calendar.HOUR, hour);
+        selectedTime.set(Calendar.HOUR_OF_DAY, hour);
         selectedTime.set(Calendar.MINUTE, minute);
         selectedTime.set(Calendar.SECOND, 0);
 
         CreateGroupAsyncTask createGroupAsyncTask = new CreateGroupAsyncTask();
-        createGroupAsyncTask.execute(groupName, String.valueOf(selectedRestaurantId), new SimpleDateFormat(IEatApplication.DATE_PATTERN).format(selectedTime.getTime()));
+        SimpleDateFormat dateFormat = new SimpleDateFormat(IEatApplication.DATE_PATTERN);
+        dateFormat.setTimeZone(TimeZone.getTimeZone("GMT+00:00"));
+        createGroupAsyncTask.execute(groupName, String.valueOf(selectedRestaurantId), dateFormat.format(selectedTime.getTime()));
     }
 
     @Override
@@ -260,4 +263,5 @@ public class GroupCreateActivity extends ActionBarActivity {
             }
         }
     }
+
 }

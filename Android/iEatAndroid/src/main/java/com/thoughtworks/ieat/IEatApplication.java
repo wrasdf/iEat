@@ -13,7 +13,7 @@ import java.util.List;
 
 public class IEatApplication extends Application {
 
-    public static final String DATE_PATTERN = "yyyy-MM-dd'T'HH:mm:ssz";
+    public static final String DATE_PATTERN = "yyyy-MM-dd'T'HH:mm:ss'Z'";
     public static final String DATE_DISPLAY_PATTERN = "yyyy-MM-dd HH:mm:ss";
     private static String currentUserName;
 

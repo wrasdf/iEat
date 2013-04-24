@@ -145,4 +145,22 @@ public class Server {
         }
         return appHttpResponse;
     }
+
+    public static AppHttpResponse<Boolean> deleteOrder(Integer orderId) {
+        AppHttpResponse<Boolean> appHttpResponse;
+        try {
+            Boolean isSuccess = HttpUtils.get("/api/v1/orders/delete/" + orderId);
+            if (isSuccess) {
+                appHttpResponse = new AppHttpResponse<Boolean>();
+                appHttpResponse.setData(isSuccess);
+            } else {
+                throw new RuntimeException("Server response error");
+            }
+        } catch (Exception e) {
+            Log.e(TAG, errorMessage, e);
+            appHttpResponse = new AppHttpResponse<Boolean>();
+            appHttpResponse.setException(e);
+        }
+        return appHttpResponse;
+    }
 }

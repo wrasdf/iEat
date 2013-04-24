@@ -27,27 +27,4 @@
                                           android:id="@+id/group_myself_order"/>
 
 
-    <!--<LinearLayout android:id="@+id/group_myself_order_list"-->
-                  <!--android:layout_width="fill_parent"-->
-                  <!--android:layout_height="wrap_content"-->
-                  <!--android:orientation="vertical"-->
-                  <!--android:visibility="gone">-->
-
-        <!--<TextView android:layout_width="fill_parent"-->
-                  <!--android:layout_height="wrap_content"-->
-                  <!--android:id="@+id/group_myself_username"-->
-                  <!--android:textStyle="bold"-->
-                  <!--android:paddingLeft="@dimen/device_padding"-->
-                  <!--android:paddingTop="@dimen/vertical_padding"-->
-                  <!--android:paddingBottom="@dimen/vertical_padding"-->
-                  <!--android:background="@drawable/list_item_bg_top_header"/>-->
-
-    <!--<TableLayout android:layout_width="fill_parent"-->
-                 <!--android:layout_height="wrap_content"-->
-                 <!--android:id="@+id/group_myself_order_table">-->
-
-    <!--</TableLayout>-->
-
-    <!--</LinearLayout>-->
-
 </LinearLayout>

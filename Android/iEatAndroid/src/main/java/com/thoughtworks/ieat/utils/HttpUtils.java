@@ -1,7 +1,6 @@
 package com.thoughtworks.ieat.utils;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import com.google.gson.*;
 import com.thoughtworks.ieat.IEatApplication;
 import com.thoughtworks.ieat.domain.AppHttpResponse;
 import com.thoughtworks.ieat.domain.Group;
@@ -27,8 +26,9 @@ import org.apache.http.protocol.HTTP;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.net.URLEncoder;
-import java.util.LinkedList;
-import java.util.Map;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 public class HttpUtils {
 
@@ -50,6 +50,13 @@ public class HttpUtils {
         return parseResponse(response, type);
     }
 
+    public static boolean get(String url) throws IOException {
+        HttpGet httpGet = new HttpGet(url + "?token=" + IEatApplication.getToken());
+        httpGet.setHeader("Accept", "application/json");
+        HttpResponse response= getHttpClient().execute(getHttpHost(), httpGet);
+        return response.getStatusLine().getStatusCode() == HttpStatus.SC_OK;
+    }
+
     public static <T> AppHttpResponse<T> post(String url, Map<String, String> postParams, Class<T> responseClass) throws IOException {
         String postJson = new Gson().toJson(postParams);
         return post(url, postJson, responseClass);
@@ -63,7 +70,6 @@ public class HttpUtils {
         httpPost.setHeader("Content-type", "application/json");
         httpPost.addHeader("charset", HTTP.UTF_8);
 
-
         HttpResponse response = getHttpClient().execute(getHttpHost(), httpPost);
         AppHttpResponse<E> appHttpResponse = parseResponse(response, responseClass);
         return appHttpResponse;
@@ -74,7 +80,7 @@ public class HttpUtils {
         if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
             String json = IOUtils.toString(response.getEntity().getContent());
             Log.d("HTTP response", json);
-            Gson gson = new GsonBuilder().setDateFormat(IEatApplication.DATE_PATTERN).create();
+            Gson gson = new GsonBuilder().registerTypeAdapter(Date.class, new DateJsonDeserializer()).create();
             E responseData = gson.fromJson(json, responseClass);
             appHttpResponse.setData(responseData);
         } else {
@@ -83,12 +89,27 @@ public class HttpUtils {
         return appHttpResponse;
     }
 
+    private static class DateJsonDeserializer implements JsonDeserializer<Date> {
+
+        public Date deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
+            String dateStr = jsonElement.getAsString();
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat();
+            simpleDateFormat.applyPattern(IEatApplication.DATE_PATTERN);
+            simpleDateFormat.setTimeZone(TimeZone.getTimeZone("GMT+00:00"));
+            try {
+                return simpleDateFormat.parse(dateStr);
+            } catch (ParseException e) {
+                throw new JsonParseException(e);
+            }
+        }
+    }
+
     private static <E> AppHttpResponse<E> parseResponse(HttpResponse response, Type type) throws IOException {
         AppHttpResponse<E> appHttpResponse = new AppHttpResponse<E>();
         if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
             String json = IOUtils.toString(response.getEntity().getContent());
             Log.d("HTTP response", json);
-            Gson gson = new GsonBuilder().setDateFormat(IEatApplication.DATE_PATTERN).create();
+            Gson gson = new GsonBuilder().registerTypeAdapter(Date.class, new DateJsonDeserializer()).create();
             E responseData = gson.fromJson(json, type);
             appHttpResponse.setData(responseData);
         } else {
